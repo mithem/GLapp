@@ -11,7 +11,7 @@ import UIKit
 class BackgroundTaskManager {
     static func registerRepresentativeCheckTask() {
         BGTaskScheduler.shared.register(forTaskWithIdentifier: Constants.Identifiers.backgroundCheckRepresentativePlan, using: nil) { task in
-            NotificationManager.checkRepresentativePlanAndDeliverNotification()
+            NotificationManager.checkRepresentativePlanAndDeliverNotification(task: task)
         }
         let request = BGAppRefreshTaskRequest(identifier: Constants.Identifiers.backgroundCheckRepresentativePlan)
         request.earliestBeginDate = Date(timeIntervalSinceNow: Constants.checkReprPlanInBackgroundAfterMin)
@@ -28,5 +28,8 @@ class BackgroundTaskManager {
     
     static func checkForBackgroundReprPlanCheckEnabled() -> Bool {
         return UIApplication.shared.backgroundRefreshStatus != .denied
+    }
+    
+    static func endBackgroundReprPlanCheck() {
     }
 }

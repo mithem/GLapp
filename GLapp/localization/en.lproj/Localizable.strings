@@ -47,3 +47,4 @@
 "feature_background_repr_plan_check_title" = "Background refresh";
 "feature_background_repr_plan_check_description" = "Check for updated representative plan in background.";
 "enable" = "Enable";
+"upcoming" = "Upcoming";

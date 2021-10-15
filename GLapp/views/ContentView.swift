@@ -11,7 +11,7 @@ struct ContentView: View {
     @State private var showingLoginView = false
     @ObservedObject var dataManager = DataManager()
     @AppStorage(UserDefaultsKeys.lastTabView) var lastTabView = 0
-    var body: some View {
+    var iOSView: some View {
         TabView(selection: $lastTabView) {
             TimetableView(dataManager: dataManager)
                 .tag(0)
@@ -38,16 +38,60 @@ struct ContentView: View {
                     Text("settings")
                 }
         }
+    }
+    
+    var iPadOSView: some View {
+        NavigationView {
+            List {
+                NavigationLink(destination: {TimetableView(dataManager: dataManager)}, label: {
+                    Image(systemName: "calendar")
+                        .foregroundColor(.accentColor)
+                    Text("timetable")
+                })
+                NavigationLink(destination: {ClassTestPlanView()}, label: {
+                    Image(systemName: "doc.append")
+                        .foregroundColor(.accentColor)
+                    Text("classtests")
+                })
+                NavigationLink(destination: {RepresentativePlanView()}, label: {
+                    Image(systemName: "clock")
+                        .foregroundColor(.accentColor)
+                    Text("representative_plan")
+                })
+                NavigationLink(destination: {SettingsView()}, label: {
+                    Image(systemName: "gear")
+                        .foregroundColor(.accentColor)
+                    Text("settings")
+                })
+            }
+            .listStyle(.sidebar)
+        }
+    }
+    
+    var OSSpecificView: some View {
+        let idiom = UIDevice.current.userInterfaceIdiom
+        return Group {
+            if idiom == .phone {
+                iOSView
+            } else if idiom == .pad {
+                iPadOSView
+            }
+        }
+    }
+    
+    var body: some View {
+        OSSpecificView
         .environmentObject(dataManager)
         .onAppear {
-            BackgroundTaskManager.registerRepresentativeCheckTask()
             checkForNeedingToShowLoginView()
             dataManager.loadData()
+            NotificationManager.requestNotificationAuthorization()
         }
         .sheet(isPresented: $showingLoginView) {
             LoginView(delegate: self)
         }
     }
+    
     func checkForNeedingToShowLoginView() {
         if !isLoggedIn() {
             showingLoginView = true

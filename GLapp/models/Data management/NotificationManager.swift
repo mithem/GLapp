@@ -7,6 +7,7 @@
 
 import UserNotifications
 import Combine
+import BackgroundTasks
 
 class NotificationManager {
     
@@ -20,11 +21,15 @@ class NotificationManager {
         center.removeAllDeliveredNotifications()
     }
     
-    static func deliverNotification(title: String, body: String) {
+    static func deliverNotification(title: String, body: String, timeSensitive: Bool = false, sound: UNNotificationSound? = nil) {
         requestNotificationAuthorization()
         let content = UNMutableNotificationContent()
         content.title = title
         content.body = body
+        content.sound = sound
+        if #available(iOS 15, *) {
+            content.interruptionLevel = timeSensitive ? .timeSensitive : .active
+        }
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: Constants.checkReprPlanInBackgroundTimeIntervalTillNotificationScheduled, repeats: false)
         let request = UNNotificationRequest(identifier: Constants.Identifiers.newReprPlanNotification, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request) { error in
@@ -34,14 +39,16 @@ class NotificationManager {
         }
     }
     
-    static func checkRepresentativePlanAndDeliverNotification() {
+    static func checkRepresentativePlanAndDeliverNotification(task: BGTask) {
         // yes, this doesn't yet use the &timestamp parameter and therefore isn't that useful for observing change
-        let manager = MockDataManager()
+        let manager = DataManager()
         manager.loadRepresentativePlan()
-        _ = manager.$representativePlan.sink { reprPlan in
+        deliverNotification(title: "repr_plan_update", body: "Checking reprPlan!", timeSensitive: true)
+        manager.$representativePlan.sink { reprPlan in
             //if !(reprPlan?.isEmpty ?? true) {
-            deliverNotification(title: NSLocalizedString("repr_plan_update", comment: "repr_plan_update"), body: reprPlan?.notes.lazy.joined(separator: ", ") ?? NSLocalizedString("no_repr_plan", comment: "no_repr_plan"))
+            deliverNotification(title: NSLocalizedString("repr_plan_update", comment: "repr_plan_update"), body: reprPlan?.notes.lazy.joined(separator: ", ") ?? NSLocalizedString("no_repr_plan", comment: "no_repr_plan"), timeSensitive: true)
             //}
+            task.setTaskCompleted(success: true)
         }
     }
     
@@ -50,7 +57,7 @@ class NotificationManager {
             if enabled {
                 return
             }
-            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .criticalAlert, .provisional, .sound]) { success, error in
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .provisional, .sound]) { success, error in
                 if !success {
                     if let error = error {
                         print(error)
@@ -66,6 +73,10 @@ class NotificationManager {
             if [.authorized, .ephemeral, .provisional].contains(status) { // the Swift compiler (and accompanying tools) at it's best!
                 completion(true)
                 return
+            }
+            if status == .notDetermined {
+                requestNotificationAuthorization()
+                checkNotificationsEnabled(completion: completion)
             }
             completion(false)
             return

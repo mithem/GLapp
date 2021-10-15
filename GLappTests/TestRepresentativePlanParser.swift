@@ -9,17 +9,42 @@ import XCTest
 @testable import GLapp
 
 class TestRepresentativePlanParser: XCTestCase {
-    func testRepresentativePlanParserSuccess() throws {
+    func testParseEmpty() throws {
         let input = """
 <Vertretungsplan Stand="2000-01-01 00:00:00" Timestamp="946681200">
 <Vertretungstag/>
 <Informationen> </Informationen>
 </Vertretungsplan>
 """
-        let expected = RepresentativePlan(date: .init(timeIntervalSince1970: 946681200), representativeDays: [], lessons: [], notes: [])
+        let expected = RepresentativePlan(date: .init(timeIntervalSince1970: 946681200), representativeDays: [.init()], lessons: [], notes: [])
         
         let result = RepresentativePlanParser.parse(plan: input)
         
         XCTAssertEqual(try result.get(), expected)
+    }
+    
+    func testParseNoRootElement() {
+        let result = RepresentativePlanParser.parse(plan: "")
+        XCTAssertEqual(result, .failure(.noRootElement))
+    }
+    
+    func testParseInvalidRootElement() {
+        let result = RepresentativePlanParser.parse(plan: "<Root></Root>")
+        XCTAssertEqual(result, .failure(.invalidRootElement))
+    }
+    
+    func testParseNoTimestamp() {
+        let result = RepresentativePlanParser.parse(plan: "<Vertretungsplan></Vertretungsplan>")
+        XCTAssertEqual(result, .failure(.noTimestamp))
+    }
+    
+    func testParseInvalidTimestamp() {
+        let plan = """
+<Vertretungsplan Timestamp="2021-10-15T00:00:00Z"></Vertretungsplan>
+"""
+        
+        let result = RepresentativePlanParser.parse(plan: plan)
+        
+        XCTAssertEqual(result, .failure(.invalidTimestamp))
     }
 }

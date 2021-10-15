@@ -12,7 +12,7 @@ struct Constants {
     static let apiHostname = "https://mobil.gymnasium-lohmar.org"
     static let timeoutInterval: TimeInterval = 15
     static let checkReprPlanInBackgroundAfterMin: TimeInterval = 10 // 10 * 60
-    static let checkReprPlanInBackgroundTimeIntervalTillNotificationScheduled: TimeInterval = 1
+    static let checkReprPlanInBackgroundTimeIntervalTillNotificationScheduled: TimeInterval = 10
     
     struct Identifiers {
         static let appId = "com.mithem.GLapp"

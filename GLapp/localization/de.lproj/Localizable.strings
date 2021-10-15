@@ -47,3 +47,4 @@
 "feature_background_repr_plan_check_title" = "Hintergrundaktualisierung";
 "feature_background_repr_plan_check_description" = "Im Hintergrund auf aktualisierten Vertretungsplan prüfen.";
 "enable" = "Aktivieren";
+"upcoming" = "Anstehend";

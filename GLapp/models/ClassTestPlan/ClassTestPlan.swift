@@ -9,12 +9,21 @@ import Foundation
 
 struct ClassTestPlan: Equatable {
     var date: Date
-    var classTests: [ClassTest]
+    var _classTests: [ClassTest]
     
     var isEmpty: Bool { classTests.isEmpty }
     
+    var classTests: [ClassTest] {
+        get {
+            _classTests
+        }
+        set {
+            _classTests = newValue.sorted()
+        }
+    }
+    
     init(date: Date, classTests: [ClassTest] = []) {
         self.date = date
-        self.classTests = classTests
+        self._classTests = classTests.sorted()
     }
 }

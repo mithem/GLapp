@@ -18,6 +18,7 @@ struct AccentColorButton<Label>: View where Label: View {
             .background(Color.accentColor)
             .foregroundColor(.white)
             .clipShape(RoundedRectangle(cornerRadius: UIConstants.rrCornerRadius))
+            .hoverEffect()
     }
     
     init(label: @escaping () -> Label, action: @escaping () -> Void) {

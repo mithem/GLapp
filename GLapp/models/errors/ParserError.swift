@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ParserError: GLappError {
+enum ParserError: GLappError, Equatable {
     case noRootElement
     case invalidRootElement
     case noTimestamp

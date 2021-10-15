@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ClassTest: Identifiable, Equatable {
+struct ClassTest: Identifiable {
     var id: Date { classTestDate }
     
     var date: Date

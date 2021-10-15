@@ -1,0 +1,36 @@
+{
+  "configurations" : [
+    {
+      "id" : "EDCB9EA0-F753-4F7E-ABE5-F4C3BA5169CF",
+      "name" : "w\/ address sanitizer",
+      "options" : {
+        "addressSanitizer" : {
+          "enabled" : true
+        }
+      }
+    },
+    {
+      "id" : "A83384ED-740D-4A70-B732-C78F26571780",
+      "name" : "w\/ thread sanitizer",
+      "options" : {
+        "threadSanitizerEnabled" : true
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "maximumTestRepetitions" : 3,
+    "repeatInNewRunnerProcess" : true,
+    "testTimeoutsEnabled" : true,
+    "undefinedBehaviorSanitizerEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:GLapp.xcodeproj",
+        "identifier" : "4976D13B27108442009C5AC2",
+        "name" : "GLappTests"
+      }
+    }
+  ],
+  "version" : 1
+}

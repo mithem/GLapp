@@ -1,13 +1,13 @@
 //
-//  GLappUITestsLaunchTests.swift
-//  GLappUITests
+//  TestGLappUIForEachConfig.swift
+//  TestGLappUIForEachConfig
 //
-//  Created by Miguel Themann on 08.10.21.
+//  Created by Miguel Themann on 15.10.21.
 //
 
 import XCTest
 
-class GLappUITestsLaunchTests: XCTestCase {
+class TestGLappUIForEachConfig: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

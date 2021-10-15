@@ -46,7 +46,7 @@ class RepresentativePlanParser {
             } else if childElem.name == "Informationen" {
                 var note = childElem.text
                 note = note.replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: "\t", with: "")
-                if note != "" {
+                if note != ""  && note != " " {
                     reprPlan.notes.append(note)
                 }
             }

@@ -7,64 +7,80 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "656FBBF7-09AF-4B76-9A1B-32E9DDF453D7"
+            uuid = "E1CDEC93-44A1-465F-8173-7248E3635267"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GLapp/models/Extensions/NetworkError+localizedDescription.swift"
+            filePath = "GLapp/models/Data management/BackgroundTaskManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "11"
-            endingLineNumber = "11"
-            landmarkName = "NetworkError"
-            landmarkType = "21">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "05A7884B-DFC0-4645-8A8D-71F1979B918B"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GLapp/models/Data management/NotificationManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
-            landmarkName = "checkRepresentativePlanAndDeliverNotification()"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "registerRepresentativeCheckTask()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1B7BF1C4-68FC-440F-9DE6-083B2B72A3C1"
+            uuid = "926C88D8-6807-4615-8C25-A4F2E24AA55F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GLapp/models/Data management/NotificationManager.swift"
+            filePath = "GLapp/models/Data management/BackgroundTaskManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "checkRepresentativePlanAndDeliverNotification()"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "registerRepresentativeCheckTask()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5949D785-DF29-40A6-9868-A49E86C16BE5"
+            uuid = "B6CF9C4E-5829-4A3B-A26B-C1CCAA379413"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GLapp/models/Data management/NotificationManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "deliverNotification(title:body:)"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "checkRepresentativePlanAndDeliverNotification(task:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E347CF1A-D7D3-4EAE-AFD2-E00002E75C37"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GLapp/models/Data management/NotificationManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "checkRepresentativePlanAndDeliverNotification(task:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7A50491A-995D-409F-8EA4-365ECAEA6D02"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GLapp/models/Data management/NotificationManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "requestNotificationAuthorization()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

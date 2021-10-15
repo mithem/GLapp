@@ -24,8 +24,8 @@ struct MockData {
     static let lesson10 = Lesson(lesson: 9, room: "IR3", subject: subject4)
     static let representativeLesson = RepresentativeLesson(date: .init(timeIntervalSinceNow: 3600), lesson: 5, room: "A10", newRoom: "A11", note: "Raumänderung", subject: subject)
     static let representativeLesson2 = RepresentativeLesson(date: .init(timeIntervalSinceNow: 10000), lesson: 2, room: "PR1", newRoom: nil, note: "EVA", subject: subject2)
-    static let classTest = ClassTest(date: .init(timeIntervalSinceNow: -7200), classTestDate: .init(timeIntervalSinceNow: 7200), start: 2, end: 5, room: "A10", subject: .init(className: "M-LK2"), teacher: "PST", individual: true, opened: true, alias: "M")
-    static let classTest2 = ClassTest(date: .init(timeIntervalSinceNow: -7200), classTestDate: .init(timeIntervalSinceNow: 100000), start: 4, end: 5, room: "E38", subject: .init(className: "KU-GK2"), teacher: "DUY", individual: true, opened: true, alias: "K")
+    static let classTest = ClassTest(date: .init(timeIntervalSinceNow: -7200), classTestDate: .init(timeIntervalSinceNow: 604_800), start: 2, end: 5, room: "A10", subject: .init(className: "M-LK2"), teacher: "PST", individual: true, opened: true, alias: "M")
+    static let classTest2 = ClassTest(date: .init(timeIntervalSinceNow: -7200), classTestDate: .init(timeIntervalSinceNow: 345_600), start: 4, end: 5, room: "E38", subject: .init(className: "KU-GK2"), teacher: "DUY", individual: true, opened: true, alias: "K")
     static let representativePlan = RepresentativePlan(date: .init(timeIntervalSinceNow: -1000), representativeDays: [.init(date: .init(timeIntervalSinceNow: 10000), lessons: [representativeLesson2, representativeLesson])], lessons: [], notes: ["Test-Eintrag für das Android-App-Team"])
     static let classTestPlan = ClassTestPlan(date: .init(timeIntervalSinceNow: -100000), classTests: [classTest, classTest2])
     static let timetable = Timetable(date: .init(timeIntervalSinceNow: -100000), weekdays: [

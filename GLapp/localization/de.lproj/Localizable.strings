@@ -1,0 +1,49 @@
+/* 
+  Localizable.strings
+  GLapp
+ 
+  German
+
+  Created by Miguel Themann on 08.10.21.
+  
+*/
+"username" = "Benutzername";
+"password" = "Passwort";
+"send" = "Absenden";
+"login" = "Login";
+"note_all_traffic_encrypted" = "Jegliche Daten werden über eine verschlüsselte Verbindung übertragen.";
+"error_submitting_login_information_returning_data" = "Das Übertragen der Logininformationen hat fälschlicherweise Daten zurückgegeben.";
+"error_colon_msg %@" = "Fehler: %@";
+"error_occured" = "Fehler aufgetreten";
+"not_authorized" = "Nicht authorisiert.";
+"no_data" = "Keine Daten verfügbar.";
+"bad_request" = "Fehlerhafte Anfrage.";
+"unkown_error" = "Unbekannter Fehler.";
+"ok" = "OK";
+"settings" = "Einstellungen";
+"timetable" = "Stundenplan";
+"classtests" = "Klausurplan";
+"representative_plan" = "Vertretungsplan";
+"reset_all_data" = "Alle Daten zurücksetzen";
+"invalid_response" = "Ungültige Server-Antwort.";
+"no_xml_root_element" = "Kein XML Root-Element.";
+"invalid_xml_root_element" = "Ungültiges XML Root-Element.";
+"no_timestamp" = "Kein Zeitpunkt angegeben.";
+"invalid_timestamp" = "Ungültiger Zeitpunkt angegeben.";
+"representative_plan_empty" = "Der Vertretungsplan ist leer.";
+"classTestPlan_empty" = "Es stehen keine Klausuren an.";
+"timetable_empty" = "Es ist kein Stundenplan verfügbar.";
+"retry" = "Erneut versuchen";
+"mobile_key_not_configured" = "Keine Anmeldedaten hinterlegt.";
+"teacher" = "Lehrer";
+"date_colon %@" = "Stand: %@";
+"sometime" = "Irgendwann";
+"loading_msg" = "Laden...";
+"notes" = "Informationen";
+"check_for_functionality" = "Funktionalität prüfen";
+"functionality_check" = "Funktionalitätscheck";
+"feature_notifications_title" = "Benachrichtigungen";
+"feature_notifications_description" = "Benachrichtigungen versenden.";
+"feature_background_repr_plan_check_title" = "Hintergrundaktualisierung";
+"feature_background_repr_plan_check_description" = "Im Hintergrund auf aktualisierten Vertretungsplan prüfen.";
+"enable" = "Aktivieren";

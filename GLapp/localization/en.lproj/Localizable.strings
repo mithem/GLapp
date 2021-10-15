@@ -1,0 +1,49 @@
+/* 
+  Localizable.strings
+  GLapp
+ 
+  English
+
+  Created by Miguel Themann on 08.10.21.
+  
+*/
+"username" = "Username";
+"password" = "Password";
+"send" = "Send";
+"login" = "Login";
+"note_all_traffic_encrypted" = "All traffic is sent over an encrypted connection.";
+"error_submitting_login_information_returning_data" = "Submitting login information falsely returned data.";
+"error_colon_msg %@" = "Error: %@";
+"error_occured" = "Error occured";
+"not_authorized" = "Not authorized.";
+"no_data" = "No data.";
+"bad_request" = "Bad request.";
+"unkown_error" = "Unkown error.";
+"ok" = "OK";
+"settings" = "Settings";
+"timetable" = "Timetable";
+"classtests" = "Class tests";
+"representative_plan" = "Representative plan";
+"reset_all_data" = "Reset all data";
+"invalid_response" = "Invalid server response.";
+"no_xml_root_element" = "No XML root element.";
+"invalid_xml_root_element" = "Invalid XML root element.";
+"no_timestamp" = "No timestamp given.";
+"invalid_timestamp" = "Invalid timestamp given.";
+"representative_plan_empty" = "The representative plan is empty.";
+"classTestPlan_empty" = "There are no class tests scheduled.";
+"timetable_empty" = "There's no timetable available.";
+"retry" = "Retry";
+"mobile_key_not_configured" = "No login data configured.";
+"teacher" = "Teacher";
+"date_colon %@" = "Date: %@";
+"sometime" = "Sometime";
+"loading_msg" = "Loading...";
+"notes" = "Notes";
+"check_for_functionality" = "Check functionality";
+"functionality_check" = "Functionality check";
+"feature_notifications_title" = "Notifications";
+"feature_notifications_description" = "Send notifications.";
+"feature_background_repr_plan_check_title" = "Background refresh";
+"feature_background_repr_plan_check_description" = "Check for updated representative plan in background.";
+"enable" = "Enable";

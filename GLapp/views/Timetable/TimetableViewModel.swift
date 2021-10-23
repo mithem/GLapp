@@ -75,12 +75,13 @@ final class TimetableViewModel: ObservableObject {
         dataManager.loadTimetable()
     }
     
-    func setError(_ error: GLappError?, for key: KeyPath<DataManager.Tasks, DataManagementTask>) {
-        dataManager.setError(error, for: key)
-    }
-    
-    struct TimetableViewLesson: Identifiable {
-        let id: Int
-        let lesson: Lesson?
+    final class TimetableViewLesson: ObservableObject, Identifiable {
+        @Published var id: Int
+        @Published var lesson: Lesson?
+        
+        init(id: Int, lesson: Lesson?) {
+            self.id = id
+            self.lesson = lesson
+        }
     }
 }

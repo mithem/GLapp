@@ -8,33 +8,38 @@
 import SwiftUI
 
 struct FunctionalityCheckView: View {
-    @ObservedObject var model = FunctionalityCheckViewModel()
+    @ObservedObject var appManager: AppManager
+    @ObservedObject var dataManager: DataManager
     @Environment(\.presentationMode) private var presentationMode
+    let timer = Timer.publish(every: 1, on: .current, in: .common).autoconnect()
     var body: some View {
         NavigationView {
-            VStack(spacing: 100) {
-                VStack(alignment: .leading, spacing: 50) {
-                    FunctionalityInlineView(enabled: model.notificationsEnabled, title: "feature_notifications_title", description: "feature_notifications_description", callToAction: "enable") {
-                        presentationMode.wrappedValue.dismiss()
-                        model.enableNotifications()
+            ScrollView {
+                VStack(spacing: 100) {
+                    VStack(alignment: .leading, spacing: 50) {
+                        ForEach([appManager.notifications, appManager.backgroundRefresh, appManager.backgroundReprPlanNotifications, appManager.classTestReminders]) { functionality in
+                            FunctionalityInlineView(functionality: functionality, appManager: appManager, dataManager: dataManager)
+                        }
                     }
-                    FunctionalityInlineView(enabled: model.backgroundReprPlanCheckEnabled, title: "feature_background_repr_plan_check_title", description: "feature_background_repr_plan_check_description", callToAction: "enable") {
+                    .padding(.horizontal, 50)
+                    AccentColorButton("ok") {
                         presentationMode.wrappedValue.dismiss()
-                        model.enableBackgroundTasks()
                     }
-                }
-                .padding(.horizontal, 50)
-                AccentColorButton("ok") {
-                    presentationMode.wrappedValue.dismiss()
                 }
             }
+            .onAppear {
+                appManager.reload(with: dataManager)
+            }
             .navigationTitle("functionality_check")
+            .onReceive(timer) { _ in
+                appManager.reload(with: dataManager)
+            }
         }
     }
 }
 
 struct FunctionalityCheckView_Previews: PreviewProvider {
     static var previews: some View {
-        FunctionalityCheckView()
+        FunctionalityCheckView(appManager: .init(), dataManager: MockDataManager())
     }
 }

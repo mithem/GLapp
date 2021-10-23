@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RepresentativeDay: Equatable, Identifiable {
+struct RepresentativeDay: Equatable, Identifiable, Codable, DeliverableByNotification {
     var id: Date? { date }
     
     var lessons: [RepresentativeLesson]
@@ -20,5 +20,9 @@ struct RepresentativeDay: Equatable, Identifiable {
     
     var isEmpty: Bool {
         return lessons.isEmpty
+    }
+    
+    var summary: String {
+        lessons.map {$0.summary}.joined(separator: ", ")
     }
 }

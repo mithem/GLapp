@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum NetworkError: GLappError {
+enum NetworkError: Error {
     case notAuthorized
     case noData
     case badRequest
@@ -18,15 +18,15 @@ enum NetworkError: GLappError {
     var localizedMessage: String {
         switch self {
         case .notAuthorized:
-            return NSLocalizedString("not_authorized", comment: "not_authorized")
+            return NSLocalizedString("not_authorized")
         case .noData:
-            return NSLocalizedString("no_data", comment: "no_data")
+            return NSLocalizedString("no_data")
         case .badRequest:
-            return NSLocalizedString("bad_request", comment: "bad_request")
+            return NSLocalizedString("bad_request")
         case .mobileKeyNotConfigured:
-            return NSLocalizedString("mobile_key_not_configured", comment: "mobile_key_not_configured")
+            return NSLocalizedString("mobile_key_not_configured")
         case .invalidResponse:
-            return NSLocalizedString("invalid_response", comment: "invalid_response")
+            return NSLocalizedString("invalid_response")
         case .other(let error):
             return error.localizedDescription
         }

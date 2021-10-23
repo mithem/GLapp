@@ -29,8 +29,7 @@ struct UpcomingClassTestView: View {
     }
     
     var timeInterval: String? {
-        let formatter = RelativeDateTimeFormatter()
-        formatter.dateTimeStyle = .numeric
+        let formatter = GLDateFormatter.relativeDateTimeFormatter
         if #available(iOS 15, *) {
             return formatter.localizedString(for: classTest.classTestDate, relativeTo: .now)
         } else {

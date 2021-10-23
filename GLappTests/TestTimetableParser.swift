@@ -9,6 +9,11 @@ import XCTest
 @testable import GLapp
 
 class TestTimetableParser: XCTestCase {
+    var manager: DataManager!
+    override func setUpWithError() throws {
+        manager = MockDataManager()
+    }
+    
     func testTimetableParserSuccess() throws {
         let timetable = """
 <Stundenplan Datum="2021-09-13 09:26:44" Timestamp="1631518004">
@@ -74,17 +79,17 @@ class TestTimetableParser: XCTestCase {
 </Wochentag>
 </Stundenplan>
 """
-        let sPL = Subject(className: "PL-GK1", subjectType: "GKM", teacher: "TRR", subjectName: "PL")
-        let sIF = Subject(className: "IF-GK1", subjectType: "GKS", teacher: "NFD", subjectName: "IF")
-        let sE = Subject(className: "E-GK1", subjectType: "AB3", teacher: "ERD", subjectName: "E")
-        let sM = Subject(className: "M-LK2", subjectType: "LK1", teacher: "PST", subjectName: "M")
-        let sEK = Subject(className: "EK-GK1", subjectType: "GKM", teacher: "BCH", subjectName: "EK")
-        let sGE = Subject(className: "GE-GK1", subjectType: "GKM", teacher: "BCH", subjectName: "GE")
-        let sSW = Subject(className: "SW-GK1", subjectType: "AB4", teacher: "HBS", subjectName: "SW")
-        let sD = Subject(className: "D-GK3", subjectType: "GKS", teacher: "DRO", subjectName: "D")
-        let sPH = Subject(className: "PH-LK1", subjectType: "LK2", teacher: "SEN", subjectName: "PH")
-        let sPSE = Subject(className: "PSE-PJK1", subjectType: "PJK", teacher: "BLN", subjectName: "PSE")
-        let sSP = Subject(className: "SP-GK2", subjectType: "GKM", teacher: "FDK", subjectName: "SP")
+        let sPL = Subject(dataManager: manager, className: "PL-GK1", subjectType: "GKM", teacher: "TRR", subjectName: "PL")
+        let sIF = Subject(dataManager: manager, className: "IF-GK1", subjectType: "GKS", teacher: "NFD", subjectName: "IF")
+        let sE = Subject(dataManager: manager, className: "E-GK1", subjectType: "AB3", teacher: "ERD", subjectName: "E")
+        let sM = Subject(dataManager: manager, className: "M-LK2", subjectType: "LK1", teacher: "PST", subjectName: "M")
+        let sEK = Subject(dataManager: manager, className: "EK-GK1", subjectType: "GKM", teacher: "BCH", subjectName: "EK")
+        let sGE = Subject(dataManager: manager, className: "GE-GK1", subjectType: "GKM", teacher: "BCH", subjectName: "GE")
+        let sSW = Subject(dataManager: manager, className: "SW-GK1", subjectType: "AB4", teacher: "HBS", subjectName: "SW")
+        let sD = Subject(dataManager: manager, className: "D-GK3", subjectType: "GKS", teacher: "DRO", subjectName: "D")
+        let sPH = Subject(dataManager: manager, className: "PH-LK1", subjectType: "LK2", teacher: "SEN", subjectName: "PH")
+        let sPSE = Subject(dataManager: manager, className: "PSE-PJK1", subjectType: "PJK", teacher: "BLN", subjectName: "PSE")
+        let sSP = Subject(dataManager: manager, className: "SP-GK2", subjectType: "GKM", teacher: "FDK", subjectName: "SP")
         let date = Date(timeIntervalSince1970: 1631518004)
         let expected = Timetable(date: date, weekdays: [
             .init(id: 0, lessons: [
@@ -134,7 +139,7 @@ class TestTimetableParser: XCTestCase {
             ])
         ])
         
-        let result = try TimetableParser.parse(timetable: timetable).get()
+        let result = try TimetableParser.parse(timetable: timetable, with: manager).get()
         
         XCTAssertEqual(result.date, date)
         for n in 0 ..< expected.weekdays.count {
@@ -146,17 +151,17 @@ class TestTimetableParser: XCTestCase {
     }
     
     func testParseNoRootElement() {
-        let result = TimetableParser.parse(timetable: "")
+        let result = TimetableParser.parse(timetable: "", with: MockDataManager())
         XCTAssertEqual(result, .failure(.noRootElement))
     }
     
     func testParseInvalidRootElement() {
-        let result = TimetableParser.parse(timetable: "<Root></Root>")
+        let result = TimetableParser.parse(timetable: "<Root></Root>", with: MockDataManager())
         XCTAssertEqual(result, .failure(.invalidRootElement))
     }
     
     func testParseNoTimestamp() {
-        let result = TimetableParser.parse(timetable: "<Stundenplan></Stundenplan>")
+        let result = TimetableParser.parse(timetable: "<Stundenplan></Stundenplan>", with: MockDataManager())
         XCTAssertEqual(result, .failure(.noTimestamp))
     }
     
@@ -164,7 +169,7 @@ class TestTimetableParser: XCTestCase {
         let timetable = """
 <Stundenplan Timestamp="2021-10-15T00:00:00Z"></Stundenplan>
 """
-        let result = TimetableParser.parse(timetable: timetable)
+        let result = TimetableParser.parse(timetable: timetable, with: MockDataManager())
         
         XCTAssertEqual(result, .failure(.invalidTimestamp))
     }

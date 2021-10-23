@@ -10,23 +10,15 @@ import SwiftUI
 struct RepresentativePlanView: View {
     @EnvironmentObject var dataManager: DataManager
     var InnerView: some View {
-        ZStack {
-            if dataManager.tasks.getRepresentativePlan.isLoading {
-                LoadingView()
-            } else if let error = dataManager.tasks.getRepresentativePlan.error {
-                ErrorView(error: error, callback: dataManager.loadRepresentativePlan)
-            } else if let reprPlan = dataManager.representativePlan {
+        VStack {
+            DataManagementTaskView(date: dataManager.representativePlan?.date, lastFetched: dataManager.representativePlan?.lastFetched, task: dataManager.tasks.getRepresentativePlan)
+            Spacer()
+            if let reprPlan = dataManager.representativePlan {
                 VStack {
-                    HStack {
-                        Text("date_colon \(reprPlan.date.formattedWithLocale)")
-                        Spacer()
-                    }
-                    .padding()
-                    Spacer()
                     if reprPlan.isEmpty {
                         EmptyContentView(image: "circle.slash", text: "representative_plan_empty")
                     } else {
-                        List {
+                        let list = List {
                             if !reprPlan.notes.isEmpty {
                                 Section(content: {
                                     ForEach(reprPlan.notes) { note in
@@ -42,22 +34,33 @@ struct RepresentativePlanView: View {
                                         RepresentativeLessonInlineView(lesson: lesson)
                                     }
                                 }, header: {
-                                    Text(reprDay.date?.formattedWithLocaleOnlyDay ?? NSLocalizedString("sometime", comment: "sometime"))
+                                    Text(reprDay.date?.formattedWithLocaleOnlyDay ?? NSLocalizedString("sometime"))
                                 })
                             }
                         }
                         .listStyle(UIConstants.listStyle)
+                        if #available(iOS 15, *) {
+                            list
+                                .refreshable {
+                                    dataManager.loadRepresentativePlan()
+                                }
+                        } else {
+                            list
+                        }
                     }
-                    Spacer()
                 }
             } else {
-                Text("no_data")
-                    .onAppear {
-                        dataManager.setError(NetworkError.noData, for: \.getRepresentativePlan)
-                    }
+                AccentColorButton(label: {Text("retry")}, action: dataManager.loadRepresentativePlan)
+                    .disabled(dataManager.tasks.getRepresentativePlan.isLoading)
             }
+            Spacer()
         }
         .navigationTitle("representative_plan")
+        .toolbar {
+            Button(action: dataManager.loadRepresentativePlan) {
+                Image(systemName: "arrow.clockwise")
+            }
+        }
     }
     
     var body: some View {
@@ -67,6 +70,7 @@ struct RepresentativePlanView: View {
             NavigationView {
                 InnerView
             }
+            .navigationViewStyle(.stack)
         }
     }
 }

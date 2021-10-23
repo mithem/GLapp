@@ -9,16 +9,7 @@ import Foundation
 
 extension Int {
     init?(weekday: String) {
-        let weekdays = [
-            "Montag": 0,
-            "Dienstag": 1,
-            "Mittwoch": 2,
-            "Donnerstag": 3,
-            "Freitag": 4,
-            "Samstag": 5,
-            "Sonntag": 6
-        ]
-        guard let n = weekdays[weekday] else { return nil }
+        guard let n = Constants.weekdayStringIDMap[weekday] else { return nil }
         self = n
     }
 }

@@ -7,24 +7,23 @@
 
 import Foundation
 
-struct RepresentativePlan: Equatable {
+struct RepresentativePlan: Codable, DeliverableByNotification {
     var date: Date
     var representativeDays: [RepresentativeDay]
     var lessons: [RepresentativeLesson]
     var notes: [String]
+    var lastFetched: Date
     
-    init(date: Date) {
-        representativeDays = []
-        lessons = []
-        notes = []
-        self.date = date
-    }
-    
-    init(date: Date, representativeDays: [RepresentativeDay] = [], lessons: [RepresentativeLesson], notes: [String]) {
+    init(date: Date, representativeDays: [RepresentativeDay] = [], lessons: [RepresentativeLesson] = [], notes: [String] = []) {
         self.date = date
         self.representativeDays = representativeDays
         self.lessons = lessons
         self.notes = notes
+        if #available(iOS 15, *) {
+            self.lastFetched = .now
+        } else {
+            self.lastFetched = .init(timeIntervalSinceNow: 0)
+        }
     }
     
     var isEmpty: Bool {
@@ -32,5 +31,13 @@ struct RepresentativePlan: Equatable {
         let lessons = lessons.isEmpty
         let notes = notes.isEmpty
         return days && lessons && notes
+    }
+    
+    var summary: String {
+        var msgs = [String]()
+        msgs.append(notes.joined(separator: ", "))
+        msgs.append(lessons.map {$0.summary}.joined(separator: ", "))
+        msgs.append(representativeDays.map {$0.summary}.joined(separator: ", "))
+        return msgs.filter {$0 != ""}.joined(separator: "; ")
     }
 }

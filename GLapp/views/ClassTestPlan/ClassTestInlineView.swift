@@ -9,8 +9,10 @@ import SwiftUI
 
 struct ClassTestInlineView: View {
     let classTest: ClassTest
+    @ObservedObject var appManager: AppManager
+    @AppStorage(UserDefaultsKeys.automaticallyRemindBeforeClassTests) var autoRemindBeforeClassTests = false // can't use appManager.classTestReminders.isEnabled as that's not refreshed when the view loads and the latter doesn't update when .isEnabled changes 🤨
     var body: some View {
-        HStack {
+        let hstack = HStack {
             VStack(alignment: .leading) {
                 Text(title)
                     .bold()
@@ -22,6 +24,19 @@ struct ClassTestInlineView: View {
                 Text(classTest.teacher ?? "")
             }
                 .foregroundColor(.secondary)
+        }
+        if !autoRemindBeforeClassTests {
+            hstack
+                .contextMenu {
+                    Button(action: {
+                        NotificationManager.default.scheduleClassTestReminder(for: classTest)
+                    }) {
+                        Text("set_reminder")
+                        Image(systemName: "clock")
+                    }
+                }
+        } else {
+            hstack
         }
     }
     
@@ -50,6 +65,6 @@ struct ClassTestInlineView: View {
 
 struct ClassTestInlineView_Previews: PreviewProvider {
     static var previews: some View {
-        ClassTestInlineView(classTest: MockData.classTest)
+        ClassTestInlineView(classTest: MockData.classTest, appManager: .init())
     }
 }

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4910A019271C285B00AAD624 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 4910A018271C285B00AAD624 /* Reachability */; };
+		49250B652720A8DE0096411F /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49250B642720A8DE0096411F /* AppManager.swift */; };
+		492804C2272010220055ED63 /* ClassTestPlan+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492804C1272010220055ED63 /* ClassTestPlan+Equatable.swift */; };
+		492804C42720104D0055ED63 /* RepresentativePlan+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492804C32720104D0055ED63 /* RepresentativePlan+Equatable.swift */; };
+		492804C8272026EF0055ED63 /* GLappError+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492804C7272026EF0055ED63 /* GLappError+Equatable.swift */; };
 		49340503271178ED008B059B /* TestRepresentativePlanParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49340502271178ED008B059B /* TestRepresentativePlanParser.swift */; };
 		4934050627117C88008B059B /* ParserError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4934050527117C88008B059B /* ParserError.swift */; };
 		4934050A271196C6008B059B /* GLappError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49340509271196C6008B059B /* GLappError.swift */; };
@@ -15,11 +20,21 @@
 		4934052627121BA0008B059B /* Date+formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4934052527121BA0008B059B /* Date+formatting.swift */; };
 		4934052B2712BC6A008B059B /* DataManagementTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4934052A2712BC6A008B059B /* DataManagementTask.swift */; };
 		4934052D2712CA67008B059B /* Int+init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4934052C2712CA67008B059B /* Int+init.swift */; };
+		49517FFA271F30500085BEA6 /* DeliverableByNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49517FF9271F30500085BEA6 /* DeliverableByNotification.swift */; };
+		49517FFC271F668A0085BEA6 /* SubjectAttributeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49517FFB271F668A0085BEA6 /* SubjectAttributeView.swift */; };
+		49517FFE271F73BD0085BEA6 /* Timetable+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49517FFD271F73BD0085BEA6 /* Timetable+Equatable.swift */; };
+		49526F9427218E8700FD0242 /* FBackgroundReprPlanNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49526F9327218E8700FD0242 /* FBackgroundReprPlanNotifications.swift */; };
+		49526F96272190D900FD0242 /* FClassTestReminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49526F95272190D900FD0242 /* FClassTestReminders.swift */; };
 		495E6B8B271833ED0052B565 /* TestClassTestPlanParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495E6B8A271833ED0052B565 /* TestClassTestPlanParser.swift */; };
 		495E6B8D271837180052B565 /* TestTimetableParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495E6B8C271837180052B565 /* TestTimetableParser.swift */; };
 		495E6B9127188B5A0052B565 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495E6B9027188B5A0052B565 /* NotificationManager.swift */; };
 		495E6B9327188BD00052B565 /* BackgroundTaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495E6B9227188BD00052B565 /* BackgroundTaskManager.swift */; };
 		495E6B972718C3CC0052B565 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495E6B962718C3CC0052B565 /* AppDelegate.swift */; };
+		495E7C51271ABFC9000085C7 /* DataManagementTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495E7C50271ABFC9000085C7 /* DataManagementTaskView.swift */; };
+		49686D81271DC9A80075F14A /* FSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49686D80271DC9A80075F14A /* FSError.swift */; };
+		49686D83271DD28E0075F14A /* Subject+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49686D82271DD28E0075F14A /* Subject+Equatable.swift */; };
+		49686D87271DDA250075F14A /* Lesson+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49686D86271DDA250075F14A /* Lesson+Equatable.swift */; };
+		49686D89271DDC490075F14A /* Weekday+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49686D88271DDC490075F14A /* Weekday+Equatable.swift */; };
 		4976D1302710843E009C5AC2 /* GLapp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4976D12F2710843E009C5AC2 /* GLapp.swift */; };
 		4976D13427108441009C5AC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4976D13327108441009C5AC2 /* Assets.xcassets */; };
 		4976D13727108441009C5AC2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4976D13627108441009C5AC2 /* Preview Assets.xcassets */; };
@@ -35,7 +50,6 @@
 		4976D18C27108A68009C5AC2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4976D18E27108A68009C5AC2 /* Localizable.strings */; };
 		4976D19127108AA9009C5AC2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4976D19327108AA9009C5AC2 /* Localizable.strings */; };
 		4991A2A7271996F8008559F9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4991A29F271996F8008559F9 /* SettingsView.swift */; };
-		4991A2A8271996F8008559F9 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4991A2A0271996F8008559F9 /* ErrorView.swift */; };
 		4991A2A9271996F8008559F9 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4991A2A1271996F8008559F9 /* UIConstants.swift */; };
 		4991A2AA271996F8008559F9 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4991A2A2271996F8008559F9 /* LoadingView.swift */; };
 		4991A2AB271996F8008559F9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4991A2A3271996F8008559F9 /* ContentView.swift */; };
@@ -53,7 +67,6 @@
 		499A3EEC2719F7350045683D /* ClassTest+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A3EEB2719F7350045683D /* ClassTest+Comparable.swift */; };
 		499A3EEE2719FB010045683D /* UpcomingClassTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A3EED2719FB010045683D /* UpcomingClassTestView.swift */; };
 		49A5B2462719A3C400577767 /* FunctionalityCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A5B2452719A3C400577767 /* FunctionalityCheckView.swift */; };
-		49A5B2492719A4B400577767 /* FunctionalityCheckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A5B2482719A4B400577767 /* FunctionalityCheckViewModel.swift */; };
 		49A5B24B2719A5BF00577767 /* FunctionalityInlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A5B24A2719A5BF00577767 /* FunctionalityInlineView.swift */; };
 		49AF334E271995FA00F406D1 /* ContentView+LoginViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF334C271995F900F406D1 /* ContentView+LoginViewDelegate.swift */; };
 		49AF33622719962100F406D1 /* ClassTestInlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF33602719962100F406D1 /* ClassTestInlineView.swift */; };
@@ -63,6 +76,13 @@
 		49AF336B2719963A00F406D1 /* TimetableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF33682719963A00F406D1 /* TimetableViewModel.swift */; };
 		49AF336C2719963A00F406D1 /* LessonInlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF33692719963A00F406D1 /* LessonInlineView.swift */; };
 		49AF336D2719963A00F406D1 /* TimetableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF336A2719963A00F406D1 /* TimetableView.swift */; };
+		49E59DE6271C7180009A1609 /* EditSubjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E59DE5271C7180009A1609 /* EditSubjectView.swift */; };
+		49E59DEE271C7D7F009A1609 /* CodableColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E59DED271C7D7F009A1609 /* CodableColor.swift */; };
+		49E59DF0271C92B6009A1609 /* CodableColor+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E59DEF271C92B6009A1609 /* CodableColor+Equatable.swift */; };
+		49EEDE47272158A0009A4C6A /* Functionality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EEDE46272158A0009A4C6A /* Functionality.swift */; };
+		49EEDE4C27215BDD009A4C6A /* FunctionalityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EEDE4B27215BDD009A4C6A /* FunctionalityProtocol.swift */; };
+		49EEDE4E272167D8009A4C6A /* FNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EEDE4D272167D8009A4C6A /* FNotifications.swift */; };
+		49EEDE5227218B0F009A4C6A /* FBackgroundRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EEDE5127218B0F009A4C6A /* FBackgroundRefresh.swift */; };
 		49F380E32710DF15002AE814 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F380E22710DF15002AE814 /* DataManager.swift */; };
 		49F380E52710DFE0002AE814 /* RepresentativePlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F380E42710DFE0002AE814 /* RepresentativePlan.swift */; };
 		49F380E82710E05F002AE814 /* Timetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F380E72710E05F002AE814 /* Timetable.swift */; };
@@ -91,6 +111,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		49250B642720A8DE0096411F /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
+		492804C1272010220055ED63 /* ClassTestPlan+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClassTestPlan+Equatable.swift"; sourceTree = "<group>"; };
+		492804C32720104D0055ED63 /* RepresentativePlan+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepresentativePlan+Equatable.swift"; sourceTree = "<group>"; };
+		492804C7272026EF0055ED63 /* GLappError+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GLappError+Equatable.swift"; sourceTree = "<group>"; };
 		49340502271178ED008B059B /* TestRepresentativePlanParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRepresentativePlanParser.swift; sourceTree = "<group>"; };
 		4934050527117C88008B059B /* ParserError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserError.swift; sourceTree = "<group>"; };
 		49340509271196C6008B059B /* GLappError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLappError.swift; sourceTree = "<group>"; };
@@ -99,12 +123,22 @@
 		4934052527121BA0008B059B /* Date+formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+formatting.swift"; sourceTree = "<group>"; };
 		4934052A2712BC6A008B059B /* DataManagementTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagementTask.swift; sourceTree = "<group>"; };
 		4934052C2712CA67008B059B /* Int+init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+init.swift"; sourceTree = "<group>"; };
+		49517FF9271F30500085BEA6 /* DeliverableByNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliverableByNotification.swift; sourceTree = "<group>"; };
+		49517FFB271F668A0085BEA6 /* SubjectAttributeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectAttributeView.swift; sourceTree = "<group>"; };
+		49517FFD271F73BD0085BEA6 /* Timetable+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timetable+Equatable.swift"; sourceTree = "<group>"; };
+		49526F9327218E8700FD0242 /* FBackgroundReprPlanNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBackgroundReprPlanNotifications.swift; sourceTree = "<group>"; };
+		49526F95272190D900FD0242 /* FClassTestReminders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FClassTestReminders.swift; sourceTree = "<group>"; };
 		495E6B8A271833ED0052B565 /* TestClassTestPlanParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestClassTestPlanParser.swift; sourceTree = "<group>"; };
 		495E6B8C271837180052B565 /* TestTimetableParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTimetableParser.swift; sourceTree = "<group>"; };
 		495E6B8E27188A4B0052B565 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		495E6B9027188B5A0052B565 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		495E6B9227188BD00052B565 /* BackgroundTaskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTaskManager.swift; sourceTree = "<group>"; };
 		495E6B962718C3CC0052B565 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		495E7C50271ABFC9000085C7 /* DataManagementTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagementTaskView.swift; sourceTree = "<group>"; };
+		49686D80271DC9A80075F14A /* FSError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSError.swift; sourceTree = "<group>"; };
+		49686D82271DD28E0075F14A /* Subject+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Subject+Equatable.swift"; sourceTree = "<group>"; };
+		49686D86271DDA250075F14A /* Lesson+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lesson+Equatable.swift"; sourceTree = "<group>"; };
+		49686D88271DDC490075F14A /* Weekday+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Weekday+Equatable.swift"; sourceTree = "<group>"; };
 		4976D12C2710843E009C5AC2 /* GLapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GLapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4976D12F2710843E009C5AC2 /* GLapp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLapp.swift; sourceTree = "<group>"; };
 		4976D13327108441009C5AC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -122,7 +156,6 @@
 		4976D18D27108A68009C5AC2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4976D19227108AA9009C5AC2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4991A29F271996F8008559F9 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		4991A2A0271996F8008559F9 /* ErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		4991A2A1271996F8008559F9 /* UIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
 		4991A2A2271996F8008559F9 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		4991A2A3271996F8008559F9 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -142,7 +175,6 @@
 		499A3EEB2719F7350045683D /* ClassTest+Comparable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClassTest+Comparable.swift"; sourceTree = "<group>"; };
 		499A3EED2719FB010045683D /* UpcomingClassTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingClassTestView.swift; sourceTree = "<group>"; };
 		49A5B2452719A3C400577767 /* FunctionalityCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalityCheckView.swift; sourceTree = "<group>"; };
-		49A5B2482719A4B400577767 /* FunctionalityCheckViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalityCheckViewModel.swift; sourceTree = "<group>"; };
 		49A5B24A2719A5BF00577767 /* FunctionalityInlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalityInlineView.swift; sourceTree = "<group>"; };
 		49AF334C271995F900F406D1 /* ContentView+LoginViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ContentView+LoginViewDelegate.swift"; sourceTree = "<group>"; };
 		49AF33602719962100F406D1 /* ClassTestInlineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassTestInlineView.swift; sourceTree = "<group>"; };
@@ -152,6 +184,13 @@
 		49AF33682719963A00F406D1 /* TimetableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimetableViewModel.swift; sourceTree = "<group>"; };
 		49AF33692719963A00F406D1 /* LessonInlineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonInlineView.swift; sourceTree = "<group>"; };
 		49AF336A2719963A00F406D1 /* TimetableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimetableView.swift; sourceTree = "<group>"; };
+		49E59DE5271C7180009A1609 /* EditSubjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSubjectView.swift; sourceTree = "<group>"; };
+		49E59DED271C7D7F009A1609 /* CodableColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableColor.swift; sourceTree = "<group>"; };
+		49E59DEF271C92B6009A1609 /* CodableColor+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodableColor+Equatable.swift"; sourceTree = "<group>"; };
+		49EEDE46272158A0009A4C6A /* Functionality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functionality.swift; sourceTree = "<group>"; };
+		49EEDE4B27215BDD009A4C6A /* FunctionalityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalityProtocol.swift; sourceTree = "<group>"; };
+		49EEDE4D272167D8009A4C6A /* FNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FNotifications.swift; sourceTree = "<group>"; };
+		49EEDE5127218B0F009A4C6A /* FBackgroundRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBackgroundRefresh.swift; sourceTree = "<group>"; };
 		49F380E22710DF15002AE814 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		49F380E42710DFE0002AE814 /* RepresentativePlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepresentativePlan.swift; sourceTree = "<group>"; };
 		49F380E72710E05F002AE814 /* Timetable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timetable.swift; sourceTree = "<group>"; };
@@ -168,6 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4976D17D27108644009C5AC2 /* SWXMLHash in Frameworks */,
+				4910A019271C285B00AAD624 /* Reachability in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,6 +233,7 @@
 			children = (
 				4976D16227108590009C5AC2 /* NetworkError.swift */,
 				49340509271196C6008B059B /* GLappError.swift */,
+				49686D80271DC9A80075F14A /* FSError.swift */,
 				4934050527117C88008B059B /* ParserError.swift */,
 			);
 			path = errors;
@@ -235,6 +276,14 @@
 				49FDEDD2271359850013341B /* String+Identifiable.swift */,
 				499A3EE92719F7220045683D /* ClassTest+Equatable.swift */,
 				499A3EEB2719F7350045683D /* ClassTest+Comparable.swift */,
+				49E59DEF271C92B6009A1609 /* CodableColor+Equatable.swift */,
+				49686D82271DD28E0075F14A /* Subject+Equatable.swift */,
+				49686D86271DDA250075F14A /* Lesson+Equatable.swift */,
+				49686D88271DDC490075F14A /* Weekday+Equatable.swift */,
+				49517FFD271F73BD0085BEA6 /* Timetable+Equatable.swift */,
+				492804C1272010220055ED63 /* ClassTestPlan+Equatable.swift */,
+				492804C32720104D0055ED63 /* RepresentativePlan+Equatable.swift */,
+				492804C7272026EF0055ED63 /* GLappError+Equatable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -246,8 +295,9 @@
 				495E6B9227188BD00052B565 /* BackgroundTaskManager.swift */,
 				49F380E22710DF15002AE814 /* DataManager.swift */,
 				4934052A2712BC6A008B059B /* DataManagementTask.swift */,
-				493405162711BADE008B059B /* MockDataManager.swift */,
-				4934051E2711E45D008B059B /* MockData.swift */,
+				49250B642720A8DE0096411F /* AppManager.swift */,
+				49EEDE4A27215A07009A4C6A /* Functionality */,
+				49EEDE452721587E009A4C6A /* Mock data */,
 			);
 			path = "Data management";
 			sourceTree = "<group>";
@@ -332,11 +382,11 @@
 				4991A2A4271996F8008559F9 /* AccentColorButton.swift */,
 				4991A2A3271996F8008559F9 /* ContentView.swift */,
 				4991A2A6271996F8008559F9 /* EmptyContentView.swift */,
-				4991A2A0271996F8008559F9 /* ErrorView.swift */,
 				4991A2A2271996F8008559F9 /* LoadingView.swift */,
 				4991A2A5271996F8008559F9 /* LoginView.swift */,
-				4991A29F271996F8008559F9 /* SettingsView.swift */,
 				4991A2A1271996F8008559F9 /* UIConstants.swift */,
+				495E7C50271ABFC9000085C7 /* DataManagementTaskView.swift */,
+				49E59DE4271C7170009A1609 /* Settings */,
 				494FD6742713254D0023E1B5 /* Extensions */,
 				49A5B2472719A4A300577767 /* Functionality check */,
 				4934050F2711B86A008B059B /* Representative plan */,
@@ -355,6 +405,8 @@
 				4934050427117C7A008B059B /* errors */,
 				4976D16327108590009C5AC2 /* NetworkResult.swift */,
 				4976D16127108590009C5AC2 /* UserDefaultsKeys.swift */,
+				49E59DED271C7D7F009A1609 /* CodableColor.swift */,
+				49517FF9271F30500085BEA6 /* DeliverableByNotification.swift */,
 				49F380ED2710E132002AE814 /* ClassTestPlan */,
 				49F380E62710E055002AE814 /* Timetable */,
 				4976D169271085C1009C5AC2 /* Representative plan */,
@@ -396,10 +448,41 @@
 			isa = PBXGroup;
 			children = (
 				49A5B2452719A3C400577767 /* FunctionalityCheckView.swift */,
-				49A5B2482719A4B400577767 /* FunctionalityCheckViewModel.swift */,
 				49A5B24A2719A5BF00577767 /* FunctionalityInlineView.swift */,
 			);
 			path = "Functionality check";
+			sourceTree = "<group>";
+		};
+		49E59DE4271C7170009A1609 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				4991A29F271996F8008559F9 /* SettingsView.swift */,
+				49E59DE5271C7180009A1609 /* EditSubjectView.swift */,
+				49517FFB271F668A0085BEA6 /* SubjectAttributeView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		49EEDE452721587E009A4C6A /* Mock data */ = {
+			isa = PBXGroup;
+			children = (
+				493405162711BADE008B059B /* MockDataManager.swift */,
+				4934051E2711E45D008B059B /* MockData.swift */,
+			);
+			path = "Mock data";
+			sourceTree = "<group>";
+		};
+		49EEDE4A27215A07009A4C6A /* Functionality */ = {
+			isa = PBXGroup;
+			children = (
+				49EEDE4B27215BDD009A4C6A /* FunctionalityProtocol.swift */,
+				49EEDE46272158A0009A4C6A /* Functionality.swift */,
+				49EEDE4D272167D8009A4C6A /* FNotifications.swift */,
+				49EEDE5127218B0F009A4C6A /* FBackgroundRefresh.swift */,
+				49526F9327218E8700FD0242 /* FBackgroundReprPlanNotifications.swift */,
+				49526F95272190D900FD0242 /* FClassTestReminders.swift */,
+			);
+			path = Functionality;
 			sourceTree = "<group>";
 		};
 		49F380E62710E055002AE814 /* Timetable */ = {
@@ -450,6 +533,7 @@
 			name = GLapp;
 			packageProductDependencies = (
 				4976D17C27108644009C5AC2 /* SWXMLHash */,
+				4910A018271C285B00AAD624 /* Reachability */,
 			);
 			productName = GLapp;
 			productReference = 4976D12C2710843E009C5AC2 /* GLapp.app */;
@@ -525,6 +609,7 @@
 			mainGroup = 4976D1232710843E009C5AC2;
 			packageReferences = (
 				4976D17B27108644009C5AC2 /* XCRemoteSwiftPackageReference "SWXMLHash" */,
+				4910A017271C285B00AAD624 /* XCRemoteSwiftPackageReference "Reachability" */,
 			);
 			productRefGroup = 4976D12D2710843E009C5AC2 /* Products */;
 			projectDirPath = "";
@@ -575,26 +660,34 @@
 				4991A2B427199768008559F9 /* RepresentativePlanParser.swift in Sources */,
 				49A5B2462719A3C400577767 /* FunctionalityCheckView.swift in Sources */,
 				49F380E82710E05F002AE814 /* Timetable.swift in Sources */,
+				49517FFC271F668A0085BEA6 /* SubjectAttributeView.swift in Sources */,
 				4976D16527108590009C5AC2 /* NetworkError.swift in Sources */,
 				4976D174271085EB009C5AC2 /* RepresentativeLesson.swift in Sources */,
 				49F380F32710E174002AE814 /* ClassTest.swift in Sources */,
 				4934052B2712BC6A008B059B /* DataManagementTask.swift in Sources */,
+				49517FFE271F73BD0085BEA6 /* Timetable+Equatable.swift in Sources */,
+				49250B652720A8DE0096411F /* AppManager.swift in Sources */,
+				49E59DF0271C92B6009A1609 /* CodableColor+Equatable.swift in Sources */,
 				49AF33672719962C00F406D1 /* RepresentativeLessonInlineView.swift in Sources */,
+				49EEDE4C27215BDD009A4C6A /* FunctionalityProtocol.swift in Sources */,
+				49686D89271DDC490075F14A /* Weekday+Equatable.swift in Sources */,
 				4991A2B027199706008559F9 /* SettingsView+LoginViewDelegate.swift in Sources */,
 				49F380EA2710E095002AE814 /* Weekday.swift in Sources */,
 				49AF336C2719963A00F406D1 /* LessonInlineView.swift in Sources */,
 				4976D175271085EB009C5AC2 /* RepresentativeDay.swift in Sources */,
+				49EEDE47272158A0009A4C6A /* Functionality.swift in Sources */,
 				49F380EF2710E146002AE814 /* ClassTestPlan.swift in Sources */,
 				49AF336B2719963A00F406D1 /* TimetableViewModel.swift in Sources */,
 				4991A2AD271996F8008559F9 /* LoginView.swift in Sources */,
+				49EEDE5227218B0F009A4C6A /* FBackgroundRefresh.swift in Sources */,
 				4991A2AB271996F8008559F9 /* ContentView.swift in Sources */,
 				4934050A271196C6008B059B /* GLappError.swift in Sources */,
 				495E6B9127188B5A0052B565 /* NotificationManager.swift in Sources */,
 				4991A2B527199768008559F9 /* TimetableParser.swift in Sources */,
 				49AF33662719962C00F406D1 /* RepresentativePlanView.swift in Sources */,
 				493405172711BADE008B059B /* MockDataManager.swift in Sources */,
+				49526F96272190D900FD0242 /* FClassTestReminders.swift in Sources */,
 				499A3EEE2719FB010045683D /* UpcomingClassTestView.swift in Sources */,
-				49A5B2492719A4B400577767 /* FunctionalityCheckViewModel.swift in Sources */,
 				495E6B972718C3CC0052B565 /* AppDelegate.swift in Sources */,
 				4991A2AA271996F8008559F9 /* LoadingView.swift in Sources */,
 				49AF336D2719963A00F406D1 /* TimetableView.swift in Sources */,
@@ -602,26 +695,37 @@
 				49F380E32710DF15002AE814 /* DataManager.swift in Sources */,
 				4934051F2711E45D008B059B /* MockData.swift in Sources */,
 				49AF33632719962100F406D1 /* ClassTestPlanView.swift in Sources */,
+				492804C8272026EF0055ED63 /* GLappError+Equatable.swift in Sources */,
+				492804C42720104D0055ED63 /* RepresentativePlan+Equatable.swift in Sources */,
 				49A5B24B2719A5BF00577767 /* FunctionalityInlineView.swift in Sources */,
 				4991A2AE271996F8008559F9 /* EmptyContentView.swift in Sources */,
 				499A3EEA2719F7220045683D /* ClassTest+Equatable.swift in Sources */,
 				49F380EC2710E0E4002AE814 /* Lesson.swift in Sources */,
 				4934050627117C88008B059B /* ParserError.swift in Sources */,
+				49E59DE6271C7180009A1609 /* EditSubjectView.swift in Sources */,
+				49E59DEE271C7D7F009A1609 /* CodableColor.swift in Sources */,
 				4991A2A7271996F8008559F9 /* SettingsView.swift in Sources */,
+				492804C2272010220055ED63 /* ClassTestPlan+Equatable.swift in Sources */,
 				49F380E52710DFE0002AE814 /* RepresentativePlan.swift in Sources */,
 				4991A2B82719976F008559F9 /* functions.swift in Sources */,
 				4976D173271085EB009C5AC2 /* Subject.swift in Sources */,
+				49526F9427218E8700FD0242 /* FBackgroundReprPlanNotifications.swift in Sources */,
 				4991A2AC271996F8008559F9 /* AccentColorButton.swift in Sources */,
+				49EEDE4E272167D8009A4C6A /* FNotifications.swift in Sources */,
 				49AF33622719962100F406D1 /* ClassTestInlineView.swift in Sources */,
+				49517FFA271F30500085BEA6 /* DeliverableByNotification.swift in Sources */,
+				495E7C51271ABFC9000085C7 /* DataManagementTaskView.swift in Sources */,
 				4991A2BA27199789008559F9 /* GLDateFormatter.swift in Sources */,
+				49686D87271DDA250075F14A /* Lesson+Equatable.swift in Sources */,
 				49FDEDD3271359850013341B /* String+Identifiable.swift in Sources */,
 				4991A2A9271996F8008559F9 /* UIConstants.swift in Sources */,
 				4991A2B627199768008559F9 /* ClassTestPlanParser.swift in Sources */,
 				499A3EEC2719F7350045683D /* ClassTest+Comparable.swift in Sources */,
+				49686D83271DD28E0075F14A /* Subject+Equatable.swift in Sources */,
 				495E6B9327188BD00052B565 /* BackgroundTaskManager.swift in Sources */,
+				49686D81271DC9A80075F14A /* FSError.swift in Sources */,
 				4976D16427108590009C5AC2 /* UserDefaultsKeys.swift in Sources */,
 				4976D1302710843E009C5AC2 /* GLapp.swift in Sources */,
-				4991A2A8271996F8008559F9 /* ErrorView.swift in Sources */,
 				4976D16627108590009C5AC2 /* NetworkResult.swift in Sources */,
 				4934052627121BA0008B059B /* Date+formatting.swift in Sources */,
 			);
@@ -812,17 +916,18 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GLapp/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = "1.0.0-a2";
+				MARKETING_VERSION = "1.0.0-a3";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mithem.GLapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -844,17 +949,18 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GLapp/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = "1.0.0-a2";
+				MARKETING_VERSION = "1.0.0-a3";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mithem.GLapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1001,6 +1107,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		4910A017271C285B00AAD624 /* XCRemoteSwiftPackageReference "Reachability" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		4976D17B27108644009C5AC2 /* XCRemoteSwiftPackageReference "SWXMLHash" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/drmohundro/SWXMLHash.git";
@@ -1012,6 +1126,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4910A018271C285B00AAD624 /* Reachability */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4910A017271C285B00AAD624 /* XCRemoteSwiftPackageReference "Reachability" */;
+			productName = Reachability;
+		};
 		4976D17C27108644009C5AC2 /* SWXMLHash */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4976D17B27108644009C5AC2 /* XCRemoteSwiftPackageReference "SWXMLHash" */;

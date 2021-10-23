@@ -9,7 +9,7 @@ import Foundation
 import SWXMLHash
 
 class RepresentativePlanParser {
-    static func parse(plan: String) -> Result<RepresentativePlan, ParserError> {
+    static func parse(plan: String, with dataManager: DataManager) -> Result<RepresentativePlan, ParserError> {
         let hash = XMLHash.parse(plan)
         guard let reprPlanIndex = hash.children.first else { return .failure(.noRootElement) }
         guard let reprPlanElem = reprPlanIndex.element else { return .failure(.noRootElement) }
@@ -32,7 +32,7 @@ class RepresentativePlanParser {
                         guard let date = GLDateFormatter.formatter.date(from: dateText) else { continue }
                         guard let lessonNo = Int(elem.attribute(by: "Stunde")?.text ?? "") else { continue }
                         guard let subjectText = elem.attribute(by: "Fach")?.text else { continue }
-                        let subject = Subject(className: subjectText)
+                        let subject = Subject(dataManager: dataManager, className: subjectText)
                         let room = elem.attribute(by: "Raum")?.text
                         let newRoom = elem.attribute(by: "RaumNeu")?.text
                         let note = elem.attribute(by: "Hinweis")?.text // can't remember; TODO: Alter

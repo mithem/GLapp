@@ -28,8 +28,10 @@ struct LoginView: View {
             VStack {
                 Form {
                     TextField(.init("username"), text: $username)
+                        .textContentType(.username)
                         .disableAutocorrection(true)
                     SecureField(.init("password"), text: $password)
+                        .textContentType(.password)
                         .disableAutocorrection(true)
                     Toggle("teacher", isOn: $userIsTeacher)
                     Button(action: submitLogin) {
@@ -59,7 +61,7 @@ struct LoginView: View {
         } else {
             Content
                 .actionSheet(isPresented: $showingErrorActionSheet) {
-                    return ActionSheet(title: Text("error_occured"), message: Text("error_colon_msg \(error?.localizedMessage ?? "unkown")"), buttons: [.default(Text("ok"))])
+                    ActionSheet(title: Text("error_occured"), message: Text("error_colon_msg \(error?.localizedMessage ?? "unkown")"), buttons: [.default(Text("ok"))])
                 }
                 
         }

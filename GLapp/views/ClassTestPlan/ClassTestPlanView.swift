@@ -8,44 +8,45 @@
 import SwiftUI
 
 struct ClassTestPlanView: View {
-    @EnvironmentObject private var dataManager: DataManager
+    @ObservedObject var dataManager: DataManager
+    @ObservedObject var appManager: AppManager
     var InnerView: some View {
-        ZStack {
-            if dataManager.tasks.getClassTestPlan.isLoading {
-                LoadingView()
-            } else if let error = dataManager.tasks.getClassTestPlan.error {
-                ErrorView(error: error, callback: dataManager.loadClassTestPlan)
-            } else if let plan = dataManager.classTestPlan {
-                VStack {
-                    HStack {
-                        Text("date_colon \(plan.date.formattedWithLocale)")
-                        Spacer()
-                    }
-                    .padding()
-                    Spacer()
-                    if plan.isEmpty {
-                        EmptyContentView(image: "sparkles", text: "classTestPlan_empty")
-                    } else {
-                        List {
-                            if let classTest = plan.classTests.first {
-                                UpcomingClassTestView(classTest: classTest)
-                            }
-                            ForEach(plan.classTests) { classTest in
-                                ClassTestInlineView(classTest: classTest)
-                            }
+        VStack {
+            DataManagementTaskView(date: dataManager.classTestPlan?.date, lastFetched: dataManager.classTestPlan?.lastFetched, task: dataManager.tasks.getClassTestPlan)
+            Spacer()
+            if let plan = dataManager.classTestPlan {
+                if plan.isEmpty {
+                    EmptyContentView(image: "sparkles", text: "classTestPlan_empty")
+                } else {
+                    let list = List {
+                        if let classTest = plan.classTests.first {
+                            UpcomingClassTestView(classTest: classTest)
                         }
-                        .listStyle(UIConstants.listStyle)
+                        ForEach(plan.classTests) { classTest in
+                            ClassTestInlineView(classTest: classTest, appManager: appManager)
+                        }
                     }
-                    Spacer()
+                    .listStyle(UIConstants.listStyle)
+                    if #available(iOS 15, *) {
+                        list
+                            .refreshable {
+                                dataManager.loadClassTestPlan()
+                            }
+                    } else {
+                        list
+                    }
                 }
             } else {
-                Text("no_data")
-                    .onAppear {
-                        dataManager.setError(NetworkError.noData, for: \.getClassTestPlan)
-                    }
+                AccentColorButton(label: {Text("retry")}, action: dataManager.loadClassTestPlan)
             }
+            Spacer()
         }
         .navigationTitle("classtests")
+        .toolbar {
+            Button(action: dataManager.loadClassTestPlan) {
+                Image(systemName: "arrow.clockwise")
+            }
+        }
     }
     
     var body: some View {
@@ -56,6 +57,7 @@ struct ClassTestPlanView: View {
                 NavigationView {
                     InnerView
                 }
+                .navigationViewStyle(.stack)
             }
         }
     }
@@ -63,7 +65,7 @@ struct ClassTestPlanView: View {
 
 struct ClassTestPlanView_Previews: PreviewProvider {
     static var previews: some View {
-        ClassTestPlanView()
+        ClassTestPlanView(dataManager: MockDataManager(), appManager: .init())
             .environmentObject(MockDataManager())
     }
 }

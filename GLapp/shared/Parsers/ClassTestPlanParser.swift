@@ -9,7 +9,7 @@ import Foundation
 import SWXMLHash
 
 class ClassTestPlanParser {
-    static func parse(plan: String) -> Result<ClassTestPlan, ParserError> {
+    static func parse(plan: String, with dataManager: DataManager) -> Result<ClassTestPlan, ParserError> {
         let hash = XMLHash.parse(plan)
         guard let classTestPlanIndex = hash.children.first else { return .failure(.noRootElement) }
         guard let classTestPlanElem = classTestPlanIndex.element else { return .failure(.noRootElement) }
@@ -57,7 +57,7 @@ class ClassTestPlanParser {
                 teacher = nil
             }
             
-            let subject = Subject(className: alias, subjectType: nil, teacher: teacher, subjectName: subjectName)
+            let subject = Subject(dataManager: dataManager, className: alias, subjectType: nil, teacher: teacher, subjectName: subjectName)
             let classTest = ClassTest(date: date, classTestDate: classTestDate, start: startN, end: endN, room: room, subject: subject, teacher: teacher, individual: individual, opened: opened, alias: alias)
             classTestPlan.classTests.append(classTest)
         }

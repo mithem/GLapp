@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ParserError: GLappError, Equatable {
+enum ParserError: Error, Equatable {
     case noRootElement
     case invalidRootElement
     case noTimestamp
@@ -17,15 +17,15 @@ enum ParserError: GLappError, Equatable {
     var localizedMessage: String {
         switch self {
         case .noRootElement:
-            return NSLocalizedString("no_xml_root_element", comment: "no_xml_root_element")
+            return NSLocalizedString("no_xml_root_element")
         case .invalidRootElement:
-            return NSLocalizedString("invalid_xml_root_element", comment: "invalid_xml_root_element")
+            return NSLocalizedString("invalid_xml_root_element")
         case .noTimestamp:
-            return NSLocalizedString("no_timestamp", comment: "no_timestamp")
+            return NSLocalizedString("no_timestamp")
         case .invalidTimestamp:
-            return NSLocalizedString("invalid_timestamp", comment: "invalid_timestamp")
+            return NSLocalizedString("invalid_timestamp")
         case .other(let msg):
-            return NSLocalizedString(msg, comment: msg)
+            return NSLocalizedString(msg)
         }
     }
 }

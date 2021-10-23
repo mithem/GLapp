@@ -8,66 +8,128 @@
 import SwiftUI
 
 struct FunctionalityInlineView: View {
-    let enabled: Bool
-    let title: String
-    let description: String
-    let callToAction: LocalizedStringKey
-    let callback: () -> Void
-    var body: some View {
-        HStack {
+    let functionality: Functionality
+    @ObservedObject var appManager: AppManager
+    @ObservedObject var dataManager: DataManager
+    @State private var error: Functionality.Error?
+    @State private var showingErrorActionSheet = false
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    
+    var littleHorizontalSpace: Bool {
+        UIDevice.current.userInterfaceIdiom == .phone && horizontalSizeClass == .compact
+    }
+    
+    var alignment: (text: TextAlignment, horizontal: HorizontalAlignment) {
+        switch littleHorizontalSpace {
+        case true:
+            return (text: .trailing, horizontal: .trailing)
+        case false:
+            return (text: .leading, horizontal: .leading)
+        }
+    }
+    
+    var RawContent: some View {
+        let enableBtn = Group {
+            if functionality.isEnabled != .yes {
+                AccentColorButton("enable") {
+                    do {
+                        try functionality.enable(with: appManager, dataManager: dataManager)
+                    } catch {
+                        self.error = error as? Functionality.Error
+                        showingErrorActionSheet = true
+                    }
+                }
+            }
+        }
+        let hstack = HStack {
             Image(systemName: imageName)
                 .foregroundColor(imageColor)
-                .font(.title)
-            VStack(alignment: .leading) {
-                Text(NSLocalizedString(title, comment: title))
+                .font(.largeTitle)
+            if alignment.horizontal == .trailing {
+                Spacer()
+            }
+            VStack(alignment: alignment.horizontal) {
+                Text(NSLocalizedString(functionality.title))
                     .font(.title3)
-                Text(NSLocalizedString(description, comment: description))
+                    .multilineTextAlignment(alignment.text)
+                Text(NSLocalizedString(functionality.description))
                     .font(.subheadline)
                     .foregroundColor(.secondary)
+                    .multilineTextAlignment(alignment.text)
             }
-            if !enabled {
-                Spacer()
-                AccentColorButton(callToAction, action: callback)
+        }
+        return Group {
+            if littleHorizontalSpace {
+                VStack(alignment: alignment.horizontal) {
+                    hstack
+                    enableBtn
+                }
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(
+                    RoundedRectangle(cornerRadius: UIConstants.rrCornerRadius)
+                        .foregroundColor(Color("lightContrastGray"))
+                )
+            } else {
+                HStack {
+                    hstack
+                    Spacer()
+                    enableBtn
+                }
             }
         }
     }
     
+    var body: some View {
+        if #available(iOS 15, *) {
+            RawContent
+                .confirmationDialog("error_occured", isPresented: $showingErrorActionSheet, actions: {
+                    Button("ok", role: .cancel) {
+                    }
+                }) {
+                    Text(error?.localizedMessage ?? "unkown_error")
+                }
+        } else {
+            RawContent
+                .actionSheet(isPresented: $showingErrorActionSheet) {
+                    ActionSheet(title: Text("error_occured"), message: Text(error?.localizedMessage ?? "unkown_error"))
+                }
+        }
+    }
+    
     var imageName: String {
-        switch enabled {
-        case true:
+        switch functionality.isEnabled {
+        case .unkown:
+            return "minus.diamond"
+        case .yes:
             return "checkmark.diamond"
-        case false:
+        case .no:
             return "xmark.diamond"
         }
     }
     
     var imageColor: Color {
-        switch enabled {
-        case true:
+        switch functionality.isEnabled {
+        case .unkown:
+            return .gray
+        case .yes:
             return .green
-        case false:
-            return .red
+        case .no:
+            switch functionality.role {
+            case .optional:
+                return .yellow
+            case .critical:
+                return .red
+            }
         }
-    }
-    
-    init(enabled: Bool, title: String, description: String, callToAction: LocalizedStringKey, callback: @escaping () -> Void) {
-        self.enabled = enabled
-        self.title = title
-        self.description = description
-        self.callToAction = callToAction
-        self.callback = callback
     }
 }
 
 struct FunctionalityInlineView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            FunctionalityInlineView(enabled: true, title: "Notifications", description: "Receive notifications for reprPlan updates.", callToAction: "enable") {
-                print("Tapped to enable notifications.")
-            }
-            FunctionalityInlineView(enabled: false, title: "Background reprPlan check", description: "Check the reprPlan in the background. Requires notifications.", callToAction: "enable") {
-                print("tapped to enable background operation.")
-            }
+            FunctionalityInlineView(functionality: AppManager().notifications, appManager: .init(), dataManager: MockDataManager())
+            FunctionalityInlineView(functionality: AppManager().backgroundRefresh, appManager: .init(), dataManager: MockDataManager())
         }
         .previewLayout(.sizeThatFits)
     }

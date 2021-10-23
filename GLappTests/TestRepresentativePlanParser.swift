@@ -18,23 +18,23 @@ class TestRepresentativePlanParser: XCTestCase {
 """
         let expected = RepresentativePlan(date: .init(timeIntervalSince1970: 946681200), representativeDays: [.init()], lessons: [], notes: [])
         
-        let result = RepresentativePlanParser.parse(plan: input)
+        let result = RepresentativePlanParser.parse(plan: input, with: MockDataManager())
         
         XCTAssertEqual(try result.get(), expected)
     }
     
     func testParseNoRootElement() {
-        let result = RepresentativePlanParser.parse(plan: "")
+        let result = RepresentativePlanParser.parse(plan: "", with: MockDataManager())
         XCTAssertEqual(result, .failure(.noRootElement))
     }
     
     func testParseInvalidRootElement() {
-        let result = RepresentativePlanParser.parse(plan: "<Root></Root>")
+        let result = RepresentativePlanParser.parse(plan: "<Root></Root>", with: MockDataManager())
         XCTAssertEqual(result, .failure(.invalidRootElement))
     }
     
     func testParseNoTimestamp() {
-        let result = RepresentativePlanParser.parse(plan: "<Vertretungsplan></Vertretungsplan>")
+        let result = RepresentativePlanParser.parse(plan: "<Vertretungsplan></Vertretungsplan>", with: MockDataManager())
         XCTAssertEqual(result, .failure(.noTimestamp))
     }
     
@@ -43,7 +43,7 @@ class TestRepresentativePlanParser: XCTestCase {
 <Vertretungsplan Timestamp="2021-10-15T00:00:00Z"></Vertretungsplan>
 """
         
-        let result = RepresentativePlanParser.parse(plan: plan)
+        let result = RepresentativePlanParser.parse(plan: plan, with: MockDataManager())
         
         XCTAssertEqual(result, .failure(.invalidTimestamp))
     }

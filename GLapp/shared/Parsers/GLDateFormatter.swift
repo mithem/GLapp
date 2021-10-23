@@ -16,6 +16,7 @@ class GLDateFormatter {
         formatter.timeStyle = .medium
         return formatter
     }
+    
     static var classTestDateParsingFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.locale = .init(identifier: "de_DE")
@@ -23,6 +24,7 @@ class GLDateFormatter {
         formatter.dateStyle = .short
         return formatter
     }
+    
     static var parsingClassTestDateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.locale = .init(identifier: "de_DE")
@@ -30,12 +32,19 @@ class GLDateFormatter {
         formatter.dateFormat = "YYYY-MM-dd HH-mm-ss"
         return formatter
     }
+    
     static var dateOnlyFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.locale = .current
         formatter.timeZone = .current
         formatter.dateStyle = .short
         formatter.timeStyle = .none
+        return formatter
+    }
+    
+    static var relativeDateTimeFormatter: RelativeDateTimeFormatter {
+        let formatter = RelativeDateTimeFormatter()
+        formatter.dateTimeStyle = .numeric
         return formatter
     }
 }

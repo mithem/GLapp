@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ContentView: View {
-    @State private var showingLoginView = false
-    @ObservedObject var dataManager = DataManager()
+    @State private var showingModalSheetView = false
+    @State private var modalSheetView = ModalSheetView.loginView
+    @ObservedObject var appManager: AppManager
+    @ObservedObject var dataManager: DataManager
     @AppStorage(UserDefaultsKeys.lastTabView) var lastTabView = 0
     var iOSView: some View {
         TabView(selection: $lastTabView) {
@@ -19,19 +22,21 @@ struct ContentView: View {
                     Image(systemName: "calendar")
                     Text("timetable")
                 }
-            ClassTestPlanView()
-                .tag(1)
-                .tabItem {
-                    Image(systemName: "doc.append")
-                    Text("classtests")
-                }
+            if dataManager.tasks.getClassTestPlan.error != .classTestPlanNotSupported {
+                ClassTestPlanView(dataManager: dataManager, appManager: .init())
+                    .tag(1)
+                    .tabItem {
+                        Image(systemName: "doc.append")
+                        Text("classtests")
+                    }
+            }
             RepresentativePlanView()
                 .tag(2)
                 .tabItem {
                     Image(systemName: "clock")
                     Text("representative_plan")
                 }
-            SettingsView()
+            SettingsView(dataManager: dataManager, appManager: appManager)
                 .tag(3)
                 .tabItem {
                     Image(systemName: "gear")
@@ -43,28 +48,45 @@ struct ContentView: View {
     var iPadOSView: some View {
         NavigationView {
             List {
-                NavigationLink(destination: {TimetableView(dataManager: dataManager)}, label: {
+                NavigationLink(isActive: .init(get: {lastTabView == 0}, set: { newValue in
+                    if newValue {
+                        lastTabView = 0
+                    }
+                }),destination: {TimetableView(dataManager: dataManager)}, label: {
                     Image(systemName: "calendar")
-                        .foregroundColor(.accentColor)
+                        .foregroundColor(lastTabView == 0 ? .white : .accentColor)
                     Text("timetable")
                 })
-                NavigationLink(destination: {ClassTestPlanView()}, label: {
+                NavigationLink(isActive: .init(get: {lastTabView == 1}, set: { newValue in
+                    if newValue {
+                        lastTabView = 1
+                    }
+                }), destination: {ClassTestPlanView(dataManager: dataManager, appManager: appManager)}, label: {
                     Image(systemName: "doc.append")
-                        .foregroundColor(.accentColor)
+                        .foregroundColor(lastTabView == 1 ? .white : .accentColor)
                     Text("classtests")
                 })
-                NavigationLink(destination: {RepresentativePlanView()}, label: {
+                NavigationLink(isActive: .init(get: {lastTabView == 2}, set: { newValue in
+                    if newValue {
+                        lastTabView = 2
+                    }
+                }),destination: {RepresentativePlanView()}, label: {
                     Image(systemName: "clock")
-                        .foregroundColor(.accentColor)
+                        .foregroundColor(lastTabView == 2 ? .white : .accentColor)
                     Text("representative_plan")
                 })
-                NavigationLink(destination: {SettingsView()}, label: {
+                NavigationLink(isActive: .init(get: {lastTabView == 3}, set: { newValue in
+                    if newValue {
+                        lastTabView = 3
+                    }
+                }), destination: {SettingsView(dataManager: dataManager, appManager: appManager)}, label: {
                     Image(systemName: "gear")
-                        .foregroundColor(.accentColor)
+                        .foregroundColor(lastTabView == 3 ? .white : .accentColor)
                     Text("settings")
                 })
             }
             .listStyle(.sidebar)
+            .navigationTitle("navigation")
         }
     }
     
@@ -81,26 +103,44 @@ struct ContentView: View {
     
     var body: some View {
         OSSpecificView
+        .sheet(isPresented: $showingModalSheetView) {
+            switch modalSheetView {
+            case .loginView:
+                LoginView(delegate: self)
+            case .functionalityCheckView:
+                FunctionalityCheckView(appManager: appManager, dataManager: dataManager)
+            }
+        }
         .environmentObject(dataManager)
         .onAppear {
             checkForNeedingToShowLoginView()
             dataManager.loadData()
-            NotificationManager.requestNotificationAuthorization()
+            NotificationManager.default.requestNotificationAuthorization()
+            NotificationManager.default.removeAllDeliveredAndAppropriate()
+            appManager.classTestReminders.scheduleClassTestRemindersIfAppropriate(with: dataManager)
         }
-        .sheet(isPresented: $showingLoginView) {
-            LoginView(delegate: self)
-        }
+        .onDisappear(perform: dataManager.saveLocalData)
     }
     
     func checkForNeedingToShowLoginView() {
         if !isLoggedIn() {
-            showingLoginView = true
+            modalSheetView = .loginView
+            showingModalSheetView = true
         }
+    }
+    
+    init(dataManager: DataManager, appManager: AppManager) {
+        self.dataManager = dataManager
+        self.appManager = appManager
+    }
+    
+    private enum ModalSheetView {
+        case loginView, functionalityCheckView
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(dataManager: MockDataManager(), appManager: .init())
     }
 }

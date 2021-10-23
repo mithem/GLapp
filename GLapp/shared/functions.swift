@@ -7,30 +7,29 @@
 
 import Foundation
 
-func getUrl(for path: String, queryItems: Dictionary<String, String>) -> URL? {
+func getUrl(for path: String, queryItems: Dictionary<String, String> = [:], authenticate: Bool = false) throws -> URL? {
     guard var components = URLComponents(string: Constants.apiHostname + path) else { return nil }
     components.queryItems = []
+    if authenticate {
+        let isTeacher = UserDefaults.standard.bool(forKey: UserDefaultsKeys.userIsTeacher)
+        guard let mobileKey = UserDefaults.standard.string(forKey: UserDefaultsKeys.mobileKey) else { throw NetworkError.mobileKeyNotConfigured }
+        let keyKey: String
+        if isTeacher {
+            keyKey = "mobilKey_lehrer"
+        } else {
+            keyKey = "mobilKey"
+        }
+        components.queryItems?.append(.init(name: keyKey, value: mobileKey))
+    }
     for key in queryItems.keys {
         components.queryItems?.append(.init(name: key, value: queryItems[key]))
     }
     return components.url
 }
 
-func getUrl(for path: String) throws -> URL? {
-    let ud = UserDefaults()
-    let isTeacher = ud.bool(forKey: UserDefaultsKeys.userIsTeacher)
-    guard let mobileKey = ud.string(forKey: UserDefaultsKeys.mobileKey) else { throw NetworkError.mobileKeyNotConfigured }
-    let keyKey: String
-    if isTeacher {
-        keyKey = "mobilKey_lehrer"
-    } else {
-        keyKey = "mobilKey"
-    }
-    return getUrl(for: path, queryItems: [keyKey: mobileKey])
-}
-
 func submitLoginAndSaveMobileKey(username: String, password: String, completion: @escaping (NetworkResult<Void, NetworkError>) -> Void) {
-    let req = URLRequest(url: getUrl(for: "/XML/anmelden.php", queryItems: ["username": username, "passwort": password])!, timeoutInterval: Constants.timeoutInterval)
+    guard let url = try? getUrl(for: "/XML/anmelden.php", queryItems: ["username": username, "passwort": password])! else { fatalError("Invalid URL for logging in.") }
+    let req = URLRequest(url: url, timeoutInterval: Constants.timeoutInterval)
     URLSession.shared.dataTask(with: req) { data, response, error in
         if let error = error {
             completion(.failure(.other(error)))
@@ -42,9 +41,9 @@ func submitLoginAndSaveMobileKey(username: String, password: String, completion:
                 } else if str.count == 0 {
                     completion(.failure(.noData))
                 } else if str == "0" {
-                    completion(.failure(.badRequest))
+                    completion(.failure(.notAuthorized))
                 } else {
-                    UserDefaults().set(str, forKey: UserDefaultsKeys.mobileKey)
+                    UserDefaults.standard.set(str, forKey: UserDefaultsKeys.mobileKey)
                     completion(.success)
                 }
             } else {
@@ -60,14 +59,22 @@ func resetLoginInfo() {
 }
 
 func removeMobileKey() {
-    UserDefaults().set("", forKey: UserDefaultsKeys.mobileKey)
+    UserDefaults.standard.set("", forKey: UserDefaultsKeys.mobileKey)
 }
 
 func removeTeacherInformation() {
-    UserDefaults().set(false, forKey: UserDefaultsKeys.userIsTeacher)
+    UserDefaults.standard.set(false, forKey: UserDefaultsKeys.userIsTeacher)
 }
 
 func isLoggedIn() -> Bool {
-    let key = UserDefaults().string(forKey: UserDefaultsKeys.mobileKey)
+    let key = UserDefaults.standard.string(forKey: UserDefaultsKeys.mobileKey)
     return key != nil && key != ""
+}
+
+func resetOnboarding() {
+    UserDefaults.standard.set(0, forKey: UserDefaultsKeys.didShowFunctionalityCheckViewCount)
+}
+
+func NSLocalizedString(_ key: String) -> String {
+    NSLocalizedString(key, comment: key)
 }

@@ -9,7 +9,7 @@ import Foundation
 import SWXMLHash
 
 class TimetableParser {
-    static func parse(timetable: String) -> Result<Timetable, ParserError> {
+    static func parse(timetable: String, with dataManager: DataManager) -> Result<Timetable, ParserError> {
         let hash = XMLHash.parse(timetable)
         guard let timetableIndex = hash.children.first else { return .failure(.noRootElement) }
         guard let timetableElem = timetableIndex.element else { return .failure(.noRootElement) }
@@ -19,7 +19,7 @@ class TimetableParser {
         guard let timestampText = timetableElem.attribute(by: "Timestamp")?.text else { return .failure(.noTimestamp) }
         guard let timestampInterval = TimeInterval(timestampText) else { return .failure(.invalidTimestamp) }
         let date = Date(timeIntervalSince1970: timestampInterval)
-        var timetable = Timetable(date: date)
+        let timetable = Timetable(date: date)
         
         for childIdx in timetableIndex.children {
             guard let childElem = childIdx.element else { continue }
@@ -28,7 +28,7 @@ class TimetableParser {
             }
             guard let weekdayNText = childElem.attribute(by: "Tag")?.text else { continue }
             guard let weekdayN = Int(weekday: weekdayNText) else { continue }
-            var weekday = Weekday(id: weekdayN)
+            let weekday = Weekday(id: weekdayN)
             
             for lessonIdx in childIdx.children {
                 guard let lessonElem = lessonIdx.element else { continue }
@@ -47,7 +47,7 @@ class TimetableParser {
                     continue // free lesson
                 }
                 
-                var subject = Subject(className: className)
+                let subject = Subject(dataManager: dataManager, className: className)
                 subject.subjectName = subjectName
                 subject.subjectType = subjectType
                 subject.teacher = teacher

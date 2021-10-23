@@ -12,4 +12,9 @@ struct UserDefaultsKeys {
     static let userIsTeacher = "userIsTeacher"
     static let subjects = "subjects"
     static let lastTabView = "lastTabView"
+    static let lastReprPlanUpdateTimestamp = "lastReprPlanUpdateTimestamp"
+    static let didShowFunctionalityCheckViewCount = "didShowFunctionalityCheckViewCount"
+    static let classTestReminderNotificationBeforeDays = "classTestReminderNotificationBeforeDays"
+    static let automaticallyRemindBeforeClassTests = "automaticallyRemindBeforeClassTests"
+    static let backgroundReprPlanNotificationsEnabled = "backgroundReprPlanNotificationsEnabled"
 }

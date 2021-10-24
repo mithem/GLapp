@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TimetableView: View {
-    @ObservedObject private var model: TimetableViewModel
+    @ObservedObject var model: TimetableViewModel
     @Environment(\.verticalSizeClass) var verticalSizeClass
     var InnerView: some View {
         VStack {

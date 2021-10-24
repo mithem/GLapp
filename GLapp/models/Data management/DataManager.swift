@@ -17,6 +17,7 @@ class DataManager: ObservableObject {
     @Published var classTestPlan: ClassTestPlan?
     @Published var tasks: Tasks
     @Published var subjectColorMap: SubjectColorMap
+    @Published var demoMode: Bool
     private let reachability: Reachability
     
     init() {
@@ -25,6 +26,7 @@ class DataManager: ObservableObject {
         classTestPlan = nil
         tasks = Tasks()
         subjectColorMap = .init()
+        demoMode = false
         reachability = try! .init()
         reachability.whenReachable = { reachability in
             if reachability.connection != .unavailable {
@@ -85,9 +87,12 @@ class DataManager: ObservableObject {
         }
     }
     
-    func setError<ContentType>(_ error: GLappError?, for task: KeyPath<Tasks, DataManagementTask<ContentType>>) {
+    func setError<ContentType>(_ error: GLappError?, for task: KeyPath<Tasks, DataManagementTask<ContentType>>, with generator: UINotificationFeedbackGenerator? = nil) {
         DispatchQueue.main.async {
             self.tasks[keyPath: task].error = error
+            if error != nil, let generator = generator {
+                generator.notificationOccurred(.error)
+            }
         }
     }
     
@@ -106,7 +111,7 @@ class DataManager: ObservableObject {
         setContent(data, for: task)
     }
     
-    private func setContent<ContentType>(_ content: ContentType, for task: KeyPath<Tasks, DataManagementTask<ContentType>>) {
+    private func setContent<ContentType>(_ content: ContentType, for task: KeyPath<Tasks, DataManagementTask<ContentType>>, with generator: UINotificationFeedbackGenerator? = nil) {
         // can safely coerce types (without overriding data with nonexisting cache) as this will only be called when loadCache can decode content successfully
         // not so elegant anymore (safe coercion)
         switch task {
@@ -121,6 +126,7 @@ class DataManager: ObservableObject {
         default:
             fatalError("setContent invoked for unsupported task '\(task)'.")
         }
+        generator?.notificationOccurred(.success)
     }
     
     func saveLocalData<ContentType>(_ content: ContentType, for task: KeyPath<Tasks, DataManagementTask<ContentType>>) {
@@ -144,15 +150,13 @@ class DataManager: ObservableObject {
     }
     
     func clearAllLocalData() {
-        clearLocalData(for: \.getRepresentativePlan)
-        clearLocalData(for: \.getClassTestPlan)
-        clearLocalData(for: \.getTimetable)
-        
         setRepresentativePlan(nil)
         setClassTestPlan(nil)
         setTimetable(nil)
         
-        loadData()
+        clearLocalData(for: \.getRepresentativePlan)
+        clearLocalData(for: \.getClassTestPlan)
+        clearLocalData(for: \.getTimetable)
     }
     
     func getRepresentativePlan(completion: @escaping (NetworkResult<String, NetworkError>) -> Void) {
@@ -186,7 +190,18 @@ class DataManager: ObservableObject {
         }.resume()
     }
     
-    func loadRepresentativePlan() {
+    func loadRepresentativePlan(withHapticFeedback: Bool = false) {
+        let generator = UINotificationFeedbackGenerator()
+        if withHapticFeedback {
+            generator.prepare()
+        }
+        if demoMode {
+            let plan = MockData.representativePlan
+            setContent(plan, for: \.getRepresentativePlan, with: withHapticFeedback ? generator : nil)
+            setError(nil, for: \.getRepresentativePlan)
+            saveLocalData()
+            return
+        }
         startTask(\.getRepresentativePlan)
         getRepresentativePlan { result in
             switch result {
@@ -196,13 +211,13 @@ class DataManager: ObservableObject {
                 let result = RepresentativePlanParser.parse(plan: plan, with: self)
                 switch(result) {
                 case .success(let plan):
-                    self.setRepresentativePlan(plan)
+                    self.setContent(plan, for: \.getRepresentativePlan, with: withHapticFeedback ? generator : nil)
                     self.saveLocalData(plan, for: \.getRepresentativePlan)
                 case .failure(let error):
-                    self.setError(.parserError(error), for: \.getRepresentativePlan)
+                    self.setError(.parserError(error), for: \.getRepresentativePlan, with: withHapticFeedback ? generator : nil)
                 }
             case .failure(let error):
-                self.setError(.networkError(error), for: \.getRepresentativePlan)
+                self.setError(.networkError(error), for: \.getRepresentativePlan, with: withHapticFeedback ? generator : nil)
             }
             self.setIsLoading(false, for: \.getRepresentativePlan)
         }
@@ -276,7 +291,18 @@ class DataManager: ObservableObject {
         }.resume()
     }
     
-    func loadClassTestPlan() {
+    func loadClassTestPlan(withHapticFeedback: Bool = false) {
+        let generator = UINotificationFeedbackGenerator()
+        if withHapticFeedback {
+            generator.prepare()
+        }
+        if demoMode {
+            let plan = MockData.classTestPlan
+            setContent(plan, for: \.getClassTestPlan, with: withHapticFeedback ? generator : nil)
+            setError(nil, for: \.getClassTestPlan)
+            saveLocalData()
+            return
+        }
         startTask(\.getClassTestPlan)
         getClassTestPlan() { result in
             switch result {
@@ -286,18 +312,18 @@ class DataManager: ObservableObject {
                 let result = ClassTestPlanParser.parse(plan: plan, with: self)
                 switch result {
                 case .success(let plan):
-                    self.setClassTestPlan(plan)
+                    self.setContent(plan, for: \.getClassTestPlan, with: withHapticFeedback ? generator : nil)
                     self.saveLocalData(plan, for: \.getClassTestPlan)
                 case .failure(let error):
                     if error == .noTimestamp { // Unter-/ Mittelstufe
                         self.setClassTestPlan(nil)
-                        self.setError(.classTestPlanNotSupported, for: \.getClassTestPlan)
+                        self.setError(.classTestPlanNotSupported, for: \.getClassTestPlan, with: withHapticFeedback ? generator : nil)
                     } else {
                         self.setError(.parserError(error), for: \.getClassTestPlan)
                     }
                 }
             case .failure(let error):
-                self.setError(.networkError(error), for: \.getClassTestPlan)
+                self.setError(.networkError(error), for: \.getClassTestPlan, with: withHapticFeedback ? generator : nil)
             }
             self.setIsLoading(false, for: \.getClassTestPlan)
         }
@@ -333,7 +359,18 @@ class DataManager: ObservableObject {
         }.resume()
     }
     
-    func loadTimetable() {
+    func loadTimetable(withHapticFeedback: Bool = false) {
+        let generator = UINotificationFeedbackGenerator()
+        if withHapticFeedback {
+            generator.prepare()
+        }
+        if demoMode {
+            let timetable = MockData.timetable
+            setContent(timetable, for: \.getTimetable, with: withHapticFeedback ? generator : nil)
+            setError(nil, for: \.getTimetable)
+            saveLocalData()
+            return
+        }
         startTask(\.getTimetable)
         getTimetable() { result in
             switch result {
@@ -343,13 +380,13 @@ class DataManager: ObservableObject {
                 let result = TimetableParser.parse(timetable: timetable, with: self)
                 switch result {
                 case .success(let timetable):
-                    self.setTimetable(timetable)
+                    self.setContent(timetable, for: \.getTimetable, with: withHapticFeedback ? generator : nil)
                     self.saveLocalData(timetable, for: \.getTimetable)
                 case .failure(let error):
-                    self.setError(.parserError(error), for: \.getTimetable)
+                    self.setError(.parserError(error), for: \.getTimetable, with: withHapticFeedback ? generator : nil)
                 }
             case .failure(let error):
-                self.setError(.networkError(error), for: \.getTimetable)
+                self.setError(.networkError(error), for: \.getTimetable, with: withHapticFeedback ? generator : nil)
             }
             self.setIsLoading(false, for: \.getTimetable)
         }
@@ -370,10 +407,22 @@ class DataManager: ObservableObject {
     }
     
     func loadData() {
+        let generator = UINotificationFeedbackGenerator()
+        generator.prepare()
         loadRepresentativePlan()
         loadClassTestPlan()
         loadTimetable()
         loadSubjectColorMap()
+        reloadDemoMode()
+        giveCorrectTapticFeedback(on: generator)
+    }
+    
+    func giveCorrectTapticFeedback(on generator: UINotificationFeedbackGenerator) {
+        if tasks.getRepresentativePlan.error != nil || tasks.getTimetable.error != nil || tasks.getClassTestPlan.error != nil {
+            generator.notificationOccurred(.error)
+        } else {
+            generator.notificationOccurred(.success)
+        }
     }
     
     func reset() {
@@ -381,6 +430,7 @@ class DataManager: ObservableObject {
         resetSubjectColorMap()
         DispatchQueue.main.async {
             self.tasks = Tasks()
+            self.demoMode = false
         }
     }
     
@@ -391,6 +441,11 @@ class DataManager: ObservableObject {
         }
     }
     
+    func reloadDemoMode() {
+        DispatchQueue.main.async {
+            self.demoMode = UserDefaults.standard.bool(forKey: UserDefaultsKeys.demoMode)
+        }
+    }
     
     final class Tasks: ObservableObject {
         @Published var getRepresentativePlan: DataManagementTask<RepresentativePlan>

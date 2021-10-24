@@ -106,14 +106,16 @@ struct ContentView: View {
         .sheet(isPresented: $showingModalSheetView) {
             switch modalSheetView {
             case .loginView:
-                LoginView(delegate: self)
+                LoginView(appManager: appManager, dataManager: dataManager, delegate: self)
             case .functionalityCheckView:
                 FunctionalityCheckView(appManager: appManager, dataManager: dataManager)
             }
         }
         .environmentObject(dataManager)
         .onAppear {
+            appManager.reload(.demoMode, with: dataManager)
             checkForNeedingToShowLoginView()
+            checkForNeedingToShowFunctionalityCheckView()
             dataManager.loadData()
             NotificationManager.default.requestNotificationAuthorization()
             NotificationManager.default.removeAllDeliveredAndAppropriate()
@@ -123,8 +125,17 @@ struct ContentView: View {
     }
     
     func checkForNeedingToShowLoginView() {
-        if !isLoggedIn() {
+        if !isLoggedIn() && appManager.demoMode.isEnabled != .yes {
             modalSheetView = .loginView
+            showingModalSheetView = true
+        }
+    }
+    
+    func checkForNeedingToShowFunctionalityCheckView() {
+        let count = UserDefaults.standard.integer(forKey: UserDefaultsKeys.launchCount)
+        // show it on second launch
+        if count == 2 {
+            modalSheetView = .functionalityCheckView
             showingModalSheetView = true
         }
     }

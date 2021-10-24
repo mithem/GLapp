@@ -23,7 +23,6 @@ struct Constants {
         "Sonntag": 6
     ]
     static let weekdayIDStringMap = getWeekdayIDStringMap()
-    static let didShowFunctionalityCheckViewMaxCount = 2
     static let defaultClassTestReminderNotificationsBeforeDays = 3
     static let mailToURL = URL(string: "mailto:miguel.themann@gmail.com")!
     static let functionalityReloadInterval: TimeInterval = 10
@@ -55,6 +54,7 @@ struct Constants {
             static let backgroundRefresh = "background_refresh"
             static let autoRemindBeforeClassTests = "class_test_reminders"
             static let backgroundReprPlanNotifications = "background_repr_plan_notifications"
+            static let demoMode = "demo_mode"
         }
     }
 }

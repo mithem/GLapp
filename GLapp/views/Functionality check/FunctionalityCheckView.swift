@@ -17,7 +17,7 @@ struct FunctionalityCheckView: View {
             ScrollView {
                 VStack(spacing: 100) {
                     VStack(alignment: .leading, spacing: 50) {
-                        ForEach([appManager.notifications, appManager.backgroundRefresh, appManager.backgroundReprPlanNotifications, appManager.classTestReminders]) { functionality in
+                        ForEach(appManager.userExperienceRelevantFunctionalities) { functionality in
                             FunctionalityInlineView(functionality: functionality, appManager: appManager, dataManager: dataManager)
                         }
                     }
@@ -28,13 +28,29 @@ struct FunctionalityCheckView: View {
                 }
             }
             .onAppear {
+                let generator = UINotificationFeedbackGenerator()
+                generator.prepare()
                 appManager.reload(with: dataManager)
+                giveCorrectHapticFeedback(with: generator)
             }
             .navigationTitle("functionality_check")
             .onReceive(timer) { _ in
                 appManager.reload(with: dataManager)
             }
         }
+    }
+    
+    func giveCorrectHapticFeedback(with generator: UINotificationFeedbackGenerator) {
+        if !appManager.hasLoadedAllRelevantFunctionalityStates {
+            return
+        }
+        let disabled = appManager.hasDisabledFunctionalities()
+        if disabled.critical {
+            generator.notificationOccurred(.error)
+        } else if disabled.optional {
+            generator.notificationOccurred(.warning)
+        }
+        generator.notificationOccurred(.success)
     }
 }
 

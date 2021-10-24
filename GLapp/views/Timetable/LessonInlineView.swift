@@ -12,19 +12,20 @@ struct LessonInlineView: View {
     @State private var showingEditSubjectView = false
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     var body: some View {
-        let vstack = VStack {
+        let content = Button(action: {
+            showingEditSubjectView = true
+        }) {
             Spacer()
             if let title = title {
                 Text(title)
+                    .foregroundColor(.primary)
             }
             Spacer()
         }
             .frame(width: size.width, height: size.height)
-            .onTapGesture {
-                showingEditSubjectView = true
-            }
+            .hoverEffect()
         if let lesson = lesson.lesson {
-            vstack
+            content
                 .background(RoundedRectangle(cornerRadius: UIConstants.rrCornerRadius).foregroundColor(lesson.subject.getColor().colorBinding.wrappedValue))
             .contextMenu {
                 Button("more") {
@@ -35,7 +36,7 @@ struct LessonInlineView: View {
                 EditSubjectView(lesson: lesson)
             }
         } else {
-            vstack
+            content
         }
     }
     

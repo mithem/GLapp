@@ -12,6 +12,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         BackgroundTaskManager.registerTasks()
         BackgroundTaskManager.scheduleRepresentativeCheckTask()
+        let count = UserDefaults.standard.integer(forKey: UserDefaultsKeys.launchCount)
+        UserDefaults.standard.set(count + 1, forKey: UserDefaultsKeys.launchCount)
         return true
     }
 }

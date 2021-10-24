@@ -37,13 +37,17 @@ struct ClassTestPlanView: View {
                     }
                 }
             } else {
-                AccentColorButton(label: {Text("retry")}, action: dataManager.loadClassTestPlan)
+                AccentColorButton(label: {Text("retry")}) {
+                    dataManager.loadClassTestPlan(withHapticFeedback: true)
+                }
             }
             Spacer()
         }
         .navigationTitle("classtests")
         .toolbar {
-            Button(action: dataManager.loadClassTestPlan) {
+            Button(action: {
+                dataManager.loadClassTestPlan(withHapticFeedback: true)
+            }) {
                 Image(systemName: "arrow.clockwise")
             }
         }

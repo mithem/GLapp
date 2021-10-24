@@ -14,13 +14,26 @@ class AppManager: ObservableObject {
     @Published var backgroundRefresh: FBackgroundRefresh
     @Published var backgroundReprPlanNotifications: FBackgroundReprPlanNotifications
     @Published var classTestReminders: FClassTestReminders
+    @Published var demoMode: FDemoMode
     @Published var userAttentionMayBeRequired: Bool
+    
+    var userExperienceRelevantFunctionalities: [Functionality]  {
+        [Functionality.FunctionalityType.notifications, .backgroundRefresh, .backgroundReprPlanNotifications, .classTestReminders].map {functionality(of: $0)}
+    }
+    
+    var hasLoadedAllRelevantFunctionalityStates: Bool {
+        for functionality in userExperienceRelevantFunctionalities {
+            if functionality.isEnabled == .unkown { return false }
+        }
+        return true
+    }
     
     init() {
         notifications = .init()
         backgroundRefresh = .init()
         backgroundReprPlanNotifications = .init()
         classTestReminders = .init()
+        demoMode = .init()
         userAttentionMayBeRequired = false
     }
     
@@ -47,6 +60,7 @@ class AppManager: ObservableObject {
             self.reload(.backgroundRefresh, with: dataManager)
             self.reload(.backgroundReprPlanNotifications, with: dataManager)
             self.reload(.classTestReminders, with: dataManager)
+            self.reload(.demoMode, with: dataManager)
         }
     }
     
@@ -60,6 +74,23 @@ class AppManager: ObservableObject {
             return backgroundReprPlanNotifications
         case .classTestReminders:
             return classTestReminders
+        case .demoMode:
+            return demoMode
         }
+    }
+    
+    func hasDisabledFunctionalities() -> (`optional`: Bool, critical: Bool) {
+        var result = (optional: false, critical: false)
+        for functionality in userExperienceRelevantFunctionalities {
+            if functionality.isEnabled == .no {
+                switch functionality.role {
+                case .optional:
+                    result.optional = true
+                case .critical:
+                    result.critical = true
+                }
+            }
+        }
+        return result
     }
 }

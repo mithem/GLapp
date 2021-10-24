@@ -18,6 +18,9 @@ class FBackgroundReprPlanNotifications: Functionality {
     
     override func doEnable(with appManager: AppManager, dataManager: DataManager) throws {
         UserDefaults.standard.set(true, forKey: UserDefaultsKeys.backgroundReprPlanNotificationsEnabled)
+        if !appManager.notifications.unrestrictedAuthorization {
+            NotificationManager.default.requestNotificationAuthorization(unrestricted: true)
+        }
         isEnabled = .yes
     }
     

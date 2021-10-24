@@ -9,10 +9,13 @@ import UserNotifications
 import UIKit
 
 /// Functionality notifications
-class FNotifications: Functionality{
+class FNotifications: Functionality {
+    /// Whether the current notification authorization is restricted by any means, e.g. by having a .ephemeral or .provisional authoriation status
+    @Published var unrestrictedAuthorization: Bool
     override func reloadIsEnabled(with appManager: AppManager, dataManager: DataManager) throws {
-        NotificationManager.default.checkNotificationsEnabled() { enabled in
-            self.isEnabled = enabled ? .yes : .no
+        NotificationManager.default.getNotificationStatus() { status in
+            self.isEnabled = status.validAuthoriatization ? .yes : .no
+            self.unrestrictedAuthorization = status == .authorized
         }
     }
     
@@ -27,7 +30,7 @@ class FNotifications: Functionality{
     override func doDisable(with appManager: AppManager, dataManager: DataManager) throws {}
     
     required init() {
+        unrestrictedAuthorization = false
         super.init(id: Constants.Identifiers.Functionalities.notifications, role: .critical, dependencies: [])
-        self.isSupported = .yes
     }
 }

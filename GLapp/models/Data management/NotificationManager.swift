@@ -64,12 +64,16 @@ final class NotificationManager {
         }
     }
     
-    func requestNotificationAuthorization() {
-        checkNotificationsEnabled() { enabled in
-            if enabled {
+    func requestNotificationAuthorization(unrestricted: Bool = false) {
+        getNotificationStatus() { status in
+            if status.validAuthoriatization && !unrestricted {
                 return
             }
-            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .provisional, .sound]) { success, error in
+            var options: UNAuthorizationOptions = [.alert, .sound]
+            if !unrestricted {
+                options.insert(.provisional)
+            }
+            UNUserNotificationCenter.current().requestAuthorization(options: options) { success, error in
                 if !success {
                     if let error = error {
                         print(error)
@@ -79,18 +83,14 @@ final class NotificationManager {
         }
     }
     
-    func checkNotificationsEnabled(completion: @escaping (Bool) -> Void) {
+    func getNotificationStatus(completion: @escaping (UNAuthorizationStatus) -> Void) {
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             let status = settings.authorizationStatus
-            if [.authorized, .ephemeral, .provisional].contains(status) { // the Swift compiler (and accompanying tools) at it's best!
-                completion(true)
-                return
-            }
             if status == .notDetermined {
                 self.requestNotificationAuthorization()
-                self.checkNotificationsEnabled(completion: completion)
+                self.getNotificationStatus(completion: completion)
             }
-            completion(false)
+            completion(status)
             return
         }
     }

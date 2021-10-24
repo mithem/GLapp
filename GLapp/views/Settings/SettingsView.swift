@@ -17,32 +17,43 @@ struct SettingsView: View {
     @ObservedObject var appManager: AppManager
     var InnerView: some View {
         Form {
-            Button("check_for_functionality") {
-                showingFunctionalityCheckView = true
+            Section {
+                Button("check_for_functionality") {
+                    showingFunctionalityCheckView = true
+                }
+                .sheet(isPresented: $showingFunctionalityCheckView) {
+                    FunctionalityCheckView(appManager: appManager, dataManager: dataManager)
+                }
+                Toggle("auto_remind_before_class_tests", isOn: appManager.classTestReminders.isEnabledBinding(appManager: appManager, dataManager: dataManager, setCompletion: handleIsEnabledBindingResult))
+                    .disabled(appManager.classTestReminders.isSupported != .yes)
+                Stepper(NSLocalizedString("remind_n_days_before_class_tests_colon") + String(remindNDaysBeforeClassTests), value: $remindNDaysBeforeClassTests, in: 1...31)
+                    .disabled(appManager.classTestReminders.isSupported != .yes)
+                Toggle("feature_background_repr_plan_notifications_title", isOn: appManager.backgroundReprPlanNotifications.isEnabledBinding(appManager: appManager, dataManager: dataManager, setCompletion: handleIsEnabledBindingResult))
+                    .disabled(appManager.backgroundReprPlanNotifications.isSupported != .yes)
+                Link("feedback", destination: Constants.mailToURL)
             }
-            .sheet(isPresented: $showingFunctionalityCheckView) {
-                FunctionalityCheckView(appManager: appManager, dataManager: dataManager)
-            }
-            Toggle("auto_remind_before_class_tests", isOn: appManager.classTestReminders.isEnabledBinding(appManager: appManager, dataManager: dataManager, setCompletion: handleIsEnabledBindingResult))
-                .disabled(appManager.classTestReminders.isSupported != .yes)
-            Stepper(NSLocalizedString("remind_n_days_before_class_tests_colon") + String(remindNDaysBeforeClassTests), value: $remindNDaysBeforeClassTests, in: 1...31)
-                .disabled(appManager.classTestReminders.isSupported != .yes)
-            Toggle("feature_background_repr_plan_notifications_title", isOn: appManager.backgroundReprPlanNotifications.isEnabledBinding(appManager: appManager, dataManager: dataManager, setCompletion: handleIsEnabledBindingResult))
-                .disabled(appManager.backgroundReprPlanNotifications.isSupported != .yes)
-            Button("clear_cache", action: dataManager.clearAllLocalData)
-            Button("reset_onboarding", action: resetOnboarding)
-            Group {
-                if #available(iOS 15, *) {
-                    Button("reset_all_data", role: .destructive, action: resetAllData)
-                } else {
-                    Button("reset_all_data", action: resetAllData)
-                        .foregroundColor(.red)
+            Section {
+                Button("clear_cache", action: dataManager.clearAllLocalData)
+                Button("reset_onboarding", action: resetOnboarding)
+                Group {
+                    if #available(iOS 15, *) {
+                        Button("reset_all_data", role: .destructive, action: resetAllData)
+                    } else {
+                        Button("reset_all_data", action: resetAllData)
+                            .foregroundColor(.red)
+                    }
+                }
+                .sheet(isPresented: $showingLoginView) {
+                    LoginView(appManager: appManager, dataManager: dataManager, delegate: self)
                 }
             }
-            .sheet(isPresented: $showingLoginView) {
-                LoginView(delegate: self)
+            if appManager.demoMode.isEnabled == .yes {
+                Section {
+                    Button("demo_mode") {
+                        try? appManager.demoMode.disable(with: appManager, dataManager: dataManager)
+                    }
+                }
             }
-            Link("feedback", destination: Constants.mailToURL)
         }
         .onAppear {
             appManager.reload(with: dataManager)
@@ -74,34 +85,11 @@ struct SettingsView: View {
     func resetAllData() {
         dataManager.reset()
         NotificationManager.default.reset()
+        UserDefaults.standard.set(0, forKey: UserDefaultsKeys.launchCount)
         appManager.reload(with: dataManager)
         resetLoginInfo()
         resetOnboarding()
         showingLoginView = true
-    }
-    
-    func checkFunctionality() {
-        let count = UserDefaults.standard.integer(forKey: UserDefaultsKeys.didShowFunctionalityCheckViewCount)
-        func increaseCountIfAppropriate() -> Bool {
-            if count < Constants.didShowFunctionalityCheckViewMaxCount {
-                UserDefaults.standard.set(count + 1, forKey: UserDefaultsKeys.didShowFunctionalityCheckViewCount)
-                return true
-            }
-            return false
-        }
-        func showFunctionalityCheckViewIfAppropriate() {
-            if count >= Constants.didShowFunctionalityCheckViewMaxCount { return }
-            if appManager.userAttentionMayBeRequired  && increaseCountIfAppropriate() {
-                showingFunctionalityCheckView = true
-            }
-            _ = appManager.$userAttentionMayBeRequired.sink { attentionRequired in
-                if attentionRequired {
-                    showFunctionalityCheckViewIfAppropriate()
-                }
-            }
-            appManager.reload(with: dataManager)
-        }
-        showFunctionalityCheckViewIfAppropriate()
     }
 }
 

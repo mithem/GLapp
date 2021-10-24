@@ -8,7 +8,7 @@
 import SwiftUI
 
 final class TimetableViewModel: ObservableObject {
-    let dataManager: DataManager
+    @ObservedObject var dataManager: DataManager
     
     init(dataManager: DataManager) {
         self.dataManager = dataManager
@@ -72,7 +72,7 @@ final class TimetableViewModel: ObservableObject {
     }
     
     func loadTimetable() {
-        dataManager.loadTimetable()
+        dataManager.loadTimetable(withHapticFeedback: true)
     }
     
     final class TimetableViewLesson: ObservableObject, Identifiable {

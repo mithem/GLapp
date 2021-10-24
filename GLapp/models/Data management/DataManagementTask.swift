@@ -24,4 +24,11 @@ class DataManagementTask<ContentType>: ObservableObject where ContentType: Codab
             self.error = nil
         }
     }
+    
+    func reset() {
+        DispatchQueue.main.async {
+            self.isLoading = false
+            self.error = nil
+        }
+    }
 }

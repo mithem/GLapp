@@ -72,7 +72,7 @@ func isLoggedIn() -> Bool {
 }
 
 func resetOnboarding() {
-    UserDefaults.standard.set(0, forKey: UserDefaultsKeys.didShowFunctionalityCheckViewCount)
+    UserDefaults.standard.set(0, forKey: UserDefaultsKeys.launchCount)
 }
 
 func NSLocalizedString(_ key: String) -> String {

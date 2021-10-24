@@ -22,6 +22,7 @@ class Functionality: ObservableObject, FunctionalityProtocol, Identifiable {
         isEnabled.reversed
     }
     
+    
     func isEnabledBinding(appManager: AppManager, dataManager: DataManager, setCompletion: @escaping (Result<Void, Error>) -> Void) -> Binding<Bool> {
         .init(get: {
             self.isEnabled == .yes
@@ -158,6 +159,6 @@ class Functionality: ObservableObject, FunctionalityProtocol, Identifiable {
     }
     
     enum FunctionalityType {
-        case notifications, backgroundRefresh, backgroundReprPlanNotifications, classTestReminders
+        case notifications, backgroundRefresh, backgroundReprPlanNotifications, classTestReminders, demoMode
     }
 }

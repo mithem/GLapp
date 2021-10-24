@@ -50,14 +50,17 @@ struct RepresentativePlanView: View {
                     }
                 }
             } else {
-                AccentColorButton(label: {Text("retry")}, action: dataManager.loadRepresentativePlan)
-                    .disabled(dataManager.tasks.getRepresentativePlan.isLoading)
+                AccentColorButton(label: {Text("retry")}) {
+                    dataManager.loadRepresentativePlan(withHapticFeedback: true)
+                }
             }
             Spacer()
         }
         .navigationTitle("representative_plan")
         .toolbar {
-            Button(action: dataManager.loadRepresentativePlan) {
+            Button(action: {
+                dataManager.loadRepresentativePlan(withHapticFeedback: true)
+            }) {
                 Image(systemName: "arrow.clockwise")
             }
         }

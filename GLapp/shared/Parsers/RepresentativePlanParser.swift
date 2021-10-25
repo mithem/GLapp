@@ -27,7 +27,7 @@ class RepresentativePlanParser {
                 var reprDay = RepresentativeDay()
                 for dayIndex in childIndex.children {
                     guard let elem = dayIndex.element else { continue }
-                    if elem.name == "Vertretungsstunde" { // just a guess at this point
+                    if elem.name.lowercased() == "stunde" { // just a guess at this point
                         guard let dateText = elem.attribute(by: "Datum")?.text else { continue }
                         guard let date = GLDateFormatter.formatter.date(from: dateText) else { continue }
                         guard let lessonNo = Int(elem.attribute(by: "Stunde")?.text ?? "") else { continue }

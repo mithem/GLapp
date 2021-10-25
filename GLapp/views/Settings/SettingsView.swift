@@ -49,7 +49,7 @@ struct SettingsView: View {
             }
             if appManager.demoMode.isEnabled == .yes {
                 Section {
-                    Button("demo_mode") {
+                    Button("demo_mode_active") {
                         try? appManager.demoMode.disable(with: appManager, dataManager: dataManager)
                     }
                 }

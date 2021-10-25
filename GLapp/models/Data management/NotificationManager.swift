@@ -97,6 +97,7 @@ final class NotificationManager {
     
     func scheduleClassTestReminder(for classTest: ClassTest) {
         let timeInterval = classTest.classTestDate.timeIntervalSinceNow - (Double(UserDefaults.standard.integer(forKey: UserDefaultsKeys.classTestReminderNotificationBeforeDays) * 24 * 60) * 60)
+        guard timeInterval > 0 else { return }
         let content = UNMutableNotificationContent()
         content.title = NSLocalizedString("upcoming_class_test")
         content.body = "\(classTest.alias) \(GLDateFormatter.relativeDateTimeFormatter.localizedString(fromTimeInterval: timeInterval))"

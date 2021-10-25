@@ -86,3 +86,6 @@
 "keyboard_shortcut_reload_representative_plan" = "R";
 "feedback" = "Feedback";
 "functionality_error_not_supported" = "The feature isn't supported in the current configuration: ";
+"user_credentials_empty" = "Login information empty";
+"user_credentials_empty_activate_demo_mode" = "Enable demo mode?";
+"demo_mode_active" = "Demo mode active.";

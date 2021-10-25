@@ -87,3 +87,6 @@
 "feedback" = "Feedback";
 "functionality_error_not_supported" = "Das Feature wird in der derzeitigen Konfiguration nicht unterstützt: ";
 "misconfigured" = "miskonfiguriert";
+"user_credentials_empty" = "Logininformationen leer";
+"user_credentials_empty_activate_demo_mode" = "Demomodus aktivieren?";
+"demo_mode_active" = "Demomodus aktiv.";

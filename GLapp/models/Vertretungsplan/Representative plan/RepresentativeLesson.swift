@@ -16,6 +16,8 @@ struct RepresentativeLesson: Equatable, Identifiable, Codable, DeliverableByNoti
     var newRoom: String?
     var note: String?
     var subject: Subject
+    var normalTeacher: String
+    var representativeTeacher: String?
     
     var summary: String {
         let now: Date

@@ -26,8 +26,10 @@ struct RepresentativeLessonInlineView: View {
             }
             Spacer()
             VStack {
-                if let teacher = lesson.subject.teacher {
-                    Text(teacher)
+                Text(lesson.normalTeacher)
+                if let note = lesson.note {
+                    Text(note)
+                } else {
                     Spacer()
                 }
             }

@@ -12,17 +12,23 @@ struct RepresentativeDay: Equatable, Identifiable, Codable, DeliverableByNotific
     
     var lessons: [RepresentativeLesson]
     var date: Date?
+    var notes: [String]
     
-    init(date: Date? = nil, lessons: [RepresentativeLesson] = []) {
+    init(date: Date? = nil, lessons: [RepresentativeLesson] = [], notes: [String] = []) {
         self.date = date
         self.lessons = lessons
+        self.notes = notes
     }
     
     var isEmpty: Bool {
-        return lessons.isEmpty
+        return lessons.isEmpty && notes.isEmpty
     }
     
     var summary: String {
-        lessons.map {$0.summary}.joined(separator: ", ")
+        var str = lessons.map {$0.summary}.joined(separator: ", ")
+        if !notes.isEmpty {
+            str.append("; " + notes.joined(separator: ", "))
+        }
+        return str
     }
 }

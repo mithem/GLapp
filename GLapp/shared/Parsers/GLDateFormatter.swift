@@ -10,10 +10,8 @@ import Foundation
 class GLDateFormatter {
     static var formatter: DateFormatter {
         let formatter = DateFormatter()
-        formatter.locale = .current
-        formatter.timeZone = .current
-        formatter.dateStyle = .long
-        formatter.timeStyle = .medium
+        formatter.dateFormat = "dd.MM.yy"
+        formatter.timeZone = .init(identifier: "Europe/Berlin")
         return formatter
     }
     

@@ -18,8 +18,7 @@
     }
   ],
   "defaultOptions" : {
-    "maximumTestRepetitions" : 3,
-    "repeatInNewRunnerProcess" : true,
+    "maximumTestRepetitions" : null,
     "testTimeoutsEnabled" : true,
     "undefinedBehaviorSanitizerEnabled" : true
   },

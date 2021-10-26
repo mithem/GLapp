@@ -29,6 +29,11 @@ struct UpcomingClassTestView: View {
     }
     
     var timeInterval: String? {
+        let classTestComponents = Calendar(identifier: .gregorian).dateComponents(from: classTest.classTestDate)
+        let todayComponents = Calendar(identifier: .gregorian).dateComponents(from: .init(timeIntervalSinceNow: 0))
+        if classTestComponents == todayComponents {
+            return NSLocalizedString("today")
+        }
         let formatter = GLDateFormatter.relativeDateTimeFormatter
         if #available(iOS 15, *) {
             return formatter.localizedString(for: classTest.classTestDate, relativeTo: .now)

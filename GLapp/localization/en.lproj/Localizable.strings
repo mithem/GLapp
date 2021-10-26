@@ -89,3 +89,4 @@
 "user_credentials_empty" = "Login information empty";
 "user_credentials_empty_activate_demo_mode" = "Enable demo mode?";
 "demo_mode_active" = "Demo mode active.";
+"today" = "Today";

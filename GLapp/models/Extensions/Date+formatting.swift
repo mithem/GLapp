@@ -9,7 +9,7 @@ import Foundation
 
 extension Date {
     var formattedWithLocale: String {
-        return GLDateFormatter.formatter.string(from: self)
+        return GLDateFormatter.localFormatter.string(from: self)
     }
     var formattedWithLocaleOnlyDay: String {
         return GLDateFormatter.dateOnlyFormatter.string(from: self)

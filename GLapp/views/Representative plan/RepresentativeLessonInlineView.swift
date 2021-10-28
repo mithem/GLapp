@@ -34,6 +34,7 @@ struct RepresentativeLessonInlineView: View {
                 }
             }
         }
+        .foregroundColor(lesson.isOver ? .secondary : .primary)
     }
     
     var title: String {

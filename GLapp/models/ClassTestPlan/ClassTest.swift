@@ -8,7 +8,7 @@
 import Foundation
 
 struct ClassTest: Identifiable, Codable {
-    var id: Date { classTestDate }
+    var id: Date { startDate ?? classTestDate } // who knows..
     
     var date: Date
     var classTestDate: Date
@@ -20,4 +20,14 @@ struct ClassTest: Identifiable, Codable {
     var individual: Bool
     var opened: Bool
     var alias: String
+    
+    var startDate: Date? {
+        guard let start = start else { return nil }
+        return Calendar.current.date(byAdding: Constants.lessonStartDateComponents[start]!, to: classTestDate)
+    }
+    
+    var endDate: Date? {
+        guard let end = end else { return nil }
+        return Calendar.current.date(byAdding: Constants.lessonEndDateComponents[end]!, to: classTestDate)
+    }
 }

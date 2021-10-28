@@ -49,6 +49,10 @@ class DataManager: ObservableObject {
         DispatchQueue.main.async {
             self.representativePlan = plan
         }
+        
+        if let plan = plan {
+            UserDefaults.standard.set(plan.date.timeIntervalSince1970, forKey: UserDefaultsKeys.lastReprPlanUpdateTimestamp)
+        }
     }
     
     func setTimetable(_ timetable: Timetable?) {

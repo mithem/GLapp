@@ -49,8 +49,8 @@ final class NotificationManager {
     }
     
     func checkRepresentativePlanAndDeliverNotification(task: BGTask) {
-        let manager = DataManager()
-        manager.getRepresenativePlanUpdate { result in
+        let dataManager = DataManager()
+        dataManager.getRepresenativePlanUpdate { result in
             switch result {
             case .success(let plan):
                 if !plan.isEmpty {
@@ -106,7 +106,7 @@ final class NotificationManager {
             content.interruptionLevel = .passive
         }
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: false)
-        let id = Constants.Identifiers.Notifications.classTestNotification + GLDateFormatter.formatter.string(from: classTest.classTestDate)
+        let id = Constants.Identifiers.Notifications.classTestNotification + GLDateFormatter.berlinFormatter.string(from: classTest.classTestDate)
         let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request) { error in
             if let error = error {

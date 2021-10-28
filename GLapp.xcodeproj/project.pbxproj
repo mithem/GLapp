@@ -80,6 +80,8 @@
 		49AF336B2719963A00F406D1 /* TimetableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF33682719963A00F406D1 /* TimetableViewModel.swift */; };
 		49AF336C2719963A00F406D1 /* LessonInlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF33692719963A00F406D1 /* LessonInlineView.swift */; };
 		49AF336D2719963A00F406D1 /* TimetableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF336A2719963A00F406D1 /* TimetableView.swift */; };
+		49D110A5272AD84500CEBF1D /* DateComponents+plus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D110A4272AD84500CEBF1D /* DateComponents+plus.swift */; };
+		49D110A7272AD87B00CEBF1D /* DateComponents+combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D110A6272AD87B00CEBF1D /* DateComponents+combine.swift */; };
 		49E59DE6271C7180009A1609 /* EditSubjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E59DE5271C7180009A1609 /* EditSubjectView.swift */; };
 		49E59DEE271C7D7F009A1609 /* CodableColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E59DED271C7D7F009A1609 /* CodableColor.swift */; };
 		49E59DF0271C92B6009A1609 /* CodableColor+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E59DEF271C92B6009A1609 /* CodableColor+Equatable.swift */; };
@@ -192,6 +194,8 @@
 		49AF33682719963A00F406D1 /* TimetableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimetableViewModel.swift; sourceTree = "<group>"; };
 		49AF33692719963A00F406D1 /* LessonInlineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonInlineView.swift; sourceTree = "<group>"; };
 		49AF336A2719963A00F406D1 /* TimetableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimetableView.swift; sourceTree = "<group>"; };
+		49D110A4272AD84500CEBF1D /* DateComponents+plus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponents+plus.swift"; sourceTree = "<group>"; };
+		49D110A6272AD87B00CEBF1D /* DateComponents+combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponents+combine.swift"; sourceTree = "<group>"; };
 		49E59DE5271C7180009A1609 /* EditSubjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSubjectView.swift; sourceTree = "<group>"; };
 		49E59DED271C7D7F009A1609 /* CodableColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableColor.swift; sourceTree = "<group>"; };
 		49E59DEF271C92B6009A1609 /* CodableColor+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodableColor+Equatable.swift"; sourceTree = "<group>"; };
@@ -293,6 +297,8 @@
 				492804C32720104D0055ED63 /* RepresentativePlan+Equatable.swift */,
 				492804C7272026EF0055ED63 /* GLappError+Equatable.swift */,
 				498E2DB42725704A00635916 /* UNAuthorizationStatus+validAuthorization.swift */,
+				49D110A4272AD84500CEBF1D /* DateComponents+plus.swift */,
+				49D110A6272AD87B00CEBF1D /* DateComponents+combine.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -686,6 +692,7 @@
 				4991A2B027199706008559F9 /* SettingsView+LoginViewDelegate.swift in Sources */,
 				49F380EA2710E095002AE814 /* Weekday.swift in Sources */,
 				49AF336C2719963A00F406D1 /* LessonInlineView.swift in Sources */,
+				49D110A5272AD84500CEBF1D /* DateComponents+plus.swift in Sources */,
 				4976D175271085EB009C5AC2 /* RepresentativeDay.swift in Sources */,
 				49EEDE47272158A0009A4C6A /* Functionality.swift in Sources */,
 				49F380EF2710E146002AE814 /* ClassTestPlan.swift in Sources */,
@@ -732,6 +739,7 @@
 				4991A2BA27199789008559F9 /* GLDateFormatter.swift in Sources */,
 				49686D87271DDA250075F14A /* Lesson+Equatable.swift in Sources */,
 				49FDEDD3271359850013341B /* String+Identifiable.swift in Sources */,
+				49D110A7272AD87B00CEBF1D /* DateComponents+combine.swift in Sources */,
 				4991A2A9271996F8008559F9 /* UIConstants.swift in Sources */,
 				4991A2B627199768008559F9 /* ClassTestPlanParser.swift in Sources */,
 				499A3EEC2719F7350045683D /* ClassTest+Comparable.swift in Sources */,
@@ -926,7 +934,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLapp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;
@@ -959,7 +967,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLappRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;

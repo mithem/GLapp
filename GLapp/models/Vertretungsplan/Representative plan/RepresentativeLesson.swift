@@ -8,7 +8,7 @@
 import Foundation
 
 struct RepresentativeLesson: Equatable, Identifiable, Codable, DeliverableByNotification {
-    var id: Date { date }
+    var id: Date { startDate }
     
     var date: Date
     var lesson: Int
@@ -18,6 +18,24 @@ struct RepresentativeLesson: Equatable, Identifiable, Codable, DeliverableByNoti
     var subject: Subject
     var normalTeacher: String
     var representativeTeacher: String?
+    
+    var startDate: Date {
+        return Calendar.current.date(byAdding: Constants.lessonStartDateComponents[lesson]!, to: date)!
+    }
+    
+    var endDate: Date {
+        return Calendar.current.date(byAdding: Constants.lessonEndDateComponents[lesson]!, to: date)!
+    }
+    
+    var isOver: Bool {
+        let now: Date
+        if #available(iOS 15, *) {
+            now = .now
+        } else {
+            now = .init(timeIntervalSinceNow: 0)
+        }
+        return now > endDate
+    }
     
     var summary: String {
         let now: Date

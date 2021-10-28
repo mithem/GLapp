@@ -26,15 +26,18 @@ struct Constants {
     static let defaultClassTestReminderNotificationsBeforeDays = 3
     static let mailToURL = URL(string: "mailto:miguel.themann@gmail.com")!
     static let functionalityReloadInterval: TimeInterval = 10
-    
-    private static func getWeekdayIDStringMap() -> Dictionary<Int, String> {
-        var map = Dictionary<Int, String>()
-        for string in weekdayStringIDMap.keys {
-            guard let id = weekdayStringIDMap[string] else { continue }
-            map[id] = NSLocalizedString(string)
-        }
-        return map
-    }
+    static let lessonStartDateComponents: [Int: DateComponents] = [
+        1: .init(hour: 7, minute: 45),
+        2: .init(hour: 8,  minute: 35),
+        3: .init(hour: 9, minute: 25),
+        4: .init(hour: 10, minute: 30),
+        5: .init(hour: 11, minute: 20),
+        6: .init(hour: 12, minute: 20),
+        7: .init(hour: 13, minute: 10),
+        8: .init(hour: 14, minute: 10),
+        9: .init(hour: 14, minute: 55)
+    ]
+    static let lessonEndDateComponents = getLessonEndDateComponents()
     
     struct Identifiers {
         static let appId = "com.mithem.GLapp"
@@ -56,5 +59,18 @@ struct Constants {
             static let backgroundReprPlanNotifications = "background_repr_plan_notifications"
             static let demoMode = "demo_mode"
         }
+    }
+    
+    private static func getWeekdayIDStringMap() -> Dictionary<Int, String> {
+        var map = Dictionary<Int, String>()
+        for string in weekdayStringIDMap.keys {
+            guard let id = weekdayStringIDMap[string] else { continue }
+            map[id] = NSLocalizedString(string)
+        }
+        return map
+    }
+    
+    private static func getLessonEndDateComponents() -> [Int: DateComponents] {
+        return lessonStartDateComponents.mapValues({$0 + .init(minute: 45)}) // overflow will result in hour/day/etc. to increase (though anything else than an overflowing hour shouldn't happen😅)
     }
 }

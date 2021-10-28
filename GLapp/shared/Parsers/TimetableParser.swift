@@ -58,6 +58,9 @@ class TimetableParser {
             timetable.weekdays.append(weekday)
         }
         
+        DispatchQueue.main.async {
+            timetable.reloadSubjects(with: dataManager)
+        }
         return .success(timetable)
     }
 }

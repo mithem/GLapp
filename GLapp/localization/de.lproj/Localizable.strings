@@ -91,3 +91,5 @@
 "user_credentials_empty_activate_demo_mode" = "Demomodus aktivieren?";
 "demo_mode_active" = "Demomodus aktiv.";
 "today" = "Heute";
+"in_mid_sentence" = "in";
+"with_mid_sentence" = "bei";

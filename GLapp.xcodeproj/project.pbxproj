@@ -32,6 +32,7 @@
 		495E6B9327188BD00052B565 /* BackgroundTaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495E6B9227188BD00052B565 /* BackgroundTaskManager.swift */; };
 		495E6B972718C3CC0052B565 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495E6B962718C3CC0052B565 /* AppDelegate.swift */; };
 		495E7C51271ABFC9000085C7 /* DataManagementTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495E7C50271ABFC9000085C7 /* DataManagementTaskView.swift */; };
+		49680F26272A64AB00884096 /* TestRepresentativePlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49680F25272A64AB00884096 /* TestRepresentativePlan.swift */; };
 		49686D81271DC9A80075F14A /* FSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49686D80271DC9A80075F14A /* FSError.swift */; };
 		49686D83271DD28E0075F14A /* Subject+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49686D82271DD28E0075F14A /* Subject+Equatable.swift */; };
 		49686D87271DDA250075F14A /* Lesson+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49686D86271DDA250075F14A /* Lesson+Equatable.swift */; };
@@ -139,6 +140,7 @@
 		495E6B9227188BD00052B565 /* BackgroundTaskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTaskManager.swift; sourceTree = "<group>"; };
 		495E6B962718C3CC0052B565 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		495E7C50271ABFC9000085C7 /* DataManagementTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagementTaskView.swift; sourceTree = "<group>"; };
+		49680F25272A64AB00884096 /* TestRepresentativePlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRepresentativePlan.swift; sourceTree = "<group>"; };
 		49686D80271DC9A80075F14A /* FSError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSError.swift; sourceTree = "<group>"; };
 		49686D82271DD28E0075F14A /* Subject+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Subject+Equatable.swift"; sourceTree = "<group>"; };
 		49686D86271DDA250075F14A /* Lesson+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lesson+Equatable.swift"; sourceTree = "<group>"; };
@@ -369,6 +371,7 @@
 				495E6B8A271833ED0052B565 /* TestClassTestPlanParser.swift */,
 				495E6B8C271837180052B565 /* TestTimetableParser.swift */,
 				494595C22727C5050096B5D7 /* TestRepresentativeLesson.swift */,
+				49680F25272A64AB00884096 /* TestRepresentativePlan.swift */,
 			);
 			path = GLappTests;
 			sourceTree = "<group>";
@@ -748,6 +751,7 @@
 			files = (
 				495E6B8B271833ED0052B565 /* TestClassTestPlanParser.swift in Sources */,
 				49340503271178ED008B059B /* TestRepresentativePlanParser.swift in Sources */,
+				49680F26272A64AB00884096 /* TestRepresentativePlan.swift in Sources */,
 				494595C32727C5050096B5D7 /* TestRepresentativeLesson.swift in Sources */,
 				495E6B8D271837180052B565 /* TestTimetableParser.swift in Sources */,
 			);
@@ -922,7 +926,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLapp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;
@@ -955,7 +959,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLappRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;

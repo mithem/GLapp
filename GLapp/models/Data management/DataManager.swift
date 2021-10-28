@@ -251,6 +251,7 @@ class DataManager: ObservableObject {
                     let result = RepresentativePlanParser.parse(plan: s, with: self)
                     switch result {
                     case .success(let plan):
+                        UserDefaults.standard.set(plan.date.timeIntervalSince1970, forKey: UserDefaultsKeys.lastReprPlanUpdateTimestamp)
                         completion(.success(plan))
                     case .failure(let error):
                         completion(.failure(.parserError(error)))

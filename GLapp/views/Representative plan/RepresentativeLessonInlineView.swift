@@ -25,7 +25,7 @@ struct RepresentativeLessonInlineView: View {
                 }
             }
             Spacer()
-            VStack {
+            VStack(alignment: .trailing) {
                 Text(lesson.normalTeacher)
                 if let note = lesson.note {
                     Text(note)
@@ -46,6 +46,10 @@ struct RepresentativeLessonInlineView: View {
 
 struct RepresentativeLessonInlineView_Previews: PreviewProvider {
     static var previews: some View {
-        RepresentativeLessonInlineView(lesson: MockData.representativeLesson)
+        Group {
+            RepresentativeLessonInlineView(lesson: MockData.representativeLesson)
+            RepresentativeLessonInlineView(lesson: MockData.representativeLesson2)
+        }
+        .previewLayout(.sizeThatFits)
     }
 }

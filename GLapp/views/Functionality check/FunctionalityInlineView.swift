@@ -98,13 +98,24 @@ struct FunctionalityInlineView: View {
     }
     
     var imageName: String {
-        switch functionality.isEnabled {
-        case .unkown:
-            return "minus.diamond"
-        case .yes:
-            return "checkmark.diamond"
-        case .no:
-            return "xmark.diamond"
+        if #available(iOS 15, *) {
+            switch functionality.isEnabled {
+            case .unkown:
+                return "minus.diamond"
+            case .yes:
+                return "checkmark.diamond"
+            case .no:
+                return "xmark.diamond"
+            }
+        } else {
+            switch functionality.isEnabled {
+            case .unkown:
+                return "questionmark.diamond"
+            case .yes:
+                return "checkmark.seal"
+            case .no:
+                return "slash.circle"
+            }
         }
     }
     

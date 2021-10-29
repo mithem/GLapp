@@ -67,6 +67,7 @@ struct LoginView: View {
                             }
                         }
                     }
+                    .keyboardShortcut(.defaultAction)
                     .disabled(loading)
                     Text("note_all_traffic_encrypted")
                         .foregroundColor(.secondary)

@@ -16,7 +16,7 @@ struct RepresentativePlanView: View {
             if let reprPlan = dataManager.representativePlan {
                 VStack {
                     if reprPlan.isEmpty {
-                        EmptyContentView(image: "circle.slash", text: "representative_plan_empty")
+                        EmptyContentView(image: emptyViewIcon, text: "representative_plan_empty")
                     } else {
                         let list = List {
                             if !reprPlan.notes.isEmpty {
@@ -63,6 +63,14 @@ struct RepresentativePlanView: View {
             }) {
                 Image(systemName: "arrow.clockwise")
             }
+        }
+    }
+    
+    var emptyViewIcon: String {
+        if #available(iOS 15, *) {
+            return "circle.slash"
+        } else {
+            return "slash.circle"
         }
     }
     

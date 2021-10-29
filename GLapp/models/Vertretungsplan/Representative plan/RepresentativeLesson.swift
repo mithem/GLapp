@@ -28,29 +28,17 @@ struct RepresentativeLesson: Equatable, Identifiable, Codable, DeliverableByNoti
     }
     
     var isOver: Bool {
-        let now: Date
-        if #available(iOS 15, *) {
-            now = .now
-        } else {
-            now = .init(timeIntervalSinceNow: 0)
-        }
-        return now > endDate
+        return .justNow > endDate
     }
     
     var summary: String {
-        let now: Date
-        if #available(iOS 15, *) {
-            now = .now
-        } else {
-            now = .init(timeIntervalSinceNow: 0)
-        }
-        let timeInterval = date.timeIntervalSince(now)
+        let timeInterval = date.timeIntervalSinceNow
         let timeDescription: String
         if timeInterval > 2 * 24 * 60 * 60 { // 2 days
             timeDescription = GLDateFormatter.relativeDateTimeFormatter.localizedString(fromTimeInterval: timeInterval)
         } else {
             let components = Calendar.current.dateComponents([.year, .month, .day, .weekday], from: date)
-            let todayComponents = Calendar.current.dateComponents([.year, .month, .day, .weekday], from: now)
+            let todayComponents = Calendar.current.dateComponents([.year, .month, .day, .weekday], from: .justNow)
             if components == todayComponents {
                 timeDescription = NSLocalizedString("today")
             } else if let weekday = components.weekday {

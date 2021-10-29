@@ -74,8 +74,8 @@
 "subject_type" = "Subject type";
 "class_test_plan_not_supported" = "Class test plan not supported. Can happen in Unter- and Mittelstufe.";
 "room" = "Room";
-"auto_remind_before_class_tests" = "Vor Klausuren automatisch erinnern";
-"remind_n_days_before_class_tests_colon" = "Tage vor Klausuren erinnern: ";
+"auto_remind_before_class_tests" = "Automatically remind before class tests";
+"remind_n_days_before_class_tests_colon" = "Remind days before class tests: ";
 "data_management" = "Data management";
 "reload_all" = "Reload all";
 "reload_timetable" = "Reload timetable";

@@ -19,11 +19,7 @@ struct RepresentativePlan: Codable, DeliverableByNotification {
         self.representativeDays = representativeDays
         self.lessons = lessons
         self.notes = notes
-        if #available(iOS 15, *) {
-            self.lastFetched = .now
-        } else {
-            self.lastFetched = .init(timeIntervalSinceNow: 0)
-        }
+        self.lastFetched = .justNow
     }
     
     var isEmpty: Bool {

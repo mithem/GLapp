@@ -31,12 +31,7 @@ final class NotificationManager {
             content.interruptionLevel = timeSensitive ? .timeSensitive : .active
         }
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: Constants.checkReprPlanInBackgroundTimeIntervalTillNotificationScheduled, repeats: false)
-        let timestamp: Int
-        if #available(iOS 15, *) {
-            timestamp = Int(Date.now.timeIntervalSince1970)
-        } else {
-            timestamp = Int(Date(timeIntervalSinceNow: 0).timeIntervalSince1970)
-        }
+        let timestamp = Int(Date.justNow.timeIntervalSince1970)
         let id = Constants.Identifiers.Notifications()[keyPath: identifier] + String(timestamp)
         let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request) { error in

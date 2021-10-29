@@ -51,6 +51,7 @@
 		4976D17D27108644009C5AC2 /* SWXMLHash in Frameworks */ = {isa = PBXBuildFile; productRef = 4976D17C27108644009C5AC2 /* SWXMLHash */; };
 		4976D18C27108A68009C5AC2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4976D18E27108A68009C5AC2 /* Localizable.strings */; };
 		4976D19127108AA9009C5AC2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4976D19327108AA9009C5AC2 /* Localizable.strings */; };
+		498D5E22272C1F0F007722F6 /* Date+now.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498D5E21272C1F0F007722F6 /* Date+now.swift */; };
 		498E2DB52725704A00635916 /* UNAuthorizationStatus+validAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498E2DB42725704A00635916 /* UNAuthorizationStatus+validAuthorization.swift */; };
 		4991A2A7271996F8008559F9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4991A29F271996F8008559F9 /* SettingsView.swift */; };
 		4991A2A9271996F8008559F9 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4991A2A1271996F8008559F9 /* UIConstants.swift */; };
@@ -163,6 +164,7 @@
 		4976D172271085EB009C5AC2 /* RepresentativeDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepresentativeDay.swift; sourceTree = "<group>"; };
 		4976D18D27108A68009C5AC2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4976D19227108AA9009C5AC2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		498D5E21272C1F0F007722F6 /* Date+now.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+now.swift"; sourceTree = "<group>"; };
 		498E2DB42725704A00635916 /* UNAuthorizationStatus+validAuthorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UNAuthorizationStatus+validAuthorization.swift"; sourceTree = "<group>"; };
 		4991A29F271996F8008559F9 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		4991A2A1271996F8008559F9 /* UIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 				498E2DB42725704A00635916 /* UNAuthorizationStatus+validAuthorization.swift */,
 				49D110A4272AD84500CEBF1D /* DateComponents+plus.swift */,
 				49D110A6272AD87B00CEBF1D /* DateComponents+combine.swift */,
+				498D5E21272C1F0F007722F6 /* Date+now.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -719,6 +722,7 @@
 				49A5B24B2719A5BF00577767 /* FunctionalityInlineView.swift in Sources */,
 				4991A2AE271996F8008559F9 /* EmptyContentView.swift in Sources */,
 				499A3EEA2719F7220045683D /* ClassTest+Equatable.swift in Sources */,
+				498D5E22272C1F0F007722F6 /* Date+now.swift in Sources */,
 				49F380EC2710E0E4002AE814 /* Lesson.swift in Sources */,
 				4934050627117C88008B059B /* ParserError.swift in Sources */,
 				49E59DE6271C7180009A1609 /* EditSubjectView.swift in Sources */,
@@ -934,7 +938,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLapp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;
@@ -967,7 +971,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLappRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;

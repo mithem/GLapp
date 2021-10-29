@@ -19,9 +19,7 @@ struct ClassTestPlanView: View {
                     EmptyContentView(image: "sparkles", text: "classTestPlan_empty")
                 } else {
                     let list = List {
-                        if let classTest = plan.classTests.first {
-                            UpcomingClassTestView(classTest: classTest)
-                        }
+                        UpcomingClassTestView(classTests: plan.classTests)
                         ForEach(plan.classTests) { classTest in
                             ClassTestInlineView(classTest: classTest, appManager: appManager)
                         }

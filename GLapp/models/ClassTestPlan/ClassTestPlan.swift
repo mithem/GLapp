@@ -26,10 +26,6 @@ struct ClassTestPlan: Codable {
     init(date: Date, classTests: [ClassTest] = []) {
         self.date = date
         self._classTests = classTests.sorted()
-        if #available(iOS 15, *) {
-            self.lastFetched = .now
-        } else {
-            self.lastFetched = .init(timeIntervalSinceNow: 0)
-        }
+        self.lastFetched = .justNow
     }
 }

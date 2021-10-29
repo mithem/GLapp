@@ -25,6 +25,7 @@ struct ClassTestInlineView: View {
             }
                 .foregroundColor(.secondary)
         }
+            .foregroundColor(isOver ? .secondary : .primary)
         if !autoRemindBeforeClassTests {
             hstack
                 .contextMenu {
@@ -38,6 +39,13 @@ struct ClassTestInlineView: View {
         } else {
             hstack
         }
+    }
+    
+    var isOver: Bool {
+        if let endDate = classTest.endDate {
+            if .justNow > endDate { return true }
+        }
+        return false
     }
     
     var title: String {

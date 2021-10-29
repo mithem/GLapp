@@ -42,11 +42,7 @@ final class Timetable: ObservableObject, Codable {
     init(date: Date, weekdays: [Weekday] = []) {
         self.date = date
         self.weekdays = weekdays
-        if #available(iOS 15, *) {
-            self.lastFetched = .now
-        } else {
-            self.lastFetched = .init(timeIntervalSinceNow: 0)
-        }
+        self.lastFetched = .justNow
     }
     
     init(from decoder: Decoder) throws {

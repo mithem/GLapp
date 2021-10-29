@@ -74,8 +74,8 @@
 "subject_type" = "Kursart";
 "class_test_plan_not_supported" = "Klausurplan nicht unterstützt. Kann z.B. in der Unter- und Mittelstufe auftreten.";
 "room" = "Raum";
-"auto_remind_before_class_tests" = "Automatically remind before class tests";
-"remind_n_days_before_class_tests_colon" = "Remind days before class tests: ";
+"auto_remind_before_class_tests" = "Vor Klausuren automatisch erinnern";
+"remind_n_days_before_class_tests_colon" = "Tage vor Klausuren erinnern: ";
 "data_management" = "Datenverwaltung";
 "reload_all" = "Alles aktualisieren";
 "reload_timetable" = "Stundenplan aktualisieren";

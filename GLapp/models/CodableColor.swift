@@ -26,7 +26,10 @@ class CodableColor: Codable {
         green = .nan
         blue = .nan
         alpha = .nan
-        UIColor(color).getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        DispatchQueue.main.async { // otherwise might (or not) result in mysterious crashes..
+            // actually not even a joke
+            UIColor(color).getRed(&self.red, green: &self.green, blue: &self.blue, alpha: &self.alpha)
+        }
     }
     
     static var random: CodableColor {

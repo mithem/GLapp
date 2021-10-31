@@ -22,7 +22,8 @@ struct LessonInlineView: View {
             }
             Spacer()
         }
-            .frame(width: size.width, height: size.height)
+            .frame(width: size.width)
+            .frame(minHeight: size.height)
             .hoverEffect()
         if let lesson = lesson.lesson {
             content

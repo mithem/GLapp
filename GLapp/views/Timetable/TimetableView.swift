@@ -15,25 +15,27 @@ struct TimetableView: View {
             DataManagementTaskView(date: model.timetable?.date, lastFetched: model.timetable?.lastFetched, task: model.dataManager.tasks.getTimetable)
             Spacer()
             if let timetable = model.timetable, let grid = model.timetableGrid {
-                VStack {
-                    if timetable.isEmpty {
-                        EmptyContentView(image: "calendar.badge.exclamationmark", text: "timetable_empty")
-                    } else {
-                        let grid = LazyVGrid(columns: .init(repeating: .init(), count: timetable.weekdays.count)) {
-                            ForEach(timetable.weekdays) { weekday in
-                                Text(Constants.weekdayIDStringMap[weekday.id] ?? "unkown")
-                                    .font(.headline)
+                ScrollView {
+                    VStack {
+                        if timetable.isEmpty {
+                            EmptyContentView(image: "calendar.badge.exclamationmark", text: "timetable_empty")
+                        } else {
+                            let grid = LazyVGrid(columns: .init(repeating: .init(), count: timetable.weekdays.count)) {
+                                ForEach(timetable.weekdays) { weekday in
+                                    Text(Constants.weekdayIDStringMap[weekday.id] ?? "unkown")
+                                        .font(.headline)
+                                }
+                                ForEach(grid) { lesson in
+                                    LessonInlineView(lesson: lesson)
+                                }
                             }
-                            ForEach(grid) { lesson in
-                                LessonInlineView(lesson: lesson)
-                            }
-                        }
-                        if verticalSizeClass == .compact {
-                            ScrollView {
+                            if verticalSizeClass == .compact {
+                                ScrollView {
+                                    grid
+                                }
+                            } else {
                                 grid
                             }
-                        } else {
-                            grid
                         }
                     }
                 }

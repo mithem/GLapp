@@ -13,6 +13,7 @@ struct MockData {
     static let subject2 = Subject(dataManager: dataManager, className: "PH-LK1", subjectType: "LK", teacher: "SEN")
     static let subject3 = Subject(dataManager: dataManager, className: "EK-GK2", subjectType: "GKM", teacher: "BUS")
     static let subject4 = Subject(dataManager: dataManager, className: "PSE", subjectType: "PSE", teacher: "BLN", subjectName: "PSE")
+    static let subject5 = Subject(dataManager: dataManager, className: "SPAN", subjectType: "SPAN", teacher: "SPAN", subjectName: "SPAN")
     static let lesson = Lesson(lesson: 4, room: "A10", subject: subject)
     static let lesson2 = Lesson(lesson: 5, room: "A10", subject: subject)
     static let lesson3 = Lesson(lesson: 6, room: "PR2", subject: subject2)
@@ -23,6 +24,9 @@ struct MockData {
     static let lesson8 = Lesson(lesson: 4, room: "FOR", subject: subject3)
     static let lesson9 = Lesson(lesson: 8, room: "IR3", subject: subject4)
     static let lesson10 = Lesson(lesson: 9, room: "IR3", subject: subject4)
+    static let lesson11 = Lesson(lesson: 10, room: "SPANI", subject: subject5)
+    static let lesson12 = Lesson(lesson: 4, room: "IR3", subject: subject4)
+    static let lesson13 = Lesson(lesson: 5, room: "IR3", subject: subject4)
     static let representativeLesson = RepresentativeLesson(date: nDaysFromNow(), lesson: 5, room: "A10", newRoom: "A11", note: "Raumänderung", subject: subject, normalTeacher: "PST")
     static let representativeLesson2 = RepresentativeLesson(date: nDaysFromNow(), lesson: 2, room: "PR1", newRoom: nil, note: "EVA", subject: subject2, normalTeacher: "PR1")
     static let representativePlan = RepresentativePlan(date: .init(timeIntervalSinceNow: -600), representativeDays: [.init(date: nDaysFromNow(), lessons: [representativeLesson2, representativeLesson])], lessons: [], notes: ["Test-Eintrag für das Android-App-Team"])
@@ -33,9 +37,9 @@ struct MockData {
     static let timetable = Timetable(date: .init(timeIntervalSinceNow: -100000), weekdays: [
         .init(id: 0, lessons: [lesson, lesson2, lesson3, lesson4]),
         .init(id: 1, lessons: [lesson5, lesson6, lesson, lesson2]),
-        .init(id: 2, lessons: [lesson3, lesson4, lesson9, lesson10]),
+        .init(id: 2, lessons: [lesson12, lesson13, lesson3, lesson4, lesson9, lesson10]),
         .init(id: 3, lessons: [lesson7, lesson8, lesson2, lesson3]),
-        .init(id: 4, lessons: [lesson5, lesson6, lesson7, lesson8])
+        .init(id: 4, lessons: [lesson5, lesson6, lesson7, lesson8, lesson11])
     ])
     
     static func nDaysFromNow(_ n: Int = 0) -> Date {

@@ -28,7 +28,7 @@ struct RepresentativeLesson: Equatable, Identifiable, Codable, DeliverableByNoti
     }
     
     var isOver: Bool {
-        return .justNow > endDate
+        return .rightNow > endDate
     }
     
     var summary: String {
@@ -38,7 +38,7 @@ struct RepresentativeLesson: Equatable, Identifiable, Codable, DeliverableByNoti
             timeDescription = GLDateFormatter.relativeDateTimeFormatter.localizedString(fromTimeInterval: timeInterval)
         } else {
             let components = Calendar.current.dateComponents([.year, .month, .day, .weekday], from: date)
-            let todayComponents = Calendar.current.dateComponents([.year, .month, .day, .weekday], from: .justNow)
+            let todayComponents = Calendar.current.dateComponents([.year, .month, .day, .weekday], from: .rightNow)
             if components == todayComponents {
                 timeDescription = NSLocalizedString("today")
             } else if let weekday = components.weekday {

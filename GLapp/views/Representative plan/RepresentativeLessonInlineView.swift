@@ -9,11 +9,14 @@ import SwiftUI
 
 struct RepresentativeLessonInlineView: View {
     let lesson: RepresentativeLesson
+    @ObservedObject var appManager: AppManager
+    @Environment(\.colorScheme) private var colorScheme
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
                 Text(title)
                     .bold()
+                    .foregroundColor(titleColor)
                 HStack {
                     if let room = lesson.room {
                         Text(room)
@@ -42,13 +45,23 @@ struct RepresentativeLessonInlineView: View {
         formatter.numberStyle = .ordinal
         return "\(formatter.string(from: NSNumber(value: lesson.lesson))!) \(lesson.subject.subjectName ?? lesson.subject.className)"
     }
+    
+    var titleColor: Color {
+        if lesson.isOver {
+            return .secondary
+        }
+        if appManager.coloredInlineSubjects.isEnabled == .yes {
+            return lesson.subject.color.getForegroundColor(colorScheme: colorScheme)
+        }
+        return .primary
+    }
 }
 
 struct RepresentativeLessonInlineView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            RepresentativeLessonInlineView(lesson: MockData.representativeLesson)
-            RepresentativeLessonInlineView(lesson: MockData.representativeLesson2)
+            RepresentativeLessonInlineView(lesson: MockData.representativeLesson, appManager: .init())
+            RepresentativeLessonInlineView(lesson: MockData.representativeLesson2, appManager: .init())
         }
         .previewLayout(.sizeThatFits)
     }

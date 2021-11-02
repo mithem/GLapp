@@ -23,6 +23,14 @@ final class Weekday: ObservableObject, Identifiable, Codable {
         lessons = try container.decode([Lesson].self, forKey: .lessons)
     }
     
+    var subjects: Set<Subject> {
+        var subjects = Set<Subject>()
+        for lesson in lessons {
+            subjects.insert(lesson.subject)
+        }
+        return subjects
+    }
+    
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)

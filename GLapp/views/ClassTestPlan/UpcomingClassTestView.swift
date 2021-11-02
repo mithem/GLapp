@@ -8,19 +8,21 @@
 import SwiftUI
 
 struct UpcomingClassTestView: View {
-    let classTests: [ClassTest]
+    @ObservedObject private var model: UpcomingClassTestViewModel
+    @Environment(\.colorScheme) private var colorScheme
     var body: some View {
-        if let classTest = classTest {
+        if let classTest = model.classTest {
             HStack {
                 VStack(alignment: .leading) {
                     Text("upcoming")
                         .font(.headline)
                     Text(classTest.subject.className)
                         .font(.subheadline)
+                        .foregroundColor(model.subjectColor(colorScheme: colorScheme))
                 }
                 Spacer()
                 VStack {
-                    if let timeInterval = timeInterval {
+                    if let timeInterval = model.timeInterval {
                         Text(timeInterval)
                             .foregroundColor(.secondary)
                     }
@@ -32,33 +34,17 @@ struct UpcomingClassTestView: View {
         }
     }
     
-    var classTest: ClassTest? {
-        guard classTests.count > 0 else { return nil }
-        for i in 0 ..< classTests.count {
-            let classTest = classTests[i]
-            if let endDate = classTest.endDate {
-                if .justNow > endDate {
-                    continue
-                }
-            }
-            return classTest
-        }
-        return nil
-    }
     
-    var timeInterval: String? {
-        guard let classTest = classTest else { return nil }
-
-        let formatter = GLDateFormatter.relativeDateTimeFormatter
-        return formatter.localizedString(for: classTest.startDate ?? classTest.classTestDate, relativeTo: .justNow)
+    init(appManager: AppManager, classTests: [ClassTest]) {
+        self.model = .init(appManager: appManager, classTests: classTests)
     }
 }
 
 struct UpcomingClassTestView_Previews: PreviewProvider {
     static var previews: some View {
         List {
-            UpcomingClassTestView(classTests: [MockData.classTest2])
-            UpcomingClassTestView(classTests: [MockData.classTest3])
+            UpcomingClassTestView(appManager: .init(), classTests: [MockData.classTest2])
+            UpcomingClassTestView(appManager: .init(), classTests: [MockData.classTest3])
         }
     }
 }

@@ -18,4 +18,5 @@ struct UserDefaultsKeys {
     static let backgroundReprPlanNotificationsEnabled = "backgroundReprPlanNotificationsEnabled"
     static let demoMode = "demoMode"
     static let launchCount = "launchCount"
+    static let coloredInlineSubjects = "coloredInlineSubjects"
 }

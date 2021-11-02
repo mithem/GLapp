@@ -18,7 +18,7 @@ struct LessonInlineView: View {
             Spacer()
             if let title = title {
                 Text(title)
-                    .foregroundColor(.primary)
+                    .foregroundColor(lesson.lesson?.subject.color.isDark ?? false ? .white : .black)
             }
             Spacer()
         }
@@ -27,7 +27,10 @@ struct LessonInlineView: View {
             .hoverEffect()
         if let lesson = lesson.lesson {
             content
-                .background(RoundedRectangle(cornerRadius: UIConstants.rrCornerRadius).foregroundColor(lesson.subject.getColor().colorBinding.wrappedValue))
+                .background(
+                    RoundedRectangle(cornerRadius: UIConstants.rrCornerRadius)
+                        .foregroundColor(lesson.subject.color)
+                )
             .contextMenu {
                 Button("more") {
                     showingEditSubjectView = true

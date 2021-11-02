@@ -31,7 +31,7 @@ final class NotificationManager {
             content.interruptionLevel = timeSensitive ? .timeSensitive : .active
         }
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: Constants.checkReprPlanInBackgroundTimeIntervalTillNotificationScheduled, repeats: false)
-        let timestamp = Int(Date.justNow.timeIntervalSince1970)
+        let timestamp = Int(Date.rightNow.timeIntervalSince1970)
         let id = Constants.Identifiers.Notifications()[keyPath: identifier] + String(timestamp)
         let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request) { error in
@@ -44,7 +44,7 @@ final class NotificationManager {
     }
     
     func checkRepresentativePlanAndDeliverNotification(task: BGTask) {
-        let dataManager = DataManager()
+        let dataManager = DataManager(appManager: .init())
         dataManager.getRepresenativePlanUpdate { result in
             switch result {
             case .success(let plan):
@@ -91,16 +91,28 @@ final class NotificationManager {
     }
     
     func scheduleClassTestReminder(for classTest: ClassTest) {
-        let timeInterval = classTest.classTestDate.timeIntervalSinceNow - (Double(UserDefaults.standard.integer(forKey: UserDefaultsKeys.classTestReminderNotificationBeforeDays) * 24 * 60) * 60)
-        guard timeInterval > 0 else { return }
+        let classTestDate = classTest.startDate ?? classTest.classTestDate
+        let classTestDateComponents = Calendar(identifier: .gregorian).dateComponents([.year, .month, .day, .hour, .minute], from: classTestDate)
+        var daysBeforeClassTest = UserDefaults.standard.integer(forKey: UserDefaultsKeys.classTestReminderNotificationBeforeDays)
+        if daysBeforeClassTest == 0 { // no previous initialization e.g. by SettingsView
+            daysBeforeClassTest = 3
+        }
+        var reminderComponents = classTestDateComponents
+        reminderComponents.day! -= daysBeforeClassTest
+        reminderComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: Calendar.current.date(from: reminderComponents)!) // if a classTest is scheduled at the beginning of the month, for example, this is a way for that to actually give valid dateComponents as a trigger, otherwise they would contain negative numbers and not trigger anything
+        let reminderDate = Calendar.current.date(from: reminderComponents)!
+        guard reminderDate > .rightNow else { return }
+        let trigger = UNCalendarNotificationTrigger(dateMatching: reminderComponents, repeats: false)
+        
+        let deltaComponents = DateComponents(day: daysBeforeClassTest)
         let content = UNMutableNotificationContent()
         content.title = NSLocalizedString("upcoming_class_test")
-        content.body = "\(classTest.alias) \(GLDateFormatter.relativeDateTimeFormatter.localizedString(fromTimeInterval: timeInterval))"
+        content.body = "\(classTest.alias) \(GLDateFormatter.relativeDateTimeFormatter.localizedString(from: deltaComponents))"
         content.sound = .default
         if #available(iOS 15, *) {
             content.interruptionLevel = .passive
         }
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: false)
+        
         let id = Constants.Identifiers.Notifications.classTestNotification + GLDateFormatter.berlinFormatter.string(from: classTest.classTestDate)
         let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request) { error in
@@ -131,6 +143,19 @@ final class NotificationManager {
         let decoder = JSONDecoder()
         guard let ids = try? decoder.decode([String].self, from: data) else { return }
         notificationIds = ids
+    }
+    
+    func getScheduledClassTestReminders(completion: @escaping (Set<NotificationRequest>) -> Void) {
+        UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
+            var scheduled = Set<NotificationRequest>()
+            for request in requests {
+                guard let trigger = request.trigger as? UNCalendarNotificationTrigger else { continue }
+                guard let date = trigger.nextTriggerDate() else { continue }
+                let request = NotificationRequest(triggerDate: date, id: request.identifier, content: request.content.body)
+                scheduled.insert(request)
+            }
+            completion(scheduled)
+        }
     }
     
     /// Remove scheduled notifications.
@@ -171,8 +196,17 @@ final class NotificationManager {
     
     /// Remove all notifications that are delivered and appropriate for removal (e.g. class test reminders only after the class test)
     func removeAllDeliveredAndAppropriate() {
-        // TODO: Implement
-        removeAllDelivered()
+        var toRemove = [String]()
+        for id in notificationIds {
+            if id.starts(with: Constants.Identifiers.Notifications.classTestNotification) {
+                if let date = GLDateFormatter.berlinFormatter.date(from: id.replacingOccurrences(of: Constants.Identifiers.Notifications.classTestNotification, with: "")) {
+                    if .rightNow > date {
+                        toRemove.append(id)
+                    }
+                }
+            }
+        }
+        removeDelivered(toRemove)
     }
     
     func reset() {
@@ -189,5 +223,17 @@ final class NotificationManager {
     
     deinit {
         saveNotificationIds()
+    }
+    
+    struct NotificationRequest: Identifiable, Hashable, DeliverableByNotification {
+        let triggerDate: Date
+        let id: String
+        let content: String
+        
+        var summary: String { content }
+        
+        func cancel() {
+            NotificationManager.default.removeScheduled([id])
+        }
     }
 }

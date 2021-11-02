@@ -9,14 +9,27 @@ import XCTest
 @testable import GLapp
 
 class TestRepresentativePlanParser: XCTestCase {
-    func testParseEmpty() throws {
+    func testParseEmptyPlaceholderTimestamp() throws {
         let input = """
 <Vertretungsplan Stand="2000-01-01 00:00:00" Timestamp="946681200">
 <Vertretungstag/>
 <Informationen> </Informationen>
 </Vertretungsplan>
 """
-        let expected = RepresentativePlan(date: .init(timeIntervalSince1970: 946681200), representativeDays: [], lessons: [], notes: [])
+        let expected = RepresentativePlan(date: nil, representativeDays: [], lessons: [], notes: [])
+        
+        let result = RepresentativePlanParser.parse(plan: input, with: MockDataManager())
+        
+        XCTAssertEqual(try result.get(), expected)
+    }
+    func testParseEmptyCustomTimestamp() throws {
+        let input = """
+<Vertretungsplan Stand="2000-01-01 00:00:01" Timestamp="946681201">
+<Vertretungstag/>
+<Informationen> </Informationen>
+</Vertretungsplan>
+"""
+        let expected = RepresentativePlan(date: .init(timeIntervalSince1970: 946681201), representativeDays: [], lessons: [], notes: [])
         
         let result = RepresentativePlanParser.parse(plan: input, with: MockDataManager())
         

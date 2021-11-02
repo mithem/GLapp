@@ -10,7 +10,10 @@ import Combine
 import SwiftUI
 
 class Functionality: ObservableObject, FunctionalityProtocol, Identifiable {
-    let id: String
+    
+    typealias Identifier = String
+    
+    let id: Identifier
     let title: String
     let description: String
     let role: Role
@@ -45,12 +48,12 @@ class Functionality: ObservableObject, FunctionalityProtocol, Identifiable {
     final func enable(with appManager: AppManager, dataManager: DataManager) throws {
         _ = try isSupportedByDependencies(with: appManager, dataManager: dataManager )
         try doEnable(with: appManager, dataManager: dataManager)
-        try reloadIsEnabled(with: appManager, dataManager: dataManager)
+        try reload(with: appManager, dataManager: dataManager)
     }
     
     final func disable(with appManager: AppManager, dataManager: DataManager) throws {
         try doDisable(with: appManager, dataManager: dataManager)
-        try reloadIsEnabled(with: appManager, dataManager: dataManager)
+        try reload(with: appManager, dataManager: dataManager)
     }
     
     func doEnable(with appManager: AppManager, dataManager: DataManager) throws {
@@ -111,7 +114,7 @@ class Functionality: ObservableObject, FunctionalityProtocol, Identifiable {
         return isSupported
     }
     
-    init(id: String, role: Role, dependencies: [FunctionalityType]) {
+    init(id: Identifier, role: Role, dependencies: [FunctionalityType]) {
         self.id = id
         self.title = NSLocalizedString("feature_" + id + "_title")
         self.description = NSLocalizedString("feature_" + id + "_description")
@@ -159,6 +162,23 @@ class Functionality: ObservableObject, FunctionalityProtocol, Identifiable {
     }
     
     enum FunctionalityType {
-        case notifications, backgroundRefresh, backgroundReprPlanNotifications, classTestReminders, demoMode
+        case notifications, backgroundRefresh, backgroundReprPlanNotifications, classTestReminders, demoMode, coloredInlineSubjects
+        
+        var id: Identifier {
+            switch self {
+            case .notifications:
+                return Constants.Identifiers.Functionalities.notifications
+            case .backgroundRefresh:
+                return Constants.Identifiers.Functionalities.backgroundRefresh
+            case .backgroundReprPlanNotifications:
+                return Constants.Identifiers.Functionalities.backgroundReprPlanNotifications
+            case .classTestReminders:
+                return Constants.Identifiers.Functionalities.classTestReminders
+            case .demoMode:
+                return Constants.Identifiers.Functionalities.demoMode
+            case .coloredInlineSubjects:
+                return Constants.Identifiers.Functionalities.coloredInlineSubjects
+            }
+        }
     }
 }

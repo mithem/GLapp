@@ -26,6 +26,6 @@ struct ClassTestPlan: Codable {
     init(date: Date, classTests: [ClassTest] = []) {
         self.date = date
         self._classTests = classTests.sorted()
-        self.lastFetched = .justNow
+        self.lastFetched = .rightNow
     }
 }

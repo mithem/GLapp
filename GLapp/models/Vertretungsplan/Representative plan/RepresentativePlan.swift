@@ -8,18 +8,18 @@
 import Foundation
 
 struct RepresentativePlan: Codable, DeliverableByNotification {
-    var date: Date
+    var date: Date?
     var representativeDays: [RepresentativeDay]
     var lessons: [RepresentativeLesson]
     var notes: [String]
     var lastFetched: Date
     
-    init(date: Date, representativeDays: [RepresentativeDay] = [], lessons: [RepresentativeLesson] = [], notes: [String] = []) {
+    init(date: Date?, representativeDays: [RepresentativeDay] = [], lessons: [RepresentativeLesson] = [], notes: [String] = []) {
         self.date = date
         self.representativeDays = representativeDays
         self.lessons = lessons
         self.notes = notes
-        self.lastFetched = .justNow
+        self.lastFetched = .rightNow
     }
     
     var isEmpty: Bool {

@@ -15,6 +15,7 @@ class AppManager: ObservableObject {
     @Published var backgroundReprPlanNotifications: FBackgroundReprPlanNotifications
     @Published var classTestReminders: FClassTestReminders
     @Published var demoMode: FDemoMode
+    @Published var coloredInlineSubjects: FColoredInlineSubjects
     @Published var userAttentionMayBeRequired: Bool
     
     var userExperienceRelevantFunctionalities: [Functionality]  {
@@ -34,6 +35,7 @@ class AppManager: ObservableObject {
         backgroundReprPlanNotifications = .init()
         classTestReminders = .init()
         demoMode = .init()
+        coloredInlineSubjects = .init()
         userAttentionMayBeRequired = false
     }
     
@@ -61,6 +63,7 @@ class AppManager: ObservableObject {
             self.reload(.backgroundReprPlanNotifications, with: dataManager)
             self.reload(.classTestReminders, with: dataManager)
             self.reload(.demoMode, with: dataManager)
+            self.reload(.coloredInlineSubjects, with: dataManager)
         }
     }
     
@@ -76,6 +79,8 @@ class AppManager: ObservableObject {
             return classTestReminders
         case .demoMode:
             return demoMode
+        case .coloredInlineSubjects:
+            return coloredInlineSubjects
         }
     }
     

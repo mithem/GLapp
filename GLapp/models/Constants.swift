@@ -55,9 +55,10 @@ struct Constants {
         struct Functionalities {
             static let notifications = "notifications"
             static let backgroundRefresh = "background_refresh"
-            static let autoRemindBeforeClassTests = "class_test_reminders"
+            static let classTestReminders = "class_test_reminders"
             static let backgroundReprPlanNotifications = "background_repr_plan_notifications"
             static let demoMode = "demo_mode"
+            static let coloredInlineSubjects = "colored_inline_subjects"
         }
     }
     

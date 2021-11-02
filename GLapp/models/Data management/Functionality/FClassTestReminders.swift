@@ -30,15 +30,13 @@ class FClassTestReminders: Functionality {
     }
     
     required init() {
-        super.init(id: Constants.Identifiers.Functionalities.autoRemindBeforeClassTests, role: .optional, dependencies: [.notifications])
+        super.init(id: Constants.Identifiers.Functionalities.classTestReminders, role: .optional, dependencies: [.notifications])
     }
     
     func scheduleClassTestRemindersIfAppropriate(with dataManager: DataManager) {
-        if UserDefaults.standard.bool(forKey: UserDefaultsKeys.automaticallyRemindBeforeClassTests) {
-            guard let plan = dataManager.classTestPlan else { return }
-            // TODO: Check if class test notifications actually need to be rescheduled (use classTestPlan.date)
-            NotificationManager.default.removeScheduledClassTestReminders()
-            NotificationManager.default.scheduleClassTestsReminders(for: plan.classTests)
-        }
+        guard UserDefaults.standard.bool(forKey: UserDefaultsKeys.automaticallyRemindBeforeClassTests) else { return } // don't use self.isEnabled as that is reloaded after doEnable is run
+        guard let plan = dataManager.classTestPlan else { return }
+        NotificationManager.default.removeScheduledClassTestReminders()
+        NotificationManager.default.scheduleClassTestsReminders(for: plan.classTests)
     }
 }

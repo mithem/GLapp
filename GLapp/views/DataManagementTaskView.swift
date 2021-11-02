@@ -41,8 +41,7 @@ struct DataManagementTaskView<ContentType>: View where ContentType: Codable {
     var caption: String {
         var msgs = [String]()
         if let lastFetched = lastFetched {
-            let date = Date(timeIntervalSinceNow: 1) // prevent "last fetched in 0 seconds"
-            let lastFetchedStr = GLDateFormatter.relativeDateTimeFormatter.localizedString(for: lastFetched, relativeTo: date)
+            let lastFetchedStr = GLDateFormatter.relativeDateTimeFormatter.localizedString(for: lastFetched, relativeTo: .rightNow)
             msgs.append(NSLocalizedString("last_fetched") + " " + lastFetchedStr)
         }
         if let error = task.error {

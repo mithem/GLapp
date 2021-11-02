@@ -18,7 +18,10 @@ class RepresentativePlanParser {
         }
         guard let timestampText = reprPlanElem.attribute(by: "Timestamp")?.text else { return .failure(.noTimestamp) }
         guard let timestampInterval = TimeInterval(timestampText) else { return .failure(.invalidTimestamp) }
-        let date = Date(timeIntervalSince1970: timestampInterval)
+        var date: Date? = Date(timeIntervalSince1970: timestampInterval)
+        if date == .janFirst2000 { // gets sent for whatever reason when reprPlan is empty
+            date = nil
+        }
         var reprPlan = RepresentativePlan(date: date)
         
         for childIndex in reprPlanIndex.children {
@@ -34,7 +37,13 @@ class RepresentativePlanParser {
                         guard let lessonNo = Int(elem.attribute(by: "Std")?.text ?? "") else { continue }
                         guard let normalTeacher = elem.attribute(by: "FLehrer")?.text else { continue }
                         guard let subjectText = elem.attribute(by: "Fach")?.text else { continue }
-                        let subject = Subject(dataManager: dataManager, className: subjectText, teacher: normalTeacher, subjectName: subjectText) // minor inconsistencies (className being something like 'PH') always arise, i guess..
+                        let subject = dataManager.getSubject(className: subjectText)
+                        if subject.subjectName == nil {
+                            subject.subjectName = subjectText
+                        }
+                        if subject.teacher == nil {
+                            subject.teacher = normalTeacher
+                        }
                         let room = elem.attribute(by: "Raum")?.text
                         var newRoom = elem.attribute(by: "RaumNeu")?.text
                         if newRoom?.isEmpty == true {

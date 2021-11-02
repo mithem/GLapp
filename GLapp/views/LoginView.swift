@@ -80,8 +80,8 @@ struct LoginView: View {
     var body: some View {
         let actionSheet = getActionSheet()
         if #available(iOS 15, *) {
-                Content
-                .confirmationDialog(actionSheet.title, isPresented: $showingActionSheet, actions: actionSheet.action, message: actionSheet.label)
+            Content
+            .confirmationDialog(actionSheet.title, isPresented: $showingActionSheet, actions: actionSheet.action, message: actionSheet.label)
         } else {
             Content
                 .actionSheet(isPresented: $showingActionSheet) {

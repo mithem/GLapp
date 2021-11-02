@@ -27,9 +27,10 @@ struct EditSubjectView: View {
                     SubjectAttributeView("room", value: room)
                 }
                 ColorPicker(selection: .init(get: {
-                    lesson.subject.getColor().colorBinding.wrappedValue
-                }, set: { color in
-                    lesson.subject.setColor(.init(color), with: dataManager)
+                    lesson.subject.color
+                }, set: { newColor in
+                    lesson.subject.color = newColor
+                    dataManager.updateSubjectColorMap(className: lesson.subject.className, color: newColor)
                 })) {
                     Text("color")
                         .bold()
@@ -42,8 +43,8 @@ struct EditSubjectView: View {
                 }
             }
             .onDisappear {
-                dataManager.saveSubjectColorMap()
-                dataManager.timetable?.reloadSubjects(with: dataManager)
+                guard let timetable = dataManager.timetable else { return }
+                dataManager.saveLocalData(timetable, for: \.getTimetable)
             }
         }
     }

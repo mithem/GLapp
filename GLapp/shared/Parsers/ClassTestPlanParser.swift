@@ -57,7 +57,13 @@ class ClassTestPlanParser {
                 teacher = nil
             }
             
-            let subject = Subject(dataManager: dataManager, className: alias, subjectType: nil, teacher: teacher, subjectName: subjectName)
+            let subject = dataManager.getSubject(className: alias)
+            if subject.teacher == nil {
+                subject.teacher = teacher
+            }
+            if subject.subjectName == nil {
+                subject.subjectName = subjectName
+            }
             let classTest = ClassTest(date: date, classTestDate: classTestDate, start: startN, end: endN, room: room, subject: subject, teacher: teacher, individual: individual, opened: opened, alias: alias)
             classTestPlan.classTests.append(classTest)
         }

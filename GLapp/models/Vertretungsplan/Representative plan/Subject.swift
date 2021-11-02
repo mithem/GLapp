@@ -8,38 +8,36 @@
 import Foundation
 import SwiftUI
 
-final class Subject: ObservableObject, Codable {
+final class Subject: ObservableObject, Codable, Hashable {
     @Published var className: String
     @Published var subjectType: String?
     @Published var teacher: String?
     @Published var subjectName: String?
-    @Published var color: CodableColor
+    @Published var color: Color
     
-    func getColor() -> CodableColor {
-        color
-    }
-    
-    func setColor(_ color: CodableColor, with dataManager: DataManager) {
-        self.color = color
-        dataManager.updateSubjectColorMap(className: className, color: color)
-    }
-    
-    func reload(with dataManager: DataManager) {
-        self.color = dataManager.subjectColorMap[className] ?? .random
-    }
-    
-    init(dataManager: DataManager, className: String, subjectType: String? = nil, teacher: String? = nil, subjectName: String? = nil) {
+    init(dataManager: DataManager, className: String, subjectType: String? = nil, teacher: String? = nil, subjectName: String? = nil, color: Color? = nil) {
         self.className = className
         self.subjectType = subjectType
         self.teacher = teacher
         self.subjectName = subjectName
-        self.color = .random
-        let color = dataManager.subjectColorMap[className]
         if let color = color {
             self.color = color
         } else {
-            setColor(.random, with: dataManager)
+            self.color = .random
+            let color = dataManager.subjectColorMap[className]
+            if let color = color {
+                self.color = color
+            } else {
+                self.color = .random
+            }
         }
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(className)
+        hasher.combine(subjectType)
+        hasher.combine(teacher)
+        hasher.combine(subjectName)
     }
     
     func encode(to encoder: Encoder) throws {
@@ -57,7 +55,7 @@ final class Subject: ObservableObject, Codable {
         subjectType = try container.decode(String.self, forKey: .subjectType)
         teacher = try container.decode(String.self, forKey: .teacher)
         subjectName = try container.decode(String.self, forKey: .subjectName)
-        color = try container.decode(CodableColor.self, forKey: .color)
+        color = try container.decode(Color.self, forKey: .color)
     }
     
     private enum CodingKeys: CodingKey {

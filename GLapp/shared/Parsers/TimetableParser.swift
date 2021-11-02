@@ -37,17 +37,22 @@ class TimetableParser {
                 }
                 guard let lessonNText = lessonElem.attribute(by: "Std")?.text else { continue }
                 guard let lessonN = Int(lessonNText) else { continue }
-                guard let className = lessonElem.attribute(by: "Kurs")?.text else { continue }
+                guard var className = lessonElem.attribute(by: "Kurs")?.text else { continue }
                 guard let room = lessonElem.attribute(by: "Raum")?.text else { continue }
-                let teacher = lessonElem.attribute(by: "Lehrer")?.text
-                let subjectType = lessonElem.attribute(by: "Kursart")?.text
-                let subjectName = lessonElem.attribute(by: "Fach")?.text
+                var teacher = lessonElem.attribute(by: "Lehrer")?.text
+                if teacher?.isEmpty ?? false { teacher = nil }
+                var subjectType = lessonElem.attribute(by: "Kursart")?.text
+                if subjectType?.isEmpty ?? false { subjectType = nil }
+                var subjectName = lessonElem.attribute(by: "Fach")?.text
+                if subjectName?.isEmpty ?? false { subjectName = nil }
                 
-                if className == "" && room == "" && teacher == ""  && subjectType == ""  && subjectName == "" {
-                    continue // free lesson
+                if className.isEmpty && room.isEmpty && teacher?.isEmpty ?? true && subjectType?.isEmpty ?? true && subjectName?.isEmpty ?? true { // free lesson
+                    continue
                 }
-                
-                let subject = Subject(dataManager: dataManager, className: className)
+                if className.isEmpty, let subjectName = subjectName, !subjectName.isEmpty { // Unter- and Mittelstufe
+                    className = subjectName
+                }
+                let subject = dataManager.getSubject(className: className)
                 subject.subjectName = subjectName
                 subject.subjectType = subjectType
                 subject.teacher = teacher
@@ -56,10 +61,6 @@ class TimetableParser {
                 weekday.lessons.append(lesson)
             }
             timetable.weekdays.append(weekday)
-        }
-        
-        DispatchQueue.main.async {
-            timetable.reloadSubjects(with: dataManager)
         }
         return .success(timetable)
     }

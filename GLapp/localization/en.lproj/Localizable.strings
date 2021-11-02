@@ -50,6 +50,7 @@
 "feature_background_repr_plan_notifications_description" = "Check for updated representative plan in background.";
 "feature_class_test_reminders_title" = "Class test reminders";
 "feature_class_test_reminders_description" = "Get reminders at predefined intervals before class tests.";
+"feature_colored_inline_subjects_title" = "Color subjects";
 "enable" = "Enable";
 "upcoming" = "Upcoming";
 "clear_cache" = "Clear cache";
@@ -91,3 +92,6 @@
 "demo_mode_active" = "Demo mode active.";
 "in_mid_sentence" = "in";
 "with_mid_sentence" = "with";
+"show_scheduled_notifications" = "Show scheduled notifications";
+"scheduled_notifications" = "Scheduled notifications";
+"no_scheduled_notifications" = "No scheduled notifications.";

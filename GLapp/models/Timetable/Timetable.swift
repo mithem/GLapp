@@ -13,7 +13,7 @@ final class Timetable: ObservableObject, Codable {
     @Published var lastFetched: Date
     
     var isEmpty: Bool {
-        weekdays.isEmpty //&& subjects.isEmpty
+        weekdays.isEmpty
     }
     
     var maxHours: Int {
@@ -31,18 +31,18 @@ final class Timetable: ObservableObject, Codable {
         return max
     }
     
-    func reloadSubjects(with dataManager: DataManager) {
+    var subjects: Set<Subject> {
+        var subjects = Set<Subject>()
         for weekday in weekdays {
-            for lesson in weekday.lessons {
-                lesson.subject.reload(with: dataManager)
-            }
+            subjects = subjects.union(weekday.subjects)
         }
+        return subjects
     }
     
     init(date: Date, weekdays: [Weekday] = []) {
         self.date = date
         self.weekdays = weekdays
-        self.lastFetched = .justNow
+        self.lastFetched = .rightNow
     }
     
     init(from decoder: Decoder) throws {

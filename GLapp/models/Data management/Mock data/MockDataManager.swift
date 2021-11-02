@@ -104,4 +104,8 @@ class MockDataManager: DataManager {
 """
         completion(.successWithData(plan))
     }
+    
+    init() {
+        super.init(appManager: .init())
+    }
 }

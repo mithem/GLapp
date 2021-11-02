@@ -11,11 +11,13 @@ struct ClassTestInlineView: View {
     let classTest: ClassTest
     @ObservedObject var appManager: AppManager
     @AppStorage(UserDefaultsKeys.automaticallyRemindBeforeClassTests) var autoRemindBeforeClassTests = false // can't use appManager.classTestReminders.isEnabled as that's not refreshed when the view loads and the latter doesn't update when .isEnabled changes 🤨
+    @Environment(\.colorScheme) private var colorScheme
     var body: some View {
         let hstack = HStack {
             VStack(alignment: .leading) {
                 Text(title)
                     .bold()
+                    .foregroundColor(titleColor)
                 Text(classTest.room ?? "")
             }
             Spacer()
@@ -43,7 +45,7 @@ struct ClassTestInlineView: View {
     
     var isOver: Bool {
         if let endDate = classTest.endDate {
-            if .justNow > endDate { return true }
+            if .rightNow > endDate { return true }
         }
         return false
     }
@@ -58,6 +60,19 @@ struct ClassTestInlineView: View {
         return "\(classTest.subject.subjectName ?? classTest.subject.className)\(subjectType)"
     }
     
+    var titleColor: Color {
+        if isOver {
+            return .secondary
+        }
+        if !classTest.individual && classTest.alias.lowercased().starts(with: "nachschrift") { // as that doesn't have any color associated with it
+            return .primary
+        }
+        if appManager.coloredInlineSubjects.isEnabled == .yes {
+            return classTest.subject.color.getForegroundColor(colorScheme: colorScheme)
+        }
+        return .primary
+    }
+
     var duration: String {
         if let start = classTest.start, let end = classTest.end {
             let formatter = NumberFormatter()

@@ -9,9 +9,10 @@ import Foundation
 import Reachability
 import SwiftUI
 
-typealias SubjectColorMap = [String: CodableColor]
-
 class DataManager: ObservableObject {
+    
+    typealias SubjectColorMap = [String: Color]
+    
     @Published var representativePlan: RepresentativePlan?
     @Published var timetable: Timetable?
     @Published var classTestPlan: ClassTestPlan?
@@ -19,8 +20,10 @@ class DataManager: ObservableObject {
     @Published var subjectColorMap: SubjectColorMap
     @Published var demoMode: Bool
     private let reachability: Reachability
+    private weak var appManager: AppManager?
     
-    init() {
+    init(appManager: AppManager) {
+        self.appManager = appManager
         representativePlan = nil
         timetable = nil
         classTestPlan = nil
@@ -45,13 +48,23 @@ class DataManager: ObservableObject {
         } catch {}
     }
     
+    var subjects: Set<Subject>? {
+        timetable?.subjects
+    }
+    
+    func getSubject(className: String) -> Subject {
+        subjects?.first(where: {$0.className == className}) ?? .init(dataManager: self, className: className)
+    }
+    
     func setRepresentativePlan(_ plan: RepresentativePlan?) {
         DispatchQueue.main.async {
             self.representativePlan = plan
         }
         
         if let plan = plan {
-            UserDefaults.standard.set(plan.date.timeIntervalSince1970, forKey: UserDefaultsKeys.lastReprPlanUpdateTimestamp)
+            if let date = plan.date {
+                UserDefaults.standard.set(date, forKey: UserDefaultsKeys.lastReprPlanUpdateTimestamp)
+            }
         }
     }
     
@@ -65,19 +78,21 @@ class DataManager: ObservableObject {
         DispatchQueue.main.async {
             self.classTestPlan = plan
         }
+        
+        if let appManager = appManager {
+            appManager.classTestReminders.scheduleClassTestRemindersIfAppropriate(with: self)
+        }
     }
     
     func setSubjectColorMap(_ map: SubjectColorMap) {
         DispatchQueue.main.async {
             self.subjectColorMap = map
-            self.timetable?.reloadSubjects(with: self)
         }
     }
     
-    func updateSubjectColorMap(className: String, color: CodableColor) {
+    func updateSubjectColorMap(className: String, color: Color) {
         DispatchQueue.main.async {
             self.subjectColorMap[className] = color
-            self.timetable?.reloadSubjects(with: self)
         }
     }
     
@@ -112,7 +127,7 @@ class DataManager: ObservableObject {
     func loadLocalData<ContentType>(for task: KeyPath<Tasks, DataManagementTask<ContentType>>) throws {
         // that's elegant! (esp. as ContentType is inferred to adhere to Codable)
         let data = try getLocalData(for: task)
-        setContent(data, for: task)
+        setContent(data, for: task, with: nil)
     }
     
     private func setContent<ContentType>(_ content: ContentType, for task: KeyPath<Tasks, DataManagementTask<ContentType>>, with generator: UINotificationFeedbackGenerator? = nil) {
@@ -255,7 +270,9 @@ class DataManager: ObservableObject {
                     let result = RepresentativePlanParser.parse(plan: s, with: self)
                     switch result {
                     case .success(let plan):
-                        UserDefaults.standard.set(plan.date.timeIntervalSince1970, forKey: UserDefaultsKeys.lastReprPlanUpdateTimestamp)
+                        if let date = plan.date {
+                            UserDefaults.standard.set(date, forKey: UserDefaultsKeys.lastReprPlanUpdateTimestamp)
+                        }
                         completion(.success(plan))
                     case .failure(let error):
                         completion(.failure(.parserError(error)))
@@ -387,6 +404,7 @@ class DataManager: ObservableObject {
                 case .success(let timetable):
                     self.setContent(timetable, for: \.getTimetable, with: withHapticFeedback ? generator : nil)
                     self.saveLocalData(timetable, for: \.getTimetable)
+                    self.saveSubjectColorMap()
                 case .failure(let error):
                     self.setError(.parserError(error), for: \.getTimetable, with: withHapticFeedback ? generator : nil)
                 }

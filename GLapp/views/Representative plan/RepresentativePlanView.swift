@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RepresentativePlanView: View {
     @EnvironmentObject var dataManager: DataManager
+    @ObservedObject var appManager: AppManager
     var InnerView: some View {
         VStack {
             DataManagementTaskView(date: dataManager.representativePlan?.date, lastFetched: dataManager.representativePlan?.lastFetched, task: dataManager.tasks.getRepresentativePlan)
@@ -31,7 +32,7 @@ struct RepresentativePlanView: View {
                             ForEach(reprPlan.representativeDays) { reprDay in
                                 Section(content: {
                                     ForEach(reprDay.lessons) { lesson in
-                                        RepresentativeLessonInlineView(lesson: lesson)
+                                        RepresentativeLessonInlineView(lesson: lesson, appManager: appManager)
                                     }
                                 }, header: {
                                     Text(reprDay.date?.formattedWithLocaleOnlyDay ?? NSLocalizedString("sometime"))
@@ -88,7 +89,7 @@ struct RepresentativePlanView: View {
 
 struct RepresentativePlanView_Previews: PreviewProvider {
     static var previews: some View {
-        RepresentativePlanView()
+        RepresentativePlanView(appManager: .init())
             .environmentObject(MockDataManager())
     }
 }

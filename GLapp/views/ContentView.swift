@@ -23,14 +23,14 @@ struct ContentView: View {
                     Text("timetable")
                 }
             if dataManager.tasks.getClassTestPlan.error != .classTestPlanNotSupported {
-                ClassTestPlanView(dataManager: dataManager, appManager: .init())
+                ClassTestPlanView(dataManager: dataManager, appManager: appManager)
                     .tag(1)
                     .tabItem {
                         Image(systemName: "doc.append")
                         Text("classtests")
                     }
             }
-            RepresentativePlanView()
+            RepresentativePlanView(appManager: appManager)
                 .tag(2)
                 .tabItem {
                     Image(systemName: "clock")
@@ -57,20 +57,22 @@ struct ContentView: View {
                         .foregroundColor(lastTabView == 0 ? .white : .accentColor)
                     Text("timetable")
                 })
-                NavigationLink(isActive: .init(get: {lastTabView == 1}, set: { newValue in
-                    if newValue {
-                        lastTabView = 1
-                    }
-                }), destination: {ClassTestPlanView(dataManager: dataManager, appManager: appManager)}, label: {
-                    Image(systemName: "doc.append")
-                        .foregroundColor(lastTabView == 1 ? .white : .accentColor)
-                    Text("classtests")
-                })
+                if dataManager.tasks.getClassTestPlan.error != .classTestPlanNotSupported {
+                    NavigationLink(isActive: .init(get: {lastTabView == 1}, set: { newValue in
+                        if newValue {
+                            lastTabView = 1
+                        }
+                    }), destination: {ClassTestPlanView(dataManager: dataManager, appManager: appManager)}, label: {
+                        Image(systemName: "doc.append")
+                            .foregroundColor(lastTabView == 1 ? .white : .accentColor)
+                        Text("classtests")
+                    })
+                }
                 NavigationLink(isActive: .init(get: {lastTabView == 2}, set: { newValue in
                     if newValue {
                         lastTabView = 2
                     }
-                }),destination: {RepresentativePlanView()}, label: {
+                }),destination: {RepresentativePlanView(appManager: appManager)}, label: {
                     Image(systemName: "clock")
                         .foregroundColor(lastTabView == 2 ? .white : .accentColor)
                     Text("representative_plan")
@@ -113,15 +115,17 @@ struct ContentView: View {
         }
         .environmentObject(dataManager)
         .onAppear {
-            appManager.reload(.demoMode, with: dataManager)
+            appManager.reload(with: dataManager)
             checkForNeedingToShowLoginView()
             checkForNeedingToShowFunctionalityCheckView()
             dataManager.loadData()
             NotificationManager.default.requestNotificationAuthorization()
             NotificationManager.default.removeAllDeliveredAndAppropriate()
+        }
+        .onDisappear {
+            dataManager.saveLocalData()
             appManager.classTestReminders.scheduleClassTestRemindersIfAppropriate(with: dataManager)
         }
-        .onDisappear(perform: dataManager.saveLocalData)
     }
     
     func checkForNeedingToShowLoginView() {

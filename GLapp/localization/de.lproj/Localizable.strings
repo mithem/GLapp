@@ -50,6 +50,7 @@
 "feature_background_repr_plan_notifications_description" = "Im Hintergrund auf aktualisierten Vertretungsplan prüfen.";
 "feature_class_test_reminders_title" = "Klausurerinnerungen";
 "feature_class_test_reminders_description" = "Vor Klausuren zu einem vordefinierten Zeitpunkt eine Erinnerung erhalten.";
+"feature_colored_inline_subjects_title" = "Fächer einfärben";
 "enable" = "Aktivieren";
 "upcoming" = "Anstehend";
 "clear_cache" = "Cache leeren";
@@ -92,3 +93,6 @@
 "demo_mode_active" = "Demomodus aktiv.";
 "in_mid_sentence" = "in";
 "with_mid_sentence" = "bei";
+"show_scheduled_notifications" = "Geplante Benachrichtigungen anzeigen";
+"scheduled_notifications" = "Geplante Benachrichtigungen";
+"no_scheduled_notifications" = "Keine Benachrichtigungen geplant.";

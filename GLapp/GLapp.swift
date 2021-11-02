@@ -10,8 +10,8 @@ import SwiftUI
 @main
 struct GLapp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    @ObservedObject var dataManager = DataManager()
-    @ObservedObject var appManager = AppManager()
+    @ObservedObject var dataManager: DataManager
+    @ObservedObject var appManager: AppManager
     var body: some Scene {
         WindowGroup {
             ContentView(dataManager: dataManager, appManager: appManager)
@@ -40,5 +40,11 @@ struct GLapp: App {
                 .keyboardShortcut(KeyEquivalent.delete, modifiers: [.command, .shift])
             }
         }
+    }
+    
+    init() {
+        let appManager = AppManager()
+        dataManager = .init(appManager: appManager)
+        self.appManager = appManager
     }
 }

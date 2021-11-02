@@ -12,10 +12,11 @@ struct SettingsView: View {
     @State private var showingFunctionalityCheckView = false
     @State private var functionalityError = Functionality.Error.notImplemented
     @State private var showingErrorActionSheet = false
+    @State private var showingScheduledNotificationsView = false
     @AppStorage(UserDefaultsKeys.classTestReminderNotificationBeforeDays) var remindNDaysBeforeClassTests = Constants.defaultClassTestReminderNotificationsBeforeDays
     @ObservedObject var dataManager: DataManager
     @ObservedObject var appManager: AppManager
-    var InnerView: some View {
+    var FormView: some View {
         Form {
             Section {
                 Button("check_for_functionality") {
@@ -24,12 +25,23 @@ struct SettingsView: View {
                 .sheet(isPresented: $showingFunctionalityCheckView) {
                     FunctionalityCheckView(appManager: appManager, dataManager: dataManager)
                 }
-                Toggle("auto_remind_before_class_tests", isOn: appManager.classTestReminders.isEnabledBinding(appManager: appManager, dataManager: dataManager, setCompletion: handleIsEnabledBindingResult))
-                    .disabled(appManager.classTestReminders.isSupported != .yes)
-                Stepper(NSLocalizedString("remind_n_days_before_class_tests_colon") + String(remindNDaysBeforeClassTests), value: $remindNDaysBeforeClassTests, in: 1...31)
-                    .disabled(appManager.classTestReminders.isSupported != .yes)
-                Toggle("feature_background_repr_plan_notifications_title", isOn: appManager.backgroundReprPlanNotifications.isEnabledBinding(appManager: appManager, dataManager: dataManager, setCompletion: handleIsEnabledBindingResult))
-                    .disabled(appManager.backgroundReprPlanNotifications.isSupported != .yes)
+                if appManager.notifications.isEnabled == .yes {
+                    Button("show_scheduled_notifications") {
+                        showingScheduledNotificationsView = true
+                    }
+                    .sheet(isPresented: $showingScheduledNotificationsView) {
+                        ScheduledNotificationsView()
+                    }
+                }
+                if dataManager.tasks.getClassTestPlan.error != .classTestPlanNotSupported {
+                    Toggle(appManager.classTestReminders.title, isOn: appManager.classTestReminders.isEnabledBinding(appManager: appManager, dataManager: dataManager, setCompletion: handleIsEnabledBindingResult))
+                    Stepper(NSLocalizedString("remind_n_days_before_class_tests_colon") + String(remindNDaysBeforeClassTests), value: $remindNDaysBeforeClassTests, in: 1...31)
+                        .onChange(of: remindNDaysBeforeClassTests) { _ in
+                            appManager.classTestReminders.scheduleClassTestRemindersIfAppropriate(with: dataManager)
+                        }
+                }
+                Toggle(appManager.backgroundReprPlanNotifications.title, isOn: appManager.backgroundReprPlanNotifications.isEnabledBinding(appManager: appManager, dataManager: dataManager, setCompletion: handleIsEnabledBindingResult))
+                Toggle(appManager.coloredInlineSubjects.title, isOn: appManager.coloredInlineSubjects.isEnabledBinding(appManager: appManager, dataManager: dataManager, setCompletion: handleIsEnabledBindingResult))
                 Link("feedback", destination: Constants.mailToURL)
             }
             Section {
@@ -58,7 +70,31 @@ struct SettingsView: View {
         .onAppear {
             appManager.reload(with: dataManager)
         }
+        .onDisappear {
+            appManager.reload(with: dataManager)
+        }
         .navigationTitle("settings")
+    }
+    
+    var InnerView: some View {
+        Group {
+            if #available(iOS 15, *) {
+                FormView
+                    .confirmationDialog("error_occured", isPresented: $showingErrorActionSheet, actions: {
+                        Button("ok", role: .cancel) {
+                            showingErrorActionSheet = false
+                            showingFunctionalityCheckView = true
+                        }
+                    }) {
+                        Text(functionalityError.localizedMessage)
+                    }
+            } else {
+                FormView
+                    .actionSheet(isPresented: $showingErrorActionSheet) {
+                        ActionSheet(title: Text("error_occured"), message: Text(functionalityError.localizedMessage), buttons: [.default(Text("ok"))])
+                    }
+            }
+        }
     }
     
     var body: some View {

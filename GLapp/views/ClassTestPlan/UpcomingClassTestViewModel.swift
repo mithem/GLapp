@@ -39,7 +39,7 @@ class UpcomingClassTestViewModel: ObservableObject {
     
     func subjectColor(colorScheme: ColorScheme) -> Color {
         if appManager.coloredInlineSubjects.isEnabled == .yes {
-            return classTest?.subject.color.getForegroundColor(colorScheme: colorScheme) ?? .primary
+            return classTest?.subject.color.getColoredForegroundColor(colorScheme: colorScheme) ?? .primary
         }
         return .primary
     }

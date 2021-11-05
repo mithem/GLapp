@@ -68,7 +68,7 @@ struct ClassTestInlineView: View {
             return .primary
         }
         if appManager.coloredInlineSubjects.isEnabled == .yes {
-            return classTest.subject.color.getForegroundColor(colorScheme: colorScheme)
+            return classTest.subject.color.getColoredForegroundColor(colorScheme: colorScheme)
         }
         return .primary
     }

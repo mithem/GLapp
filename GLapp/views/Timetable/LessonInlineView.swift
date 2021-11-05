@@ -11,6 +11,7 @@ struct LessonInlineView: View {
     @ObservedObject var lesson: TimetableViewModel.TimetableViewLesson
     @State private var showingEditSubjectView = false
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @Environment(\.colorScheme) var colorScheme
     var body: some View {
         let content = Button(action: {
             showingEditSubjectView = true
@@ -18,7 +19,7 @@ struct LessonInlineView: View {
             Spacer()
             if let title = title {
                 Text(title)
-                    .foregroundColor(lesson.lesson?.subject.color.isDark ?? false ? .white : .black)
+                    .foregroundColor(lesson.lesson?.subject.color.getForegroundColor(colorScheme: colorScheme))
             }
             Spacer()
         }

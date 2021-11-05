@@ -2,19 +2,19 @@
 //  Color+getForegroundColor.swift
 //  GLapp
 //
-//  Created by Miguel Themann on 01.11.21.
+//  Created by Miguel Themann on 05.11.21.
 //
 
 import SwiftUI
 
 extension Color {
     func getForegroundColor(colorScheme: ColorScheme) -> Color {
-        if colorScheme == .dark && isDark {
-            return lighten()
+        if isTransparent {
+            return .primary
         }
-        if colorScheme == .light && !isDark {
-            return darken()
+        if isDark {
+            return .white
         }
-        return self
+        return .black
     }
 }

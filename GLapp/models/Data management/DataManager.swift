@@ -81,6 +81,7 @@ class DataManager: ObservableObject {
         
         if let appManager = appManager {
             appManager.classTestReminders.scheduleClassTestRemindersIfAppropriate(with: self)
+            appManager.classTestCalendarEvents.createOrModifyClassTestCalendarEventsIfAppropriate(with: appManager, dataManager: self)
         }
     }
     
@@ -207,6 +208,19 @@ class DataManager: ObservableObject {
                 }
             }
         }.resume()
+    }
+    
+    @available(iOS 15, *)
+    func getRepresentativePlan() async throws -> String {
+        let req: URLRequest
+        do {
+            req = URLRequest(url: try getUrl(for: "/XML/vplan.php", authenticate: true)!, timeoutInterval: Constants.timeoutInterval)
+        } catch {
+            throw error as? NetworkError ?? .other(error)
+        }
+        let (data, _) = try await URLSession.shared.data(for: req)
+        guard let s = String(data: data, encoding: .utf8) else { throw NetworkError.invalidResponse }
+        return s
     }
     
     func loadRepresentativePlan(withHapticFeedback: Bool = false) {
@@ -478,11 +492,13 @@ class DataManager: ObservableObject {
         
         init() {
             let cacheDir = try? FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+            let appDirRoot = try? FileManager.default.url(for: .applicationDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+            let appDir = URL(string: Constants.Identifiers.appId, relativeTo: appDirRoot)
             let appCacheDir = URL(string: Constants.Identifiers.appId, relativeTo: cacheDir)
             getRepresentativePlan = .init(localDataURL: URL(string: "representativePlan.json", relativeTo: appCacheDir))
             getClassTestPlan = .init(localDataURL: URL(string: "classTestPlan.json", relativeTo: appCacheDir))
             getTimetable = .init(localDataURL: URL(string: "timetable.json", relativeTo: appCacheDir))
-            subjectColorMap = .init(localDataURL: URL(string: "subjectColorMap.json", relativeTo: appCacheDir))
+            subjectColorMap = .init(localDataURL: URL(string: "subjectColorMap.json", relativeTo: appDir))
         }
     }
     

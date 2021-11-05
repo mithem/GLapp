@@ -66,4 +66,22 @@ struct RepresentativeLesson: Equatable, Identifiable, Codable, DeliverableByNoti
         }
         return summary
     }
+    
+    var notificationId: KeyPath<Constants.Identifiers.Notifications, String>? { \.reprPlanUpdateNotification }
+    
+    var title: String { "repr_plan_update" }
+    
+    var interruptionLevel: NotificationManager.InterruptionLevel {
+        return relevance < 3 ? .timeSensitive : .default
+    }
+    
+    var relevance: Double {
+        let timeInterval = startDate.timeIntervalSince(.rightNow)
+        let cutoff = 12.0
+        let hours = timeInterval / 3600
+        if hours > cutoff {
+            return 0
+        }
+        return cutoff - hours
+    }
 }

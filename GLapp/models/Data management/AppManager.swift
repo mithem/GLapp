@@ -16,15 +16,22 @@ class AppManager: ObservableObject {
     @Published var classTestReminders: FClassTestReminders
     @Published var demoMode: FDemoMode
     @Published var coloredInlineSubjects: FColoredInlineSubjects
+    @Published var classTestPlan: FClassTestPlan
+    @Published var calendarAccess: FCalendarAccess
+    @Published var classTestCalendarEvents: FClassTestCalendarEvents
     @Published var userAttentionMayBeRequired: Bool
     
     var userExperienceRelevantFunctionalities: [Functionality]  {
-        [Functionality.FunctionalityType.notifications, .backgroundRefresh, .backgroundReprPlanNotifications, .classTestReminders].map {functionality(of: $0)}
+        var types = [Functionality.FunctionalityType.notifications, .backgroundRefresh, .calendarAccess, .backgroundReprPlanNotifications]
+        if classTestPlan.isEnabled == .yes {
+            types.append(contentsOf: [.classTestReminders, .classTestCalendarEvents])
+        }
+        return types.map {functionality(of: $0)}
     }
     
     var hasLoadedAllRelevantFunctionalityStates: Bool {
         for functionality in userExperienceRelevantFunctionalities {
-            if functionality.isEnabled == .unkown { return false }
+            if functionality.isEnabled == .unknown { return false }
         }
         return true
     }
@@ -36,13 +43,16 @@ class AppManager: ObservableObject {
         classTestReminders = .init()
         demoMode = .init()
         coloredInlineSubjects = .init()
+        classTestPlan = .init()
+        calendarAccess = .init()
+        classTestCalendarEvents = .init()
         userAttentionMayBeRequired = false
     }
     
     /// Reload whether user attention may be required. Must be called from the main thread.
     func reloadUserAttentionMayBeRequired() {
         var required = false
-        for functionality in [notifications, backgroundRefresh, backgroundReprPlanNotifications, classTestReminders] {
+        for functionality in userExperienceRelevantFunctionalities {
             if functionality.mayRequireUsersAttention == .yes {
                 required = true
             }
@@ -64,6 +74,9 @@ class AppManager: ObservableObject {
             self.reload(.classTestReminders, with: dataManager)
             self.reload(.demoMode, with: dataManager)
             self.reload(.coloredInlineSubjects, with: dataManager)
+            self.reload(.classTestPlan, with: dataManager)
+            self.reload(.calendarAccess, with: dataManager)
+            self.reload(.classTestCalendarEvents, with: dataManager)
         }
     }
     
@@ -81,6 +94,12 @@ class AppManager: ObservableObject {
             return demoMode
         case .coloredInlineSubjects:
             return coloredInlineSubjects
+        case .classTestPlan:
+            return classTestPlan
+        case .calendarAccess:
+            return calendarAccess
+        case .classTestCalendarEvents:
+            return classTestCalendarEvents
         }
     }
     

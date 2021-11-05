@@ -46,7 +46,7 @@ class Functionality: ObservableObject, FunctionalityProtocol, Identifiable {
     }
     
     final func enable(with appManager: AppManager, dataManager: DataManager) throws {
-        _ = try isSupportedByDependencies(with: appManager, dataManager: dataManager )
+        _ = try isSupportedByDependencies(with: appManager, dataManager: dataManager)
         try doEnable(with: appManager, dataManager: dataManager)
         try reload(with: appManager, dataManager: dataManager)
     }
@@ -100,7 +100,7 @@ class Functionality: ObservableObject, FunctionalityProtocol, Identifiable {
         for type in self.dependencies {
             let depEnabled = appManager.functionality(of: type).isEnabled
             if depEnabled != .yes {
-                if [.yes, .unkown].contains(isSupported) {
+                if [.yes, .unknown].contains(isSupported) {
                     isSupported = depEnabled
                 } else if depEnabled == .no {
                     isSupported = .no
@@ -120,8 +120,8 @@ class Functionality: ObservableObject, FunctionalityProtocol, Identifiable {
         self.description = NSLocalizedString("feature_" + id + "_description")
         self.role = role
         self.dependencies = dependencies
-        self.isSupported = .unkown
-        self.isEnabled = .unkown
+        self.isSupported = .unknown
+        self.isEnabled = .unknown
     }
     
     required init() {
@@ -131,6 +131,7 @@ class Functionality: ObservableObject, FunctionalityProtocol, Identifiable {
     enum Error: Swift.Error {
         case notSupported(message: String)
         case notImplemented
+        case notAuthorized
         
         var localizedMessage: String {
             switch self {
@@ -138,12 +139,14 @@ class Functionality: ObservableObject, FunctionalityProtocol, Identifiable {
                 return NSLocalizedString("functionality_error_not_supported") + " " + NSLocalizedString(message) + "."
             case .notImplemented:
                 return NSLocalizedString("not_implemented")
+            case .notAuthorized:
+                return NSLocalizedString("not_authorized")
             }
         }
     }
     
     enum State {
-        case yes, no, unkown
+        case yes, no, unknown
         
         var reversed: Self {
             switch self {
@@ -151,8 +154,8 @@ class Functionality: ObservableObject, FunctionalityProtocol, Identifiable {
                 return .no
             case .no:
                 return .yes
-            case .unkown:
-                return .unkown
+            case .unknown:
+                return .unknown
             }
         }
     }
@@ -162,7 +165,7 @@ class Functionality: ObservableObject, FunctionalityProtocol, Identifiable {
     }
     
     enum FunctionalityType {
-        case notifications, backgroundRefresh, backgroundReprPlanNotifications, classTestReminders, demoMode, coloredInlineSubjects
+        case notifications, backgroundRefresh, backgroundReprPlanNotifications, classTestReminders, demoMode, coloredInlineSubjects, classTestPlan, calendarAccess, classTestCalendarEvents
         
         var id: Identifier {
             switch self {
@@ -178,6 +181,12 @@ class Functionality: ObservableObject, FunctionalityProtocol, Identifiable {
                 return Constants.Identifiers.Functionalities.demoMode
             case .coloredInlineSubjects:
                 return Constants.Identifiers.Functionalities.coloredInlineSubjects
+            case .classTestPlan:
+                return Constants.Identifiers.Functionalities.classTestPlan
+            case .calendarAccess:
+                return Constants.Identifiers.Functionalities.calendarAccess
+            case .classTestCalendarEvents:
+                return Constants.Identifiers.Functionalities.classTestCalendarEvents
             }
         }
     }

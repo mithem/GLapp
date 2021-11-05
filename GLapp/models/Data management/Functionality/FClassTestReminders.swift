@@ -18,8 +18,8 @@ class FClassTestReminders: Functionality {
     
     override func doEnable(with appManager: AppManager, dataManager: DataManager) throws {
         UserDefaults.standard.set(true, forKey: UserDefaultsKeys.automaticallyRemindBeforeClassTests)
-        if !appManager.notifications.unrestrictedAuthorization {
-            NotificationManager.default.requestNotificationAuthorization(unrestricted: true)
+        if appManager.notifications.isEnabled != .yes {
+            try appManager.notifications.enable(with: appManager, dataManager: dataManager)
         }
         scheduleClassTestRemindersIfAppropriate(with: dataManager)
     }
@@ -34,9 +34,12 @@ class FClassTestReminders: Functionality {
     }
     
     func scheduleClassTestRemindersIfAppropriate(with dataManager: DataManager) {
-        guard UserDefaults.standard.bool(forKey: UserDefaultsKeys.automaticallyRemindBeforeClassTests) else { return } // don't use self.isEnabled as that is reloaded after doEnable is run
+        guard UserDefaults.standard.bool(forKey: UserDefaultsKeys.automaticallyRemindBeforeClassTests) else { // not using isEnabled as that's reloaded after doEnable runs
+            return
+        }
         guard let plan = dataManager.classTestPlan else { return }
-        NotificationManager.default.removeScheduledClassTestReminders()
-        NotificationManager.default.scheduleClassTestsReminders(for: plan.classTests)
+        NotificationManager.default.removeScheduledClassTestReminders() {
+            NotificationManager.default.scheduleClassTestsReminders(for: plan.classTests)
+        }
     }
 }

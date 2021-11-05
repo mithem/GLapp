@@ -51,6 +51,10 @@
 "feature_class_test_reminders_title" = "Class test reminders";
 "feature_class_test_reminders_description" = "Get reminders at predefined intervals before class tests.";
 "feature_colored_inline_subjects_title" = "Color subjects";
+"feature_calendar_access_title" = "Calendar access";
+"feature_calendar_access_description" = "Allow GLapp to save calendar events.";
+"feature_class_test_calendar_events_title" = "Class test events";
+"feature_class_test_calendar_events_description" = "Automatically create calendar events for class tests.";
 "enable" = "Enable";
 "upcoming" = "Upcoming";
 "clear_cache" = "Clear cache";
@@ -95,3 +99,5 @@
 "show_scheduled_notifications" = "Show scheduled notifications";
 "scheduled_notifications" = "Scheduled notifications";
 "no_scheduled_notifications" = "No scheduled notifications.";
+"advanced_settings" = "Advanced settings";
+"test_notification" = "Test notification";

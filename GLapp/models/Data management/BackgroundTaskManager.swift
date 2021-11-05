@@ -11,7 +11,7 @@ import UIKit
 class BackgroundTaskManager {
     static func scheduleRepresentativeCheckTask() {
         let request = BGAppRefreshTaskRequest(identifier: Constants.Identifiers.backgroundCheckRepresentativePlan)
-        request.earliestBeginDate = Date(timeIntervalSinceNow: Constants.checkReprPlanInBackgroundAfterMin)
+        request.earliestBeginDate = Date(timeIntervalSinceNow: Constants.checkReprPlanInBackgroundAfterMinTimeInterval)
         BGTaskScheduler.shared.cancel(taskRequestWithIdentifier: Constants.Identifiers.backgroundCheckRepresentativePlan)
         do {
             try BGTaskScheduler.shared.submit(request)

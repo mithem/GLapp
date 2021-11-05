@@ -1,0 +1,8 @@
+/* 
+  InfoPlist.strings
+  GLapp
+
+  Created by Miguel Themann on 05.11.21.
+  
+*/
+"NSCalendarsUsageDescription" = "Allow GLapp to access the calendar in order to enable convenient features like class test events.";

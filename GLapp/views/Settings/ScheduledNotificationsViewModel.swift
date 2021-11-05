@@ -9,6 +9,7 @@ import Foundation
 
 class ScheduledNotificationsViewModel: ObservableObject {
     @Published var notifications: [NotificationManager.NotificationRequest]
+    let timer = Timer.publish(every: 2, tolerance: nil, on: .current, in: .common).autoconnect()
     
     init() {
         notifications = []
@@ -18,7 +19,7 @@ class ScheduledNotificationsViewModel: ObservableObject {
     func reload() {
         NotificationManager.default.getScheduledClassTestReminders { requests in
             DispatchQueue.main.async {
-                self.notifications = .init(requests).sorted(by: {$0.triggerDate < $1.triggerDate})
+                self.notifications = .init(requests).sorted(by: {$0.triggerDate ?? .distantPast < $1.triggerDate ?? .distantFuture})
             }
         }
     }

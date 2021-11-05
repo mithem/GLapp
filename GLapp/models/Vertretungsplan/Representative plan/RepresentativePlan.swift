@@ -36,4 +36,28 @@ struct RepresentativePlan: Codable, DeliverableByNotification {
         msgs.append(representativeDays.map {$0.summary}.joined(separator: ", "))
         return msgs.filter {$0 != ""}.joined(separator: "; ")
     }
+    
+    var notificationId: KeyPath<Constants.Identifiers.Notifications, String>? { \.reprPlanUpdateNotification }
+    
+    var title: String { "repr_plan_update" }
+    
+    var interruptionLevel: NotificationManager.InterruptionLevel {
+        var current = NotificationManager.InterruptionLevel.passive
+        for day in representativeDays {
+            if day.interruptionLevel > current {
+                current = day.interruptionLevel
+            }
+        }
+        return current
+    }
+    
+    var relevance: Double {
+        var current = 0.0
+        for day in representativeDays {
+            if day.relevance > current {
+                current = day.relevance
+            }
+        }
+        return current
+    }
 }

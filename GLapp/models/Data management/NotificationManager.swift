@@ -11,45 +11,82 @@ import BackgroundTasks
 
 final class NotificationManager {
     
-    private var notificationIds: [String]
+    private var requests: [NotificationRequest]
+    private var delivered: [DeliveredNotification]
     
     class var `default`: NotificationManager { NotificationManager() }
     
-    var notificationIdsFSURL: URL? {
-        let appDir = try? FileManager.default.url(for: .applicationDirectory, in: .localDomainMask, appropriateFor: nil, create: false)
-        let dir = URL(string: Constants.Identifiers.appId, relativeTo: appDir)
-        return URL(string: "notificationIds.json", relativeTo: dir)
+    var deliveredNotificationsURL: URL? {
+        guard let appDir = appDirURL else { return nil }
+        return URL(string: "deliveredNotifications.json", relativeTo: appDir)
     }
     
-    func deliverNotification(title: String, body: String, timeSensitive: Bool = false, sound: UNNotificationSound? = nil, identifier: KeyPath<Constants.Identifiers.Notifications, String> = \.testNotification) {
+    var notificationRequestsURL: URL? {
+        guard let appDir = appDirURL else { return nil }
+        return URL(string: "notificationRequests.json", relativeTo: appDir)
+    }
+    
+    private var appDirURL: URL? {
+        guard let appDirRoot = try? FileManager.default.url(for: .applicationDirectory, in: .userDomainMask, appropriateFor: nil, create: false) else { return nil }
+        return URL(string: Constants.Identifiers.appId, relativeTo: appDirRoot)
+    }
+    
+    func deliverNotification(identifier: String, title: String, body: String, sound: UNNotificationSound? = .default, interruptionLevel: InterruptionLevel = .active, in timeInterval: TimeInterval = 1) {
         requestNotificationAuthorization()
         let content = UNMutableNotificationContent()
         content.title = title
         content.body = body
         content.sound = sound
         if #available(iOS 15, *) {
-            content.interruptionLevel = timeSensitive ? .timeSensitive : .active
+            content.interruptionLevel = interruptionLevel.unNotificationInterruptionLevel
         }
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: Constants.checkReprPlanInBackgroundTimeIntervalTillNotificationScheduled, repeats: false)
-        let timestamp = Int(Date.rightNow.timeIntervalSince1970)
-        let id = Constants.Identifiers.Notifications()[keyPath: identifier] + String(timestamp)
-        let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: false)
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request) { error in
             if let error = error {
                 print(error)
-            } else {
-                self.notificationIds.append(id)
             }
         }
     }
     
+    func deliverNotification(identifier: KeyPath<Constants.Identifiers.Notifications, String>, title: String, body: String, sound: UNNotificationSound? = .default, interruptionLevel: InterruptionLevel = .active, in timeInterval: TimeInterval = 1) {
+        let timestamp = Int(Date.rightNow.timeIntervalSince1970)
+        let id = Constants.Identifiers.Notifications()[keyPath: identifier] + String(timestamp)
+        deliverNotification(identifier: id, title: title, body: body, sound: sound, interruptionLevel: interruptionLevel, in: timeInterval)
+    }
+    
+    func deliverNotification(_ content: DeliverableByNotification, in timeInterval: TimeInterval = 1) {
+        let id: String
+        if let nId = content.notificationId {
+            id = Constants.Identifiers.Notifications()[keyPath: nId]
+        } else if let cId = content.id{
+            id = cId
+        } else {
+            return
+        }
+        deliverNotification(identifier: id, title: content.title, body: content.summary, sound: content.sound, interruptionLevel: content.interruptionLevel, in: timeInterval)
+    }
+    
     func checkRepresentativePlanAndDeliverNotification(task: BGTask) {
+        let lastUpdateTimestamp = TimeInterval(UserDefaults.standard.string(forKey: UserDefaultsKeys.lastReprPlanUpdateTimestamp) ?? "") ?? 0
         let dataManager = DataManager(appManager: .init())
         dataManager.getRepresenativePlanUpdate { result in
             switch result {
             case .success(let plan):
-                if !plan.isEmpty {
-                    self.deliverNotification(title: NSLocalizedString("repr_plan_update"), body: plan.summary)
+                if let date = plan.date {
+                    if !plan.isEmpty && date.timeIntervalSince1970 > lastUpdateTimestamp {
+                        self.getAuthorizationStatus { status in
+                            if status == .notDetermined {
+                                self.requestNotificationAuthorization(unrestricted: false) { success in
+                                    if success {
+                                        self.deliverNotification(plan)
+                                    }
+                                }
+                            } else {
+                                self.deliverNotification(plan)
+                            }
+                        }
+                    }
                 }
                 task.setTaskCompleted(success: true)
             case .failure(let error):
@@ -59,9 +96,12 @@ final class NotificationManager {
         }
     }
     
-    func requestNotificationAuthorization(unrestricted: Bool = false) {
-        getNotificationStatus() { status in
-            if status.validAuthoriatization && !unrestricted {
+    func requestNotificationAuthorization(unrestricted: Bool = false, completion: ((Bool) -> Void)? = nil) {
+        getAuthorizationStatus() { status in
+            if status.functionalityState == .yes && !unrestricted {
+                if let completion = completion {
+                    completion(true)
+                }
                 return
             }
             var options: UNAuthorizationOptions = [.alert, .sound]
@@ -74,20 +114,35 @@ final class NotificationManager {
                         print(error)
                     }
                 }
+                if let completion = completion {
+                    completion(success)
+                }
             }
         }
     }
     
-    func getNotificationStatus(completion: @escaping (UNAuthorizationStatus) -> Void) {
-        UNUserNotificationCenter.current().getNotificationSettings { settings in
-            let status = settings.authorizationStatus
-            if status == .notDetermined {
-                self.requestNotificationAuthorization()
-                self.getNotificationStatus(completion: completion)
-            }
-            completion(status)
-            return
+    @available(iOS 15, *)
+    func requestNotificationAuthorization(unrestricted: Bool) async throws -> Bool {
+        let status = await getNotificationStatus()
+        if status.functionalityState == .yes && !unrestricted {
+            return true
         }
+        var options: UNAuthorizationOptions = [.alert, .sound]
+        if !unrestricted {
+            options.insert(.provisional)
+        }
+        return try await UNUserNotificationCenter.current().requestAuthorization(options: options)
+    }
+    
+    func getAuthorizationStatus(completion: @escaping (UNAuthorizationStatus) -> Void) {
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            completion(settings.authorizationStatus)
+        }
+    }
+    
+    @available(iOS 15, *)
+    func getNotificationStatus() async -> UNAuthorizationStatus {
+        await UNUserNotificationCenter.current().notificationSettings().authorizationStatus
     }
     
     func scheduleClassTestReminder(for classTest: ClassTest) {
@@ -119,7 +174,8 @@ final class NotificationManager {
             if let error = error {
                 print(error)
             } else {
-                self.notificationIds.append(id)
+                guard let request = NotificationRequest(from: request) else { return }
+                self.requests.append(request)
             }
         }
     }
@@ -130,110 +186,262 @@ final class NotificationManager {
         }
     }
     
-    func saveNotificationIds() {
-        let encoder = JSONEncoder()
-        guard let data = try? encoder.encode(notificationIds) else { return }
-        guard let url = notificationIdsFSURL else { return }
-        try? data.write(to: url)
-    }
-    
-    func loadNotificationIds() {
-        guard let url = notificationIdsFSURL else { return }
-        guard let data = try? Data(contentsOf: url) else { return }
-        let decoder = JSONDecoder()
-        guard let ids = try? decoder.decode([String].self, from: data) else { return }
-        notificationIds = ids
-    }
-    
-    func getScheduledClassTestReminders(completion: @escaping (Set<NotificationRequest>) -> Void) {
-        UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
-            var scheduled = Set<NotificationRequest>()
-            for request in requests {
-                guard let trigger = request.trigger as? UNCalendarNotificationTrigger else { continue }
-                guard let date = trigger.nextTriggerDate() else { continue }
-                let request = NotificationRequest(triggerDate: date, id: request.identifier, content: request.content.body)
-                scheduled.insert(request)
-            }
-            completion(scheduled)
+    func getScheduledClassTestReminders(completion: @escaping ([NotificationRequest]) -> Void) {
+        getScheduledNotifications { notifications in
+            completion(notifications.filter {$0.identifies(with: \.classTestNotification)})
         }
+    }
+    
+    @available(iOS 15, *)
+    func getScheduledClassTestReminders() async -> [NotificationRequest] {
+        return await getScheduledNotifications().filter {$0.id.starts(with: Constants.Identifiers.Notifications.classTestNotification)}
+    }
+    
+    func getScheduledNotifications(completion: @escaping ([NotificationRequest]) -> Void) {
+        UNUserNotificationCenter.current().getPendingNotificationRequests { notifications in
+            completion(notifications.compactMap { .init(from: $0) })
+        }
+    }
+    
+    @available(iOS 15, *)
+    func getScheduledNotifications() async -> [NotificationRequest] {
+        await UNUserNotificationCenter.current().pendingNotificationRequests().compactMap {.init(from: $0)}
     }
     
     /// Remove scheduled notifications.
     /// - Parameter ids: notification ids to remove
     func removeScheduled(_ ids: [String]) {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ids)
-        notificationIds.removeAll(where: {ids.contains($0)})
+        requests.removeAll(where: {ids.contains($0.id)})
     }
     
     /// Remove all scheduled notifications.
     func removeAllScheduled() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-        notificationIds.removeAll()
+        requests.removeAll()
     }
     
     /// Remove delivered notifications.
     /// - Parameter ids: notification ids to remove
     func removeDelivered(_ ids: [String]) {
         UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: ids)
-        notificationIds.removeAll(where: {ids.contains($0)})
+        delivered.removeAll(where: {ids.contains($0.id)})
     }
     
     /// Remove all delivered notifications.
     func removeAllDelivered() {
         UNUserNotificationCenter.current().removeAllDeliveredNotifications()
-        notificationIds.removeAll()
+        delivered.removeAll()
     }
     
-    func removeScheduledClassTestReminders() {
-        var toRemove = [String]()
-        for notificationId in notificationIds {
-            if notificationId.starts(with: Constants.Identifiers.Notifications.classTestNotification) {
-                toRemove.append(notificationId)
+    func removeScheduledClassTestReminders(completion: (() -> Void)? = nil) {
+        getScheduledClassTestReminders { requests in
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: requests.map {$0.id})
+            if let completion = completion {
+                completion()
             }
         }
-        removeScheduled(toRemove)
+    }
+    
+    @available(iOS 15, *)
+    func removeScheduledClassTestReminders() async {
+        for request in await getScheduledClassTestReminders() {
+            request.cancel()
+        }
     }
     
     /// Remove all notifications that are delivered and appropriate for removal (e.g. class test reminders only after the class test)
     func removeAllDeliveredAndAppropriate() {
         var toRemove = [String]()
-        for id in notificationIds {
-            if id.starts(with: Constants.Identifiers.Notifications.classTestNotification) {
-                if let date = GLDateFormatter.berlinFormatter.date(from: id.replacingOccurrences(of: Constants.Identifiers.Notifications.classTestNotification, with: "")) {
-                    if .rightNow > date {
-                        toRemove.append(id)
+        UNUserNotificationCenter.current().getDeliveredNotifications { notifications in
+            for notification in notifications {
+                let request = DeliveredNotification(from: notification)
+                if request.identifies(with: \.classTestNotification) {
+                    if let date = GLDateFormatter.berlinFormatter.date(from: request.id.replacingOccurrences(of: Constants.Identifiers.Notifications.classTestNotification, with: "")) {
+                        if .rightNow > date {
+                            toRemove.append(request.id)
+                        }
                     }
+                } else if request.identifies(with: \.reprPlanUpdateNotification) {
+                    toRemove.append(request.id)
+                } else if request.identifies(with: \.testNotification) {
+                    toRemove.append(request.id)
                 }
             }
+            self.removeDelivered(toRemove)
         }
-        removeDelivered(toRemove)
+    }
+    
+    private func saveDelivered() {
+        guard let url = deliveredNotificationsURL else { return }
+        let encoder = JSONEncoder()
+        encoder.keyEncodingStrategy = .useDefaultKeys
+        try? encoder.encode(delivered).write(to: url)
+    }
+    
+    private func loadDelivered() {
+        guard let url = deliveredNotificationsURL else { return }
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .useDefaultKeys
+        if let delivered = try? decoder.decode([DeliveredNotification].self, from: try Data(contentsOf: url)) {
+            self.delivered = delivered
+        }
+    }
+    
+    private func saveRequests() {
+        guard let url = notificationRequestsURL else { return }
+        let encoder = JSONEncoder()
+        encoder.keyEncodingStrategy = .useDefaultKeys
+        try? encoder.encode(requests).write(to: url)
+    }
+    
+    private func loadRequests() {
+        guard let url = notificationRequestsURL else { return }
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .useDefaultKeys
+        if let requests = try? decoder.decode([NotificationRequest].self, from: try Data(contentsOf: url)) {
+            self.requests = requests
+        }
     }
     
     func reset() {
         removeAllDelivered()
         removeAllScheduled()
-        guard let url = notificationIdsFSURL else { return }
-        try? FileManager.default.removeItem(at: url)
     }
     
     init() {
-        notificationIds = []
-        loadNotificationIds()
+        requests = .init()
+        delivered = .init()
+        loadRequests()
+        loadDelivered()
     }
     
     deinit {
-        saveNotificationIds()
+        saveDelivered()
+        saveRequests()
     }
     
-    struct NotificationRequest: Identifiable, Hashable, DeliverableByNotification {
-        let triggerDate: Date
+    struct NotificationRequest: Identifiable, Hashable, Codable, DeliverableByNotification {
+        let title: String
+        let interruptionLevel: NotificationManager.InterruptionLevel
+        let relevance: Double
+        let triggerDate: Date?
         let id: String
         let content: String
-        
         var summary: String { content }
         
         func cancel() {
             NotificationManager.default.removeScheduled([id])
+        }
+        
+        func identifies(with id: KeyPath<Constants.Identifiers.Notifications, String>) -> Bool {
+            self.id.starts(with: Constants.Identifiers.Notifications()[keyPath: id])
+        }
+        
+        init(id idKeyPath: KeyPath<Constants.Identifiers.Notifications, String>, title: String, content: String, triggerDate: Date?, interruptionLevel: NotificationManager.InterruptionLevel, relevance: Double) {
+            self.init(id: Constants.Identifiers.Notifications()[keyPath: idKeyPath], title: title, content: content, triggerDate: triggerDate, interruptionLevel: interruptionLevel, relevance: relevance)
+        }
+        
+        init(id: String, title: String, content: String, triggerDate: Date?, interruptionLevel: NotificationManager.InterruptionLevel, relevance: Double) {
+            self.id = id
+            self.title = title
+            self.content = content
+            self.triggerDate = triggerDate
+            self.interruptionLevel = interruptionLevel
+            self.relevance = relevance
+        }
+        
+        init?(from request: UNNotificationRequest) {
+            guard let trigger = request.trigger as? UNCalendarNotificationTrigger else { return nil }
+            let interruptionLevel: NotificationManager.InterruptionLevel
+            let relevance: Double
+            if #available(iOS 15, *) {
+                interruptionLevel = .init(from: request.content.interruptionLevel) ?? .default
+                relevance = request.content.relevanceScore
+            } else {
+                interruptionLevel = .default
+                relevance = 0
+            }
+            self.init(id: request.identifier, title: request.content.title, content: request.content.body, triggerDate: trigger.nextTriggerDate(), interruptionLevel: interruptionLevel, relevance: relevance)
+        }
+    }
+    
+    struct DeliveredNotification: Codable, DeliverableByNotification {
+        let id: String
+        let title: String
+        let content: String
+        var relevance: Double
+        var interruptionLevel: NotificationManager.InterruptionLevel
+        
+        var summary: String { content }
+        
+        func remove() {
+            NotificationManager.default.removeDelivered([id])
+        }
+        
+        func identifies(with id: KeyPath<Constants.Identifiers.Notifications, String>) -> Bool {
+            self.id.starts(with: Constants.Identifiers.Notifications()[keyPath: id])
+        }
+        
+        init(from notification: UNNotification) {
+            id = notification.request.identifier
+            title = notification.request.content.title
+            content = notification.request.content.body
+            if #available(iOS 15, *) {
+                relevance = notification.request.content.relevanceScore
+                interruptionLevel = .init(from: notification.request.content.interruptionLevel) ?? .default
+            } else {
+                relevance = 0
+                interruptionLevel = .default
+            }
+        }
+    }
+    
+    enum InterruptionLevel: Comparable, Codable {
+        case passive, active, timeSensitive, critical
+        
+        @available(iOS 15.0, *)
+        var unNotificationInterruptionLevel: UNNotificationInterruptionLevel {
+            switch self {
+            case .passive:
+                return .passive
+            case .active:
+                return .active
+            case .timeSensitive:
+                return .timeSensitive
+            case .critical:
+                return .critical
+            }
+        }
+        
+        static var `default`: InterruptionLevel { .active }
+        
+        static func < (_ lhs: InterruptionLevel, _ rhs: InterruptionLevel) -> Bool {
+            if lhs == rhs { return false }
+            if lhs == .passive {
+                if [.active, .timeSensitive, .critical].contains(rhs) { return true }
+            }
+            if lhs == .active {
+                if [.timeSensitive, .critical].contains(rhs) { return true }
+            }
+            if lhs == .timeSensitive && rhs == .critical { return true }
+            return false
+        }
+        
+        @available(iOS 15.0, *)
+        init?(from interruptionLevel: UNNotificationInterruptionLevel) {
+            switch interruptionLevel {
+            case .passive:
+                self = .passive
+            case .active:
+                self = .active
+            case .timeSensitive:
+                self = .timeSensitive
+            case .critical:
+                self = .critical
+            @unknown default:
+                return nil
+            }
         }
     }
 }

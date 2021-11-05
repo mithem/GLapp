@@ -13,8 +13,8 @@ class FNotifications: Functionality {
     /// Whether the current notification authorization is restricted by any means, e.g. by having a .ephemeral or .provisional authoriation status
     @Published var unrestrictedAuthorization: Bool
     override func reloadIsEnabled(with appManager: AppManager, dataManager: DataManager) throws {
-        NotificationManager.default.getNotificationStatus() { status in
-            self.isEnabled = status.validAuthoriatization ? .yes : .no
+        NotificationManager.default.getAuthorizationStatus() { status in
+            self.isEnabled = status.functionalityState
             self.unrestrictedAuthorization = status == .authorized
         }
     }
@@ -24,10 +24,20 @@ class FNotifications: Functionality {
     }
     
     override func doEnable(with appManager: AppManager, dataManager: DataManager) throws {
-        UIApplication.shared.open(.init(string: UIApplication.openSettingsURLString)!)
+        if !unrestrictedAuthorization {
+            NotificationManager.default.requestNotificationAuthorization(unrestricted: true) { success in
+                if !success {
+                    DispatchQueue.main.async {
+                        UIApplication.shared.open(.init(string: UIApplication.openSettingsURLString)!)
+                    }
+                }
+            }
+        }
     }
     
-    override func doDisable(with appManager: AppManager, dataManager: DataManager) throws {}
+    override func doDisable(with appManager: AppManager, dataManager: DataManager) throws {
+        NotificationManager.default.reset()
+    }
     
     required init() {
         unrestrictedAuthorization = false

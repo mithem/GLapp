@@ -100,7 +100,7 @@ struct FunctionalityInlineView: View {
     var imageName: String {
         if #available(iOS 15, *) {
             switch functionality.isEnabled {
-            case .unkown:
+            case .unknown:
                 return "minus.diamond"
             case .yes:
                 return "checkmark.diamond"
@@ -109,7 +109,7 @@ struct FunctionalityInlineView: View {
             }
         } else {
             switch functionality.isEnabled {
-            case .unkown:
+            case .unknown:
                 return "questionmark.diamond"
             case .yes:
                 return "checkmark.seal"
@@ -121,7 +121,7 @@ struct FunctionalityInlineView: View {
     
     var imageColor: Color {
         switch functionality.isEnabled {
-        case .unkown:
+        case .unknown:
             return .gray
         case .yes:
             return .green

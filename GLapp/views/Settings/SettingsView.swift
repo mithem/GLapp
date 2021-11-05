@@ -12,7 +12,6 @@ struct SettingsView: View {
     @State private var showingFunctionalityCheckView = false
     @State private var functionalityError = Functionality.Error.notImplemented
     @State private var showingErrorActionSheet = false
-    @State private var showingScheduledNotificationsView = false
     @AppStorage(UserDefaultsKeys.classTestReminderNotificationBeforeDays) var remindNDaysBeforeClassTests = Constants.defaultClassTestReminderNotificationsBeforeDays
     @ObservedObject var dataManager: DataManager
     @ObservedObject var appManager: AppManager
@@ -25,14 +24,6 @@ struct SettingsView: View {
                 .sheet(isPresented: $showingFunctionalityCheckView) {
                     FunctionalityCheckView(appManager: appManager, dataManager: dataManager)
                 }
-                if appManager.notifications.isEnabled == .yes {
-                    Button("show_scheduled_notifications") {
-                        showingScheduledNotificationsView = true
-                    }
-                    .sheet(isPresented: $showingScheduledNotificationsView) {
-                        ScheduledNotificationsView()
-                    }
-                }
                 if dataManager.tasks.getClassTestPlan.error != .classTestPlanNotSupported {
                     Toggle(appManager.classTestReminders.title, isOn: appManager.classTestReminders.isEnabledBinding(appManager: appManager, dataManager: dataManager, setCompletion: handleIsEnabledBindingResult))
                     Stepper(NSLocalizedString("remind_n_days_before_class_tests_colon") + String(remindNDaysBeforeClassTests), value: $remindNDaysBeforeClassTests, in: 1...31)
@@ -42,7 +33,11 @@ struct SettingsView: View {
                 }
                 Toggle(appManager.backgroundReprPlanNotifications.title, isOn: appManager.backgroundReprPlanNotifications.isEnabledBinding(appManager: appManager, dataManager: dataManager, setCompletion: handleIsEnabledBindingResult))
                 Toggle(appManager.coloredInlineSubjects.title, isOn: appManager.coloredInlineSubjects.isEnabledBinding(appManager: appManager, dataManager: dataManager, setCompletion: handleIsEnabledBindingResult))
+                Toggle(appManager.classTestCalendarEvents.title, isOn: appManager.classTestCalendarEvents.isEnabledBinding(appManager: appManager, dataManager: dataManager, setCompletion: handleIsEnabledBindingResult))
                 Link("feedback", destination: Constants.mailToURL)
+                NavigationLink("advanced_settings") {
+                    AdvancedSettingsView(appManager: appManager, dataManager: dataManager)
+                }
             }
             Section {
                 Button("clear_cache", action: dataManager.clearAllLocalData)

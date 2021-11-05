@@ -11,16 +11,27 @@ struct ScheduledNotificationInlineView: View {
     let request: NotificationManager.NotificationRequest
     var body: some View {
         HStack {
-            Text(request.summary)
+            VStack(alignment: .leading) {
+                Text(request.title)
+                Text(request.summary)
+                    .foregroundColor(.secondary)
+            }
             Spacer()
-            Text(GLDateFormatter.localFormatter.string(from: request.triggerDate))
+            Text(dateDescription ?? "not_available")
                 .foregroundColor(.secondary)
         }
+    }
+    
+    var dateDescription: String? {
+        guard let triggerDate = request.triggerDate else { return nil }
+        let formatter = GLDateFormatter.localFormatter
+        formatter.dateStyle = .short
+        return formatter.string(from: triggerDate)
     }
 }
 
 struct ScheduledNotificationInlineView_Previews: PreviewProvider {
     static var previews: some View {
-        ScheduledNotificationInlineView(request: .init(triggerDate: .rightNow, id: Constants.Identifiers.Notifications.classTestNotification, content: "Hello, world!"))
+        ScheduledNotificationInlineView(request: .init(id: \.testNotification, title: "Test notification", content: "This is the content", triggerDate: .rightNow + 10000, interruptionLevel: .active, relevance: 5))
     }
 }

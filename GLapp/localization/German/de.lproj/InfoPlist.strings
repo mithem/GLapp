@@ -1,0 +1,8 @@
+/* 
+  InfoPlist.strings
+  GLapp
+
+  Created by Miguel Themann on 05.11.21.
+  
+*/
+"NSCalendarsUsageDescription" = "GLapp erlauben, Kalendareinträge hinzuzufügen, z.B. für Klausuren.";

@@ -8,7 +8,7 @@
 import Foundation
 
 struct ClassTest: Identifiable, Codable {
-    var id: Date { startDate ?? classTestDate } // who knows..
+    var id: String { subject.className + GLDateFormatter.berlinFormatter.string(from: date)}
     
     var date: Date
     var classTestDate: Date

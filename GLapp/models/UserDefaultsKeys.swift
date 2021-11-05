@@ -19,4 +19,6 @@ struct UserDefaultsKeys {
     static let demoMode = "demoMode"
     static let launchCount = "launchCount"
     static let coloredInlineSubjects = "coloredInlineSubjects"
+    static let classTestCalendarEvents = "classTestCalendarEvents"
+    static let calendarIdentifier = "calendarIdentifier"
 }

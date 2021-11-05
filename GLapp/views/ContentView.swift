@@ -11,6 +11,8 @@ import Combine
 struct ContentView: View {
     @State private var showingModalSheetView = false
     @State private var modalSheetView = ModalSheetView.loginView
+    /// just for the iPadOS version to the first navlink (timetable) without the need to select something on the sidebar
+    @State private var showingFirstNavigationLink = true
     @ObservedObject var appManager: AppManager
     @ObservedObject var dataManager: DataManager
     @AppStorage(UserDefaultsKeys.lastTabView) var lastTabView = 0
@@ -48,42 +50,30 @@ struct ContentView: View {
     var iPadOSView: some View {
         NavigationView {
             List {
-                NavigationLink(isActive: .init(get: {lastTabView == 0}, set: { newValue in
-                    if newValue {
-                        lastTabView = 0
-                    }
-                }),destination: {TimetableView(dataManager: dataManager)}, label: {
+                NavigationLink(isActive: $showingFirstNavigationLink, destination: {
+                    TimetableView(dataManager: dataManager)
+                }, label: {
                     Image(systemName: "calendar")
-                        .foregroundColor(lastTabView == 0 ? .white : .accentColor)
                     Text("timetable")
                 })
                 if dataManager.tasks.getClassTestPlan.error != .classTestPlanNotSupported {
-                    NavigationLink(isActive: .init(get: {lastTabView == 1}, set: { newValue in
-                        if newValue {
-                            lastTabView = 1
-                        }
-                    }), destination: {ClassTestPlanView(dataManager: dataManager, appManager: appManager)}, label: {
+                    NavigationLink(destination: {
+                        ClassTestPlanView(dataManager: dataManager, appManager: appManager)
+                    }, label: {
                         Image(systemName: "doc.append")
-                            .foregroundColor(lastTabView == 1 ? .white : .accentColor)
                         Text("classtests")
                     })
                 }
-                NavigationLink(isActive: .init(get: {lastTabView == 2}, set: { newValue in
-                    if newValue {
-                        lastTabView = 2
-                    }
-                }),destination: {RepresentativePlanView(appManager: appManager)}, label: {
+                NavigationLink(destination: {
+                    RepresentativePlanView(appManager: appManager)
+                }, label: {
                     Image(systemName: "clock")
-                        .foregroundColor(lastTabView == 2 ? .white : .accentColor)
                     Text("representative_plan")
                 })
-                NavigationLink(isActive: .init(get: {lastTabView == 3}, set: { newValue in
-                    if newValue {
-                        lastTabView = 3
-                    }
-                }), destination: {SettingsView(dataManager: dataManager, appManager: appManager)}, label: {
+                NavigationLink(destination: {
+                    SettingsView(dataManager: dataManager, appManager: appManager)
+                }, label: {
                     Image(systemName: "gear")
-                        .foregroundColor(lastTabView == 3 ? .white : .accentColor)
                     Text("settings")
                 })
             }
@@ -119,7 +109,6 @@ struct ContentView: View {
             checkForNeedingToShowLoginView()
             checkForNeedingToShowFunctionalityCheckView()
             dataManager.loadData()
-            NotificationManager.default.requestNotificationAuthorization()
             NotificationManager.default.removeAllDeliveredAndAppropriate()
         }
         .onDisappear {

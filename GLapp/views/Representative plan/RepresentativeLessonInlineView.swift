@@ -51,7 +51,7 @@ struct RepresentativeLessonInlineView: View {
             return .secondary
         }
         if appManager.coloredInlineSubjects.isEnabled == .yes {
-            return lesson.subject.color.getForegroundColor(colorScheme: colorScheme)
+            return lesson.subject.color.getColoredForegroundColor(colorScheme: colorScheme)
         }
         return .primary
     }

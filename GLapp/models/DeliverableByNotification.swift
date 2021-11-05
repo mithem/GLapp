@@ -5,13 +5,24 @@
 //  Created by Miguel Themann on 19.10.21.
 //
 
-import Foundation
+import UserNotifications
 
 protocol DeliverableByNotification {
-    var title: String? { get }
+    var id: String? { get }
+    var notificationId: KeyPath<Constants.Identifiers.Notifications, String>? { get }
+    var title: String { get }
     var summary: String { get }
+    
+    var interruptionLevel: NotificationManager.InterruptionLevel { get }
+    var relevance: Double { get }
+    var sound: UNNotificationSound? { get }
 }
 
 extension DeliverableByNotification {
-    var title: String? { nil }
+    var id: String? { nil }
+    var notificationId: KeyPath<Constants.Identifiers.Notifications, String>? { nil }
+    var sound: UNNotificationSound? {
+        if relevance < 2 { return nil }
+        return .default
+    }
 }

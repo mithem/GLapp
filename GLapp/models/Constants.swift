@@ -11,8 +11,7 @@ import SwiftUI
 struct Constants {
     static let apiHostname = "https://mobil.gymnasium-lohmar.org"
     static let timeoutInterval: TimeInterval = 15
-    static let checkReprPlanInBackgroundAfterMin: TimeInterval = 10 // 10 * 60
-    static let checkReprPlanInBackgroundTimeIntervalTillNotificationScheduled: TimeInterval = 10
+    static let checkReprPlanInBackgroundAfterMinTimeInterval: TimeInterval = 10 * 60
     static let weekdayStringIDMap = [
         "Montag": 0,
         "Dienstag": 1,
@@ -43,22 +42,25 @@ struct Constants {
         static let appId = "com.mithem.GLapp"
         static let backgroundCheckRepresentativePlan = appId + ".backgroundCheckRepresentativePlan"
         struct Notifications {
-            static let newReprPlanNotification = appId + ".newRepresentativePlanNotification"
+            static let reprPlanUpdateNotification = appId + ".reprPlanUpdateNotification"
             static let testNotification = appId + ".testNotification"
             static let classTestNotification = appId + ".classTestNotification"
             // https://forums.swift.org/t/key-path-cannot-refer-to-static-member/28055
-            var newReprPlanNotification: String { Self.newReprPlanNotification }
+            var reprPlanUpdateNotification: String { Self.reprPlanUpdateNotification }
             var testNotification: String { Self.testNotification }
             var classTestNotification: String { Self.classTestNotification }
         }
         
         struct Functionalities {
-            static let notifications = "notifications"
-            static let backgroundRefresh = "background_refresh"
-            static let classTestReminders = "class_test_reminders"
-            static let backgroundReprPlanNotifications = "background_repr_plan_notifications"
-            static let demoMode = "demo_mode"
-            static let coloredInlineSubjects = "colored_inline_subjects"
+            static let notifications = Functionality.Identifier("notifications")
+            static let backgroundRefresh = Functionality.Identifier("background_refresh")
+            static let classTestReminders = Functionality.Identifier("class_test_reminders")
+            static let backgroundReprPlanNotifications = Functionality.Identifier("background_repr_plan_notifications")
+            static let demoMode = Functionality.Identifier("demo_mode")
+            static let coloredInlineSubjects = Functionality.Identifier("colored_inline_subjects")
+            static let classTestPlan = Functionality.Identifier("class_test_plan")
+            static let calendarAccess = Functionality.Identifier("calendar_access")
+            static let classTestCalendarEvents = Functionality.Identifier("class_test_calendar_events")
         }
     }
     

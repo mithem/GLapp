@@ -1,2 +1,4 @@
 build
 xcuserdata
+*/xcuserdata/*
+GLapp.xcproj/xcuserdata

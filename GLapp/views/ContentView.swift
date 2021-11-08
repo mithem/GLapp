@@ -21,28 +21,24 @@ struct ContentView: View {
             TimetableView(dataManager: dataManager)
                 .tag(0)
                 .tabItem {
-                    Image(systemName: "calendar")
-                    Text("timetable")
+                    Label("timetable", systemImage: "calendar")
                 }
             if dataManager.tasks.getClassTestPlan.error != .classTestPlanNotSupported {
                 ClassTestPlanView(dataManager: dataManager, appManager: appManager)
                     .tag(1)
                     .tabItem {
-                        Image(systemName: "doc.append")
-                        Text("classtests")
+                        Label("classtests", systemImage: "doc.append")
                     }
             }
             RepresentativePlanView(appManager: appManager)
                 .tag(2)
                 .tabItem {
-                    Image(systemName: "clock")
-                    Text("representative_plan")
+                    reprPlanTabItemLabel
                 }
             SettingsView(dataManager: dataManager, appManager: appManager)
                 .tag(3)
                 .tabItem {
-                    Image(systemName: "gear")
-                    Text("settings")
+                    Label("settings", systemImage: "gear")
                 }
         }
     }
@@ -53,32 +49,33 @@ struct ContentView: View {
                 NavigationLink(isActive: $showingFirstNavigationLink, destination: {
                     TimetableView(dataManager: dataManager)
                 }, label: {
-                    Image(systemName: "calendar")
-                    Text("timetable")
+                    Label("timetable", systemImage: "calendar")
                 })
+                    .keyboardShortcut("1")
                 if dataManager.tasks.getClassTestPlan.error != .classTestPlanNotSupported {
                     NavigationLink(destination: {
                         ClassTestPlanView(dataManager: dataManager, appManager: appManager)
                     }, label: {
-                        Image(systemName: "doc.append")
-                        Text("classtests")
+                        Label("classtests", systemImage: "doc.append")
                     })
+                        .keyboardShortcut("2")
                 }
                 NavigationLink(destination: {
                     RepresentativePlanView(appManager: appManager)
                 }, label: {
-                    Image(systemName: "clock")
-                    Text("representative_plan")
+                    reprPlanTabItemLabel
                 })
+                    .keyboardShortcut(appManager.classTestPlan.isEnabled != .no ? "3" : "2")
                 NavigationLink(destination: {
                     SettingsView(dataManager: dataManager, appManager: appManager)
                 }, label: {
-                    Image(systemName: "gear")
-                    Text("settings")
+                    Label("settings", systemImage: "gear")
                 })
+                    .keyboardShortcut(appManager.classTestPlan.isEnabled != .no ? "4" : "3")
             }
             .listStyle(.sidebar)
             .navigationTitle("navigation")
+            .navigationViewStyle(.stack)
         }
     }
     
@@ -114,6 +111,30 @@ struct ContentView: View {
         .onDisappear {
             dataManager.saveLocalData()
             appManager.classTestReminders.scheduleClassTestRemindersIfAppropriate(with: dataManager)
+        }
+    }
+    
+    var reprPlanTabItemIcon: String {
+        if #available(iOS 15, *) {
+            if dataManager.representativePlan?.isEmpty == false {
+                return "clock.badge.exclamationmark"
+            }
+        }
+        return "clock"
+    }
+    
+    var reprPlanTabItemLabel: some View {
+        Group {
+            if #available(iOS 15, *), dataManager.representativePlan?.isEmpty == false {
+                Label(title: {
+                    Text("representative_plan")
+                }, icon: {
+                    Image(systemName: reprPlanTabItemIcon)
+                        .foregroundStyle(.orange, Color.accentColor)
+                })
+            } else {
+                Label("representative_plan", systemImage: reprPlanTabItemIcon)
+            }
         }
     }
     

@@ -9,12 +9,8 @@ import SwiftUI
 
 extension Color {
     func getForegroundColor(colorScheme: ColorScheme) -> Color {
-        if isTransparent {
-            return .primary
-        }
-        if isDark {
-            return .white
-        }
+        if isTransparent || self == .primary { return .primary }
+        if isDark { return .white }
         return .black
     }
 }

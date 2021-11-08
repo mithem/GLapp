@@ -64,11 +64,11 @@ final class NotificationManager {
         } else {
             return
         }
-        deliverNotification(identifier: id, title: content.title, body: content.summary, sound: content.sound, interruptionLevel: content.interruptionLevel, in: timeInterval)
+        deliverNotification(identifier: id, title: NSLocalizedString(content.title), body: NSLocalizedString(content.summary), sound: content.sound, interruptionLevel: content.interruptionLevel, in: timeInterval)
     }
     
     func checkRepresentativePlanAndDeliverNotification(task: BGTask) {
-        let lastUpdateTimestamp = TimeInterval(UserDefaults.standard.string(forKey: UserDefaultsKeys.lastReprPlanUpdateTimestamp) ?? "") ?? 0
+        let lastUpdateTimestamp = UserDefaults.standard.double(forKey: UserDefaultsKeys.lastReprPlanUpdateTimestamp)
         let dataManager = DataManager(appManager: .init())
         dataManager.getRepresenativePlanUpdate { result in
             switch result {
@@ -121,28 +121,10 @@ final class NotificationManager {
         }
     }
     
-    @available(iOS 15, *)
-    func requestNotificationAuthorization(unrestricted: Bool) async throws -> Bool {
-        let status = await getNotificationStatus()
-        if status.functionalityState == .yes && !unrestricted {
-            return true
-        }
-        var options: UNAuthorizationOptions = [.alert, .sound]
-        if !unrestricted {
-            options.insert(.provisional)
-        }
-        return try await UNUserNotificationCenter.current().requestAuthorization(options: options)
-    }
-    
     func getAuthorizationStatus(completion: @escaping (UNAuthorizationStatus) -> Void) {
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             completion(settings.authorizationStatus)
         }
-    }
-    
-    @available(iOS 15, *)
-    func getNotificationStatus() async -> UNAuthorizationStatus {
-        await UNUserNotificationCenter.current().notificationSettings().authorizationStatus
     }
     
     func scheduleClassTestReminder(for classTest: ClassTest) {
@@ -192,20 +174,10 @@ final class NotificationManager {
         }
     }
     
-    @available(iOS 15, *)
-    func getScheduledClassTestReminders() async -> [NotificationRequest] {
-        return await getScheduledNotifications().filter {$0.id.starts(with: Constants.Identifiers.Notifications.classTestNotification)}
-    }
-    
     func getScheduledNotifications(completion: @escaping ([NotificationRequest]) -> Void) {
         UNUserNotificationCenter.current().getPendingNotificationRequests { notifications in
             completion(notifications.compactMap { .init(from: $0) })
         }
-    }
-    
-    @available(iOS 15, *)
-    func getScheduledNotifications() async -> [NotificationRequest] {
-        await UNUserNotificationCenter.current().pendingNotificationRequests().compactMap {.init(from: $0)}
     }
     
     /// Remove scheduled notifications.
@@ -240,13 +212,6 @@ final class NotificationManager {
             if let completion = completion {
                 completion()
             }
-        }
-    }
-    
-    @available(iOS 15, *)
-    func removeScheduledClassTestReminders() async {
-        for request in await getScheduledClassTestReminders() {
-            request.cancel()
         }
     }
     

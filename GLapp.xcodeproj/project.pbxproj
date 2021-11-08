@@ -540,8 +540,8 @@
 		499C087827353CDF00206514 /* German */ = {
 			isa = PBXGroup;
 			children = (
-				499C087927353CDF00206514 /* Localizable.strings */,
 				499C088727353E3F00206514 /* InfoPlist.strings */,
+				499C087927353CDF00206514 /* Localizable.strings */,
 			);
 			path = German;
 			sourceTree = "<group>";
@@ -1067,7 +1067,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLapp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;
@@ -1101,7 +1101,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLappRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;

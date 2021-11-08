@@ -9,15 +9,9 @@ import SwiftUI
 
 extension Color {
     func getColoredForegroundColor(colorScheme: ColorScheme) -> Color {
-        if isTransparent {
-            return .primary
-        }
-        if colorScheme == .dark && isDark {
-            return lighten()
-        }
-        if colorScheme == .light && !isDark {
-            return darken()
-        }
+        if isTransparent || self == .primary { return .primary }
+        if colorScheme == .dark && isDark { return lighten() }
+        if colorScheme == .light && !isDark { return darken() }
         return self
     }
 }

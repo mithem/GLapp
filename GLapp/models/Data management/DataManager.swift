@@ -210,19 +210,6 @@ class DataManager: ObservableObject {
         }.resume()
     }
     
-    @available(iOS 15, *)
-    func getRepresentativePlan() async throws -> String {
-        let req: URLRequest
-        do {
-            req = URLRequest(url: try getUrl(for: "/XML/vplan.php", authenticate: true)!, timeoutInterval: Constants.timeoutInterval)
-        } catch {
-            throw error as? NetworkError ?? .other(error)
-        }
-        let (data, _) = try await URLSession.shared.data(for: req)
-        guard let s = String(data: data, encoding: .utf8) else { throw NetworkError.invalidResponse }
-        return s
-    }
-    
     func loadRepresentativePlan(withHapticFeedback: Bool = false) {
         let generator = UINotificationFeedbackGenerator()
         if withHapticFeedback {
@@ -285,7 +272,7 @@ class DataManager: ObservableObject {
                     switch result {
                     case .success(let plan):
                         if let date = plan.date {
-                            UserDefaults.standard.set(date, forKey: UserDefaultsKeys.lastReprPlanUpdateTimestamp)
+                            UserDefaults.standard.set(date.timeIntervalSince1970, forKey: UserDefaultsKeys.lastReprPlanUpdateTimestamp)
                         }
                         completion(.success(plan))
                     case .failure(let error):

@@ -64,9 +64,6 @@ struct ClassTestInlineView: View {
         if isOver {
             return .secondary
         }
-        if !classTest.individual && classTest.alias.lowercased().starts(with: "nachschrift") { // as that doesn't have any color associated with it
-            return .primary
-        }
         if appManager.coloredInlineSubjects.isEnabled == .yes {
             return classTest.subject.color.getColoredForegroundColor(colorScheme: colorScheme)
         }

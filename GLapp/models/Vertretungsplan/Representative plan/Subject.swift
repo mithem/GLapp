@@ -20,7 +20,9 @@ final class Subject: ObservableObject, Codable, Hashable {
         self.subjectType = subjectType
         self.teacher = teacher
         self.subjectName = subjectName
-        if let color = color {
+        if className.lowercased().starts(with: "nachschrift") { // only used on class test plan
+            self.color = .primary
+        } else if let color = color {
             self.color = color
         } else {
             self.color = .random

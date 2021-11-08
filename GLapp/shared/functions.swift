@@ -53,33 +53,6 @@ func submitLoginAndSaveMobileKey(username: String, password: String, completion:
     }.resume()
 }
 
-@available(iOS 15, *)
-func submitLoginAndSaveMobileKey(username: String, password: String) async throws {
-    do {
-        let url = try getUrl(for: "/XML/anmelden.php", queryItems: ["username": username, "passwort": password])!
-        let req = URLRequest(url: url, timeoutInterval: Constants.timeoutInterval)
-        let (data, _) = try await URLSession.shared.data(for: req)
-        let str = String(data: data, encoding: .utf8)
-        if let str = str {
-            if str.lowercased() == "kein zugriff" || str == "0" {
-                throw NetworkError.notAuthorized
-            } else if str.count == 0 {
-                throw NetworkError.noData
-            } else {
-                UserDefaults.standard.set(str, forKey: UserDefaultsKeys.mobileKey)
-            }
-        } else {
-            throw NetworkError.noData
-        }
-    } catch {
-        if let error = error as? NetworkError {
-            throw error
-        } else {
-            throw NetworkError.other(error)
-        }
-    }
-}
-
 func resetLoginInfo() {
     removeMobileKey()
     removeTeacherInformation()

@@ -7,6 +7,7 @@
 
 import XCTest
 @testable import GLapp
+import SwiftUI
 
 class TestTimetableParser: XCTestCase {
     var manager: DataManager!
@@ -138,16 +139,25 @@ class TestTimetableParser: XCTestCase {
                 .init(lesson: 6, room: "A11", subject: sM),
             ])
         ])
+        let expectation = XCTestExpectation(description: "parses successfully")
         
-        let result = try TimetableParser.parse(timetable: timetable, with: manager).get()
-        
-        XCTAssertEqual(result.date, date)
-        for n in 0 ..< expected.weekdays.count {
-            XCTAssertEqual(result.weekdays[n].id, expected.weekdays[n].id)
-            for i in 0 ..< expected.weekdays[n].lessons.count {
-                XCTAssertEqual(result.weekdays[n].lessons[i], expected.weekdays[n].lessons[i])
+        TimetableParser.parse(timetable: timetable, with: manager) { result in
+            switch result {
+            case .success(let timetable):
+                XCTAssertEqual(timetable.date, date)
+                for n in 0 ..< expected.weekdays.count {
+                    XCTAssertEqual(timetable.weekdays[n].id, expected.weekdays[n].id)
+                    for i in 0 ..< expected.weekdays[n].lessons.count {
+                        XCTAssertEqual(timetable.weekdays[n].lessons[i], expected.weekdays[n].lessons[i])
+                    }
+                }
+                expectation.fulfill()
+            case .failure(let error):
+                XCTFail(error.localizedMessage)
             }
         }
+            
+        self.wait(for: [expectation], timeout: 5)
     }
     
     func testParseSuccessMittelUndUnterstufe() throws {
@@ -289,39 +299,87 @@ class TestTimetableParser: XCTestCase {
                 .init(lesson: 6, room: "130", subject: sM)
             ])
         ])
+        let expectation = XCTestExpectation(description: "parses successfully")
         
-        let result = try TimetableParser.parse(timetable: timetable, with: manager).get()
-        
-        XCTAssertEqual(result.date, date)
-        for n in 0 ..< expected.weekdays.count {
-            XCTAssertEqual(result.weekdays[n].id, expected.weekdays[n].id)
-            for i in 0 ..< expected.weekdays[n].lessons.count {
-                XCTAssertEqual(result.weekdays[n].lessons[i], expected.weekdays[n].lessons[i])
+        TimetableParser.parse(timetable: timetable, with: manager) { result in
+            switch result {
+            case .success(let timetable):
+                XCTAssertEqual(timetable.date, date)
+                for n in 0 ..< expected.weekdays.count {
+                    XCTAssertEqual(timetable.weekdays[n].id, expected.weekdays[n].id)
+                    for i in 0 ..< expected.weekdays[n].lessons.count {
+                        XCTAssertEqual(timetable.weekdays[n].lessons[i], expected.weekdays[n].lessons[i])
+                    }
+                }
+                expectation.fulfill()
+            case .failure(let error):
+                XCTFail(error.localizedMessage)
             }
         }
+        self.wait(for: [expectation], timeout: 5)
     }
     
     func testParseNoRootElement() {
-        let result = TimetableParser.parse(timetable: "", with: MockDataManager())
-        XCTAssertEqual(result, .failure(.noRootElement))
+        let expectation = XCTestExpectation(description: "fails with .noRootElement")
+        
+        TimetableParser.parse(timetable: "", with: MockDataManager()) { result in
+            switch result {
+            case .success(_):
+                XCTFail("did not fail")
+            case .failure(let error):
+                XCTAssertEqual(error, .noRootElement)
+                expectation.fulfill()
+            }
+        }
+        wait(for: [expectation], timeout: 5)
     }
     
     func testParseInvalidRootElement() {
-        let result = TimetableParser.parse(timetable: "<Root></Root>", with: MockDataManager())
-        XCTAssertEqual(result, .failure(.invalidRootElement))
+        let expectation = XCTestExpectation(description: "fails with .invalidRootElement")
+        
+        TimetableParser.parse(timetable: "<Root></Root>", with: MockDataManager()) { result in
+            switch result {
+            case .success(_):
+                XCTFail("did not fail")
+            case .failure(let error):
+                XCTAssertEqual(error, .invalidRootElement)
+                expectation.fulfill()
+            }
+        }
+        wait(for: [expectation], timeout: 5)
     }
     
     func testParseNoTimestamp() {
-        let result = TimetableParser.parse(timetable: "<Stundenplan></Stundenplan>", with: MockDataManager())
-        XCTAssertEqual(result, .failure(.noTimestamp))
+        let expectation = XCTestExpectation(description: "fails with .noTimestamp")
+        
+        TimetableParser.parse(timetable: "<Stundenplan></Stundenplan>", with: MockDataManager()) { result in
+            switch result {
+            case .success(_):
+                XCTFail("did not fail")
+            case .failure(let error):
+                XCTAssertEqual(error, .noTimestamp)
+                expectation.fulfill()
+            }
+        }
+        wait(for: [expectation], timeout: 5)
+
     }
     
     func testParseInvalidTimestamp() {
         let timetable = """
 <Stundenplan Timestamp="2021-10-15T00:00:00Z"></Stundenplan>
 """
-        let result = TimetableParser.parse(timetable: timetable, with: MockDataManager())
+        let expectation = XCTestExpectation(description: "fails with .invalidTimestamp")
         
-        XCTAssertEqual(result, .failure(.invalidTimestamp))
+        TimetableParser.parse(timetable: timetable, with: MockDataManager()) { result in
+            switch result {
+            case .success(_):
+                XCTFail("did not fail")
+            case .failure(let error):
+                XCTAssertEqual(error, .invalidTimestamp)
+                expectation.fulfill()
+            }
+        }
+        wait(for: [expectation], timeout: 5)
     }
 }

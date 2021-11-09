@@ -15,7 +15,7 @@ final class Subject: ObservableObject, Codable, Hashable {
     @Published var subjectName: String?
     @Published var color: Color
     
-    init(dataManager: DataManager, className: String, subjectType: String? = nil, teacher: String? = nil, subjectName: String? = nil, color: Color? = nil) {
+    init(dataManager: DataManager, className: String, subjectType: String? = nil, teacher: String? = nil, subjectName: String? = nil, color: Color? = nil, onMainThread: Bool = false) {
         self.className = className
         self.subjectType = subjectType
         self.teacher = teacher
@@ -31,6 +31,7 @@ final class Subject: ObservableObject, Codable, Hashable {
                 self.color = color
             } else {
                 self.color = .random
+                dataManager.updateSubjectColorMap(className: className, color: self.color, onMainThread: onMainThread)
             }
         }
     }

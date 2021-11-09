@@ -22,7 +22,7 @@ class RepresentativePlanParser {
         if date == .janFirst2000 { // gets sent for whatever reason when reprPlan is empty
             date = nil
         }
-        var reprPlan = RepresentativePlan(date: date)
+        let reprPlan = RepresentativePlan(date: date)
         
         for childIndex in reprPlanIndex.children {
             guard let childElem = childIndex.element else { continue }
@@ -30,14 +30,14 @@ class RepresentativePlanParser {
                 guard var dateText = childElem.attribute(by: "Datum")?.text else { continue }
                 dateText = String(dateText.suffix(10)) // dd.MM.yyyy
                 guard let date = GLDateFormatter.berlinFormatter.date(from: dateText) else { continue }
-                var reprDay = RepresentativeDay(date: date)
+                let reprDay = RepresentativeDay(date: date)
                 for dayIndex in childIndex.children {
                     guard let elem = dayIndex.element else { continue }
                     if elem.name.lowercased() == "stunde" {
                         guard let lessonNo = Int(elem.attribute(by: "Std")?.text ?? "") else { continue }
                         guard let normalTeacher = elem.attribute(by: "FLehrer")?.text else { continue }
                         guard let subjectText = elem.attribute(by: "Fach")?.text else { continue }
-                        let subject = dataManager.getSubject(className: subjectText)
+                        let subject = dataManager.getSubject(subjectName: subjectText, className: nil)
                         if subject.subjectName == nil {
                             subject.subjectName = subjectText
                         }

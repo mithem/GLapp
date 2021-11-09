@@ -52,8 +52,11 @@ class DataManager: ObservableObject {
         timetable?.subjects
     }
     
-    func getSubject(className: String) -> Subject {
-        subjects?.first(where: {$0.className == className}) ?? .init(dataManager: self, className: className)
+    func getSubject(subjectName: String, className: String?, onMainThread: Bool = true) -> Subject {
+        if let className = className {
+            return subjects?.first(where: {$0.className == className}) ?? .init(dataManager: self, className: className, subjectName: subjectName, color: subjectColorMap[className], onMainThread: onMainThread)
+        }
+        return subjects?.first(where: {$0.subjectName == subjectName}) ?? .init(dataManager: self, className: subjectName, subjectName: subjectName, onMainThread: onMainThread)
     }
     
     func setRepresentativePlan(_ plan: RepresentativePlan?) {
@@ -63,7 +66,7 @@ class DataManager: ObservableObject {
         
         if let plan = plan {
             if let date = plan.date {
-                UserDefaults.standard.set(date, forKey: UserDefaultsKeys.lastReprPlanUpdateTimestamp)
+                UserDefaults.standard.set(date.timeIntervalSince1970, forKey: UserDefaultsKeys.lastReprPlanUpdateTimestamp)
             }
         }
     }
@@ -71,6 +74,10 @@ class DataManager: ObservableObject {
     func setTimetable(_ timetable: Timetable?) {
         DispatchQueue.main.async {
             self.timetable = timetable
+        }
+        
+        if timetable != nil {
+            representativePlan?.updateSubjects(with: self) // in order for subjects to reload color after timetable is loaded (from network or disk)
         }
     }
     
@@ -91,9 +98,14 @@ class DataManager: ObservableObject {
         }
     }
     
-    func updateSubjectColorMap(className: String, color: Color) {
-        DispatchQueue.main.async {
+    func updateSubjectColorMap(className: String, color: Color, onMainThread: Bool = true) {
+        let changeSCM = {
             self.subjectColorMap[className] = color
+        }
+        if onMainThread {
+            DispatchQueue.main.async(execute: changeSCM)
+        } else {
+            changeSCM()
         }
     }
     
@@ -173,10 +185,12 @@ class DataManager: ObservableObject {
         setRepresentativePlan(nil)
         setClassTestPlan(nil)
         setTimetable(nil)
+        setSubjectColorMap(.init())
         
         clearLocalData(for: \.getRepresentativePlan)
         clearLocalData(for: \.getClassTestPlan)
         clearLocalData(for: \.getTimetable)
+        clearLocalData(for: \.subjectColorMap)
     }
     
     func getRepresentativePlan(completion: @escaping (NetworkResult<String, NetworkError>) -> Void) {
@@ -243,14 +257,18 @@ class DataManager: ObservableObject {
         }
     }
     
-    func getRepresenativePlanUpdate(completion: @escaping (Result<RepresentativePlan, GLappError>) -> Void) {
+    func getRepresenativePlanUpdate(useTimestampQuery: Bool = true, completion: @escaping (Result<RepresentativePlan, GLappError>) -> Void) {
         let queryItems: Dictionary<String, String>
-        var timestamp: Int? = UserDefaults.standard.integer(forKey: UserDefaultsKeys.lastReprPlanUpdateTimestamp)
-        if timestamp == 0 {
-            timestamp = nil
-        }
-        if let timestamp = timestamp {
-            queryItems = ["timestamp": String(timestamp)]
+        if useTimestampQuery {
+            var timestamp: Int? = UserDefaults.standard.integer(forKey: UserDefaultsKeys.lastReprPlanUpdateTimestamp)
+            if timestamp == 0 {
+                timestamp = nil
+            }
+            if let timestamp = timestamp {
+                queryItems = ["timestamp": String(timestamp)]
+            } else {
+                queryItems = [:]
+            }
         } else {
             queryItems = [:]
         }
@@ -264,7 +282,8 @@ class DataManager: ObservableObject {
                 if s.count == 0 {
                     completion(.failure(.networkError(.noData)))
                 } else if s == "0" {
-                    completion(.failure(.networkError(.badRequest)))
+                    // happens when choosing timestamps the system doesn't like, therefore try again without timestamp
+                    self.getRepresenativePlanUpdate(useTimestampQuery: false, completion: completion)
                 } else if s.lowercased() == "kein zugriff" {
                     completion(.failure(.networkError(.notAuthorized)))
                 } else {
@@ -400,14 +419,15 @@ class DataManager: ObservableObject {
             case .success:
                 fatalError("getTimetable completed with success but no data.")
             case .successWithData(let timetable):
-                let result = TimetableParser.parse(timetable: timetable, with: self)
-                switch result {
-                case .success(let timetable):
-                    self.setContent(timetable, for: \.getTimetable, with: withHapticFeedback ? generator : nil)
-                    self.saveLocalData(timetable, for: \.getTimetable)
-                    self.saveSubjectColorMap()
-                case .failure(let error):
-                    self.setError(.parserError(error), for: \.getTimetable, with: withHapticFeedback ? generator : nil)
+                TimetableParser.parse(timetable: timetable, with: self) { result in
+                    switch result {
+                    case .success(let timetable):
+                        self.setContent(timetable, for: \.getTimetable, with: withHapticFeedback ? generator : nil)
+                        self.saveLocalData(timetable, for: \.getTimetable)
+                        self.saveSubjectColorMap()
+                    case .failure(let error):
+                        self.setError(.parserError(error), for: \.getTimetable, with: withHapticFeedback ? generator : nil)
+                    }
                 }
             case .failure(let error):
                 self.setError(.networkError(error), for: \.getTimetable, with: withHapticFeedback ? generator : nil)

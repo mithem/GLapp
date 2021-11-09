@@ -26,7 +26,7 @@ struct TimetableView: View {
                                         .font(.headline)
                                 }
                                 ForEach(grid) { lesson in
-                                    LessonInlineView(lesson: lesson)
+                                    LessonInlineView(lesson: lesson, dataManager: model.dataManager)
                                 }
                             }
                             if verticalSizeClass == .compact {

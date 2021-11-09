@@ -46,7 +46,7 @@ struct RepresentativeLessonInlineView: View {
         return "\(formatter.string(from: NSNumber(value: lesson.lesson))!) \(lesson.subject.subjectName ?? lesson.subject.className)"
     }
     
-    var titleColor: Color {
+    @MainActor var titleColor: Color {
         if lesson.isOver {
             return .secondary
         }

@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct RepresentativePlanView: View {
-    @EnvironmentObject var dataManager: DataManager
     @ObservedObject var appManager: AppManager
+    @ObservedObject var dataManager: DataManager
     var InnerView: some View {
         VStack {
             DataManagementTaskView(date: dataManager.representativePlan?.date, lastFetched: dataManager.representativePlan?.lastFetched, task: dataManager.tasks.getRepresentativePlan)
@@ -89,7 +89,6 @@ struct RepresentativePlanView: View {
 
 struct RepresentativePlanView_Previews: PreviewProvider {
     static var previews: some View {
-        RepresentativePlanView(appManager: .init())
-            .environmentObject(MockDataManager())
+        RepresentativePlanView(appManager: .init(), dataManager: MockDataManager())
     }
 }

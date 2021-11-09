@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct RepresentativeDay: Equatable, Identifiable, Codable, DeliverableByNotification {
+final class RepresentativeDay: ObservableObject, Identifiable, DeliverableByNotification {
     var id: Date? { date }
     
-    var lessons: [RepresentativeLesson]
-    var date: Date?
-    var notes: [String]
+    @Published var lessons: [RepresentativeLesson]
+    @Published var date: Date?
+    @Published var notes: [String]
     
     init(date: Date? = nil, lessons: [RepresentativeLesson] = [], notes: [String] = []) {
         self.date = date
@@ -54,5 +54,11 @@ struct RepresentativeDay: Equatable, Identifiable, Codable, DeliverableByNotific
             }
         }
         return current
+    }
+    
+    func updateSubjects(with dataManager: DataManager) {
+        for lesson in lessons {
+            lesson.updateSubject(with: dataManager)
+        }
     }
 }

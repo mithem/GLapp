@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LessonInlineView: View {
     @ObservedObject var lesson: TimetableViewModel.TimetableViewLesson
+    @ObservedObject var dataManager: DataManager
     @State private var showingEditSubjectView = false
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.colorScheme) var colorScheme
@@ -38,7 +39,7 @@ struct LessonInlineView: View {
                 }
             }
             .sheet(isPresented: $showingEditSubjectView) {
-                EditSubjectView(lesson: lesson)
+                EditSubjectView(lesson: lesson, dataManager: dataManager)
             }
         } else {
             content
@@ -65,6 +66,6 @@ struct LessonInlineView: View {
 
 struct LessonInlineView_Previews: PreviewProvider{
     static var previews: some View {
-        LessonInlineView(lesson: .init(id: 0, lesson: MockData.lesson))
+        LessonInlineView(lesson: .init(id: 0, lesson: MockData.lesson), dataManager: MockDataManager())
     }
 }

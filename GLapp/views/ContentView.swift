@@ -30,7 +30,7 @@ struct ContentView: View {
                         Label("classtests", systemImage: "doc.append")
                     }
             }
-            RepresentativePlanView(appManager: appManager)
+            RepresentativePlanView(appManager: appManager, dataManager: dataManager)
                 .tag(2)
                 .tabItem {
                     reprPlanTabItemLabel
@@ -61,7 +61,7 @@ struct ContentView: View {
                         .keyboardShortcut("2")
                 }
                 NavigationLink(destination: {
-                    RepresentativePlanView(appManager: appManager)
+                    RepresentativePlanView(appManager: appManager, dataManager: dataManager)
                 }, label: {
                     reprPlanTabItemLabel
                 })
@@ -100,7 +100,6 @@ struct ContentView: View {
                 FunctionalityCheckView(appManager: appManager, dataManager: dataManager)
             }
         }
-        .environmentObject(dataManager)
         .onAppear {
             appManager.reload(with: dataManager)
             checkForNeedingToShowLoginView()

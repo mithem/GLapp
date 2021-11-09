@@ -68,6 +68,5 @@ struct ClassTestPlanView: View {
 struct ClassTestPlanView_Previews: PreviewProvider {
     static var previews: some View {
         ClassTestPlanView(dataManager: MockDataManager(), appManager: .init())
-            .environmentObject(MockDataManager())
     }
 }

@@ -60,7 +60,7 @@ struct ClassTestInlineView: View {
         return "\(classTest.subject.subjectName ?? classTest.subject.className)\(subjectType)"
     }
     
-    var titleColor: Color {
+    @MainActor var titleColor: Color {
         if isOver {
             return .secondary
         }

@@ -18,7 +18,7 @@ extension Color {
         return  luminance < 0.50
     }
     
-    var isTransparent: Bool {
+    @MainActor var isTransparent: Bool {
         var r, g, b, a: CGFloat
         (r, g, b, a) = (0, 0, 0, 0)
         UIColor(self).getRed(&r, green: &g, blue: &b, alpha: &a)

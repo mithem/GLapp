@@ -42,6 +42,11 @@
 		49524BC4272F25E40069880B /* FColoredInlineSubjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49524BC3272F25E40069880B /* FColoredInlineSubjects.swift */; };
 		49526F9427218E8700FD0242 /* FBackgroundReprPlanNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49526F9327218E8700FD0242 /* FBackgroundReprPlanNotifications.swift */; };
 		49526F96272190D900FD0242 /* FClassTestReminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49526F95272190D900FD0242 /* FClassTestReminders.swift */; };
+		495D25D9273AA3C500F3899D /* RepresentativeLesson+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495D25D8273AA3C500F3899D /* RepresentativeLesson+Equatable.swift */; };
+		495D25DB273AA46900F3899D /* RepresentativeLesson+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495D25DA273AA46900F3899D /* RepresentativeLesson+Codable.swift */; };
+		495D25DD273AA6EA00F3899D /* RepresentativeDay+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495D25DC273AA6EA00F3899D /* RepresentativeDay+Equatable.swift */; };
+		495D25DF273AA72900F3899D /* RepresentativePlan+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495D25DE273AA72900F3899D /* RepresentativePlan+Codable.swift */; };
+		495D25E1273AA75600F3899D /* RepresentativeDay+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495D25E0273AA75600F3899D /* RepresentativeDay+Codable.swift */; };
 		495E6B8B271833ED0052B565 /* TestClassTestPlanParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495E6B8A271833ED0052B565 /* TestClassTestPlanParser.swift */; };
 		495E6B8D271837180052B565 /* TestTimetableParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495E6B8C271837180052B565 /* TestTimetableParser.swift */; };
 		495E6B9127188B5A0052B565 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495E6B9027188B5A0052B565 /* NotificationManager.swift */; };
@@ -174,6 +179,11 @@
 		49524BC3272F25E40069880B /* FColoredInlineSubjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FColoredInlineSubjects.swift; sourceTree = "<group>"; };
 		49526F9327218E8700FD0242 /* FBackgroundReprPlanNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBackgroundReprPlanNotifications.swift; sourceTree = "<group>"; };
 		49526F95272190D900FD0242 /* FClassTestReminders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FClassTestReminders.swift; sourceTree = "<group>"; };
+		495D25D8273AA3C500F3899D /* RepresentativeLesson+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepresentativeLesson+Equatable.swift"; sourceTree = "<group>"; };
+		495D25DA273AA46900F3899D /* RepresentativeLesson+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepresentativeLesson+Codable.swift"; sourceTree = "<group>"; };
+		495D25DC273AA6EA00F3899D /* RepresentativeDay+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepresentativeDay+Equatable.swift"; sourceTree = "<group>"; };
+		495D25DE273AA72900F3899D /* RepresentativePlan+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepresentativePlan+Codable.swift"; sourceTree = "<group>"; };
+		495D25E0273AA75600F3899D /* RepresentativeDay+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepresentativeDay+Codable.swift"; sourceTree = "<group>"; };
 		495E6B8A271833ED0052B565 /* TestClassTestPlanParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestClassTestPlanParser.swift; sourceTree = "<group>"; };
 		495E6B8C271837180052B565 /* TestTimetableParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTimetableParser.swift; sourceTree = "<group>"; };
 		495E6B8E27188A4B0052B565 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -348,6 +358,11 @@
 				49686D86271DDA250075F14A /* Lesson+Equatable.swift */,
 				49686D88271DDC490075F14A /* Weekday+Equatable.swift */,
 				49517FFD271F73BD0085BEA6 /* Timetable+Equatable.swift */,
+				495D25D8273AA3C500F3899D /* RepresentativeLesson+Equatable.swift */,
+				495D25DA273AA46900F3899D /* RepresentativeLesson+Codable.swift */,
+				495D25DC273AA6EA00F3899D /* RepresentativeDay+Equatable.swift */,
+				495D25E0273AA75600F3899D /* RepresentativeDay+Codable.swift */,
+				495D25DE273AA72900F3899D /* RepresentativePlan+Codable.swift */,
 				492804C1272010220055ED63 /* ClassTestPlan+Equatable.swift */,
 				492804C32720104D0055ED63 /* RepresentativePlan+Equatable.swift */,
 				492804C7272026EF0055ED63 /* GLappError+Equatable.swift */,
@@ -446,6 +461,7 @@
 				495E6B8C271837180052B565 /* TestTimetableParser.swift */,
 				494595C22727C5050096B5D7 /* TestRepresentativeLesson.swift */,
 				49680F25272A64AB00884096 /* TestRepresentativePlan.swift */,
+				499A3EE82719D5B20045683D /* TestPlan.xctestplan */,
 			);
 			path = GLappTests;
 			sourceTree = "<group>";
@@ -456,7 +472,6 @@
 				4976D14C27108442009C5AC2 /* TestGLappUIForEachConfig.swift */,
 				499A3EE52719D0FA0045683D /* TestGLappUI.swift */,
 				499A3EE72719D37A0045683D /* UITestPlan.xctestplan */,
-				499A3EE82719D5B20045683D /* TestPlan.xctestplan */,
 			);
 			path = GLappUITests;
 			sourceTree = "<group>";
@@ -778,6 +793,7 @@
 				4976D16527108590009C5AC2 /* NetworkError.swift in Sources */,
 				4976D174271085EB009C5AC2 /* RepresentativeLesson.swift in Sources */,
 				49F380F32710E174002AE814 /* ClassTest.swift in Sources */,
+				495D25DF273AA72900F3899D /* RepresentativePlan+Codable.swift in Sources */,
 				4934052B2712BC6A008B059B /* DataManagementTask.swift in Sources */,
 				49517FFE271F73BD0085BEA6 /* Timetable+Equatable.swift in Sources */,
 				49250B652720A8DE0096411F /* AppManager.swift in Sources */,
@@ -811,10 +827,12 @@
 				4921C47E2731979600DA256D /* Date+janFirst2000.swift in Sources */,
 				4991A2B527199768008559F9 /* TimetableParser.swift in Sources */,
 				493E8AC5273003DA008C9B13 /* Color+isDarkBackground.swift in Sources */,
+				495D25E1273AA75600F3899D /* RepresentativeDay+Codable.swift in Sources */,
 				49AF33662719962C00F406D1 /* RepresentativePlanView.swift in Sources */,
 				493405172711BADE008B059B /* MockDataManager.swift in Sources */,
 				49526F96272190D900FD0242 /* FClassTestReminders.swift in Sources */,
 				499A3EEE2719FB010045683D /* UpcomingClassTestView.swift in Sources */,
+				495D25DB273AA46900F3899D /* RepresentativeLesson+Codable.swift in Sources */,
 				495E6B972718C3CC0052B565 /* AppDelegate.swift in Sources */,
 				4991A2AA271996F8008559F9 /* LoadingView.swift in Sources */,
 				49AF336D2719963A00F406D1 /* TimetableView.swift in Sources */,
@@ -833,8 +851,10 @@
 				49F380EC2710E0E4002AE814 /* Lesson.swift in Sources */,
 				4934050627117C88008B059B /* ParserError.swift in Sources */,
 				49E59DE6271C7180009A1609 /* EditSubjectView.swift in Sources */,
+				495D25DD273AA6EA00F3899D /* RepresentativeDay+Equatable.swift in Sources */,
 				4991A2A7271996F8008559F9 /* SettingsView.swift in Sources */,
 				492804C2272010220055ED63 /* ClassTestPlan+Equatable.swift in Sources */,
+				495D25D9273AA3C500F3899D /* RepresentativeLesson+Equatable.swift in Sources */,
 				49F380E52710DFE0002AE814 /* RepresentativePlan.swift in Sources */,
 				499C0866273532CA00206514 /* EKAuthorizationStatus+functionalityState.swift in Sources */,
 				4991A2B82719976F008559F9 /* functions.swift in Sources */,

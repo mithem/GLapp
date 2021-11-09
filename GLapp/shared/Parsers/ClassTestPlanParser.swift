@@ -57,7 +57,7 @@ class ClassTestPlanParser {
                 teacher = nil
             }
             
-            let subject = dataManager.getSubject(className: alias)
+            let subject = dataManager.getSubject(subjectName: subjectName ?? alias, className: alias)
             if subject.teacher == nil {
                 subject.teacher = teacher
             }

@@ -7,17 +7,16 @@
 
 import Foundation
 
-struct RepresentativeLesson: Equatable, Identifiable, Codable, DeliverableByNotification {
+final class RepresentativeLesson: ObservableObject, Identifiable, DeliverableByNotification {
     var id: Date { startDate }
-    
-    var date: Date
-    var lesson: Int
-    var room: String?
-    var newRoom: String?
-    var note: String?
-    var subject: Subject
-    var normalTeacher: String
-    var representativeTeacher: String?
+    @Published var date: Date
+    @Published var lesson: Int
+    @Published var room: String?
+    @Published var newRoom: String?
+    @Published var note: String?
+    @Published var subject: Subject
+    @Published var normalTeacher: String
+    @Published var representativeTeacher: String?
     
     var startDate: Date {
         return Calendar.current.date(byAdding: Constants.lessonStartDateComponents[lesson]!, to: date)!
@@ -31,7 +30,7 @@ struct RepresentativeLesson: Equatable, Identifiable, Codable, DeliverableByNoti
         return .rightNow > endDate
     }
     
-    var summary: String {
+     var summary: String {
         let timeInterval = date.timeIntervalSinceNow
         let timeDescription: String
         if timeInterval > 2 * 24 * 60 * 60 { // 2 days
@@ -71,7 +70,7 @@ struct RepresentativeLesson: Equatable, Identifiable, Codable, DeliverableByNoti
     
     var title: String { "repr_plan_update" }
     
-    var interruptionLevel: NotificationManager.InterruptionLevel {
+     var interruptionLevel: NotificationManager.InterruptionLevel {
         return relevance < 3 ? .timeSensitive : .default
     }
     
@@ -83,5 +82,20 @@ struct RepresentativeLesson: Equatable, Identifiable, Codable, DeliverableByNoti
             return 0
         }
         return cutoff - hours
+    }
+    
+    func updateSubject(with dataManager: DataManager) {
+        subject = dataManager.getSubject(subjectName: subject.subjectName ?? subject.className, className: nil) // assume className is unkown
+    }
+    
+    init(date: Date, lesson: Int, room: String?, newRoom: String?, note: String?, subject: Subject, normalTeacher: String, representativeTeacher: String? = nil) {
+        self.date = date
+        self.lesson = lesson
+        self.room = room
+        self.newRoom = newRoom
+        self.note = note
+        self.subject = subject
+        self.normalTeacher = normalTeacher
+        self.representativeTeacher = representativeTeacher
     }
 }

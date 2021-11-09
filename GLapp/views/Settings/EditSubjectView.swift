@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct EditSubjectView: View {
-    @StateObject var lesson: Lesson
-    @EnvironmentObject var dataManager: DataManager
+    @ObservedObject var lesson: Lesson
+    @ObservedObject var dataManager: DataManager
     @Environment(\.presentationMode) private var presentationMode
     var body: some View {
         NavigationView {
@@ -45,6 +45,7 @@ struct EditSubjectView: View {
             .onDisappear {
                 guard let timetable = dataManager.timetable else { return }
                 dataManager.saveLocalData(timetable, for: \.getTimetable)
+                dataManager.representativePlan?.updateSubjects(with: dataManager)
             }
         }
     }
@@ -52,6 +53,6 @@ struct EditSubjectView: View {
 
 struct EditSubjectView_Previews: PreviewProvider{
     static var previews: some View {
-        EditSubjectView(lesson: MockData.lesson)
+        EditSubjectView(lesson: MockData.lesson, dataManager: MockDataManager())
     }
 }

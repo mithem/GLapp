@@ -71,17 +71,21 @@ final class RepresentativeLesson: ObservableObject, Identifiable, DeliverableByN
     var title: String { "repr_plan_update" }
     
      var interruptionLevel: NotificationManager.InterruptionLevel {
-        return relevance < 3 ? .timeSensitive : .default
+         let highRelevanceInterval = UserDefaults.standard.double(forKey: UserDefaultsKeys.reprPlanNotificationsHighRelevanceTimeInterval)
+         return relevance >= highRelevanceInterval ? .timeSensitive : .active
     }
     
     var relevance: Double {
         let timeInterval = startDate.timeIntervalSince(.rightNow)
-        let cutoff = 12.0
-        let hours = timeInterval / 3600
-        if hours > cutoff {
+        var cutoff = UserDefaults.standard.double(forKey: UserDefaultsKeys.reprPlanNotificationsHighRelevanceTimeInterval)
+        if cutoff == 0 {
+            cutoff = Constants.defaultReprPlanNotificationsHighRelevanceTimeInterval
+        }
+        if timeInterval > 2 * cutoff {
             return 0
         }
-        return cutoff - hours
+        let relevance = 2 * cutoff - timeInterval
+        return relevance / (2 * cutoff) // normalize so user adjustments don't mess up the system's interpretation of previous relevance values
     }
     
     func updateSubject(with dataManager: DataManager) {

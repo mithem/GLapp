@@ -21,4 +21,6 @@ struct UserDefaultsKeys {
     static let coloredInlineSubjects = "coloredInlineSubjects"
     static let classTestCalendarEvents = "classTestCalendarEvents"
     static let calendarIdentifier = "calendarIdentifier"
+    /// The TimeInterval, as the distance to the repr lesson from the current time, at which the lesson is considered to have a high relevance (e.g. to send a time-sensitive notification)
+    static let reprPlanNotificationsHighRelevanceTimeInterval = "reprPlanNotificationsHighRelevanceTimeInterval"
 }

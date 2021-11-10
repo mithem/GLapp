@@ -37,10 +37,12 @@ struct Constants {
         9: .init(hour: 14, minute: 55)
     ]
     static let lessonEndDateComponents = getLessonEndDateComponents()
-    
+    static let defaultReprPlanNotificationsHighRelevanceTimeInterval: TimeInterval = 4 * 60 * 60 // 4h
+
     struct Identifiers {
         static let appId = "com.mithem.GLapp"
         static let backgroundCheckRepresentativePlan = appId + ".backgroundCheckRepresentativePlan"
+        
         struct Notifications {
             static let reprPlanUpdateNotification = appId + ".reprPlanUpdateNotification"
             static let testNotification = appId + ".testNotification"

@@ -103,3 +103,4 @@
 "advanced_settings" = "Fortgeschrittene Einstellungen";
 "privacy_calendars_usage_description" = "GLapp erlauben, Einträge zum Kalendar hinzuzufügen, z.B. bevorstehende Klausuren.";
 "test_notification" = "Test-Benachrichtigung";
+"repr_plan_notifications_high_relevance_colon" = "Zeitintervall vor Vertretungsplanbenachrichtigungen mit hoher Relevanz: ";

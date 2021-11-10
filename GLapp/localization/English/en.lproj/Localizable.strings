@@ -101,3 +101,4 @@
 "no_scheduled_notifications" = "No scheduled notifications.";
 "advanced_settings" = "Advanced settings";
 "test_notification" = "Test notification";
+"repr_plan_notifications_high_relevance_colon" = "Time interval of representative plan notifications with high relevance: ";

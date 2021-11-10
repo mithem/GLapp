@@ -11,6 +11,7 @@ struct AdvancedSettingsView: View {
     @ObservedObject var appManager: AppManager
     @ObservedObject var dataManager: DataManager
     @State private var showingScheduledNotificationsView = false
+    @AppStorage(UserDefaultsKeys.reprPlanNotificationsHighRelevanceTimeInterval) var reprPlanNotificationHighRelevanceTimeInterval = Constants.defaultReprPlanNotificationsHighRelevanceTimeInterval
     var body: some View {
         Form {
             Button("show_scheduled_notifications") {
@@ -20,6 +21,7 @@ struct AdvancedSettingsView: View {
             .sheet(isPresented: $showingScheduledNotificationsView) {
                 ScheduledNotificationsView()
             }
+            Stepper(NSLocalizedString("repr_plan_notifications_high_relevance_colon") + GLDateFormatter.relativeDateTimeFormatter.localizedString(fromTimeInterval: reprPlanNotificationHighRelevanceTimeInterval), value: $reprPlanNotificationHighRelevanceTimeInterval, in: 3600...24 * 3600, step: 3600)
         }
         .navigationTitle("advanced_settings")
     }

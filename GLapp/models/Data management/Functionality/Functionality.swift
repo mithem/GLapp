@@ -83,15 +83,18 @@ class Functionality: ObservableObject, FunctionalityProtocol, Identifiable {
             try reloadIsEnabled(with: appManager, dataManager: dataManager)
         } else {
             isEnabled = isSupported
+            if isEnabled == .no {
+                try doDisable(with: appManager, dataManager: dataManager)
+            }
         }
     }
     
     func reloadIsSupported(with appManager: AppManager, dataManager: DataManager) throws {
-        fatalError("Not implemented.")
+        throw Error.notImplemented
     }
     
     func reloadIsEnabled(with appManager: AppManager, dataManager: DataManager) throws {
-        fatalError("Not implemented.")
+        throw Error.notImplemented
     }
     
     final func isSupportedByDependencies(with appManager: AppManager, dataManager: DataManager) throws -> State {
@@ -128,7 +131,7 @@ class Functionality: ObservableObject, FunctionalityProtocol, Identifiable {
         fatalError("Not implemented.")
     }
     
-    enum Error: Swift.Error {
+    enum Error: Swift.Error, Equatable {
         case notSupported(message: String)
         case notImplemented
         case notAuthorized

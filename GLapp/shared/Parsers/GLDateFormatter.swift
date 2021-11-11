@@ -52,4 +52,12 @@ class GLDateFormatter {
         formatter.dateTimeStyle = .numeric
         return formatter
     }
+    
+    static var dateComponentsFormatter: DateComponentsFormatter {
+        let formatter = DateComponentsFormatter()
+        formatter.formattingContext = .standalone
+        formatter.allowedUnits = [.day, .hour, .minute, .second]
+        formatter.unitsStyle = .full
+        return formatter
+    }
 }

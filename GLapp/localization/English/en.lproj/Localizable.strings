@@ -91,6 +91,7 @@
 "keyboard_shortcut_reload_representative_plan" = "R";
 "feedback" = "Feedback";
 "functionality_error_not_supported" = "The feature isn't supported in the current configuration: ";
+"misconfigured" = "misconfigured"; // not necessarily needed __right__ now
 "user_credentials_empty" = "Login information empty";
 "user_credentials_empty_activate_demo_mode" = "Enable demo mode?";
 "demo_mode_active" = "Demo mode active.";
@@ -101,4 +102,5 @@
 "no_scheduled_notifications" = "No scheduled notifications.";
 "advanced_settings" = "Advanced settings";
 "test_notification" = "Test notification";
-"repr_plan_notifications_high_relevance_colon" = "Time interval of representative plan notifications with high relevance: ";
+"repr_plan_notifications_high_relevance_explanation" = "Maximum distance in time of a representative plan notification to the corresponding lesson making the notification being marked as relevant. This results in it being sent as a time-sensitive notification and/or being prioritized in notification center.";
+"not_available" = "N/A";

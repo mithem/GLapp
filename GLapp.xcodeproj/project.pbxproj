@@ -42,6 +42,7 @@
 		49524BC4272F25E40069880B /* FColoredInlineSubjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49524BC3272F25E40069880B /* FColoredInlineSubjects.swift */; };
 		49526F9427218E8700FD0242 /* FBackgroundReprPlanNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49526F9327218E8700FD0242 /* FBackgroundReprPlanNotifications.swift */; };
 		49526F96272190D900FD0242 /* FClassTestReminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49526F95272190D900FD0242 /* FClassTestReminders.swift */; };
+		4952B1EF273D689100504D3E /* TestFunctionality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4952B1EE273D689100504D3E /* TestFunctionality.swift */; };
 		495D25D9273AA3C500F3899D /* RepresentativeLesson+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495D25D8273AA3C500F3899D /* RepresentativeLesson+Equatable.swift */; };
 		495D25DB273AA46900F3899D /* RepresentativeLesson+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495D25DA273AA46900F3899D /* RepresentativeLesson+Codable.swift */; };
 		495D25DD273AA6EA00F3899D /* RepresentativeDay+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495D25DC273AA6EA00F3899D /* RepresentativeDay+Equatable.swift */; };
@@ -179,6 +180,7 @@
 		49524BC3272F25E40069880B /* FColoredInlineSubjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FColoredInlineSubjects.swift; sourceTree = "<group>"; };
 		49526F9327218E8700FD0242 /* FBackgroundReprPlanNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBackgroundReprPlanNotifications.swift; sourceTree = "<group>"; };
 		49526F95272190D900FD0242 /* FClassTestReminders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FClassTestReminders.swift; sourceTree = "<group>"; };
+		4952B1EE273D689100504D3E /* TestFunctionality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFunctionality.swift; sourceTree = "<group>"; };
 		495D25D8273AA3C500F3899D /* RepresentativeLesson+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepresentativeLesson+Equatable.swift"; sourceTree = "<group>"; };
 		495D25DA273AA46900F3899D /* RepresentativeLesson+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepresentativeLesson+Codable.swift"; sourceTree = "<group>"; };
 		495D25DC273AA6EA00F3899D /* RepresentativeDay+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepresentativeDay+Equatable.swift"; sourceTree = "<group>"; };
@@ -461,6 +463,7 @@
 				495E6B8C271837180052B565 /* TestTimetableParser.swift */,
 				494595C22727C5050096B5D7 /* TestRepresentativeLesson.swift */,
 				49680F25272A64AB00884096 /* TestRepresentativePlan.swift */,
+				4952B1EE273D689100504D3E /* TestFunctionality.swift */,
 				499A3EE82719D5B20045683D /* TestPlan.xctestplan */,
 			);
 			path = GLappTests;
@@ -898,6 +901,7 @@
 				49680F26272A64AB00884096 /* TestRepresentativePlan.swift in Sources */,
 				494595C32727C5050096B5D7 /* TestRepresentativeLesson.swift in Sources */,
 				495E6B8D271837180052B565 /* TestTimetableParser.swift in Sources */,
+				4952B1EF273D689100504D3E /* TestFunctionality.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1084,10 +1088,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLapp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;
@@ -1118,10 +1122,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLappRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;

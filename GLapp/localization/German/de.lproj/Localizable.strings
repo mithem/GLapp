@@ -103,4 +103,5 @@
 "advanced_settings" = "Fortgeschrittene Einstellungen";
 "privacy_calendars_usage_description" = "GLapp erlauben, Einträge zum Kalendar hinzuzufügen, z.B. bevorstehende Klausuren.";
 "test_notification" = "Test-Benachrichtigung";
-"repr_plan_notifications_high_relevance_colon" = "Zeitintervall vor Vertretungsplanbenachrichtigungen mit hoher Relevanz: ";
+"repr_plan_notifications_high_relevance_explanation" = "Maximaler zeitlicher Abstand einer Vertretungsplanbenachrichtigung von einer Vertretungsstunde, um als relevant gewertet zu werden. Dann werden Mitteilungen als dringlich bewertet und/oder erscheinen priorisiert in der Mitteilungszentrale.";
+"not_available" = "N/A";

@@ -15,6 +15,22 @@
       "options" : {
         "threadSanitizerEnabled" : true
       }
+    },
+    {
+      "id" : "45FBDD56-AE7A-423E-A3A5-86AEEFECB912",
+      "name" : "en-US",
+      "options" : {
+        "language" : "en",
+        "region" : "US"
+      }
+    },
+    {
+      "id" : "05641E3E-AC60-421D-ADFC-A9187B94402F",
+      "name" : "de-DE",
+      "options" : {
+        "language" : "de",
+        "region" : "DE"
+      }
     }
   ],
   "defaultOptions" : {

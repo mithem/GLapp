@@ -14,14 +14,20 @@ struct AdvancedSettingsView: View {
     @AppStorage(UserDefaultsKeys.reprPlanNotificationsHighRelevanceTimeInterval) var reprPlanNotificationHighRelevanceTimeInterval = Constants.defaultReprPlanNotificationsHighRelevanceTimeInterval
     var body: some View {
         Form {
-            Button("show_scheduled_notifications") {
-                showingScheduledNotificationsView = true
+            Section {
+                Button("show_scheduled_notifications") {
+                    showingScheduledNotificationsView = true
+                }
+                .disabled(appManager.notifications.isEnabled != .yes)
+                .sheet(isPresented: $showingScheduledNotificationsView) {
+                    ScheduledNotificationsView()
+                }
             }
-            .disabled(appManager.notifications.isEnabled != .yes)
-            .sheet(isPresented: $showingScheduledNotificationsView) {
-                ScheduledNotificationsView()
+            Section {
+                Stepper(GLDateFormatter.dateComponentsFormatter.string(from: .init(hour: Int(reprPlanNotificationHighRelevanceTimeInterval / 3600))) ?? "not_available", value: $reprPlanNotificationHighRelevanceTimeInterval, in: 3600...24 * 3600, step: 3600)
+                Text(NSLocalizedString("repr_plan_notifications_high_relevance_explanation"))
+                    .foregroundColor(.secondary)
             }
-            Stepper(NSLocalizedString("repr_plan_notifications_high_relevance_colon") + GLDateFormatter.relativeDateTimeFormatter.localizedString(fromTimeInterval: reprPlanNotificationHighRelevanceTimeInterval), value: $reprPlanNotificationHighRelevanceTimeInterval, in: 3600...24 * 3600, step: 3600)
         }
         .navigationTitle("advanced_settings")
     }

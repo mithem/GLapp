@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "7A559994-A98A-4755-946F-8C6A2BA9506F",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:GLapp.xcodeproj",
+        "identifier" : "4976D13B27108442009C5AC2",
+        "name" : "GLappTests"
+      }
+    }
+  ],
+  "version" : 1
+}

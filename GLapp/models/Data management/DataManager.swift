@@ -274,6 +274,7 @@ class DataManager: ObservableObject {
         }
         guard let url = try? getUrl(for: "/XML/vplan.php", queryItems: queryItems, authenticate: true) else { fatalError("Invalid URL for reprPlan update.") }
         let req = URLRequest(url: url, timeoutInterval: Constants.timeoutInterval)
+        try? loadLocalData(for: \.getRepresentativePlan) // otherwise just deliver the notification
         URLSession.shared.dataTask(with: req) { data, response, error in
             if let error = error {
                 completion(.failure(.networkError(.other(error))))
@@ -292,6 +293,12 @@ class DataManager: ObservableObject {
                     case .success(let plan):
                         if let date = plan.date {
                             UserDefaults.standard.set(date.timeIntervalSince1970, forKey: UserDefaultsKeys.lastReprPlanUpdateTimestamp)
+                        }
+                        if !UserDefaults.standard.bool(forKey: UserDefaultsKeys.reprPlanNotificationsEntireReprPlan) {
+                            if let previous = self.representativePlan {
+                                completion(.success(plan - previous))
+                                return
+                            }
                         }
                         completion(.success(plan))
                     case .failure(let error):

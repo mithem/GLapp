@@ -105,3 +105,5 @@
 "test_notification" = "Test-Benachrichtigung";
 "repr_plan_notifications_high_relevance_explanation" = "Maximaler zeitlicher Abstand einer Vertretungsplanbenachrichtigung von einer Vertretungsstunde, um als relevant gewertet zu werden. Dann werden Mitteilungen als dringlich bewertet und/oder erscheinen priorisiert in der Mitteilungszentrale.";
 "not_available" = "N/A";
+"repr_plan_notifications_send_entire_repr_plan" = "Gesamten Vertr.-plan in Benachr. senden";
+"repr_plan_notifications_send_entire_repr_plan_explanation" = "Bei Vertretungsplanänderungen nicht nur die jeweiligen Änderungen (Ergänzungen/Änderungen, nicht Löschungen) versenden, sondern den gesamten Vertretungsplan.";

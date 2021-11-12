@@ -101,4 +101,46 @@ final class RepresentativeLesson: ObservableObject, Identifiable, DeliverableByN
         self.normalTeacher = normalTeacher
         self.representativeTeacher = representativeTeacher
     }
+    
+    /// The difference between two `RepresentativeLesson`s, with "objective truth" / a new value saved in this class's attributes
+    struct Difference {
+        // date & subject used to identify single lessons
+        var room: String?
+        var newRoom: String?
+        var note: String?
+        var normalTeacher: String?
+        var representativeTeacher: String?
+        
+        var isEmpty: Bool {
+            room == nil && newRoom == nil && note == nil && normalTeacher == nil && representativeTeacher == nil
+        }
+        
+        init(room: String? = nil, newRoom: String? = nil, note: String? = nil, normalTeacher: String? = nil, representativeTeacher: String? = nil) {
+            self.room = room
+            self.newRoom = newRoom
+            self.note = note
+            self.normalTeacher = normalTeacher
+            self.representativeTeacher = representativeTeacher
+        }
+        
+        func newLesson(old: RepresentativeLesson) -> RepresentativeLesson {
+            let lesson = old.copy()
+            if let room = room {
+                lesson.room = room
+            }
+            if let newRoom = newRoom {
+                lesson.newRoom = newRoom
+            }
+            if let note = note {
+                lesson.note = note
+            }
+            if let normalTeacher = normalTeacher {
+                lesson.normalTeacher = normalTeacher
+            }
+            if let representativeTeacher = representativeTeacher {
+                lesson.representativeTeacher = representativeTeacher
+            }
+            return lesson
+        }
+    }
 }

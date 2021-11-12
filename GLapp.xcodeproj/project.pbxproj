@@ -19,6 +19,8 @@
 		4921C48D2731C3F100DA256D /* UpcomingClassTestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4921C48C2731C3F100DA256D /* UpcomingClassTestViewModel.swift */; };
 		4921C48F2731C57200DA256D /* ScheduledNotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4921C48E2731C57200DA256D /* ScheduledNotificationsViewModel.swift */; };
 		49250B652720A8DE0096411F /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49250B642720A8DE0096411F /* AppManager.swift */; };
+		49262702273E379C00829AA7 /* Differentiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49262701273E379C00829AA7 /* Differentiable.swift */; };
+		49262704273E39BE00829AA7 /* RepresentativePlan+Differentiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49262703273E39BE00829AA7 /* RepresentativePlan+Differentiable.swift */; };
 		492804C2272010220055ED63 /* ClassTestPlan+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492804C1272010220055ED63 /* ClassTestPlan+Equatable.swift */; };
 		492804C42720104D0055ED63 /* RepresentativePlan+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492804C32720104D0055ED63 /* RepresentativePlan+Equatable.swift */; };
 		492804C8272026EF0055ED63 /* GLappError+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492804C7272026EF0055ED63 /* GLappError+Equatable.swift */; };
@@ -109,6 +111,18 @@
 		49AF336D2719963A00F406D1 /* TimetableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF336A2719963A00F406D1 /* TimetableView.swift */; };
 		49D110A5272AD84500CEBF1D /* DateComponents+plus+minus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D110A4272AD84500CEBF1D /* DateComponents+plus+minus.swift */; };
 		49D110A7272AD87B00CEBF1D /* DateComponents+combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D110A6272AD87B00CEBF1D /* DateComponents+combine.swift */; };
+		49D67A1B273E703100ADC319 /* RepresentativePlan+Copying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D67A1A273E703100ADC319 /* RepresentativePlan+Copying.swift */; };
+		49D67A1D273E718500ADC319 /* RepresentativePlan+CustomDebugStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D67A1C273E718500ADC319 /* RepresentativePlan+CustomDebugStringConvertible.swift */; };
+		49D67A1F273E728F00ADC319 /* RepresentativeDay+CustomDebugStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D67A1E273E728F00ADC319 /* RepresentativeDay+CustomDebugStringConvertible.swift */; };
+		49D67A21273E72FE00ADC319 /* RepresentativeLesson+CustomDebugStringConvertible.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D67A20273E72FE00ADC319 /* RepresentativeLesson+CustomDebugStringConvertible.swift.swift */; };
+		49D67A23273E768400ADC319 /* RepresentativeDay+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D67A22273E768400ADC319 /* RepresentativeDay+Comparable.swift */; };
+		49D67A25273E786200ADC319 /* RepresentativeDay+Differentiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D67A24273E786200ADC319 /* RepresentativeDay+Differentiable.swift */; };
+		49D67A27273E78D900ADC319 /* RepresentativeLesson+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D67A26273E78D900ADC319 /* RepresentativeLesson+Comparable.swift */; };
+		49D67A29273E9E6600ADC319 /* RepresentativeLesson+Differentiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D67A28273E9E6600ADC319 /* RepresentativeLesson+Differentiable.swift */; };
+		49D67A2B273EA6B900ADC319 /* RepresentativeLesson+Copying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D67A2A273EA6B900ADC319 /* RepresentativeLesson+Copying.swift */; };
+		49D67A2D273EC76800ADC319 /* RepresentativeDay+Copying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D67A2C273EC76800ADC319 /* RepresentativeDay+Copying.swift */; };
+		49D67A2F273EC7B900ADC319 /* Array+Copying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D67A2E273EC7B900ADC319 /* Array+Copying.swift */; };
+		49D67A31273EC87C00ADC319 /* Copying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D67A30273EC87C00ADC319 /* Copying.swift */; };
 		49E59DE6271C7180009A1609 /* EditSubjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E59DE5271C7180009A1609 /* EditSubjectView.swift */; };
 		49EEDE47272158A0009A4C6A /* Functionality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EEDE46272158A0009A4C6A /* Functionality.swift */; };
 		49EEDE4C27215BDD009A4C6A /* FunctionalityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EEDE4B27215BDD009A4C6A /* FunctionalityProtocol.swift */; };
@@ -157,6 +171,8 @@
 		4921C48C2731C3F100DA256D /* UpcomingClassTestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingClassTestViewModel.swift; sourceTree = "<group>"; };
 		4921C48E2731C57200DA256D /* ScheduledNotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledNotificationsViewModel.swift; sourceTree = "<group>"; };
 		49250B642720A8DE0096411F /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
+		49262701273E379C00829AA7 /* Differentiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Differentiable.swift; sourceTree = "<group>"; };
+		49262703273E39BE00829AA7 /* RepresentativePlan+Differentiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepresentativePlan+Differentiable.swift"; sourceTree = "<group>"; };
 		492804C1272010220055ED63 /* ClassTestPlan+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClassTestPlan+Equatable.swift"; sourceTree = "<group>"; };
 		492804C32720104D0055ED63 /* RepresentativePlan+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepresentativePlan+Equatable.swift"; sourceTree = "<group>"; };
 		492804C7272026EF0055ED63 /* GLappError+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GLappError+Equatable.swift"; sourceTree = "<group>"; };
@@ -228,7 +244,7 @@
 		4991A2B927199789008559F9 /* GLDateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLDateFormatter.swift; sourceTree = "<group>"; };
 		499A3EE52719D0FA0045683D /* TestGLappUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestGLappUI.swift; sourceTree = "<group>"; };
 		499A3EE72719D37A0045683D /* UITestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UITestPlan.xctestplan; sourceTree = "<group>"; };
-		499A3EE82719D5B20045683D /* TestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestPlan.xctestplan; sourceTree = "<group>"; };
+		499A3EE82719D5B20045683D /* ExtensiveTestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = ExtensiveTestPlan.xctestplan; sourceTree = "<group>"; };
 		499A3EE92719F7220045683D /* ClassTest+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClassTest+Equatable.swift"; sourceTree = "<group>"; };
 		499A3EEB2719F7350045683D /* ClassTest+Comparable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClassTest+Comparable.swift"; sourceTree = "<group>"; };
 		499A3EED2719FB010045683D /* UpcomingClassTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingClassTestView.swift; sourceTree = "<group>"; };
@@ -252,6 +268,19 @@
 		49AF336A2719963A00F406D1 /* TimetableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimetableView.swift; sourceTree = "<group>"; };
 		49D110A4272AD84500CEBF1D /* DateComponents+plus+minus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponents+plus+minus.swift"; sourceTree = "<group>"; };
 		49D110A6272AD87B00CEBF1D /* DateComponents+combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponents+combine.swift"; sourceTree = "<group>"; };
+		49D67A1A273E703100ADC319 /* RepresentativePlan+Copying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepresentativePlan+Copying.swift"; sourceTree = "<group>"; };
+		49D67A1C273E718500ADC319 /* RepresentativePlan+CustomDebugStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepresentativePlan+CustomDebugStringConvertible.swift"; sourceTree = "<group>"; };
+		49D67A1E273E728F00ADC319 /* RepresentativeDay+CustomDebugStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepresentativeDay+CustomDebugStringConvertible.swift"; sourceTree = "<group>"; };
+		49D67A20273E72FE00ADC319 /* RepresentativeLesson+CustomDebugStringConvertible.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepresentativeLesson+CustomDebugStringConvertible.swift.swift"; sourceTree = "<group>"; };
+		49D67A22273E768400ADC319 /* RepresentativeDay+Comparable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepresentativeDay+Comparable.swift"; sourceTree = "<group>"; };
+		49D67A24273E786200ADC319 /* RepresentativeDay+Differentiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepresentativeDay+Differentiable.swift"; sourceTree = "<group>"; };
+		49D67A26273E78D900ADC319 /* RepresentativeLesson+Comparable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepresentativeLesson+Comparable.swift"; sourceTree = "<group>"; };
+		49D67A28273E9E6600ADC319 /* RepresentativeLesson+Differentiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepresentativeLesson+Differentiable.swift"; sourceTree = "<group>"; };
+		49D67A2A273EA6B900ADC319 /* RepresentativeLesson+Copying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepresentativeLesson+Copying.swift"; sourceTree = "<group>"; };
+		49D67A2C273EC76800ADC319 /* RepresentativeDay+Copying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepresentativeDay+Copying.swift"; sourceTree = "<group>"; };
+		49D67A2E273EC7B900ADC319 /* Array+Copying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Copying.swift"; sourceTree = "<group>"; };
+		49D67A30273EC87C00ADC319 /* Copying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Copying.swift; sourceTree = "<group>"; };
+		49D67A32273ECA7D00ADC319 /* QuickTestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = QuickTestPlan.xctestplan; sourceTree = "<group>"; };
 		49E59DE5271C7180009A1609 /* EditSubjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSubjectView.swift; sourceTree = "<group>"; };
 		49EEDE46272158A0009A4C6A /* Functionality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functionality.swift; sourceTree = "<group>"; };
 		49EEDE4B27215BDD009A4C6A /* FunctionalityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalityProtocol.swift; sourceTree = "<group>"; };
@@ -303,6 +332,9 @@
 			children = (
 				4921C4882731B87000DA256D /* Subject+CustomDebugStringConvertible.swift */,
 				4921C48A2731BEA900DA256D /* Lesson+CustomDebugStringConvertible.swift */,
+				49D67A1C273E718500ADC319 /* RepresentativePlan+CustomDebugStringConvertible.swift */,
+				49D67A1E273E728F00ADC319 /* RepresentativeDay+CustomDebugStringConvertible.swift */,
+				49D67A20273E72FE00ADC319 /* RepresentativeLesson+CustomDebugStringConvertible.swift.swift */,
 			);
 			path = CustomDebugStringConvertible;
 			sourceTree = "<group>";
@@ -360,11 +392,20 @@
 				49686D86271DDA250075F14A /* Lesson+Equatable.swift */,
 				49686D88271DDC490075F14A /* Weekday+Equatable.swift */,
 				49517FFD271F73BD0085BEA6 /* Timetable+Equatable.swift */,
+				49D67A2E273EC7B900ADC319 /* Array+Copying.swift */,
 				495D25D8273AA3C500F3899D /* RepresentativeLesson+Equatable.swift */,
 				495D25DA273AA46900F3899D /* RepresentativeLesson+Codable.swift */,
+				49D67A26273E78D900ADC319 /* RepresentativeLesson+Comparable.swift */,
+				49D67A28273E9E6600ADC319 /* RepresentativeLesson+Differentiable.swift */,
+				49D67A2A273EA6B900ADC319 /* RepresentativeLesson+Copying.swift */,
 				495D25DC273AA6EA00F3899D /* RepresentativeDay+Equatable.swift */,
 				495D25E0273AA75600F3899D /* RepresentativeDay+Codable.swift */,
+				49D67A22273E768400ADC319 /* RepresentativeDay+Comparable.swift */,
+				49D67A24273E786200ADC319 /* RepresentativeDay+Differentiable.swift */,
+				49D67A2C273EC76800ADC319 /* RepresentativeDay+Copying.swift */,
 				495D25DE273AA72900F3899D /* RepresentativePlan+Codable.swift */,
+				49262703273E39BE00829AA7 /* RepresentativePlan+Differentiable.swift */,
+				49D67A1A273E703100ADC319 /* RepresentativePlan+Copying.swift */,
 				492804C1272010220055ED63 /* ClassTestPlan+Equatable.swift */,
 				492804C32720104D0055ED63 /* RepresentativePlan+Equatable.swift */,
 				492804C7272026EF0055ED63 /* GLappError+Equatable.swift */,
@@ -464,7 +505,8 @@
 				494595C22727C5050096B5D7 /* TestRepresentativeLesson.swift */,
 				49680F25272A64AB00884096 /* TestRepresentativePlan.swift */,
 				4952B1EE273D689100504D3E /* TestFunctionality.swift */,
-				499A3EE82719D5B20045683D /* TestPlan.xctestplan */,
+				499A3EE82719D5B20045683D /* ExtensiveTestPlan.xctestplan */,
+				49D67A32273ECA7D00ADC319 /* QuickTestPlan.xctestplan */,
 			);
 			path = GLappTests;
 			sourceTree = "<group>";
@@ -509,6 +551,8 @@
 				4976D16327108590009C5AC2 /* NetworkResult.swift */,
 				4976D16127108590009C5AC2 /* UserDefaultsKeys.swift */,
 				49517FF9271F30500085BEA6 /* DeliverableByNotification.swift */,
+				49262701273E379C00829AA7 /* Differentiable.swift */,
+				49D67A30273EC87C00ADC319 /* Copying.swift */,
 				49F380ED2710E132002AE814 /* ClassTestPlan */,
 				49F380E62710E055002AE814 /* Timetable */,
 				4976D169271085C1009C5AC2 /* Representative plan */,
@@ -787,10 +831,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				4976D16027108514009C5AC2 /* Constants.swift in Sources */,
+				49D67A23273E768400ADC319 /* RepresentativeDay+Comparable.swift in Sources */,
 				49AF334E271995FA00F406D1 /* ContentView+LoginViewDelegate.swift in Sources */,
 				4921C48027319E8700DA256D /* ScheduledNotificationsView.swift in Sources */,
 				4991A2B427199768008559F9 /* RepresentativePlanParser.swift in Sources */,
+				49D67A21273E72FE00ADC319 /* RepresentativeLesson+CustomDebugStringConvertible.swift.swift in Sources */,
 				49A5B2462719A3C400577767 /* FunctionalityCheckView.swift in Sources */,
+				49D67A1B273E703100ADC319 /* RepresentativePlan+Copying.swift in Sources */,
 				49F380E82710E05F002AE814 /* Timetable.swift in Sources */,
 				49517FFC271F668A0085BEA6 /* SubjectAttributeView.swift in Sources */,
 				4976D16527108590009C5AC2 /* NetworkError.swift in Sources */,
@@ -800,6 +847,7 @@
 				4934052B2712BC6A008B059B /* DataManagementTask.swift in Sources */,
 				49517FFE271F73BD0085BEA6 /* Timetable+Equatable.swift in Sources */,
 				49250B652720A8DE0096411F /* AppManager.swift in Sources */,
+				49D67A2F273EC7B900ADC319 /* Array+Copying.swift in Sources */,
 				49AF33672719962C00F406D1 /* RepresentativeLessonInlineView.swift in Sources */,
 				49EEDE4C27215BDD009A4C6A /* FunctionalityProtocol.swift in Sources */,
 				49686D89271DDC490075F14A /* Weekday+Equatable.swift in Sources */,
@@ -807,7 +855,9 @@
 				4921C48B2731BEA900DA256D /* Lesson+CustomDebugStringConvertible.swift in Sources */,
 				49F380EA2710E095002AE814 /* Weekday.swift in Sources */,
 				49524BC2272F247C0069880B /* Color+Codable.swift in Sources */,
+				49D67A1F273E728F00ADC319 /* RepresentativeDay+CustomDebugStringConvertible.swift in Sources */,
 				49AF336C2719963A00F406D1 /* LessonInlineView.swift in Sources */,
+				49D67A29273E9E6600ADC319 /* RepresentativeLesson+Differentiable.swift in Sources */,
 				49D110A5272AD84500CEBF1D /* DateComponents+plus+minus.swift in Sources */,
 				4976D175271085EB009C5AC2 /* RepresentativeDay.swift in Sources */,
 				499C08602734FBD000206514 /* AdvancedSettingsView.swift in Sources */,
@@ -818,6 +868,7 @@
 				49F380EF2710E146002AE814 /* ClassTestPlan.swift in Sources */,
 				493E8AC9273008DE008C9B13 /* Color+getColoredForegroundColor.swift in Sources */,
 				49AF336B2719963A00F406D1 /* TimetableViewModel.swift in Sources */,
+				49D67A31273EC87C00ADC319 /* Copying.swift in Sources */,
 				4991A2AD271996F8008559F9 /* LoginView.swift in Sources */,
 				493E8AC72730054B008C9B13 /* Color+lighten+darken.swift in Sources */,
 				49524BC4272F25E40069880B /* FColoredInlineSubjects.swift in Sources */,
@@ -833,6 +884,7 @@
 				495D25E1273AA75600F3899D /* RepresentativeDay+Codable.swift in Sources */,
 				49AF33662719962C00F406D1 /* RepresentativePlanView.swift in Sources */,
 				493405172711BADE008B059B /* MockDataManager.swift in Sources */,
+				49D67A1D273E718500ADC319 /* RepresentativePlan+CustomDebugStringConvertible.swift in Sources */,
 				49526F96272190D900FD0242 /* FClassTestReminders.swift in Sources */,
 				499A3EEE2719FB010045683D /* UpcomingClassTestView.swift in Sources */,
 				495D25DB273AA46900F3899D /* RepresentativeLesson+Codable.swift in Sources */,
@@ -858,9 +910,13 @@
 				4991A2A7271996F8008559F9 /* SettingsView.swift in Sources */,
 				492804C2272010220055ED63 /* ClassTestPlan+Equatable.swift in Sources */,
 				495D25D9273AA3C500F3899D /* RepresentativeLesson+Equatable.swift in Sources */,
+				49D67A2D273EC76800ADC319 /* RepresentativeDay+Copying.swift in Sources */,
+				49D67A27273E78D900ADC319 /* RepresentativeLesson+Comparable.swift in Sources */,
 				49F380E52710DFE0002AE814 /* RepresentativePlan.swift in Sources */,
+				49D67A2B273EA6B900ADC319 /* RepresentativeLesson+Copying.swift in Sources */,
 				499C0866273532CA00206514 /* EKAuthorizationStatus+functionalityState.swift in Sources */,
 				4991A2B82719976F008559F9 /* functions.swift in Sources */,
+				49262702273E379C00829AA7 /* Differentiable.swift in Sources */,
 				4976D173271085EB009C5AC2 /* Subject.swift in Sources */,
 				49F2662E27325D6800F89A7B /* FClassTestCalendarEvents.swift in Sources */,
 				49F266322732925500F89A7B /* FCalendarAccess.swift in Sources */,
@@ -871,12 +927,14 @@
 				491C4829273566D60027707E /* GLappScene.swift in Sources */,
 				49EEDE4E272167D8009A4C6A /* FNotifications.swift in Sources */,
 				49AF33622719962100F406D1 /* ClassTestInlineView.swift in Sources */,
+				49D67A25273E786200ADC319 /* RepresentativeDay+Differentiable.swift in Sources */,
 				49517FFA271F30500085BEA6 /* DeliverableByNotification.swift in Sources */,
 				495E7C51271ABFC9000085C7 /* DataManagementTaskView.swift in Sources */,
 				4991A2BA27199789008559F9 /* GLDateFormatter.swift in Sources */,
 				49686D87271DDA250075F14A /* Lesson+Equatable.swift in Sources */,
 				49FDEDD3271359850013341B /* String+Identifiable.swift in Sources */,
 				49D110A7272AD87B00CEBF1D /* DateComponents+combine.swift in Sources */,
+				49262704273E39BE00829AA7 /* RepresentativePlan+Differentiable.swift in Sources */,
 				4991A2A9271996F8008559F9 /* UIConstants.swift in Sources */,
 				4991A2B627199768008559F9 /* ClassTestPlanParser.swift in Sources */,
 				499A3EEC2719F7350045683D /* ClassTest+Comparable.swift in Sources */,

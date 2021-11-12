@@ -44,4 +44,146 @@ class TestRepresentativePlan: XCTestCase {
         
         XCTAssertEqual(plan.summary, "test information 3; \(l1.summary), \(l2.summary); test information 1, test information 2, \(l3.summary)")
     }
+    
+    func testDifferenceIdentical() {
+        let cal = Calendar(identifier: .gregorian)
+        let todayComp = cal.dateComponents([.year, .month, .day], from: .rightNow)
+        var tomorrowComp = todayComp
+        tomorrowComp.day! += 1
+        let today = cal.date(from: todayComp)!
+        let tomorrow = cal.date(from: tomorrowComp)!
+        let plan = RepresentativePlan(date: today, representativeDays: [
+            .init(date: today, lessons: [
+                .init(date: today, lesson: 2, room: "PR2", newRoom: "PR1", note: "Raumänderung", subject: sPH, normalTeacher: "SEN", representativeTeacher: nil)
+            ], notes: ["Hello, world!"]),
+            .init(date: tomorrow, lessons: [
+                .init(date: tomorrow, lesson: 5, room: "A16", newRoom: "E32", note: "Raumänderung", subject: sD, normalTeacher: "DRO", representativeTeacher: nil)
+            ], notes: [
+                "Hello, there!"
+            ])
+        ], lessons: [
+            .init(date: today, lesson: 1, room: "A11", newRoom: nil, note: "EVA", subject: sM, normalTeacher: "PST", representativeTeacher: nil)
+        ], notes: [
+            "This is a test"
+        ])
+        let expected = RepresentativePlan(date: today, representativeDays: [], lessons: [], notes: [])
+        
+        XCTAssert(RepresentativePlan.difference(plan, to: plan).isEmpty)
+        XCTAssertEqual(RepresentativePlan.difference(plan, to: plan), expected)
+    }
+    
+    func testDifferenceNotes() {
+        let cal = Calendar(identifier: .gregorian)
+        let todayComp = cal.dateComponents([.year, .month, .day], from: .rightNow)
+        var tomorrowComp = todayComp
+        tomorrowComp.day! += 1
+        let today = cal.date(from: todayComp)!
+        let tomorrow = cal.date(from: tomorrowComp)!
+        let plan1 = RepresentativePlan(date: today, representativeDays: [
+            .init(date: today, lessons: [
+                .init(date: today, lesson: 2, room: "PR2", newRoom: "PR1", note: "Raumänderung", subject: sPH, normalTeacher: "SEN", representativeTeacher: nil)
+            ], notes: ["Hello, world!"]),
+            .init(date: tomorrow, lessons: [
+                .init(date: tomorrow, lesson: 5, room: "A16", newRoom: "E32", note: "Raumänderung", subject: sD, normalTeacher: "DRO", representativeTeacher: nil)
+            ], notes: [
+                "Hello, there!"
+            ])
+        ], lessons: [
+            .init(date: today, lesson: 1, room: "A11", newRoom: nil, note: "EVA", subject: sM, normalTeacher: "PST", representativeTeacher: nil)
+        ], notes: [
+            "This is a test"
+        ])
+        let plan2 = plan1.copy()
+        plan2.notes.append("Test message")
+        let expected = RepresentativePlan(date: today, representativeDays: [], lessons: [], notes: ["Test message"])
+        
+        let dif = RepresentativePlan.difference(plan1, to: plan2)
+        
+        XCTAssertFalse(dif.isEmpty)
+        XCTAssertEqual(dif, expected)
+    }
+    
+    func testDifferenceOneMoreDay() {
+        let cal = Calendar(identifier: .gregorian)
+        let todayComp = cal.dateComponents([.year, .month, .day], from: .rightNow)
+        var tomorrowComp = todayComp
+        tomorrowComp.day! += 1
+        var inTwoDaysComponents = tomorrowComp
+        inTwoDaysComponents.day! += 1
+        let today = cal.date(from: todayComp)!
+        let tomorrow = cal.date(from: tomorrowComp)!
+        let inTwoDays = cal.date(from: inTwoDaysComponents)!
+        let plan1 = RepresentativePlan(date: today, representativeDays: [
+            .init(date: today, lessons: [
+                .init(date: today, lesson: 2, room: "PR2", newRoom: "PR1", note: "Raumänderung", subject: sPH, normalTeacher: "SEN", representativeTeacher: nil)
+            ], notes: ["Hello, world!"]),
+            .init(date: tomorrow, lessons: [
+                .init(date: tomorrow, lesson: 5, room: "A16", newRoom: "E32", note: "Raumänderung", subject: sD, normalTeacher: "DRO", representativeTeacher: nil)
+            ], notes: [
+                "Hello, there!"
+            ])
+        ], lessons: [
+            .init(date: today, lesson: 1, room: "A11", newRoom: nil, note: "EVA", subject: sM, normalTeacher: "PST", representativeTeacher: nil)
+        ], notes: [
+            "This is a test"
+        ])
+        let plan2 = plan1.copy()
+        let day = RepresentativeDay(date: inTwoDays, lessons: [
+            .init(date: inTwoDays, lesson: 3, room: "A11", newRoom: nil, note: "EVA", subject: sM, normalTeacher: "PST", representativeTeacher: nil)
+        ], notes: [])
+        plan2.representativeDays.append(day)
+        let expected = RepresentativePlan(date: today, representativeDays: [day], lessons: [], notes: [])
+        
+        let dif = RepresentativePlan.difference(plan2, to: plan1)
+        
+        XCTAssertFalse(dif.isEmpty)
+        XCTAssertEqual(dif, expected)
+    }
+    
+    func testDifferenceAllTogetherNow() {
+        let cal = Calendar(identifier: .gregorian)
+        let todayComp = cal.dateComponents([.year, .month, .day], from: .rightNow)
+        var tomorrowComp = todayComp
+        tomorrowComp.day! += 1
+        var inTwoDaysComponents = tomorrowComp
+        inTwoDaysComponents.day! += 1
+        let today = cal.date(from: todayComp)!
+        let tomorrow = cal.date(from: tomorrowComp)!
+        let inTwoDays = cal.date(from: inTwoDaysComponents)!
+        let plan1 = RepresentativePlan(date: today, representativeDays: [
+            .init(date: today, lessons: [
+                .init(date: today, lesson: 2, room: "PR2", newRoom: "PR1", note: "Raumänderung", subject: sPH, normalTeacher: "SEN", representativeTeacher: nil)
+            ], notes: ["Hello, world!"]),
+            .init(date: tomorrow, lessons: [
+                .init(date: tomorrow, lesson: 6, room: "A16", newRoom: "E32", note: "Raumänderung", subject: sD, normalTeacher: "DRO", representativeTeacher: nil)
+            ], notes: [
+                "Hello, there!"
+            ])
+        ], lessons: [
+            .init(date: today, lesson: 1, room: "A11", newRoom: nil, note: "EVA", subject: sM, normalTeacher: "PST", representativeTeacher: nil)
+        ], notes: [
+            "This is a test"
+        ])
+        let plan2 = plan1.copy()
+        let day = RepresentativeDay(date: inTwoDays, lessons: [
+            .init(date: inTwoDays, lesson: 3, room: "A11", newRoom: nil, note: "EVA", subject: sM, normalTeacher: "PST", representativeTeacher: nil)
+        ], notes: [])
+        plan2.representativeDays[1].notes.append("1234")
+        plan2.representativeDays[1].lessons[0] = .init(date: tomorrow, lesson: 6, room: "A16", newRoom: "E31", note: "Raumänderung", subject: sD, normalTeacher: "DRO", representativeTeacher: nil)
+        plan2.representativeDays[1].lessons.append(.init(date: tomorrow, lesson: 7, room: "A16", newRoom: "E31", note: "Raumänderung", subject: sD, normalTeacher: "DRO", representativeTeacher: nil))
+        plan2.representativeDays.append(day)
+        plan2.notes.append("Yet another test!")
+        let expected = RepresentativePlan(date: today, representativeDays: [
+            .init(date: tomorrow, lessons: [
+                .init(date: tomorrow, lesson: 6, room: "A16", newRoom: "E31", note: "Raumänderung", subject: sD, normalTeacher: "DRO", representativeTeacher: nil),
+                .init(date: tomorrow, lesson: 7, room: "A17", newRoom: "E31", note: "Raumänderung", subject: sD, normalTeacher: "DRO", representativeTeacher: nil)
+            ], notes: ["1234"]),
+            day
+        ], lessons: [], notes: ["Yet another test!"])
+        
+        let dif = RepresentativePlan.difference(plan2, to: plan1)
+        
+        XCTAssertFalse(dif.isEmpty)
+        XCTAssertEqual(dif, expected)
+    }
 }

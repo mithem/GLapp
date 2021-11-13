@@ -13,6 +13,7 @@ enum NetworkError: Error {
     case badRequest
     case mobileKeyNotConfigured
     case invalidResponse
+    case invalidURL
     case other(_ error: Error)
     
     var localizedMessage: String {
@@ -27,6 +28,8 @@ enum NetworkError: Error {
             return NSLocalizedString("mobile_key_not_configured")
         case .invalidResponse:
             return NSLocalizedString("invalid_response")
+        case .invalidURL:
+            return NSLocalizedString("invalid_url")
         case .other(let error):
             return error.localizedDescription
         }

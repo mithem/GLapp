@@ -112,3 +112,4 @@
 "suggestion_ShowTimetableIntent" = "Zeige den Stundenplan";
 "suggestion_ShowClassTestPlanIntent" = "Zeige den Klausurplan";
 "suggestion_ShowRepresentativePlanIntent" = "Zeige den Vertretungsplan";
+"invalid_url" = "Ungültige URL.";

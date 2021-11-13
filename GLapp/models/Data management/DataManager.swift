@@ -196,14 +196,17 @@ class DataManager: ObservableObject {
     func getRepresentativePlan(completion: @escaping (NetworkResult<String, NetworkError>) -> Void) {
         let req: URLRequest
         do {
-            req = URLRequest(url: try getUrl(for: "/XML/vplan.php", authenticate: true)!, timeoutInterval: Constants.timeoutInterval)
+            guard let url = try getUrl(for: "/XML/vplan.php", authenticate: true) else {
+                completion(.failure(.invalidURL))
+                return
+            }
+            req = URLRequest(url: url, timeoutInterval: Constants.timeoutInterval)
         } catch {
             if let netError = error as? NetworkError {
-                completion(.failure(netError))
+                return completion(.failure(netError))
             } else {
-                completion(.failure(.other(error)))
+                return completion(.failure(.other(error)))
             }
-            return
 
         }
         URLSession.shared.dataTask(with: req) { data, response, error in
@@ -272,8 +275,19 @@ class DataManager: ObservableObject {
         } else {
             queryItems = [:]
         }
-        guard let url = try? getUrl(for: "/XML/vplan.php", queryItems: queryItems, authenticate: true) else { fatalError("Invalid URL for reprPlan update.") }
-        let req = URLRequest(url: url, timeoutInterval: Constants.timeoutInterval)
+        let req: URLRequest
+        do {
+            guard let url = try getUrl(for: "/XML/vpla.php", queryItems: queryItems, authenticate: true) else {
+                return completion(.failure(.networkError(.invalidURL)))
+            }
+            req = URLRequest(url: url, timeoutInterval: Constants.timeoutInterval)
+        } catch(let error) {
+            if let netError = error as? NetworkError {
+                return completion(.failure(.networkError(netError)))
+            } else {
+                return completion(.failure(.networkError(.other(error))))
+            }
+        }
         try? loadLocalData(for: \.getRepresentativePlan) // otherwise just deliver the notification
         URLSession.shared.dataTask(with: req) { data, response, error in
             if let error = error {
@@ -312,14 +326,16 @@ class DataManager: ObservableObject {
     func getClassTestPlan(completion: @escaping (NetworkResult<String, NetworkError>) -> Void) {
         let req: URLRequest
         do {
-            req = URLRequest(url: try getUrl(for: "/XML/klausur.php", authenticate: true)!, timeoutInterval: Constants.timeoutInterval)
-        } catch(let error) {
-            if let netError = error as? NetworkError {
-                completion(.failure(netError))
-            } else {
-                completion(.failure(.other(error)))
+            guard let url = try getUrl(for: "/XML/klausur.php", authenticate: true) else {
+                return completion(.failure(.invalidURL))
             }
-            return
+            req = URLRequest(url: url, timeoutInterval: Constants.timeoutInterval)
+        } catch {
+            if let netError = error as? NetworkError {
+                return completion(.failure(netError))
+            } else {
+                return completion(.failure(.other(error)))
+            }
         }
         URLSession.shared.dataTask(with: req) { data, response, error in
             if let error = error {
@@ -387,14 +403,16 @@ class DataManager: ObservableObject {
     func getTimetable(completion: @escaping (NetworkResult<String, NetworkError>) -> Void) {
         let req: URLRequest
         do {
-            req = URLRequest(url: try getUrl(for: "/XML/stupla.php", authenticate: true)!, timeoutInterval: Constants.timeoutInterval)
+            guard let url = try getUrl(for: "/XML/stupla.php", authenticate: true) else {
+                return completion(.failure(.invalidURL))
+            }
+            req = URLRequest(url: url, timeoutInterval: Constants.timeoutInterval)
         } catch(let error) {
             if let netError = error as? NetworkError {
-                completion(.failure(netError))
+                return completion(.failure(netError))
             } else {
-                completion(.failure(.other(error)))
+                return completion(.failure(.other(error)))
             }
-            return
         }
         URLSession.shared.dataTask(with: req) { data, response, error in
             if let error = error {

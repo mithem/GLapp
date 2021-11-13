@@ -111,3 +111,4 @@
 "suggestion_ShowTimetableIntent" = "Show timetable";
 "suggestion_ShowClassTestPlanIntent" = "Show class test plan";
 "suggestion_ShowRepresentativePlanIntent" = "Show representative plan";
+"invalid_url" = "Invalid URL.";

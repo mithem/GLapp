@@ -367,6 +367,12 @@ class DataManager: ObservableObject {
                     if error == .noTimestamp { // Unter-/ Mittelstufe
                         self.setClassTestPlan(nil)
                         self.setError(.classTestPlanNotSupported, for: \.getClassTestPlan, with: withHapticFeedback ? generator : nil)
+                        if let appManager = self.appManager {
+                            DispatchQueue.main.async {
+                                self.appManager?.classTestPlan.isSupported = .no
+                                try? appManager.classTestPlan.reload(with: appManager, dataManager: self)
+                            }
+                        }
                     } else {
                         self.setError(.parserError(error), for: \.getClassTestPlan)
                     }

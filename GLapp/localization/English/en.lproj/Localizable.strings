@@ -55,6 +55,7 @@
 "feature_calendar_access_description" = "Allow GLapp to save calendar events.";
 "feature_class_test_calendar_events_title" = "Class test events";
 "feature_class_test_calendar_events_description" = "Automatically create calendar events for class tests.";
+"feature_class_test_plan_title" = "Class test plan";
 "enable" = "Enable";
 "upcoming" = "Upcoming";
 "clear_cache" = "Clear cache";
@@ -77,7 +78,7 @@
 "color" = "Color";
 "subject_name" = "Subject";
 "subject_type" = "Subject type";
-"class_test_plan_not_supported" = "Class test plan not supported. Can happen in Unter- and Mittelstufe.";
+"class_test_plan_not_supported" = "Class test plan not supported. Applies to Secondary stage I.";
 "room" = "Room";
 "auto_remind_before_class_tests" = "Automatically remind before class tests";
 "remind_n_days_before_class_tests_colon" = "Remind days before class tests: ";
@@ -106,3 +107,7 @@
 "not_available" = "N/A";
 "repr_plan_notifications_send_entire_repr_plan" = "Send entire repr. plan in notifications";
 "repr_plan_notifications_send_entire_repr_plan_explanation" = "Send the entire representative plan in notifications instead of just the updates (which only included additions/changes to the plan, not removals).";
+"notifications_are_disabled" = "Notifications are disabled.";
+"suggestion_ShowTimetableIntent" = "Show timetable";
+"suggestion_ShowClassTestPlanIntent" = "Show class test plan";
+"suggestion_ShowRepresentativePlanIntent" = "Show representative plan";

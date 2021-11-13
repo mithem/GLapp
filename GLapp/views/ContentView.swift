@@ -11,11 +11,10 @@ import Combine
 struct ContentView: View {
     @State private var showingModalSheetView = false
     @State private var modalSheetView = ModalSheetView.loginView
-    /// just for the iPadOS version to the first navlink (timetable) without the need to select something on the sidebar
-    @State private var showingFirstNavigationLink = true
     @ObservedObject var appManager: AppManager
     @ObservedObject var dataManager: DataManager
     @AppStorage(UserDefaultsKeys.lastTabView) var lastTabView = 0
+    let timer = Timer.publish(every: 1, tolerance: nil, on: .current, in: .common).autoconnect() // I know that's less elegant and efficient, but how else would I do that?
     var iOSView: some View {
         TabView(selection: $lastTabView) {
             TimetableView(dataManager: dataManager)
@@ -46,27 +45,51 @@ struct ContentView: View {
     var iPadOSView: some View {
         NavigationView {
             List {
-                NavigationLink(isActive: $showingFirstNavigationLink, destination: {
+                NavigationLink(isActive: .init(get: {
+                    lastTabView == 0
+                }, set: { enabled in
+                    if enabled {
+                        lastTabView = 0
+                    }
+                }), destination: {
                     TimetableView(dataManager: dataManager)
                 }, label: {
                     Label("timetable", systemImage: "calendar")
                 })
                     .keyboardShortcut("1")
                 if dataManager.tasks.getClassTestPlan.error != .classTestPlanNotSupported {
-                    NavigationLink(destination: {
+                    NavigationLink(isActive: .init(get: {
+                        lastTabView == 1
+                    }, set: { enabled in
+                        if enabled {
+                            lastTabView = 1
+                        }
+                    }), destination: {
                         ClassTestPlanView(dataManager: dataManager, appManager: appManager)
                     }, label: {
                         Label("classtests", systemImage: "doc.append")
                     })
                         .keyboardShortcut("2")
                 }
-                NavigationLink(destination: {
+                NavigationLink(isActive: .init(get: {
+                    lastTabView == 2
+                }, set: { enabled in
+                    if enabled {
+                        lastTabView = 2
+                    }
+                }), destination: {
                     RepresentativePlanView(appManager: appManager, dataManager: dataManager)
                 }, label: {
                     reprPlanTabItemLabel
                 })
                     .keyboardShortcut(appManager.classTestPlan.isEnabled != .no ? "3" : "2")
-                NavigationLink(destination: {
+                NavigationLink(isActive: .init(get: {
+                    lastTabView == 3
+                }, set: { enabled in
+                    if enabled {
+                        lastTabView = 3
+                    }
+                }), destination: {
                     SettingsView(dataManager: dataManager, appManager: appManager)
                 }, label: {
                     Label("settings", systemImage: "gear")
@@ -100,12 +123,17 @@ struct ContentView: View {
                 FunctionalityCheckView(appManager: appManager, dataManager: dataManager)
             }
         }
+        .onReceive(timer) { timer in
+            handleIntent()
+        }
         .onAppear {
             appManager.reload(with: dataManager)
             checkForNeedingToShowLoginView()
             checkForNeedingToShowFunctionalityCheckView()
             dataManager.loadData()
             NotificationManager.default.removeAllDeliveredAndAppropriate()
+            handleIntent()
+            checkForDonatingShortcutSuggestions()
         }
         .onDisappear {
             dataManager.saveLocalData()
@@ -137,6 +165,25 @@ struct ContentView: View {
         }
     }
     
+    func handleIntent() {
+        let intentToHandle = UserDefaults.standard.string(forKey: UserDefaultsKeys.intentToHandle)
+        if let intent = IntentToHandle(rawValue: intentToHandle ?? "") {
+            switch intent {
+            case .showTimetable:
+                lastTabView = 0
+            case .showClassTestPlan:
+                if appManager.classTestPlan.isEnabled != .no {
+                    lastTabView = 1
+                } else {
+                    lastTabView = 0
+                }
+            case .showRepresentativePlan:
+                lastTabView = 2
+            }
+            UserDefaults.standard.set(nil, forKey: UserDefaultsKeys.intentToHandle)
+        }
+    }
+    
     func checkForNeedingToShowLoginView() {
         if !isLoggedIn() && appManager.demoMode.isEnabled != .yes {
             modalSheetView = .loginView
@@ -150,6 +197,12 @@ struct ContentView: View {
         if count == 2 {
             modalSheetView = .functionalityCheckView
             showingModalSheetView = true
+        }
+    }
+    
+    func checkForDonatingShortcutSuggestions() {
+        if UserDefaults.standard.integer(forKey: UserDefaultsKeys.launchCount) == 1 {
+            IntentsManager.donateShortcutSuggestions()
         }
     }
     

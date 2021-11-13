@@ -17,7 +17,7 @@ struct FunctionalityCheckView: View {
             ScrollView {
                 VStack(spacing: 100) {
                     VStack(alignment: .leading, spacing: 50) {
-                        ForEach(appManager.userExperienceRelevantFunctionalities) { functionality in
+                        ForEach(appManager.userExperienceRelevantFunctionalities.filter {$0.isSupported == .yes}) { functionality in
                             FunctionalityInlineView(functionality: functionality, appManager: appManager, dataManager: dataManager)
                         }
                     }

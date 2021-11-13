@@ -90,7 +90,7 @@ class TestFunctionality: XCTestCase {
     func testIsSupportedByDependenciesNo() {
         let functionality = Functionality(id: "tmp", role: .critical, dependencies: [.demoMode, .backgroundRefresh, .classTestPlan])
         XCTAssertThrowsError(try functionality.isSupportedByDependencies(with: appManager, dataManager: dataManager)) { error in
-            XCTAssertEqual((error as! Functionality.Error).localizedMessage, NSLocalizedString("functionality_error_not_supported") + " " + NSLocalizedString("feature_background_refresh_title") + ", feature_class_test_plan_title " + NSLocalizedString("misconfigured") + ".") // as feature_class_test_plan_title is actually not localized (and doesn't need to) as unsupported settings (and such) will not be shown to the user, so they can't try to enable anything.
+            XCTAssertEqual((error as! Functionality.Error).localizedMessage, NSLocalizedString("functionality_error_not_supported") + " " + NSLocalizedString("feature_background_refresh_title") + ", " + NSLocalizedString("feature_class_test_plan_title") + " " + NSLocalizedString("misconfigured") + ".")
         }
     }
     

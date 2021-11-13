@@ -55,6 +55,7 @@
 "feature_calendar_access_description" = "GLapp erlauben, Kalendareinträge zu sichern.";
 "feature_class_test_calendar_events_title" = "Klausuren in Kalendar eintragen";
 "feature_class_test_calendar_events_description" = "Automatische Erstellung von Kalendareinträgen für Klausuren.";
+"feature_class_test_plan_title" = "Klausurplan";
 "enable" = "Aktivieren";
 "upcoming" = "Anstehend";
 "clear_cache" = "Cache leeren";
@@ -77,7 +78,7 @@
 "color" = "Farbe";
 "subject_name" = "Fach";
 "subject_type" = "Kursart";
-"class_test_plan_not_supported" = "Klausurplan nicht unterstützt. Kann z.B. in der Unter- und Mittelstufe auftreten.";
+"class_test_plan_not_supported" = "Klausurplan nicht unterstützt. Betrifft Sekundarstufe I.";
 "room" = "Raum";
 "auto_remind_before_class_tests" = "Vor Klausuren automatisch erinnern";
 "remind_n_days_before_class_tests_colon" = "Tage vor Klausuren erinnern: ";
@@ -107,3 +108,7 @@
 "not_available" = "N/A";
 "repr_plan_notifications_send_entire_repr_plan" = "Gesamten Vertr.-plan in Benachr. senden";
 "repr_plan_notifications_send_entire_repr_plan_explanation" = "Bei Vertretungsplanänderungen nicht nur die jeweiligen Änderungen (Ergänzungen/Änderungen, nicht Löschungen) versenden, sondern den gesamten Vertretungsplan.";
+"notifications_are_disabled" = "Benachrichtigungen deaktiviert.";
+"suggestion_ShowTimetableIntent" = "Zeige den Stundenplan";
+"suggestion_ShowClassTestPlanIntent" = "Zeige den Klausurplan";
+"suggestion_ShowRepresentativePlanIntent" = "Zeige den Vertretungsplan";

@@ -2,3 +2,4 @@ build
 xcuserdata
 */xcuserdata/*
 GLapp.xcodeproj/xcuserdata
+.DS_Store

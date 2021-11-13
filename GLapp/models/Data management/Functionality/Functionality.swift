@@ -47,7 +47,12 @@ class Functionality: ObservableObject, FunctionalityProtocol, Identifiable {
     
     final func enable(with appManager: AppManager, dataManager: DataManager) throws {
         _ = try isSupportedByDependencies(with: appManager, dataManager: dataManager)
-        try doEnable(with: appManager, dataManager: dataManager)
+        do {
+            try doEnable(with: appManager, dataManager: dataManager)
+        } catch {
+            isSupported = .no
+            isEnabled = .no
+        }
         try reload(with: appManager, dataManager: dataManager)
     }
     
@@ -73,7 +78,7 @@ class Functionality: ObservableObject, FunctionalityProtocol, Identifiable {
             case .notSupported(_):
                 isSupported = .no
                 isEnabled = .no
-                return
+                throw error
             default:
                 break
             }

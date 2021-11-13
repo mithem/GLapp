@@ -21,10 +21,10 @@ class AppManager: ObservableObject {
     @Published var classTestCalendarEvents: FClassTestCalendarEvents
     @Published var userAttentionMayBeRequired: Bool
     
-    var userExperienceRelevantFunctionalities: [Functionality]  {
-        var types = [Functionality.FunctionalityType.notifications, .backgroundRefresh, .calendarAccess, .backgroundReprPlanNotifications]
+    var userExperienceRelevantFunctionalities: [Functionality] { // no computed property so it's redrawn every time FunctionalityCheckView refreshes
+        var types = [Functionality.FunctionalityType.notifications, .backgroundRefresh, .backgroundReprPlanNotifications]
         if classTestPlan.isEnabled == .yes {
-            types.append(contentsOf: [.classTestReminders, .classTestCalendarEvents])
+            types.append(contentsOf: [.calendarAccess, .classTestReminders, .classTestCalendarEvents])
         }
         return types.map {functionality(of: $0)}
     }

@@ -30,13 +30,15 @@ struct SettingsView: View {
                         .onChange(of: remindNDaysBeforeClassTests) { _ in
                             appManager.classTestReminders.scheduleClassTestRemindersIfAppropriate(with: dataManager)
                         }
+                    Toggle(appManager.classTestCalendarEvents.title, isOn: appManager.classTestCalendarEvents.isEnabledBinding(appManager: appManager, dataManager: dataManager, setCompletion: handleIsEnabledBindingResult))
                 }
                 Toggle(appManager.backgroundReprPlanNotifications.title, isOn: appManager.backgroundReprPlanNotifications.isEnabledBinding(appManager: appManager, dataManager: dataManager, setCompletion: handleIsEnabledBindingResult))
                 Toggle(appManager.coloredInlineSubjects.title, isOn: appManager.coloredInlineSubjects.isEnabledBinding(appManager: appManager, dataManager: dataManager, setCompletion: handleIsEnabledBindingResult))
-                Toggle(appManager.classTestCalendarEvents.title, isOn: appManager.classTestCalendarEvents.isEnabledBinding(appManager: appManager, dataManager: dataManager, setCompletion: handleIsEnabledBindingResult))
                 Link("feedback", destination: Constants.mailToURL)
-                NavigationLink("advanced_settings") {
-                    AdvancedSettingsView(appManager: appManager, dataManager: dataManager)
+                if appManager.notifications.isEnabled == .yes { // at the moment only contains notification-related stuff
+                    NavigationLink("advanced_settings") {
+                        AdvancedSettingsView(appManager: appManager, dataManager: dataManager)
+                    }
                 }
             }
             Section {
@@ -120,6 +122,7 @@ struct SettingsView: View {
         appManager.reload(with: dataManager)
         resetLoginInfo()
         resetOnboarding()
+        IntentsManager.reset()
         showingLoginView = true
     }
 }

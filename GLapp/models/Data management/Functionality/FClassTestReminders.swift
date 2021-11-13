@@ -21,6 +21,9 @@ class FClassTestReminders: Functionality {
         if appManager.notifications.isEnabled != .yes {
             try appManager.notifications.enable(with: appManager, dataManager: dataManager)
         }
+        if appManager.classTestPlan.isEnabled != .yes {
+            try appManager.classTestPlan.enable(with: appManager, dataManager: dataManager)
+        }
         scheduleClassTestRemindersIfAppropriate(with: dataManager)
     }
     

@@ -36,6 +36,11 @@
 		493E8AC72730054B008C9B13 /* Color+lighten+darken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493E8AC62730054B008C9B13 /* Color+lighten+darken.swift */; };
 		493E8AC9273008DE008C9B13 /* Color+getColoredForegroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493E8AC8273008DE008C9B13 /* Color+getColoredForegroundColor.swift */; };
 		494595C32727C5050096B5D7 /* TestRepresentativeLesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494595C22727C5050096B5D7 /* TestRepresentativeLesson.swift */; };
+		494C5FA3273FC105003D39DC /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C5FA2273FC105003D39DC /* IntentHandler.swift */; };
+		494C5FAB273FC8D1003D39DC /* IntentToHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C5FAA273FC8D1003D39DC /* IntentToHandle.swift */; };
+		494C5FAD273FFE88003D39DC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C5FAC273FFE88003D39DC /* SceneDelegate.swift */; };
+		494C5FBC274013A4003D39DC /* IntentsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C5FBB274013A4003D39DC /* IntentsManager.swift */; };
+		494C5FCC2740204E003D39DC /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 494C5FCE2740204E003D39DC /* Intents.intentdefinition */; };
 		49517FFA271F30500085BEA6 /* DeliverableByNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49517FF9271F30500085BEA6 /* DeliverableByNotification.swift */; };
 		49517FFC271F668A0085BEA6 /* SubjectAttributeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49517FFB271F668A0085BEA6 /* SubjectAttributeView.swift */; };
 		49517FFE271F73BD0085BEA6 /* Timetable+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49517FFD271F73BD0085BEA6 /* Timetable+Equatable.swift */; };
@@ -159,6 +164,19 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		49881727273EEA5300308219 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		491C4828273566D60027707E /* GLappScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLappScene.swift; sourceTree = "<group>"; };
 		491C482A273573BC0027707E /* Color+getForegroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+getForegroundColor.swift"; sourceTree = "<group>"; };
@@ -188,6 +206,13 @@
 		493E8AC62730054B008C9B13 /* Color+lighten+darken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+lighten+darken.swift"; sourceTree = "<group>"; };
 		493E8AC8273008DE008C9B13 /* Color+getColoredForegroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+getColoredForegroundColor.swift"; sourceTree = "<group>"; };
 		494595C22727C5050096B5D7 /* TestRepresentativeLesson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRepresentativeLesson.swift; sourceTree = "<group>"; };
+		494C5FA2273FC105003D39DC /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
+		494C5FAA273FC8D1003D39DC /* IntentToHandle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentToHandle.swift; sourceTree = "<group>"; };
+		494C5FAC273FFE88003D39DC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		494C5FBB274013A4003D39DC /* IntentsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentsManager.swift; sourceTree = "<group>"; };
+		494C5FCD2740204E003D39DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/Intents.intentdefinition; sourceTree = "<group>"; };
+		494C5FD027402052003D39DC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Intents.strings; sourceTree = "<group>"; };
+		494C5FD227402053003D39DC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Intents.strings; sourceTree = "<group>"; };
 		49517FF9271F30500085BEA6 /* DeliverableByNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliverableByNotification.swift; sourceTree = "<group>"; };
 		49517FFB271F668A0085BEA6 /* SubjectAttributeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectAttributeView.swift; sourceTree = "<group>"; };
 		49517FFD271F73BD0085BEA6 /* Timetable+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timetable+Equatable.swift"; sourceTree = "<group>"; };
@@ -228,6 +253,7 @@
 		4976D170271085EB009C5AC2 /* Subject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subject.swift; sourceTree = "<group>"; };
 		4976D171271085EB009C5AC2 /* RepresentativeLesson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepresentativeLesson.swift; sourceTree = "<group>"; };
 		4976D172271085EB009C5AC2 /* RepresentativeDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepresentativeDay.swift; sourceTree = "<group>"; };
+		4988171B273EEA5300308219 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		498D5E21272C1F0F007722F6 /* Date+rightNow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+rightNow.swift"; sourceTree = "<group>"; };
 		4991A29F271996F8008559F9 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		4991A2A1271996F8008559F9 /* UIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
@@ -442,6 +468,17 @@
 			path = "Data management";
 			sourceTree = "<group>";
 		};
+		494C5FA1273FC0FB003D39DC /* Intents */ = {
+			isa = PBXGroup;
+			children = (
+				494C5FA2273FC105003D39DC /* IntentHandler.swift */,
+				494C5FBB274013A4003D39DC /* IntentsManager.swift */,
+				494C5FAA273FC8D1003D39DC /* IntentToHandle.swift */,
+				494C5FCE2740204E003D39DC /* Intents.intentdefinition */,
+			);
+			path = Intents;
+			sourceTree = "<group>";
+		};
 		494FD6742713254D0023E1B5 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -457,6 +494,7 @@
 				4976D12E2710843E009C5AC2 /* GLapp */,
 				4976D13F27108442009C5AC2 /* GLappTests */,
 				4976D14927108442009C5AC2 /* GLappUITests */,
+				4988171A273EEA5300308219 /* Frameworks */,
 				4976D12D2710843E009C5AC2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -478,6 +516,7 @@
 				4976D12F2710843E009C5AC2 /* GLapp.swift */,
 				491C4828273566D60027707E /* GLappScene.swift */,
 				495E6B962718C3CC0052B565 /* AppDelegate.swift */,
+				494C5FAC273FFE88003D39DC /* SceneDelegate.swift */,
 				4976D17627108602009C5AC2 /* shared */,
 				4976D15C271084EA009C5AC2 /* models */,
 				4976D159271084C3009C5AC2 /* views */,
@@ -576,6 +615,7 @@
 			isa = PBXGroup;
 			children = (
 				4991A2B72719976F008559F9 /* functions.swift */,
+				494C5FA1273FC0FB003D39DC /* Intents */,
 				49F380F42710E1FF002AE814 /* Parsers */,
 			);
 			path = shared;
@@ -588,6 +628,14 @@
 				499C087827353CDF00206514 /* German */,
 			);
 			path = localization;
+			sourceTree = "<group>";
+		};
+		4988171A273EEA5300308219 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4988171B273EEA5300308219 /* Intents.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		499C087327353CDF00206514 /* English */ = {
@@ -698,6 +746,7 @@
 				4976D1282710843E009C5AC2 /* Sources */,
 				4976D1292710843E009C5AC2 /* Frameworks */,
 				4976D12A2710843E009C5AC2 /* Resources */,
+				49881727273EEA5300308219 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -778,6 +827,7 @@
 			knownRegions = (
 				en,
 				de,
+				Base,
 			);
 			mainGroup = 4976D1232710843E009C5AC2;
 			packageReferences = (
@@ -859,6 +909,7 @@
 				49AF336C2719963A00F406D1 /* LessonInlineView.swift in Sources */,
 				49D67A29273E9E6600ADC319 /* RepresentativeLesson+Differentiable.swift in Sources */,
 				49D110A5272AD84500CEBF1D /* DateComponents+plus+minus.swift in Sources */,
+				494C5FAD273FFE88003D39DC /* SceneDelegate.swift in Sources */,
 				4976D175271085EB009C5AC2 /* RepresentativeDay.swift in Sources */,
 				499C08602734FBD000206514 /* AdvancedSettingsView.swift in Sources */,
 				4921C48F2731C57200DA256D /* ScheduledNotificationsViewModel.swift in Sources */,
@@ -876,6 +927,7 @@
 				49EEDE5227218B0F009A4C6A /* FBackgroundRefresh.swift in Sources */,
 				4991A2AB271996F8008559F9 /* ContentView.swift in Sources */,
 				4934050A271196C6008B059B /* GLappError.swift in Sources */,
+				494C5FA3273FC105003D39DC /* IntentHandler.swift in Sources */,
 				4921C4892731B87000DA256D /* Subject+CustomDebugStringConvertible.swift in Sources */,
 				495E6B9127188B5A0052B565 /* NotificationManager.swift in Sources */,
 				4921C47E2731979600DA256D /* Date+janFirst2000.swift in Sources */,
@@ -893,6 +945,7 @@
 				49AF336D2719963A00F406D1 /* TimetableView.swift in Sources */,
 				4934052D2712CA67008B059B /* Int+init.swift in Sources */,
 				49F380E32710DF15002AE814 /* DataManager.swift in Sources */,
+				494C5FBC274013A4003D39DC /* IntentsManager.swift in Sources */,
 				4934051F2711E45D008B059B /* MockData.swift in Sources */,
 				49AF33632719962100F406D1 /* ClassTestPlanView.swift in Sources */,
 				492804C8272026EF0055ED63 /* GLappError+Equatable.swift in Sources */,
@@ -908,6 +961,7 @@
 				49E59DE6271C7180009A1609 /* EditSubjectView.swift in Sources */,
 				495D25DD273AA6EA00F3899D /* RepresentativeDay+Equatable.swift in Sources */,
 				4991A2A7271996F8008559F9 /* SettingsView.swift in Sources */,
+				494C5FAB273FC8D1003D39DC /* IntentToHandle.swift in Sources */,
 				492804C2272010220055ED63 /* ClassTestPlan+Equatable.swift in Sources */,
 				495D25D9273AA3C500F3899D /* RepresentativeLesson+Equatable.swift in Sources */,
 				49D67A2D273EC76800ADC319 /* RepresentativeDay+Copying.swift in Sources */,
@@ -922,6 +976,7 @@
 				49F266322732925500F89A7B /* FCalendarAccess.swift in Sources */,
 				499C1BEA2724A58A00849955 /* FDemoMode.swift in Sources */,
 				49526F9427218E8700FD0242 /* FBackgroundReprPlanNotifications.swift in Sources */,
+				494C5FCC2740204E003D39DC /* Intents.intentdefinition in Sources */,
 				4991A2AC271996F8008559F9 /* AccentColorButton.swift in Sources */,
 				499C08642735321100206514 /* UNAuthorizationStatus+functionalityState.swift in Sources */,
 				491C4829273566D60027707E /* GLappScene.swift in Sources */,
@@ -988,6 +1043,16 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		494C5FCE2740204E003D39DC /* Intents.intentdefinition */ = {
+			isa = PBXVariantGroup;
+			children = (
+				494C5FCD2740204E003D39DC /* Base */,
+				494C5FD027402052003D39DC /* en */,
+				494C5FD227402053003D39DC /* de */,
+			);
+			name = Intents.intentdefinition;
+			sourceTree = "<group>";
+		};
 		499C087427353CDF00206514 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1149,7 +1214,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLapp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;
@@ -1183,7 +1248,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLappRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;

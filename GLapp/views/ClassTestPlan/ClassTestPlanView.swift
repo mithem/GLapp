@@ -10,6 +10,9 @@ import SwiftUI
 struct ClassTestPlanView: View {
     @ObservedObject var dataManager: DataManager
     @ObservedObject var appManager: AppManager
+    let startDate = Date.rightNow
+    let timer = Timer.publish(every: Constants.timeIntervalRequiringUserActivityUntilNSUserActivityIsDonated, tolerance: nil, on: .current, in: .common).autoconnect()
+    @State private var didDonateUserActivity = false
     var InnerView: some View {
         VStack {
             DataManagementTaskView(date: dataManager.classTestPlan?.date, lastFetched: dataManager.classTestPlan?.lastFetched, task: dataManager.tasks.getClassTestPlan)
@@ -40,6 +43,12 @@ struct ClassTestPlanView: View {
                 }
             }
             Spacer()
+        }
+        .onReceive(timer) { timer in
+            if startDate.distance(to: .rightNow) >= Constants.timeIntervalRequiringUserActivityUntilNSUserActivityIsDonated && !didDonateUserActivity {
+                IntentToHandle.showClassTestPlan.donate()
+                didDonateUserActivity = true
+            }
         }
         .navigationTitle("classtests")
         .toolbar {

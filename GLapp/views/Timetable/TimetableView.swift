@@ -47,6 +47,12 @@ struct TimetableView: View {
             }
             Spacer()
         }
+        .onReceive(model.timer) { timer in
+            if model.startDate.distance(to: .rightNow) >= Constants.timeIntervalRequiringUserActivityUntilNSUserActivityIsDonated && !model.didDonateUserActivity {
+                IntentToHandle.showTimetable.donate()
+                model.didDonateUserActivity = true
+            }
+        }
         .navigationTitle("timetable")
         .toolbar {
             Button(action: model.loadTimetable) {

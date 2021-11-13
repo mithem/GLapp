@@ -6,3 +6,4 @@
   
 */
 "NSCalendarsUsageDescription" = "Allow GLapp to access the calendar in order to enable convenient features like class test events.";
+"NSSiriUsageDescription" = "Allow Siri integration for common actions you may want to perform with your voice.";

@@ -9,9 +9,13 @@ import SwiftUI
 
 final class TimetableViewModel: ObservableObject {
     @ObservedObject var dataManager: DataManager
+    let startDate = Date.rightNow
+    let timer = Timer.publish(every: Constants.timeIntervalRequiringUserActivityUntilNSUserActivityIsDonated, tolerance: nil, on: .current, in: .common).autoconnect()
+    var didDonateUserActivity: Bool
     
     init(dataManager: DataManager) {
         self.dataManager = dataManager
+        didDonateUserActivity = false
     }
     
     var isLoading: Bool {

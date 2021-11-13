@@ -21,6 +21,9 @@ class FClassTestCalendarEvents: Functionality {
         if appManager.calendarAccess.isEnabled != .yes {
             try appManager.calendarAccess.enable(with: appManager, dataManager: dataManager)
         }
+        if appManager.classTestPlan.isSupported != .yes || appManager.classTestPlan.isEnabled != .yes {
+            try appManager.classTestPlan.enable(with: appManager, dataManager: dataManager)
+        }
         UserDefaults.standard.set(true, forKey: UserDefaultsKeys.classTestCalendarEvents)
         createOrModifyClassTestCalendarEventsIfAppropriate(with: appManager, dataManager: dataManager)
     }

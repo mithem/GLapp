@@ -14,28 +14,46 @@ struct AdvancedSettingsView: View {
     @AppStorage(UserDefaultsKeys.reprPlanNotificationsHighRelevanceTimeInterval) var reprPlanNotificationHighRelevanceTimeInterval = Constants.defaultReprPlanNotificationsHighRelevanceTimeInterval
     @AppStorage(UserDefaultsKeys.reprPlanNotificationsEntireReprPlan) var reprPlanNotificationsEntireReprPlan = false
     var body: some View {
-        Form {
-            Section {
-                Button("show_scheduled_notifications") {
-                    showingScheduledNotificationsView = true
+        Group {
+            if appManager.notifications.isEnabled == .yes {
+                Form {
+                    Section {
+                        Button("show_scheduled_notifications") {
+                            showingScheduledNotificationsView = true
+                        }
+                        .disabled(appManager.notifications.isEnabled != .yes)
+                        .sheet(isPresented: $showingScheduledNotificationsView) {
+                            ScheduledNotificationsView()
+                        }
+                    }
+                    if appManager.backgroundReprPlanNotifications.isEnabled == .yes {
+                        Section {
+                            Stepper(GLDateFormatter.dateComponentsFormatter.string(from: .init(hour: Int(reprPlanNotificationHighRelevanceTimeInterval / 3600))) ?? "not_available", value: $reprPlanNotificationHighRelevanceTimeInterval, in: 3600...24 * 3600, step: 3600)
+                            Text(NSLocalizedString("repr_plan_notifications_high_relevance_explanation"))
+                                .foregroundColor(.secondary)
+                        }
+                        Section  {
+                            Toggle("repr_plan_notifications_send_entire_repr_plan", isOn: $reprPlanNotificationsEntireReprPlan)
+                            Text("repr_plan_notifications_send_entire_repr_plan_explanation")
+                                .foregroundColor(.secondary)
+                        }
+                    }
                 }
-                .disabled(appManager.notifications.isEnabled != .yes)
-                .sheet(isPresented: $showingScheduledNotificationsView) {
-                    ScheduledNotificationsView()
-                }
-            }
-            Section {
-                Stepper(GLDateFormatter.dateComponentsFormatter.string(from: .init(hour: Int(reprPlanNotificationHighRelevanceTimeInterval / 3600))) ?? "not_available", value: $reprPlanNotificationHighRelevanceTimeInterval, in: 3600...24 * 3600, step: 3600)
-                Text(NSLocalizedString("repr_plan_notifications_high_relevance_explanation"))
-                    .foregroundColor(.secondary)
-            }
-            Section  {
-                Toggle("repr_plan_notifications_send_entire_repr_plan", isOn: $reprPlanNotificationsEntireReprPlan)
-                Text("repr_plan_notifications_send_entire_repr_plan_explanation")
-                    .foregroundColor(.secondary)
+            } else {
+                EmptyContentView(image: emptyContentImage, text: "notifications_are_disabled")
             }
         }
+        .onAppear {
+            appManager.reload(with: dataManager)
+        }
         .navigationTitle("advanced_settings")
+    }
+    
+    var emptyContentImage: String {
+        if #available(iOS 15, *) {
+            return "circle.slash"
+        }
+        return "slash.circle"
     }
 }
 

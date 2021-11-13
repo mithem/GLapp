@@ -11,11 +11,17 @@ import Foundation
 class FClassTestPlan: Functionality {
     override func reloadIsSupported(with appManager: AppManager, dataManager: DataManager) throws {
         isSupported = dataManager.tasks.getClassTestPlan.error != .classTestPlanNotSupported ? .yes : .no
+        if isSupported == .no {
+            throw GLappError.classTestPlanNotSupported
+        }
     }
     override func reloadIsEnabled(with appManager: AppManager, dataManager: DataManager) throws {
-        isEnabled = .yes
+        isEnabled = isSupported
     }
     override func doEnable(with appManager: AppManager, dataManager: DataManager) throws {
+        if dataManager.tasks.getClassTestPlan.error == .classTestPlanNotSupported {
+            throw Error.notSupported(message: "class_test_plan_not_supported")
+        }
         appManager.classTestReminders.scheduleClassTestRemindersIfAppropriate(with: dataManager)
     }
     override func doDisable(with appManager: AppManager, dataManager: DataManager) throws {

@@ -21,8 +21,10 @@
 			<string>generic</string>
 			<key>INIntentConfigurable</key>
 			<true/>
+			<key>INIntentDescription</key>
+			<string>open_the_timetable_in_glapp</string>
 			<key>INIntentDescriptionID</key>
-			<string>f39llL</string>
+			<string>OqmJOO</string>
 			<key>INIntentManagedParameterCombinations</key>
 			<dict>
 				<key></key>
@@ -87,8 +89,10 @@
 			<string>generic</string>
 			<key>INIntentConfigurable</key>
 			<true/>
+			<key>INIntentDescription</key>
+			<string>open_the_class_test_plan_in_glapp</string>
 			<key>INIntentDescriptionID</key>
-			<string>Dup6FO</string>
+			<string>t2FHMJ</string>
 			<key>INIntentManagedParameterCombinations</key>
 			<dict>
 				<key></key>
@@ -153,8 +157,10 @@
 			<string>generic</string>
 			<key>INIntentConfigurable</key>
 			<true/>
+			<key>INIntentDescription</key>
+			<string>open_the_representative_plan_in_glapp</string>
 			<key>INIntentDescriptionID</key>
-			<string>KaIOyz</string>
+			<string>Aemakq</string>
 			<key>INIntentManagedParameterCombinations</key>
 			<dict>
 				<key></key>

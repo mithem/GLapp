@@ -99,10 +99,6 @@
 		499C08602734FBD000206514 /* AdvancedSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499C085F2734FBD000206514 /* AdvancedSettingsView.swift */; };
 		499C08642735321100206514 /* UNAuthorizationStatus+functionalityState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499C08632735321100206514 /* UNAuthorizationStatus+functionalityState.swift */; };
 		499C0866273532CA00206514 /* EKAuthorizationStatus+functionalityState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499C0865273532CA00206514 /* EKAuthorizationStatus+functionalityState.swift */; };
-		499C087C27353CDF00206514 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 499C087427353CDF00206514 /* InfoPlist.strings */; };
-		499C087D27353CDF00206514 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 499C087627353CDF00206514 /* Localizable.strings */; };
-		499C087E27353CDF00206514 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 499C087927353CDF00206514 /* Localizable.strings */; };
-		499C088527353E3F00206514 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 499C088727353E3F00206514 /* InfoPlist.strings */; };
 		499C1BEA2724A58A00849955 /* FDemoMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499C1BE92724A58A00849955 /* FDemoMode.swift */; };
 		49A5B2462719A3C400577767 /* FunctionalityCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A5B2452719A3C400577767 /* FunctionalityCheckView.swift */; };
 		49A5B24B2719A5BF00577767 /* FunctionalityInlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A5B24A2719A5BF00577767 /* FunctionalityInlineView.swift */; };
@@ -114,6 +110,9 @@
 		49AF336B2719963A00F406D1 /* TimetableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF33682719963A00F406D1 /* TimetableViewModel.swift */; };
 		49AF336C2719963A00F406D1 /* LessonInlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF33692719963A00F406D1 /* LessonInlineView.swift */; };
 		49AF336D2719963A00F406D1 /* TimetableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF336A2719963A00F406D1 /* TimetableView.swift */; };
+		49B387602740DD8D008B16B1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 499C087627353CDF00206514 /* Localizable.strings */; };
+		49B387612740DDA7008B16B1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 499C087927353CDF00206514 /* Localizable.strings */; };
+		49B3876B2740DF7D008B16B1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49B387682740DEA6008B16B1 /* InfoPlist.strings */; };
 		49D110A5272AD84500CEBF1D /* DateComponents+plus+minus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D110A4272AD84500CEBF1D /* DateComponents+plus+minus.swift */; };
 		49D110A7272AD87B00CEBF1D /* DateComponents+combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D110A6272AD87B00CEBF1D /* DateComponents+combine.swift */; };
 		49D67A1B273E703100ADC319 /* RepresentativePlan+Copying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D67A1A273E703100ADC319 /* RepresentativePlan+Copying.swift */; };
@@ -229,7 +228,6 @@
 		495D25E0273AA75600F3899D /* RepresentativeDay+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepresentativeDay+Codable.swift"; sourceTree = "<group>"; };
 		495E6B8A271833ED0052B565 /* TestClassTestPlanParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestClassTestPlanParser.swift; sourceTree = "<group>"; };
 		495E6B8C271837180052B565 /* TestTimetableParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTimetableParser.swift; sourceTree = "<group>"; };
-		495E6B8E27188A4B0052B565 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		495E6B9027188B5A0052B565 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		495E6B9227188BD00052B565 /* BackgroundTaskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTaskManager.swift; sourceTree = "<group>"; };
 		495E6B962718C3CC0052B565 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -277,10 +275,8 @@
 		499C085F2734FBD000206514 /* AdvancedSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedSettingsView.swift; sourceTree = "<group>"; };
 		499C08632735321100206514 /* UNAuthorizationStatus+functionalityState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UNAuthorizationStatus+functionalityState.swift"; sourceTree = "<group>"; };
 		499C0865273532CA00206514 /* EKAuthorizationStatus+functionalityState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKAuthorizationStatus+functionalityState.swift"; sourceTree = "<group>"; };
-		499C087527353CDF00206514 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		499C087727353CDF00206514 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		499C087A27353CDF00206514 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		499C088627353E3F00206514 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		499C1BE92724A58A00849955 /* FDemoMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FDemoMode.swift; sourceTree = "<group>"; };
 		49A5B2452719A3C400577767 /* FunctionalityCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalityCheckView.swift; sourceTree = "<group>"; };
 		49A5B24A2719A5BF00577767 /* FunctionalityInlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalityInlineView.swift; sourceTree = "<group>"; };
@@ -292,6 +288,9 @@
 		49AF33682719963A00F406D1 /* TimetableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimetableViewModel.swift; sourceTree = "<group>"; };
 		49AF33692719963A00F406D1 /* LessonInlineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonInlineView.swift; sourceTree = "<group>"; };
 		49AF336A2719963A00F406D1 /* TimetableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimetableView.swift; sourceTree = "<group>"; };
+		49B387512740DCB9008B16B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49B387672740DEA6008B16B1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		49B387692740DEA8008B16B1 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		49D110A4272AD84500CEBF1D /* DateComponents+plus+minus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponents+plus+minus.swift"; sourceTree = "<group>"; };
 		49D110A6272AD87B00CEBF1D /* DateComponents+combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponents+combine.swift"; sourceTree = "<group>"; };
 		49D67A1A273E703100ADC319 /* RepresentativePlan+Copying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepresentativePlan+Copying.swift"; sourceTree = "<group>"; };
@@ -512,7 +511,7 @@
 		4976D12E2710843E009C5AC2 /* GLapp */ = {
 			isa = PBXGroup;
 			children = (
-				495E6B8E27188A4B0052B565 /* Info.plist */,
+				49B387512740DCB9008B16B1 /* Info.plist */,
 				4976D12F2710843E009C5AC2 /* GLapp.swift */,
 				491C4828273566D60027707E /* GLappScene.swift */,
 				495E6B962718C3CC0052B565 /* AppDelegate.swift */,
@@ -626,6 +625,7 @@
 			children = (
 				499C087327353CDF00206514 /* English */,
 				499C087827353CDF00206514 /* German */,
+				49B387682740DEA6008B16B1 /* InfoPlist.strings */,
 			);
 			path = localization;
 			sourceTree = "<group>";
@@ -641,7 +641,6 @@
 		499C087327353CDF00206514 /* English */ = {
 			isa = PBXGroup;
 			children = (
-				499C087427353CDF00206514 /* InfoPlist.strings */,
 				499C087627353CDF00206514 /* Localizable.strings */,
 			);
 			path = English;
@@ -650,7 +649,6 @@
 		499C087827353CDF00206514 /* German */ = {
 			isa = PBXGroup;
 			children = (
-				499C088727353E3F00206514 /* InfoPlist.strings */,
 				499C087927353CDF00206514 /* Localizable.strings */,
 			);
 			path = German;
@@ -850,11 +848,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				499C087E27353CDF00206514 /* Localizable.strings in Resources */,
-				499C088527353E3F00206514 /* InfoPlist.strings in Resources */,
+				49B3876B2740DF7D008B16B1 /* InfoPlist.strings in Resources */,
+				49B387612740DDA7008B16B1 /* Localizable.strings in Resources */,
+				49B387602740DD8D008B16B1 /* Localizable.strings in Resources */,
 				4976D13727108441009C5AC2 /* Preview Assets.xcassets in Resources */,
-				499C087D27353CDF00206514 /* Localizable.strings in Resources */,
-				499C087C27353CDF00206514 /* InfoPlist.strings in Resources */,
 				4976D13427108441009C5AC2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1053,14 +1050,6 @@
 			name = Intents.intentdefinition;
 			sourceTree = "<group>";
 		};
-		499C087427353CDF00206514 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				499C087527353CDF00206514 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		499C087627353CDF00206514 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1077,10 +1066,11 @@
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
-		499C088727353E3F00206514 /* InfoPlist.strings */ = {
+		49B387682740DEA6008B16B1 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				499C088627353E3F00206514 /* de */,
+				49B387672740DEA6008B16B1 /* en */,
+				49B387692740DEA8008B16B1 /* de */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1140,6 +1130,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "$(PRODUCT_NAME)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -1196,6 +1187,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "$(PRODUCT_NAME)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -1214,12 +1206,13 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLapp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GLapp/Info.plist;
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "Allow GLapp to access the calendar in order to enable convenient features like class test events.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1248,12 +1241,13 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLappRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GLapp/Info.plist;
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "Allow GLapp to access the calendar in order to enable convenient features like class test events.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

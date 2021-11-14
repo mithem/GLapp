@@ -2,8 +2,7 @@
   InfoPlist.strings
   GLapp
 
-  Created by Miguel Themann on 05.11.21.
+  Created by Miguel Themann on 14.11.21.
   
 */
 "NSCalendarsUsageDescription" = "Allow GLapp to access the calendar in order to enable convenient features like class test events.";
-"NSSiriUsageDescription" = "Allow Siri integration for common actions you may want to perform with your voice.";

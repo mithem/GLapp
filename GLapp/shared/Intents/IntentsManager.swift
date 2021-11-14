@@ -15,5 +15,6 @@ class IntentsManager {
     
     static func reset() {
         INVoiceShortcutCenter.shared.setShortcutSuggestions([])
+        UserDefaults.standard.set(false, forKey: UserDefaultsKeys.didSuggestShortcuts)
     }
 }

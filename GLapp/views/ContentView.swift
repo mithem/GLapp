@@ -201,8 +201,9 @@ struct ContentView: View {
     }
     
     func checkForDonatingShortcutSuggestions() {
-        if UserDefaults.standard.integer(forKey: UserDefaultsKeys.launchCount) == 1 {
+        if !UserDefaults.standard.bool(forKey: UserDefaultsKeys.didSuggestShortcuts) {
             IntentsManager.donateShortcutSuggestions()
+            UserDefaults.standard.set(true, forKey: UserDefaultsKeys.didSuggestShortcuts)
         }
     }
     

@@ -26,24 +26,21 @@ enum IntentToHandle: String {
         }
     }
     
+    static var intentMap: [String: INIntent.Type] = [
+        "ShowTimetableIntent": ShowTimetableIntent.self,
+        "ShowClassTestPlanIntent": ShowClassTestPlanIntent.self,
+        "ShowRepresentativePlanIntent": ShowRepresentativePlanIntent.self
+    ]
+    
     func save() {
         UserDefaults.standard.set(rawValue, forKey: UserDefaultsKeys.intentToHandle)
     }
     
     func donate() {
-        let activity = NSUserActivity(activityType: self.rawValue)
-        switch self {
-        case .showTimetable:
-            activity.title = NSLocalizedString("timetable")
-        case .showClassTestPlan:
-            activity.title = NSLocalizedString("class_test_plan")
-        case .showRepresentativePlan:
-            activity.title = NSLocalizedString("representative_plan")
-        }
-        activity.suggestedInvocationPhrase = NSLocalizedString("suggestion_" + rawValue)
-        activity.isEligibleForSearch = true
-        activity.isEligibleForPrediction = true
-        activity.shortcutAvailability = .sleepWrapUpYourDay
-        activity.becomeCurrent()
+        guard let intentType = Self.intentMap[rawValue] else { fatalError("intentMap incomplete") }
+        let intent = intentType.init()
+        intent.suggestedInvocationPhrase = NSLocalizedString("suggestion_" + rawValue)
+        let interaction = INInteraction(intent: intent, response: nil)
+        interaction.donate()
     }
 }

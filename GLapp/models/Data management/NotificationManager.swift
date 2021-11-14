@@ -150,7 +150,8 @@ final class NotificationManager {
             content.interruptionLevel = .passive
         }
         
-        let id = Constants.Identifiers.Notifications.classTestNotification + GLDateFormatter.berlinFormatter.string(from: classTest.classTestDate)
+        let id = Constants.Identifiers.Notifications.classTestNotification + classTest.subject.className + classTest.alias + GLDateFormatter.berlinFormatter.string(from: classTest.classTestDate) // can't think of anything more identifiable/safe
+        // need to use subject.className and/or alias as there may actually be multiple class tests on one day (not for one person, though (inpersonal ones))
         let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request) { error in
             if let error = error {

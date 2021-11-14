@@ -19,26 +19,10 @@
 		<dict>
 			<key>INIntentCategory</key>
 			<string>generic</string>
-			<key>INIntentConfigurable</key>
-			<true/>
 			<key>INIntentDescription</key>
-			<string>open_the_timetable_in_glapp</string>
+			<string>Stundenplan in GLapp öffnen.</string>
 			<key>INIntentDescriptionID</key>
 			<string>OqmJOO</string>
-			<key>INIntentManagedParameterCombinations</key>
-			<dict>
-				<key></key>
-				<dict>
-					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
-					<true/>
-					<key>INIntentParameterCombinationTitle</key>
-					<string>show_timetable</string>
-					<key>INIntentParameterCombinationTitleID</key>
-					<string>OqmJOO</string>
-					<key>INIntentParameterCombinationUpdatesLinked</key>
-					<true/>
-				</dict>
-			</dict>
 			<key>INIntentName</key>
 			<string>ShowTimetable</string>
 			<key>INIntentParameterCombinations</key>
@@ -48,13 +32,13 @@
 					<key>INIntentParameterCombinationIsPrimary</key>
 					<true/>
 					<key>INIntentParameterCombinationSubtitle</key>
-					<string>open_the_timetable_in_glapp</string>
+					<string>Stundenplan in GLapp öffnen.</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
 					<string>o7S4Zy</string>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
 					<false/>
 					<key>INIntentParameterCombinationTitle</key>
-					<string>show_timetable</string>
+					<string>Stundenplan zeigen</string>
 					<key>INIntentParameterCombinationTitleID</key>
 					<string>oIXNaH</string>
 				</dict>
@@ -76,7 +60,7 @@
 				</array>
 			</dict>
 			<key>INIntentTitle</key>
-			<string>show_timetable</string>
+			<string>Stundenplan zeigen</string>
 			<key>INIntentTitleID</key>
 			<string>nahZwv</string>
 			<key>INIntentType</key>
@@ -87,26 +71,10 @@
 		<dict>
 			<key>INIntentCategory</key>
 			<string>generic</string>
-			<key>INIntentConfigurable</key>
-			<true/>
 			<key>INIntentDescription</key>
-			<string>open_the_class_test_plan_in_glapp</string>
+			<string>Klausurplan in GLapp öffnen.</string>
 			<key>INIntentDescriptionID</key>
 			<string>t2FHMJ</string>
-			<key>INIntentManagedParameterCombinations</key>
-			<dict>
-				<key></key>
-				<dict>
-					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
-					<true/>
-					<key>INIntentParameterCombinationTitle</key>
-					<string>show_class_test_plan</string>
-					<key>INIntentParameterCombinationTitleID</key>
-					<string>XbRahk</string>
-					<key>INIntentParameterCombinationUpdatesLinked</key>
-					<true/>
-				</dict>
-			</dict>
 			<key>INIntentName</key>
 			<string>ShowClassTestPlan</string>
 			<key>INIntentParameterCombinations</key>
@@ -116,13 +84,13 @@
 					<key>INIntentParameterCombinationIsPrimary</key>
 					<true/>
 					<key>INIntentParameterCombinationSubtitle</key>
-					<string>open_the_class_test_plan_in_glapp</string>
+					<string>Klausurplan in GLapp öffnen.</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
 					<string>t2FHMJ</string>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
 					<false/>
 					<key>INIntentParameterCombinationTitle</key>
-					<string>show_class_test_plan</string>
+					<string>Klausurplan zeigen</string>
 					<key>INIntentParameterCombinationTitleID</key>
 					<string>W2Rzxb</string>
 				</dict>
@@ -144,7 +112,7 @@
 				</array>
 			</dict>
 			<key>INIntentTitle</key>
-			<string>show_class_test_plan</string>
+			<string>Klausurplan zeigen</string>
 			<key>INIntentTitleID</key>
 			<string>P37F8G</string>
 			<key>INIntentType</key>
@@ -155,26 +123,10 @@
 		<dict>
 			<key>INIntentCategory</key>
 			<string>generic</string>
-			<key>INIntentConfigurable</key>
-			<true/>
 			<key>INIntentDescription</key>
-			<string>open_the_representative_plan_in_glapp</string>
+			<string>Vertretungsplan in GLapp öffnen.</string>
 			<key>INIntentDescriptionID</key>
 			<string>Aemakq</string>
-			<key>INIntentManagedParameterCombinations</key>
-			<dict>
-				<key></key>
-				<dict>
-					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
-					<true/>
-					<key>INIntentParameterCombinationTitle</key>
-					<string>show_representative_plan</string>
-					<key>INIntentParameterCombinationTitleID</key>
-					<string>PY3055</string>
-					<key>INIntentParameterCombinationUpdatesLinked</key>
-					<true/>
-				</dict>
-			</dict>
 			<key>INIntentName</key>
 			<string>ShowRepresentativePlan</string>
 			<key>INIntentParameterCombinations</key>
@@ -184,13 +136,13 @@
 					<key>INIntentParameterCombinationIsPrimary</key>
 					<true/>
 					<key>INIntentParameterCombinationSubtitle</key>
-					<string>open_the_representative_plan_in_glapp</string>
+					<string>Vertretungsplan in GLapp öffnen.</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
 					<string>Aemakq</string>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
 					<false/>
 					<key>INIntentParameterCombinationTitle</key>
-					<string>show_representative_plan</string>
+					<string>Vertretungsplan zeigen</string>
 					<key>INIntentParameterCombinationTitleID</key>
 					<string>TeKeqF</string>
 				</dict>
@@ -212,7 +164,7 @@
 				</array>
 			</dict>
 			<key>INIntentTitle</key>
-			<string>show_representative_plan</string>
+			<string>Vertretungsplan zeigen</string>
 			<key>INIntentTitleID</key>
 			<string>wggxCu</string>
 			<key>INIntentType</key>

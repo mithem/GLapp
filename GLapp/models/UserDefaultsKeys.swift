@@ -25,5 +25,4 @@ struct UserDefaultsKeys {
     static let reprPlanNotificationsHighRelevanceTimeInterval = "reprPlanNotificationsHighRelevanceTimeInterval"
     static let reprPlanNotificationsEntireReprPlan = "reprPlanNotificationsEntireReprPlan"
     static let intentToHandle = "intentToHandle"
-    static let didSuggestShortcuts = "didSuggestShortcuts"
 }

@@ -201,6 +201,7 @@
 		4934052527121BA0008B059B /* Date+formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+formatting.swift"; sourceTree = "<group>"; };
 		4934052A2712BC6A008B059B /* DataManagementTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagementTask.swift; sourceTree = "<group>"; };
 		4934052C2712CA67008B059B /* Int+init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+init.swift"; sourceTree = "<group>"; };
+		4938C1FD27410D4600F71D92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/Intents.intentdefinition; sourceTree = "<group>"; };
 		493E8AC4273003DA008C9B13 /* Color+isDarkBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+isDarkBackground.swift"; sourceTree = "<group>"; };
 		493E8AC62730054B008C9B13 /* Color+lighten+darken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+lighten+darken.swift"; sourceTree = "<group>"; };
 		493E8AC8273008DE008C9B13 /* Color+getColoredForegroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+getColoredForegroundColor.swift"; sourceTree = "<group>"; };
@@ -209,9 +210,6 @@
 		494C5FAA273FC8D1003D39DC /* IntentToHandle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentToHandle.swift; sourceTree = "<group>"; };
 		494C5FAC273FFE88003D39DC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		494C5FBB274013A4003D39DC /* IntentsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentsManager.swift; sourceTree = "<group>"; };
-		494C5FCD2740204E003D39DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/Intents.intentdefinition; sourceTree = "<group>"; };
-		494C5FD027402052003D39DC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Intents.strings; sourceTree = "<group>"; };
-		494C5FD227402053003D39DC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Intents.strings; sourceTree = "<group>"; };
 		49517FF9271F30500085BEA6 /* DeliverableByNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliverableByNotification.swift; sourceTree = "<group>"; };
 		49517FFB271F668A0085BEA6 /* SubjectAttributeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectAttributeView.swift; sourceTree = "<group>"; };
 		49517FFD271F73BD0085BEA6 /* Timetable+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timetable+Equatable.swift"; sourceTree = "<group>"; };
@@ -1043,9 +1041,7 @@
 		494C5FCE2740204E003D39DC /* Intents.intentdefinition */ = {
 			isa = PBXVariantGroup;
 			children = (
-				494C5FCD2740204E003D39DC /* Base */,
-				494C5FD027402052003D39DC /* en */,
-				494C5FD227402053003D39DC /* de */,
+				4938C1FD27410D4600F71D92 /* Base */,
 			);
 			name = Intents.intentdefinition;
 			sourceTree = "<group>";
@@ -1206,13 +1202,13 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLapp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GLapp/Info.plist;
-				INFOPLIST_KEY_NSCalendarsUsageDescription = "Allow GLapp to access the calendar in order to enable convenient features like class test events.";
+				INFOPLIST_KEY_NSCalendarsUsageDescription = NSCalendarsUsageDescription;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1241,13 +1237,13 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLappRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GLapp/Info.plist;
-				INFOPLIST_KEY_NSCalendarsUsageDescription = "Allow GLapp to access the calendar in order to enable convenient features like class test events.";
+				INFOPLIST_KEY_NSCalendarsUsageDescription = NSCalendarsUsageDescription;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

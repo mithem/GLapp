@@ -133,7 +133,6 @@ struct ContentView: View {
             dataManager.loadData()
             NotificationManager.default.removeAllDeliveredAndAppropriate()
             handleIntent()
-            checkForDonatingShortcutSuggestions()
         }
         .onDisappear {
             dataManager.saveLocalData()
@@ -197,13 +196,6 @@ struct ContentView: View {
         if count == 2 {
             modalSheetView = .functionalityCheckView
             showingModalSheetView = true
-        }
-    }
-    
-    func checkForDonatingShortcutSuggestions() {
-        if !UserDefaults.standard.bool(forKey: UserDefaultsKeys.didSuggestShortcuts) {
-            IntentsManager.donateShortcutSuggestions()
-            UserDefaults.standard.set(true, forKey: UserDefaultsKeys.didSuggestShortcuts)
         }
     }
     

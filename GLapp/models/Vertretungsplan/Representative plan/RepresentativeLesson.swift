@@ -76,6 +76,9 @@ final class RepresentativeLesson: ObservableObject, Identifiable, DeliverableByN
     
     var relevance: Double {
         let timeInterval = startDate.timeIntervalSince(.rightNow)
+        if timeInterval < 0 {
+            return 1
+        }
         var highRelevanceInterval = UserDefaults.standard.double(forKey: UserDefaultsKeys.reprPlanNotificationsHighRelevanceTimeInterval)
         if highRelevanceInterval == 0 {
             highRelevanceInterval = Constants.defaultReprPlanNotificationsHighRelevanceTimeInterval

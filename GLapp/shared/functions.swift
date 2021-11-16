@@ -78,7 +78,7 @@ func resetOnboarding() {
 }
 
 func removeLastReprPlanUpdateTimestamp() {
-    UserDefaults.standard.set(nil, forKey: UserDefaultsKeys.lastReprPlanUpdateTimestamp)
+    UserDefaults.standard.set(0, forKey: UserDefaultsKeys.lastReprPlanUpdateTimestamp)
 }
 
 func NSLocalizedString(_ key: String) -> String {

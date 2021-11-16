@@ -106,7 +106,7 @@
 "repr_plan_notifications_high_relevance_explanation" = "Maximum distance in time of a representative plan notification to the corresponding lesson making the notification being marked as relevant. This results in it being sent as a time-sensitive notification and/or being prioritized in notification center.";
 "not_available" = "N/A";
 "repr_plan_notifications_send_entire_repr_plan" = "Send entire repr. plan in notifications";
-"repr_plan_notifications_send_entire_repr_plan_explanation" = "Send the entire representative plan in notifications instead of just the updates (which only included additions/changes to the plan, not removals).";
+"repr_plan_notifications_send_entire_repr_plan_explanation" = "Send the entire representative plan in notifications instead of just the updates (which only includes additions/changes to the plan, not removals).";
 "notifications_are_disabled" = "Notifications are disabled.";
 "suggestion_ShowTimetableIntent" = "Show timetable";
 "suggestion_ShowClassTestPlanIntent" = "Show class test plan";

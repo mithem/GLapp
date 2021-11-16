@@ -64,7 +64,7 @@ class DataManager: ObservableObject {
             self.representativePlan = plan
         }
         
-        if let plan = plan {
+        if let plan = plan, !UserDefaults.standard.bool(forKey: UserDefaultsKeys.dontSaveReprPlanUpdateTimestampWhenViewingReprPlan) {
             if let date = plan.date {
                 UserDefaults.standard.set(date.timeIntervalSince1970, forKey: UserDefaultsKeys.lastReprPlanUpdateTimestamp)
             }
@@ -277,11 +277,11 @@ class DataManager: ObservableObject {
         }
         let req: URLRequest
         do {
-            guard let url = try getUrl(for: "/XML/vpla.php", queryItems: queryItems, authenticate: true) else {
+            guard let url = try getUrl(for: "/XML/vplan.php", queryItems: queryItems, authenticate: true) else {
                 return completion(.failure(.networkError(.invalidURL)))
             }
             req = URLRequest(url: url, timeoutInterval: Constants.timeoutInterval)
-        } catch(let error) {
+        } catch {
             if let netError = error as? NetworkError {
                 return completion(.failure(.networkError(netError)))
             } else {

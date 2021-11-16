@@ -38,15 +38,17 @@ struct AdvancedSettingsView: View {
                             Text("repr_plan_notifications_send_entire_repr_plan_explanation")
                                 .foregroundColor(.secondary)
                         }
-                        Section {
-                            Toggle("dont_save_repr_plan_update_timestamp_when_viewing_app", isOn: $dontSaveReprPlanUpdateTimestampWhenViewingReprPlan)
-                                .onChange(of: dontSaveReprPlanUpdateTimestampWhenViewingReprPlan) { dontSave in
-                                    if dontSave {
-                                        removeLastReprPlanUpdateTimestamp()
+                        if reprPlanNotificationsEntireReprPlan {
+                            Section {
+                                Toggle("dont_save_repr_plan_update_timestamp_when_viewing_app", isOn: $dontSaveReprPlanUpdateTimestampWhenViewingReprPlan)
+                                    .onChange(of: dontSaveReprPlanUpdateTimestampWhenViewingReprPlan) { dontSave in
+                                        if dontSave {
+                                            removeLastReprPlanUpdateTimestamp()
+                                        }
                                     }
-                                }
-                            Text("dont_save_repr_plan_update_timestamp_when_viewing_app_explanation")
-                                .foregroundColor(.secondary)
+                                Text("dont_save_repr_plan_update_timestamp_when_viewing_app_explanation")
+                                    .foregroundColor(.secondary)
+                            }
                         }
                     }
                 }

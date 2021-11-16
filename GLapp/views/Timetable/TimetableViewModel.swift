@@ -6,16 +6,19 @@
 //
 
 import SwiftUI
+import Combine
 
 final class TimetableViewModel: ObservableObject {
     @ObservedObject var dataManager: DataManager
-    let startDate = Date.rightNow
-    let timer = Timer.publish(every: Constants.timeIntervalRequiringUserActivityUntilNSUserActivityIsDonated, tolerance: nil, on: .current, in: .common).autoconnect()
-    var didDonateUserActivity: Bool
+    @Published var timer: Publishers.Autoconnect<Timer.TimerPublisher>
+    private let startDate: Date
+    private var didDonateIntent: Bool
     
     init(dataManager: DataManager) {
         self.dataManager = dataManager
-        didDonateUserActivity = false
+        timer = Timer.publish(every: Constants.timeIntervalRequiringUserActivityUntilNSUserActivityIsDonated, tolerance: nil, on: .current, in: .common).autoconnect()
+        startDate = .rightNow
+        didDonateIntent = false
     }
     
     var isLoading: Bool {
@@ -75,8 +78,22 @@ final class TimetableViewModel: ObservableObject {
         return items
     }
     
-    func loadTimetable() {
+    func reload() {
         dataManager.loadTimetable(withHapticFeedback: true)
+        donateIntent(force: true)
+    }
+    
+    ///Donate intent if appropriate.
+    ///
+    /// Donate if:
+    /// - user has spent a reasonable amount of time on screen
+    /// - did not already donate an intent
+    /// - Parameter force: donate (if haven't already) even if the 'reasonable' amount of time on screen hasn't passed yet. Useful for e.g. refresh actions.
+    func donateIntent(force: Bool = false) {
+        if (startDate.distance(to: .rightNow) >= Constants.timeIntervalRequiringUserActivityUntilNSUserActivityIsDonated || force) && !didDonateIntent {
+            IntentToHandle.showTimetable.donate()
+            didDonateIntent = true
+        }
     }
     
     final class TimetableViewLesson: ObservableObject, Identifiable {

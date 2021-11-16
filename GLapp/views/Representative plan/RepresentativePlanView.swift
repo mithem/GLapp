@@ -8,19 +8,15 @@
 import SwiftUI
 
 struct RepresentativePlanView: View {
-    @ObservedObject var appManager: AppManager
-    @ObservedObject var dataManager: DataManager
-    let startDate = Date.rightNow
-    let timer = Timer.publish(every: Constants.timeIntervalRequiringUserActivityUntilNSUserActivityIsDonated, tolerance: nil, on: .current, in: .common).autoconnect()
-    @State private var didDonateUserActivity = false
+    @ObservedObject var model: RepresentativePlanViewModel
     var InnerView: some View {
         VStack {
-            DataManagementTaskView(date: dataManager.representativePlan?.date, lastFetched: dataManager.representativePlan?.lastFetched, task: dataManager.tasks.getRepresentativePlan)
+            DataManagementTaskView(date: model.dataManager.representativePlan?.date, lastFetched: model.dataManager.representativePlan?.lastFetched, task: model.dataManager.tasks.getRepresentativePlan)
             Spacer()
-            if let reprPlan = dataManager.representativePlan {
+            if let reprPlan = model.dataManager.representativePlan {
                 VStack {
                     if reprPlan.isEmpty {
-                        EmptyContentView(image: emptyViewIcon, text: "representative_plan_empty")
+                        EmptyContentView(image: model.emptyViewIcon, text: "representative_plan_empty")
                     } else {
                         let list = List {
                             if !reprPlan.notes.isEmpty {
@@ -35,7 +31,7 @@ struct RepresentativePlanView: View {
                             ForEach(reprPlan.representativeDays) { reprDay in
                                 Section(content: {
                                     ForEach(reprDay.lessons) { lesson in
-                                        RepresentativeLessonInlineView(lesson: lesson, appManager: appManager)
+                                        RepresentativeLessonInlineView(lesson: lesson, appManager: model.appManager)
                                     }
                                 }, header: {
                                     Text(reprDay.date?.formattedWithLocaleOnlyDay ?? NSLocalizedString("sometime"))
@@ -46,7 +42,7 @@ struct RepresentativePlanView: View {
                         if #available(iOS 15, *) {
                             list
                                 .refreshable {
-                                    dataManager.loadRepresentativePlan()
+                                    model.reload()
                                 }
                         } else {
                             list
@@ -55,32 +51,21 @@ struct RepresentativePlanView: View {
                 }
             } else {
                 AccentColorButton(label: {Text("retry")}) {
-                    dataManager.loadRepresentativePlan(withHapticFeedback: true)
+                    model.reload()
                 }
             }
             Spacer()
         }
-        .onReceive(timer) { timer in
-            if startDate.distance(to: .rightNow) >= Constants.timeIntervalRequiringUserActivityUntilNSUserActivityIsDonated && !didDonateUserActivity {
-                IntentToHandle.showRepresentativePlan.donate()
-                didDonateUserActivity = true
-            }
+        .onReceive(model.timer) { timer in
+            model.donateIntent()
         }
         .navigationTitle("representative_plan")
         .toolbar {
             Button(action: {
-                dataManager.loadRepresentativePlan(withHapticFeedback: true)
+                model.reload()
             }) {
                 Image(systemName: "arrow.clockwise")
             }
-        }
-    }
-    
-    var emptyViewIcon: String {
-        if #available(iOS 15, *) {
-            return "circle.slash"
-        } else {
-            return "slash.circle"
         }
     }
     
@@ -93,6 +78,10 @@ struct RepresentativePlanView: View {
             }
             .navigationViewStyle(.stack)
         }
+    }
+    
+    init(appManager: AppManager, dataManager: DataManager) {
+        model = .init(appManager: appManager, dataManager: dataManager)
     }
 }
 

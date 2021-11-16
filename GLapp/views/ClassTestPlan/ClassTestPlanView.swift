@@ -8,52 +8,47 @@
 import SwiftUI
 
 struct ClassTestPlanView: View {
-    @ObservedObject var dataManager: DataManager
-    @ObservedObject var appManager: AppManager
-    let startDate = Date.rightNow
-    let timer = Timer.publish(every: Constants.timeIntervalRequiringUserActivityUntilNSUserActivityIsDonated, tolerance: nil, on: .current, in: .common).autoconnect()
-    @State private var didDonateUserActivity = false
+    @ObservedObject var model: ClassTestPlanViewModel
     var InnerView: some View {
         VStack {
-            DataManagementTaskView(date: dataManager.classTestPlan?.date, lastFetched: dataManager.classTestPlan?.lastFetched, task: dataManager.tasks.getClassTestPlan)
+            DataManagementTaskView(date: model.dataManager.classTestPlan?.date, lastFetched: model.dataManager.classTestPlan?.lastFetched, task: model.dataManager.tasks.getClassTestPlan)
             Spacer()
-            if let plan = dataManager.classTestPlan {
+            if let plan = model.dataManager.classTestPlan {
                 if plan.isEmpty {
                     EmptyContentView(image: "sparkles", text: "classTestPlan_empty")
                 } else {
                     let list = List {
-                        UpcomingClassTestView(appManager: appManager, classTests: plan.classTests)
+                        UpcomingClassTestView(appManager: model.appManager, classTests: plan.classTests)
                         ForEach(plan.classTests) { classTest in
-                            ClassTestInlineView(classTest: classTest, appManager: appManager)
+                            ClassTestInlineView(classTest: classTest, appManager: model.appManager)
                         }
                     }
                     .listStyle(UIConstants.listStyle)
                     if #available(iOS 15, *) {
                         list
                             .refreshable {
-                                dataManager.loadClassTestPlan()
+                                model.reload()
                             }
                     } else {
                         list
                     }
                 }
             } else {
-                AccentColorButton(label: {Text("retry")}) {
-                    dataManager.loadClassTestPlan(withHapticFeedback: true)
+                AccentColorButton(label: {
+                    Text("retry")
+                }) {
+                    model.reload()
                 }
             }
             Spacer()
         }
-        .onReceive(timer) { timer in
-            if startDate.distance(to: .rightNow) >= Constants.timeIntervalRequiringUserActivityUntilNSUserActivityIsDonated && !didDonateUserActivity {
-                IntentToHandle.showClassTestPlan.donate()
-                didDonateUserActivity = true
-            }
+        .onReceive(model.timer) { timer in
+            model.donateIntent()
         }
         .navigationTitle("classtests")
         .toolbar {
             Button(action: {
-                dataManager.loadClassTestPlan(withHapticFeedback: true)
+                model.reload()
             }) {
                 Image(systemName: "arrow.clockwise")
             }
@@ -72,10 +67,14 @@ struct ClassTestPlanView: View {
             }
         }
     }
+    
+    init(appManager: AppManager, dataManager: DataManager) {
+        model = .init(appManager: appManager, dataManager: dataManager)
+    }
 }
 
 struct ClassTestPlanView_Previews: PreviewProvider {
     static var previews: some View {
-        ClassTestPlanView(dataManager: MockDataManager(), appManager: .init())
+        ClassTestPlanView(appManager: .init(), dataManager: MockDataManager())
     }
 }

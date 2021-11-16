@@ -25,4 +25,6 @@ struct UserDefaultsKeys {
     static let reprPlanNotificationsHighRelevanceTimeInterval = "reprPlanNotificationsHighRelevanceTimeInterval"
     static let reprPlanNotificationsEntireReprPlan = "reprPlanNotificationsEntireReprPlan"
     static let intentToHandle = "intentToHandle"
+    /// Don't save update timestamp, so repr plan notifications will be delivered even after viewing the plan in-app
+    static let dontSaveReprPlanUpdateTimestampWhenViewingReprPlan = "dontSaveReprPlanUpdateTimestampWhenViewingReprPlan"
 }

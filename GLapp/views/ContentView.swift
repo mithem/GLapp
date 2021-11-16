@@ -23,7 +23,7 @@ struct ContentView: View {
                     Label("timetable", systemImage: "calendar")
                 }
             if dataManager.tasks.getClassTestPlan.error != .classTestPlanNotSupported {
-                ClassTestPlanView(dataManager: dataManager, appManager: appManager)
+                ClassTestPlanView(appManager: appManager, dataManager: dataManager)
                     .tag(1)
                     .tabItem {
                         Label("classtests", systemImage: "doc.append")
@@ -65,7 +65,7 @@ struct ContentView: View {
                             lastTabView = 1
                         }
                     }), destination: {
-                        ClassTestPlanView(dataManager: dataManager, appManager: appManager)
+                        ClassTestPlanView(appManager: appManager, dataManager: dataManager)
                     }, label: {
                         Label("classtests", systemImage: "doc.append")
                     })

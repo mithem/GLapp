@@ -8,34 +8,31 @@
 import SwiftUI
 
 struct ClassTestInlineView: View {
-    let classTest: ClassTest
-    @ObservedObject var appManager: AppManager
-    @AppStorage(UserDefaultsKeys.automaticallyRemindBeforeClassTests) var autoRemindBeforeClassTests = false // can't use appManager.classTestReminders.isEnabled as that's not refreshed when the view loads and the latter doesn't update when .isEnabled changes 🤨
     @Environment(\.colorScheme) private var colorScheme
+    @ObservedObject var model: ClassTestInlineViewModel
     var body: some View {
         let hstack = HStack {
             VStack(alignment: .leading) {
-                Text(title)
+                Text(model.title)
                     .bold()
-                    .foregroundColor(titleColor)
-                Text(classTest.room ?? "")
+                    .foregroundColor(model.titleColor(colorScheme: colorScheme))
+                Text(model.classTest.room ?? "")
             }
             Spacer()
             VStack(alignment: .trailing) {
-                Text("\(duration)\(classTest.classTestDate.formattedWithLocaleOnlyDay)")
-                Text(classTest.teacher ?? "")
+                Text("\(model.duration)\(model.classTest.classTestDate.formattedWithLocaleOnlyDay)")
+                Text(model.classTest.teacher ?? "")
             }
                 .foregroundColor(.secondary)
         }
-            .foregroundColor(isOver ? .secondary : .primary)
-        if !autoRemindBeforeClassTests {
+            .foregroundColor(model.isOver ? .secondary : .primary)
+        if model.appManager.classTestReminders.isEnabled != .yes {
             hstack
                 .contextMenu {
                     Button(action: {
-                        NotificationManager.default.scheduleClassTestReminder(for: classTest)
+                        NotificationManager.default.scheduleClassTestReminder(for: model.classTest)
                     }) {
-                        Text("set_reminder")
-                        Image(systemName: "clock")
+                        Label("set_reminder", systemImage: "clock")
                     }
                 }
         } else {
@@ -43,43 +40,8 @@ struct ClassTestInlineView: View {
         }
     }
     
-    var isOver: Bool {
-        if let endDate = classTest.endDate {
-            if .rightNow > endDate { return true }
-        }
-        return false
-    }
-    
-    var title: String {
-        let subjectType: String
-        if let sType = classTest.subject.subjectType {
-            subjectType = " (\(sType))"
-        } else {
-            subjectType = ""
-        }
-        return "\(classTest.subject.subjectName ?? classTest.subject.className)\(subjectType)"
-    }
-    
-    @MainActor var titleColor: Color {
-        if isOver {
-            return .secondary
-        }
-        if appManager.coloredInlineSubjects.isEnabled == .yes {
-            return classTest.subject.color.getColoredForegroundColor(colorScheme: colorScheme)
-        }
-        return .primary
-    }
-
-    var duration: String {
-        if let start = classTest.start, let end = classTest.end {
-            let formatter = NumberFormatter()
-            formatter.numberStyle = .ordinal
-            let st = formatter.string(from: .init(value: start))!
-            let en = formatter.string(from: .init(value: end))!
-            return "\(st) - \(en), "
-        } else {
-            return ""
-        }
+    init(classTest: ClassTest, appManager: AppManager) {
+        model = .init(classTest: classTest, appManager: appManager)
     }
 }
 

@@ -113,3 +113,5 @@
 "suggestion_ShowClassTestPlanIntent" = "Zeige den Klausurplan";
 "suggestion_ShowRepresentativePlanIntent" = "Zeige den Vertretungsplan";
 "invalid_url" = "Ungültige URL.";
+"dont_save_repr_plan_update_timestamp_when_viewing_app" = "Vertretungsplanbenachrichtigungen immer zustellen";
+"dont_save_repr_plan_update_timestamp_when_viewing_app_explanation" = "Vertretungsplanbenachrichtigungen auch dann noch zustellen, nachdem der Plan bereits innerhalb der App gesichtet wurde.";

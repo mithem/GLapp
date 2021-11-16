@@ -74,6 +74,11 @@ func isLoggedIn() -> Bool {
 func resetOnboarding() {
     UserDefaults.standard.set(0, forKey: UserDefaultsKeys.launchCount)
     IntentsManager.reset()
+    removeLastReprPlanUpdateTimestamp()
+}
+
+func removeLastReprPlanUpdateTimestamp() {
+    UserDefaults.standard.set(nil, forKey: UserDefaultsKeys.lastReprPlanUpdateTimestamp)
 }
 
 func NSLocalizedString(_ key: String) -> String {

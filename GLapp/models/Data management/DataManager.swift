@@ -305,7 +305,7 @@ class DataManager: ObservableObject {
                     let result = RepresentativePlanParser.parse(plan: s, with: self)
                     switch result {
                     case .success(let plan):
-                        if let date = plan.date {
+                        if let date = plan.date, !UserDefaults.standard.bool(forKey: UserDefaultsKeys.dontSaveReprPlanUpdateTimestampWhenViewingReprPlan) {
                             UserDefaults.standard.set(date.timeIntervalSince1970, forKey: UserDefaultsKeys.lastReprPlanUpdateTimestamp)
                         }
                         if !UserDefaults.standard.bool(forKey: UserDefaultsKeys.reprPlanNotificationsEntireReprPlan) {

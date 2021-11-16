@@ -13,6 +13,7 @@ struct AdvancedSettingsView: View {
     @State private var showingScheduledNotificationsView = false
     @AppStorage(UserDefaultsKeys.reprPlanNotificationsHighRelevanceTimeInterval) var reprPlanNotificationHighRelevanceTimeInterval = Constants.defaultReprPlanNotificationsHighRelevanceTimeInterval
     @AppStorage(UserDefaultsKeys.reprPlanNotificationsEntireReprPlan) var reprPlanNotificationsEntireReprPlan = false
+    @AppStorage(UserDefaultsKeys.dontSaveReprPlanUpdateTimestampWhenViewingReprPlan) var dontSaveReprPlanUpdateTimestampWhenViewingReprPlan = false
     var body: some View {
         Group {
             if appManager.notifications.isEnabled == .yes {
@@ -32,9 +33,19 @@ struct AdvancedSettingsView: View {
                             Text(NSLocalizedString("repr_plan_notifications_high_relevance_explanation"))
                                 .foregroundColor(.secondary)
                         }
-                        Section  {
+                        Section {
                             Toggle("repr_plan_notifications_send_entire_repr_plan", isOn: $reprPlanNotificationsEntireReprPlan)
                             Text("repr_plan_notifications_send_entire_repr_plan_explanation")
+                                .foregroundColor(.secondary)
+                        }
+                        Section {
+                            Toggle("dont_save_repr_plan_update_timestamp_when_viewing_app", isOn: $dontSaveReprPlanUpdateTimestampWhenViewingReprPlan)
+                                .onChange(of: dontSaveReprPlanUpdateTimestampWhenViewingReprPlan) { dontSave in
+                                    if dontSave {
+                                        removeLastReprPlanUpdateTimestamp()
+                                    }
+                                }
+                            Text("dont_save_repr_plan_update_timestamp_when_viewing_app_explanation")
                                 .foregroundColor(.secondary)
                         }
                     }

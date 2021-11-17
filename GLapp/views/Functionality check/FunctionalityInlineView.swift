@@ -30,7 +30,7 @@ struct FunctionalityInlineView: View {
     
     var RawContent: some View {
         let enableBtn = Group {
-            if functionality.isEnabled != .yes {
+            if functionality.isEnabled != .yes { // give ability to enable manually for .no, .unkown, .semi, e.g. when only provisional notifications are enabled
                 AccentColorButton("enable") {
                     do {
                         try functionality.enable(with: appManager, dataManager: dataManager)
@@ -56,6 +56,13 @@ struct FunctionalityInlineView: View {
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(alignment.text)
+                if functionality.isEnabled != .yes {
+                    Spacer()
+                    Text(NSLocalizedString(functionality.stateDescription))
+                        .font(.footnote)
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(alignment.text)
+                }
             }
         }
         return Group {
@@ -98,14 +105,16 @@ struct FunctionalityInlineView: View {
     }
     
     var imageName: String {
-        if #available(iOS 15, *) {
+        if true {
             switch functionality.isEnabled {
             case .unknown:
-                return "minus.diamond"
+                return "questionmark.diamond"
             case .yes:
                 return "checkmark.diamond"
             case .no:
                 return "xmark.diamond"
+            case .semi:
+                return "minus.diamond"
             }
         } else {
             switch functionality.isEnabled {
@@ -115,6 +124,8 @@ struct FunctionalityInlineView: View {
                 return "checkmark.seal"
             case .no:
                 return "slash.circle"
+            case .semi:
+                return "minus.diamond"
             }
         }
     }
@@ -132,6 +143,8 @@ struct FunctionalityInlineView: View {
             case .critical:
                 return .red
             }
+        case .semi:
+            return .blue
         }
     }
 }

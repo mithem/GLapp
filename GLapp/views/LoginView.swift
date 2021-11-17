@@ -96,7 +96,7 @@ struct LoginView: View {
             showingActionSheet = true
             return
         }
-        if appManager.demoMode.isEnabled != .no {
+        if appManager.demoMode.isEnabled.unwrapped {
             do {
                 try appManager.demoMode.disable(with: appManager, dataManager: dataManager)
             } catch {

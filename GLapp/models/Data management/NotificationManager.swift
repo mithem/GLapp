@@ -32,19 +32,22 @@ final class NotificationManager {
     }
     
     func deliverNotification(identifier: String, title: String, body: String, sound: UNNotificationSound? = .default, interruptionLevel: InterruptionLevel = .active, in timeInterval: TimeInterval = 1) {
-        requestNotificationAuthorization()
-        let content = UNMutableNotificationContent()
-        content.title = title
-        content.body = body
-        content.sound = sound
-        if #available(iOS 15, *) {
-            content.interruptionLevel = interruptionLevel.unNotificationInterruptionLevel
-        }
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: false)
-        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
-        UNUserNotificationCenter.current().add(request) { error in
-            if let error = error {
-                print(error)
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            let content = UNMutableNotificationContent()
+            content.title = title
+            content.body = body
+            if settings.soundSetting == .enabled {
+                content.sound = sound
+            }
+            if #available(iOS 15, *), settings.timeSensitiveSetting == .enabled {
+                content.interruptionLevel = interruptionLevel.unNotificationInterruptionLevel
+            }
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: false)
+            let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+            UNUserNotificationCenter.current().add(request) { error in
+                if let error = error {
+                    print(error)
+                }
             }
         }
     }

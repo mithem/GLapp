@@ -82,7 +82,7 @@ struct ContentView: View {
                 }, label: {
                     reprPlanTabItemLabel
                 })
-                    .keyboardShortcut(appManager.classTestPlan.isEnabled != .no ? "3" : "2")
+                    .keyboardShortcut(appManager.classTestPlan.isEnabled.unwrapped ? "3" : "2")
                 NavigationLink(isActive: .init(get: {
                     lastTabView == 3
                 }, set: { enabled in
@@ -94,7 +94,7 @@ struct ContentView: View {
                 }, label: {
                     Label("settings", systemImage: "gear")
                 })
-                    .keyboardShortcut(appManager.classTestPlan.isEnabled != .no ? "4" : "3")
+                    .keyboardShortcut(appManager.classTestPlan.isEnabled.unwrapped ? "4" : "3")
             }
             .listStyle(.sidebar)
             .navigationTitle("navigation")
@@ -129,7 +129,7 @@ struct ContentView: View {
         .onAppear {
             appManager.reload(with: dataManager)
             checkForNeedingToShowLoginView()
-            checkForNeedingToShowFunctionalityCheckView()
+            applyFirstLaunchedConfiguration()
             dataManager.loadData()
             NotificationManager.default.removeAllDeliveredAndAppropriate()
             handleIntent()
@@ -171,7 +171,7 @@ struct ContentView: View {
             case .showTimetable:
                 lastTabView = 0
             case .showClassTestPlan:
-                if appManager.classTestPlan.isEnabled != .no {
+                if appManager.classTestPlan.isEnabled.unwrapped {
                     lastTabView = 1
                 } else {
                     lastTabView = 0
@@ -184,18 +184,22 @@ struct ContentView: View {
     }
     
     func checkForNeedingToShowLoginView() {
-        if !isLoggedIn() && appManager.demoMode.isEnabled != .yes {
+        if !isLoggedIn() && appManager.demoMode.isEnabled.unwrapped {
             modalSheetView = .loginView
             showingModalSheetView = true
         }
     }
     
-    func checkForNeedingToShowFunctionalityCheckView() {
+    func applyFirstLaunchedConfiguration() {
         let count = UserDefaults.standard.integer(forKey: UserDefaultsKeys.launchCount)
-        // show it on second launch
-        if count == 2 {
+        switch count {
+        case 1:
+            NotificationManager.default.requestNotificationAuthorization()
+        case 2:
             modalSheetView = .functionalityCheckView
             showingModalSheetView = true
+        default:
+            break
         }
     }
     

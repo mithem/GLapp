@@ -33,7 +33,7 @@ class FClassTestCalendarEvents: Functionality {
     }
     
     func createOrModifyClassTestCalendarEventsIfAppropriate(with appManager: AppManager, dataManager: DataManager) {
-        guard appManager.calendarAccess.isEnabled == .yes else { return }
+        guard appManager.calendarAccess.isEnabled.unwrapped else { return }
         guard let plan = dataManager.classTestPlan else { return }
         EventManager.default.createClassTestEvents(from: plan.classTests) { _ in }
     }

@@ -35,10 +35,8 @@ struct SettingsView: View {
                 Toggle(appManager.backgroundReprPlanNotifications.title, isOn: appManager.backgroundReprPlanNotifications.isEnabledBinding(appManager: appManager, dataManager: dataManager, setCompletion: handleIsEnabledBindingResult))
                 Toggle(appManager.coloredInlineSubjects.title, isOn: appManager.coloredInlineSubjects.isEnabledBinding(appManager: appManager, dataManager: dataManager, setCompletion: handleIsEnabledBindingResult))
                 Link("feedback", destination: Constants.mailToURL)
-                if appManager.notifications.isEnabled == .yes { // at the moment only contains notification-related stuff
-                    NavigationLink("advanced_settings") {
-                        AdvancedSettingsView(appManager: appManager, dataManager: dataManager)
-                    }
+                NavigationLink("advanced_settings") {
+                    AdvancedSettingsView(appManager: appManager, dataManager: dataManager)
                 }
             }
             Section {
@@ -56,7 +54,7 @@ struct SettingsView: View {
                     LoginView(appManager: appManager, dataManager: dataManager, delegate: self)
                 }
             }
-            if appManager.demoMode.isEnabled == .yes {
+            if appManager.demoMode.isEnabled.unwrapped {
                 Section {
                     Button("demo_mode_active") {
                         try? appManager.demoMode.disable(with: appManager, dataManager: dataManager)

@@ -26,7 +26,7 @@ struct ClassTestInlineView: View {
                 .foregroundColor(.secondary)
         }
             .foregroundColor(model.isOver ? .secondary : .primary)
-        if model.appManager.classTestReminders.isEnabled != .yes {
+        if !model.appManager.classTestReminders.isEnabled.unwrapped {
             hstack
                 .contextMenu {
                     Button(action: {

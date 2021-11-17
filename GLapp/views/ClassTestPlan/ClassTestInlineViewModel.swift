@@ -37,7 +37,7 @@ import SwiftUI
         if isOver {
             return .secondary
         }
-        if appManager.coloredInlineSubjects.isEnabled == .yes {
+        if appManager.coloredInlineSubjects.isEnabled.unwrapped {
             return classTest.subject.color.getColoredForegroundColor(colorScheme: colorScheme)
         }
         return .primary

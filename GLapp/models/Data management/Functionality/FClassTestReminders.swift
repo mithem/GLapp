@@ -18,9 +18,8 @@ class FClassTestReminders: Functionality {
     
     override func doEnable(with appManager: AppManager, dataManager: DataManager) throws {
         UserDefaults.standard.set(true, forKey: UserDefaultsKeys.automaticallyRemindBeforeClassTests)
-        if appManager.notifications.isEnabled != .yes {
-            try appManager.notifications.enable(with: appManager, dataManager: dataManager)
-        }
+        // always try so that provisional notification authorization can be changed into authorized
+        try appManager.notifications.enable(with: appManager, dataManager: dataManager)
         if appManager.classTestPlan.isEnabled != .yes {
             try appManager.classTestPlan.enable(with: appManager, dataManager: dataManager)
         }

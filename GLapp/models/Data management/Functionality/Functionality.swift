@@ -25,6 +25,18 @@ class Functionality: ObservableObject, FunctionalityProtocol, Identifiable {
         isEnabled.reversed
     }
     
+    var stateDescription: String {
+        switch isEnabled {
+        case .yes:
+            return "currently_enabled"
+        case .no:
+            return "currently_disabled"
+        case .unknown:
+            return "unkown_state"
+        case .semi:
+            return "semi_enabled_state"
+        }
+    }
     
     func isEnabledBinding(appManager: AppManager, dataManager: DataManager, setCompletion: @escaping (Result<Void, Error>) -> Void) -> Binding<Bool> {
         .init(get: {
@@ -108,7 +120,7 @@ class Functionality: ObservableObject, FunctionalityProtocol, Identifiable {
         for type in self.dependencies {
             let depEnabled = appManager.functionality(of: type).isEnabled
             if depEnabled != .yes {
-                if [.yes, .unknown].contains(isSupported) {
+                if [.yes, .unknown, .semi].contains(isSupported) {
                     isSupported = depEnabled
                 } else if depEnabled == .no {
                     isSupported = .no
@@ -154,7 +166,7 @@ class Functionality: ObservableObject, FunctionalityProtocol, Identifiable {
     }
     
     enum State {
-        case yes, no, unknown
+        case yes, no, unknown, semi
         
         var reversed: Self {
             switch self {
@@ -162,8 +174,17 @@ class Functionality: ObservableObject, FunctionalityProtocol, Identifiable {
                 return .no
             case .no:
                 return .yes
-            case .unknown:
-                return .unknown
+            case .unknown, .semi:
+                return self
+            }
+        }
+        
+        var unwrapped: Bool {
+            switch self {
+            case .yes, .semi:
+                return true
+            case .no, .unknown:
+                return false
             }
         }
     }

@@ -21,6 +21,9 @@ protocol FunctionalityProtocol {
     /// Dependency functionalities that need to be enabled in order for this functionality to be supported
     var dependencies: [Functionality.FunctionalityType] { get }
     
+    /// Localized string keys for a human readable description of the state
+    var stateDescription: String { get }
+    
     /// Reload all isSupported & isEnabled. Must be run on main thread.
     func reload(with appManager: AppManager, dataManager: DataManager) throws
     /// Check whether the functionality is supported or not.

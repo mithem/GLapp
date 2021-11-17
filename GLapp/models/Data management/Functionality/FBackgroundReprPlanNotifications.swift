@@ -17,9 +17,7 @@ class FBackgroundReprPlanNotifications: Functionality {
     }
     
     override func doEnable(with appManager: AppManager, dataManager: DataManager) throws {
-        if appManager.notifications.isEnabled != .yes {
-            try appManager.notifications.enable(with: appManager, dataManager: dataManager)
-        }
+        try appManager.notifications.enable(with: appManager, dataManager: dataManager)
         UserDefaults.standard.set(true, forKey: UserDefaultsKeys.backgroundReprPlanNotificationsEnabled)
     }
     

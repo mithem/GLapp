@@ -14,8 +14,10 @@ extension UNAuthorizationStatus {
             return .unknown
         case .denied:
             return .no
-        case .authorized, .provisional, .ephemeral:
+        case .authorized:
             return .yes
+        case .provisional, .ephemeral:
+            return .semi
         @unknown default:
             return .unknown
         }

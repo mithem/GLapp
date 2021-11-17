@@ -23,7 +23,7 @@ class AppManager: ObservableObject {
     
     var userExperienceRelevantFunctionalities: [Functionality] { // no computed property so it's redrawn every time FunctionalityCheckView refreshes
         var types = [Functionality.FunctionalityType.notifications, .backgroundRefresh, .backgroundReprPlanNotifications]
-        if classTestPlan.isEnabled == .yes {
+        if classTestPlan.isEnabled.unwrapped {
             types.append(contentsOf: [.calendarAccess, .classTestReminders, .classTestCalendarEvents])
         }
         return types.map {functionality(of: $0)}

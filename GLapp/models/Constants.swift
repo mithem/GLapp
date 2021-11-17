@@ -39,6 +39,7 @@ struct Constants {
     static let lessonEndDateComponents = getLessonEndDateComponents()
     static let defaultReprPlanNotificationsHighRelevanceTimeInterval: TimeInterval = 4 * 60 * 60 // 4h
     static let timeIntervalRequiringUserActivityUntilNSUserActivityIsDonated: TimeInterval = 4
+    static let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
 
     struct Identifiers {
         static let appId = "com.mithem.GLapp"

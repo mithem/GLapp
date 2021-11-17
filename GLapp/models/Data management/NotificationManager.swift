@@ -43,7 +43,8 @@ final class NotificationManager {
                 content.interruptionLevel = interruptionLevel.unNotificationInterruptionLevel
             }
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: false)
-            let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+            let id = identifier + String(Date.rightNow.timeIntervalSince1970)
+            let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
             UNUserNotificationCenter.current().add(request) { error in
                 if let error = error {
                     print(error)
@@ -53,8 +54,7 @@ final class NotificationManager {
     }
     
     func deliverNotification(identifier: KeyPath<Constants.Identifiers.Notifications, String>, title: String, body: String, sound: UNNotificationSound? = .default, interruptionLevel: InterruptionLevel = .active, in timeInterval: TimeInterval = 1) {
-        let timestamp = Int(Date.rightNow.timeIntervalSince1970)
-        let id = Constants.Identifiers.Notifications()[keyPath: identifier] + String(timestamp)
+        let id = Constants.Identifiers.Notifications()[keyPath: identifier]
         deliverNotification(identifier: id, title: title, body: body, sound: sound, interruptionLevel: interruptionLevel, in: timeInterval)
     }
     
@@ -90,6 +90,8 @@ final class NotificationManager {
                             }
                         }
                     }
+                } else if UserDefaults.standard.bool(forKey: UserDefaultsKeys.dontSaveReprPlanUpdateTimestampWhenViewingReprPlan) && UserDefaults.standard.bool(forKey: UserDefaultsKeys.reprPlanNotificationsEntireReprPlan) {
+                    self.deliverNotification(plan)
                 }
                 task.setTaskCompleted(success: true)
             case .failure(let error):

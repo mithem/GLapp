@@ -120,3 +120,4 @@
 "unkown_state" = "Unkown state";
 "semi_enabled_state" = "Semi-enabled state";
 "permission_provisional_or_ephemeral" = "Permission provisional or ephemeral";
+"current_repr_plan" = "Current repr. plan";

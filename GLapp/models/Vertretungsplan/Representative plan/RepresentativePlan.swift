@@ -30,6 +30,9 @@ final class RepresentativePlan: ObservableObject, DeliverableByNotification {
     }
     
     var summary: String {
+        if isEmpty {
+            return "representative_plan_empty"
+        }
         var msgs = [String]()
         msgs.append(notes.joined(separator: ", "))
         msgs.append(lessons.map {$0.summary}.joined(separator: ", "))

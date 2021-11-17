@@ -24,7 +24,7 @@ struct AdvancedSettingsView: View {
                     }
                     .disabled(!appManager.notifications.isEnabled.unwrapped)
                     .sheet(isPresented: $showingScheduledNotificationsView) {
-                        ScheduledNotificationsView()
+                        ScheduledNotificationsView(dataManager: dataManager)
                     }
                 }
                 Section {

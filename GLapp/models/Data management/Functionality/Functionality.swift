@@ -62,8 +62,7 @@ class Functionality: ObservableObject, FunctionalityProtocol, Identifiable {
         do {
             try doEnable(with: appManager, dataManager: dataManager)
         } catch {
-            isSupported = .no
-            isEnabled = .no
+            throw error
         }
         try reload(with: appManager, dataManager: dataManager)
     }

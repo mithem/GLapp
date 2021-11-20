@@ -84,3 +84,16 @@ func removeLastReprPlanUpdateTimestamp() {
 func NSLocalizedString(_ key: String) -> String {
     NSLocalizedString(key, comment: key)
 }
+
+func createAppDataDirIfAppropriate() throws {
+    if let url = Constants.appDataDir {
+        var isDir: ObjCBool = false
+        let exists = FileManager.default.fileExists(atPath: url.path, isDirectory: &isDir)
+        if exists && isDir.boolValue || !exists {
+            if !isDir.boolValue {
+                try FileManager.default.removeItem(at: url)
+            }
+            try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
+        }
+    }
+}

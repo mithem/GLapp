@@ -122,3 +122,4 @@
 "semi_enabled_state" = "Zwischenzustand";
 "permission_provisional_or_ephemeral" = "Berechtigung provisorisch oder ephemerisch";
 "current_repr_plan" = "Aktueller Vertretungsplan";
+"low_power_mode_enabled" = "Stromsparmodus aktiviert";

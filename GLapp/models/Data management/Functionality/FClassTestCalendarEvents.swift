@@ -25,11 +25,14 @@ class FClassTestCalendarEvents: Functionality {
             try appManager.classTestPlan.enable(with: appManager, dataManager: dataManager)
         }
         UserDefaults.standard.set(true, forKey: UserDefaultsKeys.classTestCalendarEvents)
-        createOrModifyClassTestCalendarEventsIfAppropriate(with: appManager, dataManager: dataManager)
+        if let plan = dataManager.classTestPlan {
+            EventManager.default.createClassTestEvents(from: plan.classTests) { _ in }
+        }
     }
     
     override func doDisable(with appManager: AppManager, dataManager: DataManager) throws {
         UserDefaults.standard.set(false, forKey: UserDefaultsKeys.classTestCalendarEvents)
+        try EventManager.default.removeAllCreatedEvents(subjects: .init(dataManager.subjects ?? .init()))
     }
     
     func createOrModifyClassTestCalendarEventsIfAppropriate(with appManager: AppManager, dataManager: DataManager) {

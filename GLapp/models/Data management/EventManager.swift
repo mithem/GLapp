@@ -7,11 +7,11 @@
 
 import EventKit
 
-class EventManager {
+final class EventManager {
     class var `default`: EventManager { .init() }
     private var store: EKEventStore
     private var eventIds: [String]
-    private var eventIdsURL: URL?
+    private static let eventIdsURL = Constants.appDataDir?.appendingPathComponent("eventIds.json")
     
     func requestAuthorization(completion: @escaping (Result<Bool, Error>) -> Void) {
         store.requestAccess(to: .event) { granted, error in
@@ -27,6 +27,22 @@ class EventManager {
         EKEventStore.authorizationStatus(for: .event)
     }
     
+    func removeAllCreatedEvents(subjects: [Subject]) throws {
+        let classNames = subjects.map { $0.className }
+        let yTimeInterval: TimeInterval = 60 * 60 * 24 * 365
+        let start = Date.rightNow.addingTimeInterval(-yTimeInterval)
+        let end = Date.rightNow.addingTimeInterval(yTimeInterval)
+        let predicate = self.store.predicateForEvents(withStart: start, end: end, calendars: nil)
+        let events = store.events(matching: predicate)
+        for event in events {
+            if eventIds.contains(event.eventIdentifier) || classNames.contains(event.title) {
+                try store.remove(event, span: .thisEvent)
+            } else if event.title.lowercased().starts(with: "nachschrift") {
+                try store.remove(event, span: .thisEvent)
+            }
+        }
+    }
+    
     func createClassTestEvents(from classTests: [ClassTest], completion: @escaping (Result<Bool, Error>) -> Void) {
         requestAuthorization { result in
             switch result {
@@ -35,6 +51,7 @@ class EventManager {
                     completion(.failure(.notAuthorized))
                     return
                 }
+                try? self.removeAllCreatedEvents(subjects: classTests.map { $0.subject })
                 for classTest in classTests {
                     let start = classTest.classTestDate - 1
                     let end = classTest.classTestDate + 60 * 60 * 24 + 1 // just to be safe
@@ -75,14 +92,14 @@ class EventManager {
     }
     
     private func loadEventIds() throws {
-        guard let eventIdsURL = eventIdsURL else { return }
+        guard let eventIdsURL = Self.eventIdsURL else { return }
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .useDefaultKeys
         eventIds = try decoder.decode([String].self, from: try Data(contentsOf: eventIdsURL))
     }
     
     private func saveEventIds() throws {
-        guard let eventIdsURL = eventIdsURL else { return }
+        guard let eventIdsURL = Self.eventIdsURL else { return }
         let encoder = JSONEncoder()
         encoder.keyEncodingStrategy = .useDefaultKeys
         try encoder.encode(eventIds).write(to: eventIdsURL)
@@ -91,10 +108,6 @@ class EventManager {
     required init() {
         store = .init()
         eventIds = .init()
-        
-        let appDirRoot = try? FileManager.default.url(for: .applicationDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-        let appDir = URL(string: Constants.Identifiers.appId, relativeTo: appDirRoot)
-        eventIdsURL = appDir
         
         try? loadEventIds()
     }

@@ -16,20 +16,8 @@ final class NotificationManager {
     
     class var `default`: NotificationManager { NotificationManager() }
     
-    var deliveredNotificationsURL: URL? {
-        guard let appDir = appDirURL else { return nil }
-        return URL(string: "deliveredNotifications.json", relativeTo: appDir)
-    }
-    
-    var notificationRequestsURL: URL? {
-        guard let appDir = appDirURL else { return nil }
-        return URL(string: "notificationRequests.json", relativeTo: appDir)
-    }
-    
-    private var appDirURL: URL? {
-        guard let appDirRoot = try? FileManager.default.url(for: .applicationDirectory, in: .userDomainMask, appropriateFor: nil, create: false) else { return nil }
-        return URL(string: Constants.Identifiers.appId, relativeTo: appDirRoot)
-    }
+    private static let deliveredNotificationsURL = Constants.appDataDir?.appendingPathComponent("deliveredNotifications.json")
+    private static let notificationRequestsURL = Constants.appDataDir?.appendingPathComponent("notificationRequests.json")
     
     func deliverNotification(identifier: String, title: String, body: String, sound: UNNotificationSound? = .default, interruptionLevel: InterruptionLevel = .active, in timeInterval: TimeInterval = 1) {
         UNUserNotificationCenter.current().getNotificationSettings { settings in
@@ -243,36 +231,32 @@ final class NotificationManager {
         }
     }
     
-    private func saveDelivered() {
-        guard let url = deliveredNotificationsURL else { return }
+    private func saveDelivered() throws {
+        guard let url = Self.deliveredNotificationsURL else { throw FSError.noURL }
         let encoder = JSONEncoder()
         encoder.keyEncodingStrategy = .useDefaultKeys
-        try? encoder.encode(delivered).write(to: url)
+        try encoder.encode(delivered).write(to: url)
     }
     
-    private func loadDelivered() {
-        guard let url = deliveredNotificationsURL else { return }
+    private func loadDelivered() throws {
+        guard let url = Self.deliveredNotificationsURL else { throw FSError.noURL }
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .useDefaultKeys
-        if let delivered = try? decoder.decode([DeliveredNotification].self, from: try Data(contentsOf: url)) {
-            self.delivered = delivered
-        }
+        delivered = try decoder.decode([DeliveredNotification].self, from: try Data(contentsOf: url))
     }
     
-    private func saveRequests() {
-        guard let url = notificationRequestsURL else { return }
+    private func saveRequests() throws {
+        guard let url = Self.notificationRequestsURL else { throw FSError.noURL }
         let encoder = JSONEncoder()
         encoder.keyEncodingStrategy = .useDefaultKeys
-        try? encoder.encode(requests).write(to: url)
+        try encoder.encode(requests).write(to: url)
     }
     
-    private func loadRequests() {
-        guard let url = notificationRequestsURL else { return }
+    private func loadRequests() throws {
+        guard let url = Self.notificationRequestsURL else { throw FSError.noURL }
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .useDefaultKeys
-        if let requests = try? decoder.decode([NotificationRequest].self, from: try Data(contentsOf: url)) {
-            self.requests = requests
-        }
+        requests = try decoder.decode([NotificationRequest].self, from: try Data(contentsOf: url))
     }
     
     func reset() {
@@ -283,13 +267,13 @@ final class NotificationManager {
     init() {
         requests = .init()
         delivered = .init()
-        loadRequests()
-        loadDelivered()
+        try? loadRequests()
+        try? loadDelivered()
     }
     
     deinit {
-        saveDelivered()
-        saveRequests()
+        try? saveDelivered()
+        try? saveRequests()
     }
     
     struct NotificationRequest: Identifiable, Hashable, Codable, DeliverableByNotification {

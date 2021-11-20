@@ -10,7 +10,13 @@ import UIKit
 /// Functionality background refresh
 class FBackgroundRefresh: Functionality {
     override func reloadIsEnabled(with appManager: AppManager, dataManager: DataManager) throws {
-        isEnabled = BackgroundTaskManager.checkForBackgroundReprPlanCheckEnabled() ? .yes : .no
+        if !BackgroundTaskManager.checkForBackgroundReprPlanCheckEnabled() {
+            isEnabled = .no
+        } else if ProcessInfo.processInfo.isLowPowerModeEnabled {
+            isEnabled = .semi
+        } else {
+            isEnabled = .yes
+        }
     }
     
     override func reloadIsSupported(with appManager: AppManager, dataManager: DataManager) throws {
@@ -18,6 +24,7 @@ class FBackgroundRefresh: Functionality {
     }
     
     override func doEnable(with appManager: AppManager, dataManager: DataManager) throws {
+        if ProcessInfo.processInfo.isLowPowerModeEnabled { throw Error.notSupported(message: "low_power_mode_enabled") }
         UIApplication.shared.open(.init(string: UIApplication.openSettingsURLString)!)
     }
     

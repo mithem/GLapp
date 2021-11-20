@@ -105,7 +105,7 @@ struct FunctionalityInlineView: View {
     }
     
     var imageName: String {
-        if true {
+        if #available(iOS 15, *) {
             switch functionality.isEnabled {
             case .unknown:
                 return "questionmark.diamond"

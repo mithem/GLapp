@@ -40,6 +40,11 @@ struct SettingsView: View {
                 }
             }
             Section {
+                if !isLoggedIn() {
+                    Button("login") {
+                        showingLoginView = true
+                    }
+                }
                 Button("clear_cache", action: dataManager.clearAllLocalData)
                 Button("reset_onboarding", action: resetOnboarding)
                 Group {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DataManagementTask<ContentType>: ObservableObject where ContentType: Codable { // if this was a struct, KeyPaths wouldn't be able to mutate it (as of right now i guess)
+final class DataManagementTask<ContentType>: ObservableObject where ContentType: Codable { // if this was a struct, KeyPaths wouldn't be able to mutate it (as of right now i guess)
     @Published var isLoading = false
     @Published var error: GLappError?
     let localDataURL: URL?

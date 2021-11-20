@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 /// Responsible for app-related stuff like whether the user enabled a certain feature and version information.
-class AppManager: ObservableObject {
+final class AppManager: ObservableObject {
     @Published var notifications: FNotifications
     @Published var backgroundRefresh: FBackgroundRefresh
     @Published var backgroundReprPlanNotifications: FBackgroundReprPlanNotifications

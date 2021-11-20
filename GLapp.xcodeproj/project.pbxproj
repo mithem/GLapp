@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		490A22C52746186F0090C5AC /* ClassTest+CustomDebugStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490A22C42746186F0090C5AC /* ClassTest+CustomDebugStringConvertible.swift */; };
+		490A22CA274623480090C5AC /* Date+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490A22C9274623480090C5AC /* Date+Identifiable.swift */; };
 		4910A019271C285B00AAD624 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 4910A018271C285B00AAD624 /* Reachability */; };
 		491C4829273566D60027707E /* GLappScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491C4828273566D60027707E /* GLappScene.swift */; };
 		491C482B273573BC0027707E /* Color+getForegroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491C482A273573BC0027707E /* Color+getForegroundColor.swift */; };
@@ -180,6 +182,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		490A22C42746186F0090C5AC /* ClassTest+CustomDebugStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClassTest+CustomDebugStringConvertible.swift"; sourceTree = "<group>"; };
+		490A22C9274623480090C5AC /* Date+Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Identifiable.swift"; sourceTree = "<group>"; };
 		491C4828273566D60027707E /* GLappScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLappScene.swift; sourceTree = "<group>"; };
 		491C482A273573BC0027707E /* Color+getForegroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+getForegroundColor.swift"; sourceTree = "<group>"; };
 		4921C47D2731979600DA256D /* Date+janFirst2000.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+janFirst2000.swift"; sourceTree = "<group>"; };
@@ -356,6 +360,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		490A22C6274622C20090C5AC /* ScheduledNotificationsView */ = {
+			isa = PBXGroup;
+			children = (
+				4921C47F27319E8700DA256D /* ScheduledNotificationsView.swift */,
+				4921C48E2731C57200DA256D /* ScheduledNotificationsViewModel.swift */,
+				4921C4832731A0AA00DA256D /* ScheduledNotificationInlineView.swift */,
+			);
+			path = ScheduledNotificationsView;
+			sourceTree = "<group>";
+		};
 		4921C4872731B85E00DA256D /* CustomDebugStringConvertible */ = {
 			isa = PBXGroup;
 			children = (
@@ -364,6 +378,7 @@
 				49D67A1C273E718500ADC319 /* RepresentativePlan+CustomDebugStringConvertible.swift */,
 				49D67A1E273E728F00ADC319 /* RepresentativeDay+CustomDebugStringConvertible.swift */,
 				49D67A20273E72FE00ADC319 /* RepresentativeLesson+CustomDebugStringConvertible.swift.swift */,
+				490A22C42746186F0090C5AC /* ClassTest+CustomDebugStringConvertible.swift */,
 			);
 			path = CustomDebugStringConvertible;
 			sourceTree = "<group>";
@@ -454,6 +469,7 @@
 				493E8AC8273008DE008C9B13 /* Color+getColoredForegroundColor.swift */,
 				491C482A273573BC0027707E /* Color+getForegroundColor.swift */,
 				4921C47D2731979600DA256D /* Date+janFirst2000.swift */,
+				490A22C9274623480090C5AC /* Date+Identifiable.swift */,
 				4921C4872731B85E00DA256D /* CustomDebugStringConvertible */,
 			);
 			path = Extensions;
@@ -677,9 +693,7 @@
 				499C085F2734FBD000206514 /* AdvancedSettingsView.swift */,
 				49E59DE5271C7180009A1609 /* EditSubjectView.swift */,
 				49517FFB271F668A0085BEA6 /* SubjectAttributeView.swift */,
-				4921C47F27319E8700DA256D /* ScheduledNotificationsView.swift */,
-				4921C48E2731C57200DA256D /* ScheduledNotificationsViewModel.swift */,
-				4921C4832731A0AA00DA256D /* ScheduledNotificationInlineView.swift */,
+				490A22C6274622C20090C5AC /* ScheduledNotificationsView */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -974,6 +988,7 @@
 				49D67A27273E78D900ADC319 /* RepresentativeLesson+Comparable.swift in Sources */,
 				49F380E52710DFE0002AE814 /* RepresentativePlan.swift in Sources */,
 				49D67A2B273EA6B900ADC319 /* RepresentativeLesson+Copying.swift in Sources */,
+				490A22CA274623480090C5AC /* Date+Identifiable.swift in Sources */,
 				499C0866273532CA00206514 /* EKAuthorizationStatus+functionalityState.swift in Sources */,
 				4991A2B82719976F008559F9 /* functions.swift in Sources */,
 				49262702273E379C00829AA7 /* Differentiable.swift in Sources */,
@@ -992,6 +1007,7 @@
 				49517FFA271F30500085BEA6 /* DeliverableByNotification.swift in Sources */,
 				495E7C51271ABFC9000085C7 /* DataManagementTaskView.swift in Sources */,
 				4991A2BA27199789008559F9 /* GLDateFormatter.swift in Sources */,
+				490A22C52746186F0090C5AC /* ClassTest+CustomDebugStringConvertible.swift in Sources */,
 				49686D87271DDA250075F14A /* Lesson+Equatable.swift in Sources */,
 				49FDEDD3271359850013341B /* String+Identifiable.swift in Sources */,
 				49D110A7272AD87B00CEBF1D /* DateComponents+combine.swift in Sources */,

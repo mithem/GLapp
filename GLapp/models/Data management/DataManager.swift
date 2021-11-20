@@ -178,7 +178,9 @@ class DataManager: ObservableObject {
         guard let url = self.tasks[keyPath: task].localDataURL else { return }
         do {
             try FileManager.default.removeItem(at: url)
-        } catch {}
+        } catch {
+            print(error)
+        }
     }
     
     func clearAllLocalData() {
@@ -530,13 +532,11 @@ class DataManager: ObservableObject {
         
         init() {
             let cacheDir = try? FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-            let appDirRoot = try? FileManager.default.url(for: .applicationDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-            let appDir = URL(string: Constants.Identifiers.appId, relativeTo: appDirRoot)
-            let appCacheDir = URL(string: Constants.Identifiers.appId, relativeTo: cacheDir)
-            getRepresentativePlan = .init(localDataURL: URL(string: "representativePlan.json", relativeTo: appCacheDir))
-            getClassTestPlan = .init(localDataURL: URL(string: "classTestPlan.json", relativeTo: appCacheDir))
-            getTimetable = .init(localDataURL: URL(string: "timetable.json", relativeTo: appCacheDir))
-            subjectColorMap = .init(localDataURL: URL(string: "subjectColorMap.json", relativeTo: appDir))
+            let appCacheDir = cacheDir?.appendingPathComponent(Constants.Identifiers.appId)
+            getRepresentativePlan = .init(localDataURL: appCacheDir?.appendingPathComponent("representativePlan.json"))
+            getClassTestPlan = .init(localDataURL: appCacheDir?.appendingPathComponent("classTestPlan.json"))
+            getTimetable = .init(localDataURL: appCacheDir?.appendingPathComponent("timetable.json"))
+            subjectColorMap = .init(localDataURL: appCacheDir?.appendingPathComponent("subjectColorMap.json"))
         }
     }
     

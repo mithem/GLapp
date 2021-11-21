@@ -10,8 +10,8 @@ import UserNotifications
 protocol DeliverableByNotification {
     var id: String? { get }
     var notificationId: KeyPath<Constants.Identifiers.Notifications, String>? { get }
-    var title: String { get }
-    var summary: String { get }
+    var notificationTitle: String { get }
+    var notificationSummary: String { get }
     
     var interruptionLevel: NotificationManager.InterruptionLevel { get }
     var relevance: Double { get }

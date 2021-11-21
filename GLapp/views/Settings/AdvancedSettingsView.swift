@@ -17,6 +17,9 @@ struct AdvancedSettingsView: View {
     @AppStorage(UserDefaultsKeys.dontSaveReprPlanUpdateTimestampWhenViewingReprPlan) var dontSaveReprPlanUpdateTimestampWhenViewingReprPlan = false
     var body: some View {
         Form {
+            Section {
+                Button("regenerate_colors", action: dataManager.regenerateColors)
+            }
             if appManager.notifications.isEnabled.unwrapped {
                 Section {
                     Button("show_scheduled_notifications") {

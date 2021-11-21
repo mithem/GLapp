@@ -66,6 +66,7 @@ struct Constants {
             static let classTestPlan = Functionality.Identifier("class_test_plan")
             static let calendarAccess = Functionality.Identifier("calendar_access")
             static let classTestCalendarEvents = Functionality.Identifier("class_test_calendar_events")
+            static let spotlightIntegration = Functionality.Identifier("spotlight_integration")
         }
     }
     

@@ -34,6 +34,9 @@ struct SettingsView: View {
                 }
                 Toggle(appManager.backgroundReprPlanNotifications.title, isOn: appManager.backgroundReprPlanNotifications.isEnabledBinding(appManager: appManager, dataManager: dataManager, setCompletion: handleIsEnabledBindingResult))
                 Toggle(appManager.coloredInlineSubjects.title, isOn: appManager.coloredInlineSubjects.isEnabledBinding(appManager: appManager, dataManager: dataManager, setCompletion: handleIsEnabledBindingResult))
+                if appManager.spotlightIntegration.isSupported.unwrapped {
+                    Toggle(appManager.spotlightIntegration.title, isOn: appManager.spotlightIntegration.isEnabledBinding(appManager: appManager, dataManager: dataManager, setCompletion: handleIsEnabledBindingResult))
+                }
                 Link("feedback", destination: Constants.mailToURL)
                 NavigationLink("advanced_settings") {
                     AdvancedSettingsView(appManager: appManager, dataManager: dataManager)
@@ -121,11 +124,11 @@ struct SettingsView: View {
     func resetAllData() {
         dataManager.reset()
         NotificationManager.default.reset()
-        UserDefaults.standard.set(0, forKey: UserDefaultsKeys.launchCount)
-        appManager.reload(with: dataManager)
+        IntentsManager.reset()
         resetLoginInfo()
         resetOnboarding()
-        IntentsManager.reset()
+        UserDefaults.standard.set(0, forKey: UserDefaultsKeys.launchCount)
+        appManager.reload(with: dataManager)
         showingLoginView = true
     }
 }

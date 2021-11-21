@@ -9,6 +9,6 @@ import Foundation
 
 extension ContentView: LoginViewDelegate {
     func didSaveWithSuccess() {
-        dataManager.loadData()
+        model.dataManager.loadData()
     }
 }

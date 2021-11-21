@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class RepresentativeDay: ObservableObject, Identifiable, DeliverableByNotification {
+final class RepresentativeDay: ObservableObject, Identifiable {
     var id: Date? { date }
     
     @Published var lessons: [RepresentativeLesson]
@@ -24,41 +24,19 @@ final class RepresentativeDay: ObservableObject, Identifiable, DeliverableByNoti
         return lessons.isEmpty && notes.isEmpty
     }
     
-    var summary: String {
-        var str = lessons.map {$0.summary}.joined(separator: ", ")
-        if !notes.isEmpty {
-            str.append("; " + notes.joined(separator: ", "))
-        }
-        return str
-    }
-    
-    var notificationId: KeyPath<Constants.Identifiers.Notifications, String>? { \.reprPlanUpdateNotification }
-    
-    var title: String { "repr_plan_update" }
-    
-    var interruptionLevel: NotificationManager.InterruptionLevel {
-        var current = NotificationManager.InterruptionLevel.passive
-        for lesson in lessons {
-            if lesson.interruptionLevel > current {
-                current = lesson.interruptionLevel
-            }
-        }
-        return current
-    }
-    
-    var relevance: Double {
-        var current = 0.0
-        for lesson in lessons {
-            if lesson.relevance > current {
-                current = lesson.relevance
-            }
-        }
-        return current
-    }
     
     func updateSubjects(with dataManager: DataManager) {
         for lesson in lessons {
             lesson.updateSubject(with: dataManager)
         }
+    }
+    
+    func findIntent(with id: String) -> IntentToHandle? {
+        for lesson in lessons {
+            if lesson.id == id {
+                return .showRepresentativePlan
+            }
+        }
+        return nil
     }
 }

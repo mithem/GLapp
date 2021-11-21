@@ -55,7 +55,7 @@ final class NotificationManager {
         } else {
             return
         }
-        deliverNotification(identifier: id, title: NSLocalizedString(content.title), body: NSLocalizedString(content.summary), sound: content.sound, interruptionLevel: content.interruptionLevel, in: timeInterval)
+        deliverNotification(identifier: id, title: NSLocalizedString(content.notificationTitle), body: NSLocalizedString(content.notificationSummary), sound: content.sound, interruptionLevel: content.interruptionLevel, in: timeInterval)
     }
     
     func checkRepresentativePlanAndDeliverNotification(task: BGTask) {
@@ -125,7 +125,7 @@ final class NotificationManager {
         let classTestDateComponents = Calendar(identifier: .gregorian).dateComponents([.year, .month, .day, .hour, .minute], from: classTestDate)
         var daysBeforeClassTest = UserDefaults.standard.integer(forKey: UserDefaultsKeys.classTestReminderNotificationBeforeDays)
         if daysBeforeClassTest == 0 { // no previous initialization e.g. by SettingsView
-            daysBeforeClassTest = 3
+            daysBeforeClassTest = Constants.defaultClassTestReminderNotificationsBeforeDays
         }
         var reminderComponents = classTestDateComponents
         reminderComponents.day! -= daysBeforeClassTest
@@ -134,13 +134,12 @@ final class NotificationManager {
         guard reminderDate > .rightNow else { return }
         let trigger = UNCalendarNotificationTrigger(dateMatching: reminderComponents, repeats: false)
         
-        let deltaComponents = DateComponents(day: daysBeforeClassTest)
         let content = UNMutableNotificationContent()
-        content.title = NSLocalizedString("upcoming_class_test")
-        content.body = "\(classTest.alias) \(GLDateFormatter.relativeDateTimeFormatter.localizedString(from: deltaComponents))"
-        content.sound = .default
+        content.title = classTest.notificationTitle
+        content.body = classTest.notificationSummary
+        content.sound = classTest.sound
         if #available(iOS 15, *) {
-            content.interruptionLevel = .passive
+            content.interruptionLevel = classTest.interruptionLevel.unNotificationInterruptionLevel
         }
         
         let id = Constants.Identifiers.Notifications.classTestNotification + classTest.subject.className + classTest.alias + GLDateFormatter.berlinFormatter.string(from: classTest.classTestDate) // can't think of anything more identifiable/safe
@@ -277,13 +276,13 @@ final class NotificationManager {
     }
     
     struct NotificationRequest: Identifiable, Hashable, Codable, DeliverableByNotification {
-        let title: String
+        let notificationTitle: String
         let interruptionLevel: NotificationManager.InterruptionLevel
         let relevance: Double
         let triggerDate: Date?
         let id: String
         let content: String
-        var summary: String { content }
+        var notificationSummary: String { content }
         
         func cancel() {
             NotificationManager.default.removeScheduled([id])
@@ -299,7 +298,7 @@ final class NotificationManager {
         
         init(id: String, title: String, content: String, triggerDate: Date?, interruptionLevel: NotificationManager.InterruptionLevel, relevance: Double) {
             self.id = id
-            self.title = title
+            self.notificationTitle = title
             self.content = content
             self.triggerDate = triggerDate
             self.interruptionLevel = interruptionLevel
@@ -323,12 +322,12 @@ final class NotificationManager {
     
     struct DeliveredNotification: Codable, DeliverableByNotification {
         let id: String
-        let title: String
+        let notificationTitle: String
         let content: String
         var relevance: Double
         var interruptionLevel: NotificationManager.InterruptionLevel
         
-        var summary: String { content }
+        var notificationSummary: String { content }
         
         func remove() {
             NotificationManager.default.removeDelivered([id])
@@ -340,7 +339,7 @@ final class NotificationManager {
         
         init(from notification: UNNotification) {
             id = notification.request.identifier
-            title = notification.request.content.title
+            notificationTitle = notification.request.content.title
             content = notification.request.content.body
             if #available(iOS 15, *) {
                 relevance = notification.request.content.relevanceScore

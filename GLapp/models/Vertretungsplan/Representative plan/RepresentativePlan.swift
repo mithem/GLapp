@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class RepresentativePlan: ObservableObject, DeliverableByNotification {
+final class RepresentativePlan: ObservableObject {
     @Published var date: Date?
     @Published var representativeDays: [RepresentativeDay]
     @Published var lessons: [RepresentativeLesson]
@@ -29,41 +29,6 @@ final class RepresentativePlan: ObservableObject, DeliverableByNotification {
         return days && lessons && notes
     }
     
-    var summary: String {
-        if isEmpty {
-            return "representative_plan_empty"
-        }
-        var msgs = [String]()
-        msgs.append(notes.joined(separator: ", "))
-        msgs.append(lessons.map {$0.summary}.joined(separator: ", "))
-        msgs.append(representativeDays.map {$0.summary}.joined(separator: ", "))
-        return msgs.filter {$0 != ""}.joined(separator: "; ")
-    }
-    
-    var notificationId: KeyPath<Constants.Identifiers.Notifications, String>? { \.reprPlanUpdateNotification }
-    
-    var title: String { "repr_plan_update" }
-    
-    var interruptionLevel: NotificationManager.InterruptionLevel {
-        var current = NotificationManager.InterruptionLevel.passive
-        for day in representativeDays {
-            if day.interruptionLevel > current {
-                current = day.interruptionLevel
-            }
-        }
-        return current
-    }
-    
-    var relevance: Double {
-        var current = 0.0
-        for day in representativeDays {
-            if day.relevance > current {
-                current = day.relevance
-            }
-        }
-        return current
-    }
-    
     func updateSubjects(with dataManager: DataManager) {
         for day in representativeDays {
             day.updateSubjects(with: dataManager)
@@ -71,5 +36,19 @@ final class RepresentativePlan: ObservableObject, DeliverableByNotification {
         for lesson in lessons {
             lesson.updateSubject(with: dataManager)
         }
+    }
+    
+    func findIntent(with id: String) -> IntentToHandle? {
+        for lesson in lessons {
+            if lesson.id == id {
+                return .showRepresentativePlan
+            }
+        }
+        for day in representativeDays {
+            if let intent = day.findIntent(with: id) {
+                return intent
+            }
+        }
+        return nil
     }
 }

@@ -20,7 +20,7 @@ struct ClassTestPlanView: View {
                     let list = List {
                         UpcomingClassTestView(appManager: model.appManager, classTests: plan.classTests)
                         ForEach(plan.classTests) { classTest in
-                            ClassTestInlineView(classTest: classTest, appManager: model.appManager)
+                            ClassTestInlineView(classTest: classTest, appManager: model.appManager, dataManager: model.dataManager)
                         }
                     }
                     .listStyle(UIConstants.listStyle)

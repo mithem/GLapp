@@ -28,4 +28,13 @@ struct ClassTestPlan: Codable {
         self._classTests = classTests.sorted()
         self.lastFetched = .rightNow
     }
+    
+    func findIntent(with id: String) -> IntentToHandle? {
+        for classTest in classTests {
+            if classTest.id == id {
+                return .showClassTestPlan
+            }
+        }
+        return nil
+    }
 }

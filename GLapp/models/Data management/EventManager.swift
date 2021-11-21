@@ -37,7 +37,7 @@ final class EventManager {
         for event in events {
             if eventIds.contains(event.eventIdentifier) || classNames.contains(event.title) {
                 try store.remove(event, span: .thisEvent)
-            } else if event.title.lowercased().starts(with: "nachschrift") {
+            } else if event.title.isRewrite {
                 try store.remove(event, span: .thisEvent)
             }
         }

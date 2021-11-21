@@ -58,7 +58,7 @@ class TimetableParser {
                     subject.subjectType = subjectType
                     subject.teacher = teacher
                     
-                    let lesson = Lesson(lesson: lessonN, room: room, subject: subject)
+                    let lesson = Lesson(lesson: lessonN, weekday: weekday, room: room, subject: subject)
                     weekday.lessons.append(lesson)
                 }
                 timetable.weekdays.append(weekday)

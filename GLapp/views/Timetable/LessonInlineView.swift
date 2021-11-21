@@ -10,12 +10,12 @@ import SwiftUI
 struct LessonInlineView: View {
     @ObservedObject var lesson: TimetableViewModel.TimetableViewLesson
     @ObservedObject var dataManager: DataManager
-    @State private var showingEditSubjectView = false
+    @State private var showingLessonOrSubjectInfoView = false
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.colorScheme) var colorScheme
     var body: some View {
         let content = Button(action: {
-            showingEditSubjectView = true
+            showingLessonOrSubjectInfoView = true
         }) {
             Spacer()
             if let title = title {
@@ -34,12 +34,14 @@ struct LessonInlineView: View {
                         .foregroundColor(lesson.subject.color)
                 )
             .contextMenu {
-                Button("more") {
-                    showingEditSubjectView = true
-                }
+                Button(action: {
+                    showingLessonOrSubjectInfoView = true
+                }, label: {
+                    Label("more", systemImage: "ellipsis.circle")
+                })
             }
-            .sheet(isPresented: $showingEditSubjectView) {
-                EditSubjectView(lesson: lesson, dataManager: dataManager)
+            .sheet(isPresented: $showingLessonOrSubjectInfoView) {
+                LessonOrSubjectInfoView(lesson: lesson, dataManager: dataManager)
             }
         } else {
             content

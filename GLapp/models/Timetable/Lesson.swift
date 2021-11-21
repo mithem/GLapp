@@ -8,11 +8,12 @@
 import Foundation
 
 final class Lesson: ObservableObject, Identifiable, Codable {
-    var id: Int { lesson }
+    var id: String { "\(String(weekday) ?? "")\(subject)\(lesson)\(lesson)" }
     
     @Published var lesson: Int
     @Published var room: String
     @Published var subject: Subject
+    weak var weekday: Weekday?
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -21,8 +22,9 @@ final class Lesson: ObservableObject, Identifiable, Codable {
         try container.encode(subject, forKey: .subject)
     }
     
-    init(lesson: Int, room: String, subject: Subject) {
+    init(lesson: Int, weekday: Weekday? = nil, room: String, subject: Subject) {
         self.lesson = lesson
+        self.weekday = weekday
         self.room = room
         self.subject = subject
     }

@@ -59,6 +59,15 @@ final class Timetable: ObservableObject, Codable {
         try container.encode(lastFetched, forKey: .lastFetched)
     }
     
+    func findIntent(with id: String) -> IntentToHandle? {
+        for weekday in weekdays {
+            if let intent = weekday.findIntent(with: id) {
+                return intent
+            }
+        }
+        return nil
+    }
+    
     private enum CodingKeys: CodingKey {
         case date, weekdays, lastFetched
     }

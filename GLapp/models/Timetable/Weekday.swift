@@ -37,6 +37,15 @@ final class Weekday: ObservableObject, Identifiable, Codable {
         try container.encode(lessons, forKey: .lessons)
     }
     
+    func findIntent(with id: String) -> IntentToHandle? {
+        for lesson in lessons {
+            if lesson.id == id {
+                return .showTimetable
+            }
+        }
+        return nil
+    }
+    
     private enum CodingKeys: CodingKey {
         case id, lessons
     }

@@ -10,10 +10,12 @@ import SwiftUI
 @MainActor final class ClassTestInlineViewModel: ObservableObject {
     @Published var classTest: ClassTest
     @Published var appManager: AppManager
+    @Published var dataManager: DataManager
     
-    init(classTest: ClassTest, appManager: AppManager) {
+    init(classTest: ClassTest, appManager: AppManager, dataManager: DataManager) {
         self.classTest = classTest
         self.appManager = appManager
+        self.dataManager = dataManager
     }
     
     var isOver: Bool {
@@ -23,15 +25,6 @@ import SwiftUI
         return false
     }
     
-    var title: String {
-        let subjectType: String
-        if let sType = classTest.subject.subjectType {
-            subjectType = " (\(sType))"
-        } else {
-            subjectType = ""
-        }
-        return "\(classTest.subject.subjectName ?? classTest.subject.className)\(subjectType)"
-    }
     
     func titleColor(colorScheme: ColorScheme) -> Color {
         if isOver {

@@ -20,7 +20,8 @@ final class Subject: ObservableObject, Codable, Hashable {
         self.subjectType = subjectType
         self.teacher = teacher
         self.subjectName = subjectName
-        if className.lowercased().starts(with: "nachschrift") { // only used on class test plan
+        self.color = .primary
+        if isRewrite { // only used on class test plan
             self.color = .primary
         } else if let color = color {
             self.color = color
@@ -34,6 +35,18 @@ final class Subject: ObservableObject, Codable, Hashable {
                 dataManager.updateSubjectColorMap(className: className, color: self.color, onMainThread: onMainThread)
             }
         }
+    }
+    
+    
+    /// A user-readable representation containing the subject (name or class name) as well as subject type if available.
+    var title: String {
+        let subjectType: String
+        if let sType = self.subjectType {
+            subjectType = " (\(sType))"
+        } else {
+            subjectType = ""
+        }
+        return "\(subjectName ?? className)\(subjectType)"
     }
     
     func hash(into hasher: inout Hasher) {

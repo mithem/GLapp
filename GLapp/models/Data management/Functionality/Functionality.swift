@@ -193,7 +193,7 @@ class Functionality: ObservableObject, FunctionalityProtocol, Identifiable {
     }
     
     enum FunctionalityType {
-        case notifications, backgroundRefresh, backgroundReprPlanNotifications, classTestReminders, demoMode, coloredInlineSubjects, classTestPlan, calendarAccess, classTestCalendarEvents
+        case notifications, backgroundRefresh, backgroundReprPlanNotifications, classTestReminders, demoMode, coloredInlineSubjects, classTestPlan, calendarAccess, classTestCalendarEvents, spotlightIntegration
         
         var id: Identifier {
             switch self {
@@ -215,6 +215,8 @@ class Functionality: ObservableObject, FunctionalityProtocol, Identifiable {
                 return Constants.Identifiers.Functionalities.calendarAccess
             case .classTestCalendarEvents:
                 return Constants.Identifiers.Functionalities.classTestCalendarEvents
+            case .spotlightIntegration:
+                return Constants.Identifiers.Functionalities.spotlightIntegration
             }
         }
     }

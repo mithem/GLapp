@@ -20,7 +20,15 @@ class SceneDelegate: NSObject, UIWindowSceneDelegate {
     }
     
     func handleUserActivity(_ activity: NSUserActivity) {
-        guard let intent = IntentToHandle(intent: activity.interaction?.intent) else { return }
-        intent.save()
+        var intent: IntentToHandle? = nil
+        if let interaction = activity.interaction {
+            if let inte = IntentToHandle(intent: interaction.intent) {
+                intent = inte
+            }
+        } else if let userInfo = activity.userInfo {
+            guard let identifier = userInfo["kCSSearchableItemActivityIdentifier"] as? String else { return }
+            intent = IntentToHandle(CSSearchableItemActivityIdentifier: identifier)
+        }
+        intent?.save()
     }
 }

@@ -56,6 +56,8 @@
 "feature_class_test_calendar_events_title" = "Klausuren in Kalendar eintragen";
 "feature_class_test_calendar_events_description" = "Automatische Erstellung von Kalendareinträgen für Klausuren.";
 "feature_class_test_plan_title" = "Klausurplan";
+"feature_spotlight_integration_title" = "Spotlight-Integration";
+"feature_spotlight_integration_description" = "Inhalt für das System durchsuchbar machen.";
 "enable" = "Aktivieren";
 "upcoming" = "Anstehend";
 "clear_cache" = "Cache leeren";
@@ -123,3 +125,9 @@
 "permission_provisional_or_ephemeral" = "Berechtigung provisorisch oder ephemerisch";
 "current_repr_plan" = "Aktueller Vertretungsplan";
 "low_power_mode_enabled" = "Stromsparmodus aktiviert";
+"regenerate_colors" = "Farben regenerieren";
+"class_test_mid_sentence" = "Klausur";
+"representative_lesson" = "Vertretungsstunde";
+"substitution_lesson" = "Ersatzstunde";
+"substitution_plan" = "Ersatzplan";
+"lesson" = "Stunde";

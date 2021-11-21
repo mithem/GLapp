@@ -62,6 +62,7 @@ class DataManager: ObservableObject {
     func setRepresentativePlan(_ plan: RepresentativePlan?) {
         DispatchQueue.main.async {
             self.representativePlan = plan
+            self.indexReprPlan()
         }
         
         if let plan = plan, !UserDefaults.standard.bool(forKey: UserDefaultsKeys.dontSaveReprPlanUpdateTimestampWhenViewingReprPlan) {
@@ -74,16 +75,14 @@ class DataManager: ObservableObject {
     func setTimetable(_ timetable: Timetable?) {
         DispatchQueue.main.async {
             self.timetable = timetable
-        }
-        
-        if timetable != nil {
-            representativePlan?.updateSubjects(with: self) // in order for subjects to reload color after timetable is loaded (from network or disk)
+            self.indexTimetable()
         }
     }
     
     func setClassTestPlan(_ plan: ClassTestPlan?) {
         DispatchQueue.main.async {
             self.classTestPlan = plan
+            self.indexClassTestPlan()
         }
         
         if let appManager = appManager {
@@ -96,6 +95,44 @@ class DataManager: ObservableObject {
         DispatchQueue.main.async {
             self.subjectColorMap = map
         }
+    }
+    
+    func indexReprPlan() {
+        guard appManager?.spotlightIntegration.isEnabled.unwrapped == true else { return }
+        if let plan = representativePlan {
+            var toIndex = [RepresentativeLesson]()
+            toIndex.append(contentsOf: plan.lessons)
+            for day in plan.representativeDays {
+                toIndex.append(contentsOf: day.lessons)
+            }
+            IntentsManager.index(items: toIndex)
+        }
+    }
+    
+    func indexTimetable() {
+        guard appManager?.spotlightIntegration.isEnabled.unwrapped == true else { return }
+        if let timetable = timetable {
+            representativePlan?.updateSubjects(with: self) // in order for subjects to reload color after timetable is loaded (from network or disk)
+            
+            var toIndex = [Lesson]()
+            for weekday in timetable.weekdays {
+                toIndex.append(contentsOf: weekday.lessons)
+            }
+            IntentsManager.index(items: toIndex)
+        }
+    }
+    
+    func indexClassTestPlan() {
+        guard appManager?.spotlightIntegration.isEnabled.unwrapped == true else { return }
+        if let classTestPlan = classTestPlan {
+            IntentsManager.index(items: classTestPlan.classTests)
+        }
+    }
+    
+    func indexContent() {
+        indexReprPlan()
+        indexTimetable()
+        indexClassTestPlan()
     }
     
     func updateSubjectColorMap(className: String, color: Color, onMainThread: Bool = true) {
@@ -518,10 +555,30 @@ class DataManager: ObservableObject {
         }
     }
     
+    func regenerateColors() {
+        setTimetable(nil)
+        resetSubjectColorMap()
+        clearLocalData(for: \.getTimetable)
+        loadTimetable(withHapticFeedback: true)
+    }
+    
     func reloadDemoMode() {
         DispatchQueue.main.async {
             self.demoMode = UserDefaults.standard.bool(forKey: UserDefaultsKeys.demoMode)
         }
+    }
+    
+    func findIntent(with id: String) -> IntentToHandle? {
+        if let intent = representativePlan?.findIntent(with: id) {
+            return intent
+        }
+        if let intent = classTestPlan?.findIntent(with: id) {
+            return intent
+        }
+        if let intent = timetable?.findIntent(with: id) {
+            return intent
+        }
+        return nil
     }
     
     final class Tasks: ObservableObject {

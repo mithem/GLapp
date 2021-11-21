@@ -12,8 +12,8 @@ struct ScheduledNotificationInlineView: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(request.title)
-                Text(request.summary)
+                Text(request.notificationTitle)
+                Text(request.notificationSummary)
                     .foregroundColor(.secondary)
             }
             Spacer()

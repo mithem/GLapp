@@ -56,12 +56,14 @@
 "feature_class_test_calendar_events_title" = "Class test events";
 "feature_class_test_calendar_events_description" = "Automatically create calendar events for class tests.";
 "feature_class_test_plan_title" = "Class test plan";
+"feature_spotlight_integration_title" = "Spotlight integration";
+"feature_spotlight_integration_description" = "Make content searchable for the system.";
 "enable" = "Enable";
 "upcoming" = "Upcoming";
 "clear_cache" = "Clear cache";
 "last_fetched" = "Last fetched: ";
 "upcoming_class_test" = "Upcoming class test";
-"set_reminder" = "Erinnerung setzen";
+"set_reminder" = "Set reminder";
 "Montag" = "Mo";
 "Dienstag" = "Tu";
 "Mittwoch" = "We";
@@ -122,3 +124,9 @@
 "permission_provisional_or_ephemeral" = "Permission provisional or ephemeral";
 "current_repr_plan" = "Current repr. plan";
 "low_power_mode_enabled" = "Low power mode enabled";
+"regenerate_colors" = "Regenerate colors";
+"class_test_mid_sentence" = "class test";
+"representative_lesson" = "representative lesson";
+"substitution_lesson" = "substitution lesson";
+"substitution_plan" = "substitution plan";
+"lesson" = "lesson";

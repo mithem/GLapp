@@ -25,6 +25,8 @@ struct FunctionalityCheckView: View {
                     AccentColorButton("ok") {
                         presentationMode.wrappedValue.dismiss()
                     }
+                    .keyboardShortcut(.defaultAction)
+                    .keyboardShortcut(.cancelAction)
                 }
             }
             .onAppear {

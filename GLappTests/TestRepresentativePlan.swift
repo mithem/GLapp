@@ -42,7 +42,7 @@ class TestRepresentativePlan: XCTestCase {
             .init(date: tomorrow, lessons: [l3], notes: [])
         ], lessons: [], notes: ["test information 3"])
         
-        XCTAssertEqual(plan.summary, "test information 3; \(l1.summary), \(l2.summary); test information 1, test information 2, \(l3.summary)")
+        XCTAssertEqual(plan.notificationSummary, "test information 3; \(l1.notificationSummary), \(l2.notificationSummary); test information 1, test information 2, \(l3.notificationSummary)")
     }
     
     func testDifferenceIdentical() {

@@ -29,7 +29,7 @@ class TestRepresentativeLesson: XCTestCase {
     
     func testSummaryTodayFreeLesson() {
         let lesson = RepresentativeLesson(date: date, lesson: 1, room: "PR2", newRoom: nil, note: "(frei)", subject: sPH, normalTeacher: "SEN", representativeTeacher: nil)
-        XCTAssertEqual(lesson.summary, "\(NSLocalizedString("today")) \(formatter.string(from: .init(value: 1))!) PH (frei)")
+        XCTAssertEqual(lesson.notificationSummary, "\(NSLocalizedString("today")) \(formatter.string(from: .init(value: 1))!) PH (frei)")
     }
     
     func testSummaryTomorrowRoomChangeAndReprTeacher() throws {
@@ -40,6 +40,6 @@ class TestRepresentativeLesson: XCTestCase {
         let weekdayStr = Constants.weekdayIDStringMap[components.weekday! - 1]! // weekdays are from 1-7
         let lesson = RepresentativeLesson(date: date, lesson: 4, room: "PR2", newRoom: "PR1", note: "Raumänderung", subject: sPH, normalTeacher: "SEN", representativeTeacher: "DOH")
         
-        XCTAssertEqual(lesson.summary, "\(weekdayStr) \(formatter.string(from: .init(value: 4))!) PH \(NSLocalizedString("in_mid_sentence")) PR1 \(NSLocalizedString("with_mid_sentence")) DOH (Raumänderung)")
+        XCTAssertEqual(lesson.notificationSummary, "\(weekdayStr) \(formatter.string(from: .init(value: 4))!) PH \(NSLocalizedString("in_mid_sentence")) PR1 \(NSLocalizedString("with_mid_sentence")) DOH (Raumänderung)")
     }
 }

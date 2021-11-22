@@ -8,20 +8,19 @@
 import SwiftUI
 
 struct RepresentativeLessonInlineView: View {
-    let lesson: RepresentativeLesson
-    @ObservedObject var appManager: AppManager
+    @ObservedObject var model: RepresentativeLessonInlineViewModel
     @Environment(\.colorScheme) private var colorScheme
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(title)
+                Text(model.title)
                     .bold()
-                    .foregroundColor(titleColor)
+                    .foregroundColor(model.titleColor(colorScheme: colorScheme))
                 HStack {
-                    if let room = lesson.room {
+                    if let room = model.lesson.room {
                         Text(room)
-                            .strikethrough(lesson.newRoom != nil)
-                        if let newRoom = lesson.newRoom {
+                            .strikethrough(model.lesson.newRoom != nil)
+                        if let newRoom = model.lesson.newRoom {
                             Text(newRoom)
                         }
                     }
@@ -29,39 +28,37 @@ struct RepresentativeLessonInlineView: View {
             }
             Spacer()
             VStack(alignment: .trailing) {
-                Text(lesson.normalTeacher)
-                if let note = lesson.note {
+                Text(model.lesson.normalTeacher)
+                if let note = model.lesson.note {
                     Text(note)
                 } else {
                     Spacer()
                 }
             }
         }
-        .foregroundColor(lesson.isOver ? .secondary : .primary)
+        .foregroundColor(model.lesson.isOver ? .secondary : .primary)
+        .contextMenu {
+            Button(action: {
+                model.showingLessonOrSubjectInfoView = true
+            }) {
+                Label("more", systemImage: "ellipsis.circle")
+            }
+        }
+        .sheet(isPresented: $model.showingLessonOrSubjectInfoView) {
+            LessonOrSubjectInfoView(subject: model.lesson.subject, dataManager: model.dataManager)
+        }
     }
     
-    var title: String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .ordinal
-        return "\(formatter.string(from: NSNumber(value: lesson.lesson))!) \(lesson.subject.subjectName ?? lesson.subject.className)"
-    }
-    
-    @MainActor var titleColor: Color {
-        if lesson.isOver {
-            return .secondary
-        }
-        if appManager.coloredInlineSubjects.isEnabled.unwrapped {
-            return lesson.subject.color.getColoredForegroundColor(colorScheme: colorScheme)
-        }
-        return .primary
+    init(lesson: RepresentativeLesson, appManager: AppManager, dataManager: DataManager) {
+        model = .init(lesson: lesson, appManager: appManager, dataManager: dataManager)
     }
 }
 
 struct RepresentativeLessonInlineView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            RepresentativeLessonInlineView(lesson: MockData.representativeLesson, appManager: .init())
-            RepresentativeLessonInlineView(lesson: MockData.representativeLesson2, appManager: .init())
+            RepresentativeLessonInlineView(lesson: MockData.representativeLesson, appManager: .init(), dataManager: MockDataManager())
+            RepresentativeLessonInlineView(lesson: MockData.representativeLesson2, appManager: .init(), dataManager: MockDataManager())
         }
         .previewLayout(.sizeThatFits)
     }

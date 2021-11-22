@@ -31,7 +31,7 @@ struct RepresentativePlanView: View {
                             ForEach(reprPlan.representativeDays) { reprDay in
                                 Section(content: {
                                     ForEach(reprDay.lessons) { lesson in
-                                        RepresentativeLessonInlineView(lesson: lesson, appManager: model.appManager)
+                                        RepresentativeLessonInlineView(lesson: lesson, appManager: model.appManager, dataManager: model.dataManager)
                                     }
                                 }, header: {
                                     Text(reprDay.date?.formattedWithLocaleOnlyDay ?? NSLocalizedString("sometime"))

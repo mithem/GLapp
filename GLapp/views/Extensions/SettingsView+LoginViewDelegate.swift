@@ -9,7 +9,6 @@ import Foundation
 
 extension SettingsView: LoginViewDelegate {
     func didSaveWithSuccess() {
-        dataManager.reset()
         dataManager.loadData()
     }
 }

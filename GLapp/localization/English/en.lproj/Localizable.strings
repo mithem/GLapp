@@ -58,6 +58,8 @@
 "feature_class_test_plan_title" = "Class test plan";
 "feature_spotlight_integration_title" = "Spotlight integration";
 "feature_spotlight_integration_description" = "Make content searchable for the system.";
+"feature_time_sensitive_notifications_title" = "Time sensitive notifications";
+"feature_time_sensitive_notifications_description" = "Let notifications break through focus (without overriding the ring/silent switch).";
 "enable" = "Enable";
 "upcoming" = "Upcoming";
 "clear_cache" = "Clear cache";

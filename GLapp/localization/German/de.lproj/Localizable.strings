@@ -58,6 +58,8 @@
 "feature_class_test_plan_title" = "Klausurplan";
 "feature_spotlight_integration_title" = "Spotlight-Integration";
 "feature_spotlight_integration_description" = "Inhalt für das System durchsuchbar machen.";
+"feature_time_sensitive_notifications_title" = "Dringliche Mitteilungen";
+"feature_time_sensitive_notifications_description" = "Benachrichtigungen können den Fokus durchbrechen (ohne den Lautstärkeschalter zu umgehen).";
 "enable" = "Aktivieren";
 "upcoming" = "Anstehend";
 "clear_cache" = "Cache leeren";

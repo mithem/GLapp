@@ -33,7 +33,7 @@ struct FunctionalityInlineView: View {
             if functionality.isEnabled != .yes { // give ability to enable manually for .no, .unkown, .semi, e.g. when only provisional notifications are enabled
                 AccentColorButton("enable") {
                     do {
-                        try functionality.enable(with: appManager, dataManager: dataManager)
+                        try functionality.enable(with: appManager, dataManager: dataManager, tappedByUser: true)
                     } catch {
                         self.error = error as? Functionality.Error
                         showingErrorActionSheet = true

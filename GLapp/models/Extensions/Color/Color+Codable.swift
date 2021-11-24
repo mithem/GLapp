@@ -10,27 +10,18 @@ import SwiftUI
 extension Color: Codable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        let red = try container.decode(Double.self, forKey: .red)
-        let green = try container.decode(Double.self, forKey: .green)
-        let blue = try container.decode(Double.self, forKey: .blue)
-        let alpha = try container.decode(Double.self, forKey: .alpha)
-        self.init(red: red, green: green, blue: blue, opacity: alpha)
+        let data = try container.decode(Data.self, forKey: .color)
+        guard let uiColor = try NSKeyedUnarchiver.unarchivedObject(ofClass: UIColor.self, from: data) else { throw DecodingError.valueNotFound(UIColor.self, .init(codingPath: [CodingKeys.color], debugDescription: "Could not unarchive valid UIColor.")) }
+        self.init(uiColor)
     }
     
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        var red: CGFloat = .nan
-        var green: CGFloat = .nan
-        var blue: CGFloat = .nan
-        var alpha: CGFloat = .nan
-        UIColor(self).getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-        try container.encode(red, forKey: .red)
-        try container.encode(green, forKey: .green)
-        try container.encode(blue, forKey: .blue)
-        try container.encode(alpha, forKey: .alpha)
+        let colorData = try NSKeyedArchiver.archivedData(withRootObject: UIColor(self), requiringSecureCoding: false)
+        try container.encode(colorData, forKey: .color)
     }
     
     enum CodingKeys: CodingKey {
-       case red, green, blue, alpha
+       case color
     }
 }

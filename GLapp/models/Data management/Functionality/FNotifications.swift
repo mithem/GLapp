@@ -37,10 +37,10 @@ class FNotifications: Functionality {
         isSupported = .yes
     }
     
-    override func doEnable(with appManager: AppManager, dataManager: DataManager) throws {
+    override func doEnable(with appManager: AppManager, dataManager: DataManager, tappedByUser: Bool) throws {
         if !unrestrictedAuthorization {
             NotificationManager.default.requestNotificationAuthorization(unrestricted: true) { success in
-                if !success {
+                if !success && tappedByUser {
                     DispatchQueue.main.async {
                         UIApplication.shared.open(.init(string: UIApplication.openSettingsURLString)!)
                     }

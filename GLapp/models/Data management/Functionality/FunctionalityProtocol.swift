@@ -35,11 +35,12 @@ protocol FunctionalityProtocol {
     /// Called from the main thread.
     func reloadIsEnabled(with appManager: AppManager, dataManager: DataManager) throws
     /// Call doEnable and reload isEnabled.
-    func enable(with appManager: AppManager, dataManager: DataManager) throws
+    func enable(with appManager: AppManager, dataManager: DataManager, tappedByUser: Bool) throws
     /// Call doDisable and reload isEnabled.
     func disable(with appManager: AppManager, dataManager: DataManager) throws
     /// Perform the necesary work to enable the functionality. Don't reload whether activation was successful.
     func doEnable(with appManager: AppManager, dataManager: DataManager) throws
+    func doEnable(with appManager: AppManager, dataManager: DataManager, tappedByUser: Bool) throws
     /// Perform the necesary work to disable the functionality. Don't reload whether activation was successful.
     func doDisable(with appManager: AppManager, dataManager: DataManager) throws
     

@@ -230,6 +230,10 @@ final class NotificationManager {
         }
     }
     
+    func getNotificationsSettings(completion: @escaping (UNNotificationSettings) -> Void) {
+        UNUserNotificationCenter.current().getNotificationSettings(completionHandler: completion)
+    }
+    
     private func saveDelivered() throws {
         guard let url = Self.deliveredNotificationsURL else { throw FSError.noURL }
         let encoder = JSONEncoder()

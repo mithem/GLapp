@@ -57,10 +57,10 @@ class Functionality: ObservableObject, FunctionalityProtocol, Identifiable {
         })
     }
     
-    final func enable(with appManager: AppManager, dataManager: DataManager) throws {
+    final func enable(with appManager: AppManager, dataManager: DataManager, tappedByUser: Bool = false) throws {
         _ = try isSupportedByDependencies(with: appManager, dataManager: dataManager)
         do {
-            try doEnable(with: appManager, dataManager: dataManager)
+            try doEnable(with: appManager, dataManager: dataManager, tappedByUser: tappedByUser)
         } catch {
             throw error
         }
@@ -76,8 +76,16 @@ class Functionality: ObservableObject, FunctionalityProtocol, Identifiable {
         throw Error.notImplemented
     }
     
+    func doEnable(with appManager: AppManager, dataManager: DataManager, tappedByUser: Bool = false) throws {
+        try doEnable(with: appManager, dataManager: dataManager)
+    }
+    
     func doDisable(with appManager: AppManager, dataManager: DataManager) throws {
         throw Error.notImplemented
+    }
+    
+    func doDisable(with appManager: AppManager, dataManager: DataManager, tappedByUser: Bool = false) throws {
+        try doDisable(with: appManager, dataManager: dataManager)
     }
     
     final func reload(with appManager: AppManager, dataManager: DataManager) throws {
@@ -193,7 +201,7 @@ class Functionality: ObservableObject, FunctionalityProtocol, Identifiable {
     }
     
     enum FunctionalityType {
-        case notifications, backgroundRefresh, backgroundReprPlanNotifications, classTestReminders, demoMode, coloredInlineSubjects, classTestPlan, calendarAccess, classTestCalendarEvents, spotlightIntegration
+        case notifications, timeSensitiveNotifications, backgroundRefresh, backgroundReprPlanNotifications, classTestReminders, demoMode, coloredInlineSubjects, classTestPlan, calendarAccess, classTestCalendarEvents, spotlightIntegration
         
         var id: Identifier {
             switch self {
@@ -217,6 +225,8 @@ class Functionality: ObservableObject, FunctionalityProtocol, Identifiable {
                 return Constants.Identifiers.Functionalities.classTestCalendarEvents
             case .spotlightIntegration:
                 return Constants.Identifiers.Functionalities.spotlightIntegration
+            case .timeSensitiveNotifications:
+                return Constants.Identifiers.Functionalities.timeSensitiveNotifications
             }
         }
     }

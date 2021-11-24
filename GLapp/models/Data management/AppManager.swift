@@ -11,6 +11,7 @@ import Combine
 /// Responsible for app-related stuff like whether the user enabled a certain feature and version information.
 final class AppManager: ObservableObject {
     @Published var notifications: FNotifications
+    @Published var timeSensitiveNotifications: FTimeSensitiveNotifications
     @Published var backgroundRefresh: FBackgroundRefresh
     @Published var backgroundReprPlanNotifications: FBackgroundReprPlanNotifications
     @Published var classTestReminders: FClassTestReminders
@@ -22,8 +23,8 @@ final class AppManager: ObservableObject {
     @Published var spotlightIntegration: FSpotlightIntegration
     @Published var userAttentionMayBeRequired: Bool
     
-    var userExperienceRelevantFunctionalities: [Functionality] { // no computed property so it's redrawn every time FunctionalityCheckView refreshes
-        var types = [Functionality.FunctionalityType.notifications, .backgroundRefresh, .backgroundReprPlanNotifications, .spotlightIntegration]
+    var userExperienceRelevantFunctionalities: [Functionality] { // ncomputed property so it's redrawn every time FunctionalityCheckView refreshes
+        var types = [Functionality.FunctionalityType.notifications, .timeSensitiveNotifications, .backgroundRefresh, .backgroundReprPlanNotifications, .spotlightIntegration]
         if classTestPlan.isEnabled.unwrapped {
             types.append(contentsOf: [.calendarAccess, .classTestReminders, .classTestCalendarEvents])
         }
@@ -39,6 +40,7 @@ final class AppManager: ObservableObject {
     
     init() {
         notifications = .init()
+        timeSensitiveNotifications = .init()
         backgroundRefresh = .init()
         backgroundReprPlanNotifications = .init()
         classTestReminders = .init()
@@ -71,6 +73,7 @@ final class AppManager: ObservableObject {
     func reload(with dataManager: DataManager) {
         DispatchQueue.main.async {
             self.reload(.notifications, with: dataManager)
+            self.reload(.timeSensitiveNotifications, with: dataManager)
             self.reload(.backgroundRefresh, with: dataManager)
             self.reload(.backgroundReprPlanNotifications, with: dataManager)
             self.reload(.classTestReminders, with: dataManager)
@@ -87,6 +90,8 @@ final class AppManager: ObservableObject {
         switch type {
         case .notifications:
             return notifications
+        case .timeSensitiveNotifications:
+            return timeSensitiveNotifications
         case .backgroundRefresh:
             return backgroundRefresh
         case .backgroundReprPlanNotifications:

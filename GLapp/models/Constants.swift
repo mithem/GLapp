@@ -58,6 +58,7 @@ struct Constants {
         
         struct Functionalities {
             static let notifications = Functionality.Identifier("notifications")
+            static let timeSensitiveNotifications = Functionality.Identifier("time_sensitive_notifications")
             static let backgroundRefresh = Functionality.Identifier("background_refresh")
             static let classTestReminders = Functionality.Identifier("class_test_reminders")
             static let backgroundReprPlanNotifications = Functionality.Identifier("background_repr_plan_notifications")

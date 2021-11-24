@@ -23,6 +23,7 @@
 		49250B652720A8DE0096411F /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49250B642720A8DE0096411F /* AppManager.swift */; };
 		49262702273E379C00829AA7 /* Differentiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49262701273E379C00829AA7 /* Differentiable.swift */; };
 		49262704273E39BE00829AA7 /* RepresentativePlan+Differentiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49262703273E39BE00829AA7 /* RepresentativePlan+Differentiable.swift */; };
+		49276AAF274E4A9000C4063E /* FTimeSensitiveNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49276AAE274E4A9000C4063E /* FTimeSensitiveNotifications.swift */; };
 		492804C2272010220055ED63 /* ClassTestPlan+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492804C1272010220055ED63 /* ClassTestPlan+Equatable.swift */; };
 		492804C42720104D0055ED63 /* RepresentativePlan+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492804C32720104D0055ED63 /* RepresentativePlan+Equatable.swift */; };
 		492804C8272026EF0055ED63 /* GLappError+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492804C7272026EF0055ED63 /* GLappError+Equatable.swift */; };
@@ -218,6 +219,7 @@
 		49250B642720A8DE0096411F /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		49262701273E379C00829AA7 /* Differentiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Differentiable.swift; sourceTree = "<group>"; };
 		49262703273E39BE00829AA7 /* RepresentativePlan+Differentiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepresentativePlan+Differentiable.swift"; sourceTree = "<group>"; };
+		49276AAE274E4A9000C4063E /* FTimeSensitiveNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTimeSensitiveNotifications.swift; sourceTree = "<group>"; };
 		492804C1272010220055ED63 /* ClassTestPlan+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClassTestPlan+Equatable.swift"; sourceTree = "<group>"; };
 		492804C32720104D0055ED63 /* RepresentativePlan+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepresentativePlan+Equatable.swift"; sourceTree = "<group>"; };
 		492804C7272026EF0055ED63 /* GLappError+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GLappError+Equatable.swift"; sourceTree = "<group>"; };
@@ -871,6 +873,7 @@
 				49EEDE4B27215BDD009A4C6A /* FunctionalityProtocol.swift */,
 				49EEDE46272158A0009A4C6A /* Functionality.swift */,
 				49EEDE4D272167D8009A4C6A /* FNotifications.swift */,
+				49276AAE274E4A9000C4063E /* FTimeSensitiveNotifications.swift */,
 				49EEDE5127218B0F009A4C6A /* FBackgroundRefresh.swift */,
 				49526F9327218E8700FD0242 /* FBackgroundReprPlanNotifications.swift */,
 				49526F95272190D900FD0242 /* FClassTestReminders.swift */,
@@ -1127,6 +1130,7 @@
 				49526F96272190D900FD0242 /* FClassTestReminders.swift in Sources */,
 				499A3EEE2719FB010045683D /* UpcomingClassTestView.swift in Sources */,
 				4962EC5F274A4E36000CDD4E /* Weekday+CustomStringConvertible.swift in Sources */,
+				49276AAF274E4A9000C4063E /* FTimeSensitiveNotifications.swift in Sources */,
 				495D25DB273AA46900F3899D /* RepresentativeLesson+Codable.swift in Sources */,
 				495E6B972718C3CC0052B565 /* AppDelegate.swift in Sources */,
 				4991A2AA271996F8008559F9 /* LoadingView.swift in Sources */,
@@ -1410,7 +1414,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLapp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;
@@ -1445,7 +1449,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLappRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;

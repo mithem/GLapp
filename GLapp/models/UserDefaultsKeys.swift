@@ -29,4 +29,5 @@ struct UserDefaultsKeys {
     /// Don't save update timestamp, so repr plan notifications will be delivered even after viewing the plan in-app
     static let dontSaveReprPlanUpdateTimestampWhenViewingReprPlan = "dontSaveReprPlanUpdateTimestampWhenViewingReprPlan"
     static let disableSpotlightIntegration = "disableSpotlightIntegration"
+    static let classTestPlanNotSupported = "classTestPlanNotSupported"
 }

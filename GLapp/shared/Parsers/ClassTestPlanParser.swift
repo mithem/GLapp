@@ -19,7 +19,7 @@ class ClassTestPlanParser {
         guard let timestampText = classTestPlanElem.attribute(by: "Timestamp")?.text else { return .failure(.noTimestamp) }
         guard let timestampInterval = TimeInterval(timestampText) else { return .failure(.invalidTimestamp) }
         let date = Date(timeIntervalSince1970: timestampInterval)
-        var classTestPlan = ClassTestPlan(date: date)
+        let classTestPlan = ClassTestPlan(date: date)
         
         for childIdx in classTestPlanIndex.children {
             guard let childElem = childIdx.element else { continue }

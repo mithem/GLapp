@@ -11,19 +11,10 @@ import SwiftUI
 final class ContentViewModel: ObservableObject, BindingAttributeRepresentable {
     @Published var appManager: AppManager
     @Published var dataManager: DataManager
-    @Published var modalSheetView: ModalSheetView
-    @Published var showingModalSheetView: Bool // system may set this to false before showing sheet, so information would be lost when setting modalSheetView = .none
+    @Published var showLoginView: Bool
+    @Published var showFunctionalityCheckView: Bool
     
     let timer: Publishers.Autoconnect<Timer.TimerPublisher>
-    
-    var currentView: SubView {
-        get {
-            .init(rawValue: UserDefaults.standard.integer(forKey: UserDefaultsKeys.lastTabView)) ?? .timetable
-        }
-        set {
-            UserDefaults.standard.set(newValue.rawValue, forKey: UserDefaultsKeys.lastTabView)
-        }
-    }
     
     var reprPlanTabItemIcon: String {
         if #available(iOS 15, *) {
@@ -37,8 +28,8 @@ final class ContentViewModel: ObservableObject, BindingAttributeRepresentable {
     init(appManager: AppManager, dataManager: DataManager) {
         self.appManager = appManager
         self.dataManager = dataManager
-        modalSheetView = .none
-        showingModalSheetView = false
+        showLoginView = false
+        showFunctionalityCheckView = false
         timer = Timer.publish(every: 1, tolerance: nil, on: .current, in: .common).autoconnect() // I know that's less elegant and efficient, but how else would I do that?
     }
     
@@ -62,15 +53,15 @@ final class ContentViewModel: ObservableObject, BindingAttributeRepresentable {
         let intent = IntentToHandle(rawValue: intentToHandle ?? "")
         switch intent {
         case .showTimetable:
-            currentView = .timetable
+            UserDefaults.standard.set(0, forKey: UserDefaultsKeys.lastTabView)
         case .showClassTestPlan:
             if appManager.classTestPlan.isEnabled.unwrapped {
-                currentView = .classTestPlan
+                UserDefaults.standard.set(1, forKey: UserDefaultsKeys.lastTabView)
             } else {
-                currentView = .timetable
+                UserDefaults.standard.set(0, forKey: UserDefaultsKeys.lastTabView)
             }
         case .showRepresentativePlan:
-            currentView = .reprPlan
+            UserDefaults.standard.set(2, forKey: UserDefaultsKeys.lastTabView)
         case .unknown(identifier: let identifier):
             let found = dataManager.findIntent(with: identifier)
             if let found = found {
@@ -86,8 +77,7 @@ final class ContentViewModel: ObservableObject, BindingAttributeRepresentable {
     
     func checkForNeedingToShowLoginView() {
         if !isLoggedIn() && appManager.demoMode.isEnabled.unwrapped {
-            modalSheetView = .loginView
-            showingModalSheetView = true
+            showLoginView = true
         }
     }
     
@@ -97,8 +87,7 @@ final class ContentViewModel: ObservableObject, BindingAttributeRepresentable {
         case 1:
             NotificationManager.default.requestNotificationAuthorization()
         case 2:
-            modalSheetView = .functionalityCheckView
-            showingModalSheetView = true
+            showFunctionalityCheckView = true
         default:
             break
         }

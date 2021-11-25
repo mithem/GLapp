@@ -127,4 +127,9 @@ final class AppManager: ObservableObject {
         }
         return result
     }
+    
+    func reset() {
+        classTestPlan.reset()
+        demoMode.reset()
+    }
 }

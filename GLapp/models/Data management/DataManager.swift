@@ -495,6 +495,9 @@ class DataManager: ObservableObject {
                         self.setContent(timetable, for: \.getTimetable, with: withHapticFeedback ? generator : nil)
                         self.saveLocalData(timetable, for: \.getTimetable)
                         self.saveSubjectColorMap()
+                        DispatchQueue.main.async { // some methods above (like setContent) run there, so timetable otherwise may not already be accessible
+                            self.classTestPlan?.reloadSubjects(with: self)
+                        }
                     case .failure(let error):
                         self.setError(.parserError(error), for: \.getTimetable, with: withHapticFeedback ? generator : nil)
                     }

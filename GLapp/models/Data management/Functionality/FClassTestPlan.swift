@@ -11,6 +11,11 @@ import Foundation
 class FClassTestPlan: Functionality {
     override func reloadIsSupported(with appManager: AppManager, dataManager: DataManager) throws {
         isSupported = dataManager.tasks.getClassTestPlan.error != .classTestPlanNotSupported ? .yes : .no
+        if isSupported == .yes && dataManager.classTestPlan == nil { // didn't load yet
+            isSupported = UserDefaults.standard.bool(forKey: UserDefaultsKeys.classTestPlanNotSupported) ? .no : .yes
+        } else if !isSupported.unwrapped {
+            UserDefaults.standard.set(true, forKey: UserDefaultsKeys.classTestPlanNotSupported)
+        }
         if isSupported == .no {
             throw GLappError.classTestPlanNotSupported
         }
@@ -26,6 +31,10 @@ class FClassTestPlan: Functionality {
     }
     override func doDisable(with appManager: AppManager, dataManager: DataManager) throws {
         try appManager.classTestReminders.disable(with: appManager, dataManager: dataManager)
+    }
+    
+    func reset() {
+        UserDefaults.standard.set(false, forKey: UserDefaultsKeys.classTestPlanNotSupported)
     }
     
     required init() {

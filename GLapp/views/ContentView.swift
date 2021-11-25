@@ -12,28 +12,31 @@ struct ContentView: View {
     
     @ObservedObject var model: ContentViewModel
     @State var currentiPadOSView: ContentViewModel.SubView? = .timetable // when using custom bindings created in VM, SwiftUI isn't notified of any change, so the view doesn't update (my best guess, anyways)
+    @AppStorage(UserDefaultsKeys.lastTabView) var lastTabView = 0 // using a state keeper in VM always lead to **some** unexpected behavior
+    @State private var modalSheetView = ContentViewModel.ModalSheetView.none
+    @State private var showingModalSheetView = false
     
     var iOSView: some View {
-        TabView(selection: $model.currentView) {
+        TabView(selection: $lastTabView) {
             TimetableView(dataManager: model.dataManager)
-                .tag(ContentViewModel.SubView.timetable)
+                .tag(0)
                 .tabItem {
                     Label("timetable", systemImage: "calendar")
                 }
-            if model.dataManager.tasks.getClassTestPlan.error != .classTestPlanNotSupported {
+            if model.appManager.classTestPlan.isEnabled.unwrapped {
                 ClassTestPlanView(appManager: model.appManager, dataManager: model.dataManager)
-                    .tag(ContentViewModel.SubView.classTestPlan)
+                    .tag(1)
                     .tabItem {
                         Label("classtests", systemImage: "doc.append")
                     }
             }
             RepresentativePlanView(appManager: model.appManager, dataManager: model.dataManager)
-                .tag(ContentViewModel.SubView.reprPlan)
+                .tag(2)
                 .tabItem {
                     reprPlanTabItemLabel
                 }
             SettingsView(dataManager: model.dataManager, appManager: model.appManager)
-                .tag(ContentViewModel.SubView.settings)
+                .tag(3)
                 .tabItem {
                     Label("settings", systemImage: "gear")
                 }
@@ -96,14 +99,32 @@ struct ContentView: View {
     
     var body: some View {
         OSSpecificView
-            .sheet(isPresented: $model.showingModalSheetView) {
-            switch model.modalSheetView {
+            .sheet(isPresented: $showingModalSheetView) {
+            switch modalSheetView {
                 case .loginView:
                     LoginView(appManager: model.appManager, dataManager: model.dataManager, delegate: self)
                 case .functionalityCheckView:
                     FunctionalityCheckView(appManager: model.appManager, dataManager: model.dataManager)
                 case .none:
                     Text("(empty)")
+            }
+        }
+        .onChange(of: model.showLoginView) { showLoginView in
+            if showLoginView {
+                modalSheetView = .loginView
+                showingModalSheetView = true
+            } else {
+                modalSheetView = .none
+                showingModalSheetView = false
+            }
+        }
+        .onChange(of: model.showFunctionalityCheckView) { showFunctionalityCheckView in
+            if showFunctionalityCheckView {
+                modalSheetView = .functionalityCheckView
+                showingModalSheetView = true
+            } else {
+                modalSheetView = .none
+                showingModalSheetView = false
             }
         }
         .onReceive(model.timer) { timer in

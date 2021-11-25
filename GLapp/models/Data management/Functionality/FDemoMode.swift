@@ -28,6 +28,10 @@ class FDemoMode: Functionality {
         dataManager.loadData()
     }
     
+    func reset() {
+        UserDefaults.standard.set(false, forKey: UserDefaultsKeys.demoMode)
+    }
+    
     required init() {
         super.init(id: Constants.Identifiers.Functionalities.demoMode, role: .critical, dependencies: []) // critical for App Store review
     }

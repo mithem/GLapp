@@ -110,7 +110,7 @@ struct LoginView: View {
             loading = false
             switch (result) {
             case .success:
-                try? appManager.demoMode.disable(with: appManager, dataManager: dataManager)
+                appManager.reset()
                 delegate.didSaveWithSuccess()
                 generator.notificationOccurred(.success)
                 error = nil

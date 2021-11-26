@@ -37,9 +37,9 @@ class UpcomingClassTestViewModel: ObservableObject {
         return formatter.localizedString(for: classTest.startDate ?? classTest.classTestDate, relativeTo: .rightNow)
     }
     
-    @MainActor func subjectColor(colorScheme: ColorScheme) -> Color {
+    func subjectColor(colorScheme: ColorScheme) -> Color {
         if appManager.coloredInlineSubjects.isEnabled.unwrapped {
-            return classTest?.subject.color.getColoredForegroundColor(colorScheme: colorScheme) ?? .primary
+            return .init(classTest?.subject.color.getColoredForegroundColor(colorScheme: colorScheme) ?? .primary)
         }
         return .primary
     }

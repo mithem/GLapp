@@ -11,7 +11,7 @@ import SwiftUI
 
 class DataManager: ObservableObject {
     
-    typealias SubjectColorMap = [String: Color]
+    typealias SubjectColorMap = [String: CodableColor]
     
     @Published var representativePlan: RepresentativePlan?
     @Published var timetable: Timetable?
@@ -135,7 +135,7 @@ class DataManager: ObservableObject {
         indexClassTestPlan()
     }
     
-    func updateSubjectColorMap(className: String, color: Color, onMainThread: Bool = true) {
+    func updateSubjectColorMap(className: SubjectColorMap.Key, color: SubjectColorMap.Value, onMainThread: Bool = true) {
         let changeSCM = {
             self.subjectColorMap[className] = color
         }

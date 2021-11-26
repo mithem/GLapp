@@ -13,9 +13,9 @@ final class Subject: ObservableObject, Codable, Hashable {
     @Published var subjectType: String?
     @Published var teacher: String?
     @Published var subjectName: String?
-    @Published var color: Color
+    @Published var color: CodableColor
     
-    init(dataManager: DataManager, className: String, subjectType: String? = nil, teacher: String? = nil, subjectName: String? = nil, color: Color? = nil, onMainThread: Bool = false) {
+    init(dataManager: DataManager, className: String, subjectType: String? = nil, teacher: String? = nil, subjectName: String? = nil, color: CodableColor? = nil, onMainThread: Bool = false) {
         self.className = className
         self.subjectType = subjectType
         self.teacher = teacher
@@ -71,7 +71,7 @@ final class Subject: ObservableObject, Codable, Hashable {
         subjectType = try container.decode(String.self, forKey: .subjectType)
         teacher = try container.decode(String.self, forKey: .teacher)
         subjectName = try container.decode(String.self, forKey: .subjectName)
-        color = try container.decode(Color.self, forKey: .color)
+        color = try container.decode(CodableColor.self, forKey: .color)
     }
     
     private enum CodingKeys: CodingKey {

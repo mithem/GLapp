@@ -31,7 +31,7 @@ import SwiftUI
             return .secondary
         }
         if appManager.coloredInlineSubjects.isEnabled.unwrapped {
-            return classTest.subject.color.getColoredForegroundColor(colorScheme: colorScheme)
+            return .init(classTest.subject.color.getColoredForegroundColor(colorScheme: colorScheme))
         }
         return .primary
     }

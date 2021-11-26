@@ -11,7 +11,7 @@
 		490A22CA274623480090C5AC /* Date+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490A22C9274623480090C5AC /* Date+Identifiable.swift */; };
 		4910A019271C285B00AAD624 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 4910A018271C285B00AAD624 /* Reachability */; };
 		491C4829273566D60027707E /* GLappScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491C4828273566D60027707E /* GLappScene.swift */; };
-		491C482B273573BC0027707E /* Color+getForegroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491C482A273573BC0027707E /* Color+getForegroundColor.swift */; };
+		491C482B273573BC0027707E /* UIColor+getForegroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491C482A273573BC0027707E /* UIColor+getForegroundColor.swift */; };
 		4921C47E2731979600DA256D /* Date+janFirst2000.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4921C47D2731979600DA256D /* Date+janFirst2000.swift */; };
 		4921C48027319E8700DA256D /* ScheduledNotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4921C47F27319E8700DA256D /* ScheduledNotificationsView.swift */; };
 		4921C4842731A0AA00DA256D /* ScheduledNotificationInlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4921C4832731A0AA00DA256D /* ScheduledNotificationInlineView.swift */; };
@@ -35,9 +35,9 @@
 		4934052627121BA0008B059B /* Date+formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4934052527121BA0008B059B /* Date+formatting.swift */; };
 		4934052B2712BC6A008B059B /* DataManagementTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4934052A2712BC6A008B059B /* DataManagementTask.swift */; };
 		4934052D2712CA67008B059B /* Int+init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4934052C2712CA67008B059B /* Int+init.swift */; };
-		493E8AC5273003DA008C9B13 /* Color+isDarkBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493E8AC4273003DA008C9B13 /* Color+isDarkBackground.swift */; };
-		493E8AC72730054B008C9B13 /* Color+lighten+darken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493E8AC62730054B008C9B13 /* Color+lighten+darken.swift */; };
-		493E8AC9273008DE008C9B13 /* Color+getColoredForegroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493E8AC8273008DE008C9B13 /* Color+getColoredForegroundColor.swift */; };
+		493E8AC5273003DA008C9B13 /* UIColor+isDark+isTransparent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493E8AC4273003DA008C9B13 /* UIColor+isDark+isTransparent.swift */; };
+		493E8AC72730054B008C9B13 /* UIColor+lighten+darken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493E8AC62730054B008C9B13 /* UIColor+lighten+darken.swift */; };
+		493E8AC9273008DE008C9B13 /* UIColor+getColoredForegroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493E8AC8273008DE008C9B13 /* UIColor+getColoredForegroundColor.swift */; };
 		494595C32727C5050096B5D7 /* TestRepresentativeLesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494595C22727C5050096B5D7 /* TestRepresentativeLesson.swift */; };
 		4948CFEF2742BF380047D443 /* RepresentativePlanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4948CFEE2742BF380047D443 /* RepresentativePlanViewModel.swift */; };
 		494C5FA3273FC105003D39DC /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C5FA2273FC105003D39DC /* IntentHandler.swift */; };
@@ -48,8 +48,7 @@
 		49517FFA271F30500085BEA6 /* DeliverableByNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49517FF9271F30500085BEA6 /* DeliverableByNotification.swift */; };
 		49517FFC271F668A0085BEA6 /* SubjectAttributeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49517FFB271F668A0085BEA6 /* SubjectAttributeView.swift */; };
 		49517FFE271F73BD0085BEA6 /* Timetable+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49517FFD271F73BD0085BEA6 /* Timetable+Equatable.swift */; };
-		49524BC0272F24370069880B /* Color+random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49524BBF272F24370069880B /* Color+random.swift */; };
-		49524BC2272F247C0069880B /* Color+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49524BC1272F247C0069880B /* Color+Codable.swift */; };
+		49524BC0272F24370069880B /* UIColor+random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49524BBF272F24370069880B /* UIColor+random.swift */; };
 		49524BC4272F25E40069880B /* FColoredInlineSubjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49524BC3272F25E40069880B /* FColoredInlineSubjects.swift */; };
 		49526F9427218E8700FD0242 /* FBackgroundReprPlanNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49526F9327218E8700FD0242 /* FBackgroundReprPlanNotifications.swift */; };
 		49526F96272190D900FD0242 /* FClassTestReminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49526F95272190D900FD0242 /* FClassTestReminders.swift */; };
@@ -127,6 +126,9 @@
 		499C1BEA2724A58A00849955 /* FDemoMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499C1BE92724A58A00849955 /* FDemoMode.swift */; };
 		49A5B2462719A3C400577767 /* FunctionalityCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A5B2452719A3C400577767 /* FunctionalityCheckView.swift */; };
 		49A5B24B2719A5BF00577767 /* FunctionalityInlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A5B24A2719A5BF00577767 /* FunctionalityInlineView.swift */; };
+		49AA517D2750DEF000BD03D8 /* CodableColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AA517C2750DEF000BD03D8 /* CodableColor.swift */; };
+		49AA51802750E9C000BD03D8 /* CodableColor+passthrough.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AA517F2750E9C000BD03D8 /* CodableColor+passthrough.swift */; };
+		49AA51822750EC0500BD03D8 /* Color+init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AA51812750EC0500BD03D8 /* Color+init.swift */; };
 		49AF334E271995FA00F406D1 /* ContentView+LoginViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF334C271995F900F406D1 /* ContentView+LoginViewDelegate.swift */; };
 		49AF33622719962100F406D1 /* ClassTestInlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF33602719962100F406D1 /* ClassTestInlineView.swift */; };
 		49AF33632719962100F406D1 /* ClassTestPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF33612719962100F406D1 /* ClassTestPlanView.swift */; };
@@ -207,7 +209,7 @@
 		490A22C42746186F0090C5AC /* ClassTest+CustomDebugStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClassTest+CustomDebugStringConvertible.swift"; sourceTree = "<group>"; };
 		490A22C9274623480090C5AC /* Date+Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Identifiable.swift"; sourceTree = "<group>"; };
 		491C4828273566D60027707E /* GLappScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLappScene.swift; sourceTree = "<group>"; };
-		491C482A273573BC0027707E /* Color+getForegroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+getForegroundColor.swift"; sourceTree = "<group>"; };
+		491C482A273573BC0027707E /* UIColor+getForegroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+getForegroundColor.swift"; sourceTree = "<group>"; };
 		4921C47D2731979600DA256D /* Date+janFirst2000.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+janFirst2000.swift"; sourceTree = "<group>"; };
 		4921C47F27319E8700DA256D /* ScheduledNotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledNotificationsView.swift; sourceTree = "<group>"; };
 		4921C4832731A0AA00DA256D /* ScheduledNotificationInlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledNotificationInlineView.swift; sourceTree = "<group>"; };
@@ -232,9 +234,9 @@
 		4934052A2712BC6A008B059B /* DataManagementTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagementTask.swift; sourceTree = "<group>"; };
 		4934052C2712CA67008B059B /* Int+init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+init.swift"; sourceTree = "<group>"; };
 		4938C1FD27410D4600F71D92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/Intents.intentdefinition; sourceTree = "<group>"; };
-		493E8AC4273003DA008C9B13 /* Color+isDarkBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+isDarkBackground.swift"; sourceTree = "<group>"; };
-		493E8AC62730054B008C9B13 /* Color+lighten+darken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+lighten+darken.swift"; sourceTree = "<group>"; };
-		493E8AC8273008DE008C9B13 /* Color+getColoredForegroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+getColoredForegroundColor.swift"; sourceTree = "<group>"; };
+		493E8AC4273003DA008C9B13 /* UIColor+isDark+isTransparent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+isDark+isTransparent.swift"; sourceTree = "<group>"; };
+		493E8AC62730054B008C9B13 /* UIColor+lighten+darken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+lighten+darken.swift"; sourceTree = "<group>"; };
+		493E8AC8273008DE008C9B13 /* UIColor+getColoredForegroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+getColoredForegroundColor.swift"; sourceTree = "<group>"; };
 		494595C22727C5050096B5D7 /* TestRepresentativeLesson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRepresentativeLesson.swift; sourceTree = "<group>"; };
 		4948CFEE2742BF380047D443 /* RepresentativePlanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepresentativePlanViewModel.swift; sourceTree = "<group>"; };
 		494C5FA2273FC105003D39DC /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
@@ -244,8 +246,7 @@
 		49517FF9271F30500085BEA6 /* DeliverableByNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliverableByNotification.swift; sourceTree = "<group>"; };
 		49517FFB271F668A0085BEA6 /* SubjectAttributeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectAttributeView.swift; sourceTree = "<group>"; };
 		49517FFD271F73BD0085BEA6 /* Timetable+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timetable+Equatable.swift"; sourceTree = "<group>"; };
-		49524BBF272F24370069880B /* Color+random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+random.swift"; sourceTree = "<group>"; };
-		49524BC1272F247C0069880B /* Color+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Codable.swift"; sourceTree = "<group>"; };
+		49524BBF272F24370069880B /* UIColor+random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+random.swift"; sourceTree = "<group>"; };
 		49524BC3272F25E40069880B /* FColoredInlineSubjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FColoredInlineSubjects.swift; sourceTree = "<group>"; };
 		49526F9327218E8700FD0242 /* FBackgroundReprPlanNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBackgroundReprPlanNotifications.swift; sourceTree = "<group>"; };
 		49526F95272190D900FD0242 /* FClassTestReminders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FClassTestReminders.swift; sourceTree = "<group>"; };
@@ -330,6 +331,9 @@
 		499C1BE92724A58A00849955 /* FDemoMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FDemoMode.swift; sourceTree = "<group>"; };
 		49A5B2452719A3C400577767 /* FunctionalityCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalityCheckView.swift; sourceTree = "<group>"; };
 		49A5B24A2719A5BF00577767 /* FunctionalityInlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalityInlineView.swift; sourceTree = "<group>"; };
+		49AA517C2750DEF000BD03D8 /* CodableColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableColor.swift; sourceTree = "<group>"; };
+		49AA517F2750E9C000BD03D8 /* CodableColor+passthrough.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodableColor+passthrough.swift"; sourceTree = "<group>"; };
+		49AA51812750EC0500BD03D8 /* Color+init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+init.swift"; sourceTree = "<group>"; };
 		49AF334C271995F900F406D1 /* ContentView+LoginViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ContentView+LoginViewDelegate.swift"; sourceTree = "<group>"; };
 		49AF33602719962100F406D1 /* ClassTestInlineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassTestInlineView.swift; sourceTree = "<group>"; };
 		49AF33612719962100F406D1 /* ClassTestPlanView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassTestPlanView.swift; sourceTree = "<group>"; };
@@ -481,7 +485,7 @@
 				4962EC48274A4516000CDD4E /* RepresentativeDay */,
 				4962EC47274A4502000CDD4E /* RepresentativeLesson */,
 				4962EC46274A44F4000CDD4E /* ClassTest */,
-				4962EC4C274A4562000CDD4E /* Color */,
+				4962EC4C274A4562000CDD4E /* Colors */,
 				4962EC4D274A4578000CDD4E /* String */,
 				4962EC5A274A49E0000CDD4E /* Subject */,
 				4962EC5B274A4A62000CDD4E /* Lesson */,
@@ -618,17 +622,18 @@
 			path = Date;
 			sourceTree = "<group>";
 		};
-		4962EC4C274A4562000CDD4E /* Color */ = {
+		4962EC4C274A4562000CDD4E /* Colors */ = {
 			isa = PBXGroup;
 			children = (
-				49524BBF272F24370069880B /* Color+random.swift */,
-				49524BC1272F247C0069880B /* Color+Codable.swift */,
-				493E8AC4273003DA008C9B13 /* Color+isDarkBackground.swift */,
-				493E8AC62730054B008C9B13 /* Color+lighten+darken.swift */,
-				493E8AC8273008DE008C9B13 /* Color+getColoredForegroundColor.swift */,
-				491C482A273573BC0027707E /* Color+getForegroundColor.swift */,
+				49524BBF272F24370069880B /* UIColor+random.swift */,
+				493E8AC4273003DA008C9B13 /* UIColor+isDark+isTransparent.swift */,
+				493E8AC62730054B008C9B13 /* UIColor+lighten+darken.swift */,
+				493E8AC8273008DE008C9B13 /* UIColor+getColoredForegroundColor.swift */,
+				491C482A273573BC0027707E /* UIColor+getForegroundColor.swift */,
+				49AA517F2750E9C000BD03D8 /* CodableColor+passthrough.swift */,
+				49AA51812750EC0500BD03D8 /* Color+init.swift */,
 			);
-			path = Color;
+			path = Colors;
 			sourceTree = "<group>";
 		};
 		4962EC4D274A4578000CDD4E /* String */ = {
@@ -772,6 +777,8 @@
 				4934050427117C7A008B059B /* errors */,
 				4976D16327108590009C5AC2 /* NetworkResult.swift */,
 				4976D16127108590009C5AC2 /* UserDefaultsKeys.swift */,
+				49AA517C2750DEF000BD03D8 /* CodableColor.swift */,
+				4976D170271085EB009C5AC2 /* Subject.swift */,
 				4962EC41274A3DF4000CDD4E /* Protocols */,
 				49F380ED2710E132002AE814 /* ClassTestPlan */,
 				49F380E62710E055002AE814 /* Timetable */,
@@ -783,7 +790,6 @@
 		4976D169271085C1009C5AC2 /* Representative plan */ = {
 			isa = PBXGroup;
 			children = (
-				4976D170271085EB009C5AC2 /* Subject.swift */,
 				49F380E42710DFE0002AE814 /* RepresentativePlan.swift */,
 				4976D171271085EB009C5AC2 /* RepresentativeLesson.swift */,
 				4976D172271085EB009C5AC2 /* RepresentativeDay.swift */,
@@ -1083,6 +1089,7 @@
 				495BC538274C00C900BE3E05 /* RepresentativeLessonInlineViewModel.swift in Sources */,
 				49250B652720A8DE0096411F /* AppManager.swift in Sources */,
 				49D67A2F273EC7B900ADC319 /* Array+Copying.swift in Sources */,
+				49AA51802750E9C000BD03D8 /* CodableColor+passthrough.swift in Sources */,
 				4962EC40274A3DC0000CDD4E /* CSIndexable.swift.swift in Sources */,
 				49AF33672719962C00F406D1 /* RepresentativeLessonInlineView.swift in Sources */,
 				49EEDE4C27215BDD009A4C6A /* FunctionalityProtocol.swift in Sources */,
@@ -1090,7 +1097,6 @@
 				4991A2B027199706008559F9 /* SettingsView+LoginViewDelegate.swift in Sources */,
 				4921C48B2731BEA900DA256D /* Lesson+CustomDebugStringConvertible.swift in Sources */,
 				49F380EA2710E095002AE814 /* Weekday.swift in Sources */,
-				49524BC2272F247C0069880B /* Color+Codable.swift in Sources */,
 				49D67A1F273E728F00ADC319 /* RepresentativeDay+CustomDebugStringConvertible.swift in Sources */,
 				49AF336C2719963A00F406D1 /* LessonInlineView.swift in Sources */,
 				49D67A29273E9E6600ADC319 /* RepresentativeLesson+Differentiable.swift in Sources */,
@@ -1105,11 +1111,11 @@
 				4962EC64274A505B000CDD4E /* String+init+Optional<CustomStringConvertible>.swift in Sources */,
 				49F2662C2732577A00F89A7B /* FClassTestPlan.swift in Sources */,
 				49F380EF2710E146002AE814 /* ClassTestPlan.swift in Sources */,
-				493E8AC9273008DE008C9B13 /* Color+getColoredForegroundColor.swift in Sources */,
+				493E8AC9273008DE008C9B13 /* UIColor+getColoredForegroundColor.swift in Sources */,
 				49AF336B2719963A00F406D1 /* TimetableViewModel.swift in Sources */,
 				49D67A31273EC87C00ADC319 /* Copying.swift in Sources */,
 				4991A2AD271996F8008559F9 /* LoginView.swift in Sources */,
-				493E8AC72730054B008C9B13 /* Color+lighten+darken.swift in Sources */,
+				493E8AC72730054B008C9B13 /* UIColor+lighten+darken.swift in Sources */,
 				4980CB5127491F60000E751F /* BindingAttributeRepresentable.swift in Sources */,
 				49524BC4272F25E40069880B /* FColoredInlineSubjects.swift in Sources */,
 				4962EC61274A4E95000CDD4E /* String+init+CustomStringConvertible.swift in Sources */,
@@ -1122,7 +1128,7 @@
 				495E6B9127188B5A0052B565 /* NotificationManager.swift in Sources */,
 				4921C47E2731979600DA256D /* Date+janFirst2000.swift in Sources */,
 				4991A2B527199768008559F9 /* TimetableParser.swift in Sources */,
-				493E8AC5273003DA008C9B13 /* Color+isDarkBackground.swift in Sources */,
+				493E8AC5273003DA008C9B13 /* UIColor+isDark+isTransparent.swift in Sources */,
 				495D25E1273AA75600F3899D /* RepresentativeDay+Codable.swift in Sources */,
 				49AF33662719962C00F406D1 /* RepresentativePlanView.swift in Sources */,
 				493405172711BADE008B059B /* MockDataManager.swift in Sources */,
@@ -1148,7 +1154,7 @@
 				4962EC5D274A4A74000CDD4E /* Lesson+CSIndexable.swift in Sources */,
 				492804C42720104D0055ED63 /* RepresentativePlan+Equatable.swift in Sources */,
 				4962EC43274A3E1A000CDD4E /* ClassTest+CSIndexable.swift in Sources */,
-				491C482B273573BC0027707E /* Color+getForegroundColor.swift in Sources */,
+				491C482B273573BC0027707E /* UIColor+getForegroundColor.swift in Sources */,
 				49A5B24B2719A5BF00577767 /* FunctionalityInlineView.swift in Sources */,
 				4991A2AE271996F8008559F9 /* EmptyContentView.swift in Sources */,
 				4962EC45274A412E000CDD4E /* ClassTest+DeliverableByNotification.swift in Sources */,
@@ -1170,6 +1176,7 @@
 				490A22CA274623480090C5AC /* Date+Identifiable.swift in Sources */,
 				499C0866273532CA00206514 /* EKAuthorizationStatus+functionalityState.swift in Sources */,
 				4962EC4F274A45A6000CDD4E /* RepresentativeLesson+CSIndexable.swift in Sources */,
+				49AA517D2750DEF000BD03D8 /* CodableColor.swift in Sources */,
 				4991A2B82719976F008559F9 /* functions.swift in Sources */,
 				49262702273E379C00829AA7 /* Differentiable.swift in Sources */,
 				4962EC57274A4960000CDD4E /* ClassTest+Rewritable.swift in Sources */,
@@ -1197,6 +1204,7 @@
 				49262704273E39BE00829AA7 /* RepresentativePlan+Differentiable.swift in Sources */,
 				4991A2A9271996F8008559F9 /* UIConstants.swift in Sources */,
 				4991A2B627199768008559F9 /* ClassTestPlanParser.swift in Sources */,
+				49AA51822750EC0500BD03D8 /* Color+init.swift in Sources */,
 				499A3EEC2719F7350045683D /* ClassTest+Comparable.swift in Sources */,
 				49686D83271DD28E0075F14A /* Subject+Equatable.swift in Sources */,
 				495E6B9327188BD00052B565 /* BackgroundTaskManager.swift in Sources */,
@@ -1206,7 +1214,7 @@
 				4976D1302710843E009C5AC2 /* GLapp.swift in Sources */,
 				4976D16627108590009C5AC2 /* NetworkResult.swift in Sources */,
 				4934052627121BA0008B059B /* Date+formatting.swift in Sources */,
-				49524BC0272F24370069880B /* Color+random.swift in Sources */,
+				49524BC0272F24370069880B /* UIColor+random.swift in Sources */,
 				4962EC55274A491F000CDD4E /* RepresentativeDay+DeliverableByNotification.swift in Sources */,
 				4921C4862731AD6A00DA256D /* DateComponents+Comparable.swift in Sources */,
 			);
@@ -1414,7 +1422,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLapp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;
@@ -1448,7 +1456,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLappRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;

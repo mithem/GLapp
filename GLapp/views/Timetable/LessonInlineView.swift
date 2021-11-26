@@ -20,7 +20,7 @@ struct LessonInlineView: View {
             Spacer()
             if let title = title {
                 Text(title)
-                    .foregroundColor(lesson.lesson?.subject.color.getForegroundColor(colorScheme: colorScheme))
+                    .foregroundColor(.init(lesson.lesson?.subject.color.getForegroundColor(colorScheme: colorScheme) ?? .primary))
             }
             Spacer()
         }
@@ -31,7 +31,7 @@ struct LessonInlineView: View {
             content
                 .background(
                     RoundedRectangle(cornerRadius: UIConstants.rrCornerRadius)
-                        .foregroundColor(lesson.subject.color)
+                        .foregroundColor(.init(lesson.subject.color))
                 )
             .contextMenu {
                 Button(action: {

@@ -35,10 +35,11 @@ final class LessonOrSubjectInfoViewModel: ObservableObject {
         }
         
         var subjectColorBinding: Binding<Color> { Binding(get: {
-            self.subject.color
+                .init(self.subject.color)
             }, set: { newValue in
-                self.subject.color = newValue
-                self.dataManager.updateSubjectColorMap(className: self.subject.className, color: newValue)
+                let color = CodableColor(newValue)
+                self.subject.color = color
+                self.dataManager.updateSubjectColorMap(className: self.subject.className, color: color)
             })
         }
     }

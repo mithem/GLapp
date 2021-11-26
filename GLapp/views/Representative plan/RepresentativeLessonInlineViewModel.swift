@@ -24,7 +24,7 @@ final class RepresentativeLessonInlineViewModel: ObservableObject {
             return .secondary
         }
         if appManager.coloredInlineSubjects.isEnabled.unwrapped {
-            return lesson.subject.color.getColoredForegroundColor(colorScheme: colorScheme)
+            return .init(lesson.subject.color.getColoredForegroundColor(colorScheme: colorScheme))
         }
         return .primary
     }

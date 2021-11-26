@@ -14,6 +14,8 @@ enum GLappError: Error {
     case fsError(_ error: FSError)
     /// Not supported by the school (e.g. Unter-/Mittelstufe)
     case classTestPlanNotSupported
+    /// Error occuring when en- or decoding a color (e.g. `UIColor`, `CodableColor`, `SwiftUI.Color`)
+    case colorCodingError
     
     var localizedMessage: String {
         switch self {
@@ -25,6 +27,8 @@ enum GLappError: Error {
             return error.localizedMessage
         case .classTestPlanNotSupported:
             return NSLocalizedString("class_test_plan_not_supported")
+        case .colorCodingError:
+            return NSLocalizedString("color_coding_error")
         }
     }
 }

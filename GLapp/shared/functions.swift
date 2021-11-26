@@ -73,6 +73,7 @@ func isLoggedIn() -> Bool {
 
 func resetOnboarding() {
     UserDefaults.standard.set(0, forKey: UserDefaultsKeys.launchCount)
+    UserDefaults.standard.set(false, forKey: UserDefaultsKeys.didShowFunctionalityCheck)
     IntentsManager.reset()
     removeLastReprPlanUpdateTimestamp()
 }

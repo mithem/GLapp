@@ -11,8 +11,6 @@ import SwiftUI
 final class ContentViewModel: ObservableObject, BindingAttributeRepresentable {
     @Published var appManager: AppManager
     @Published var dataManager: DataManager
-    @Published var showLoginView: Bool
-    @Published var showFunctionalityCheckView: Bool
     
     let timer: Publishers.Autoconnect<Timer.TimerPublisher>
     
@@ -28,15 +26,12 @@ final class ContentViewModel: ObservableObject, BindingAttributeRepresentable {
     init(appManager: AppManager, dataManager: DataManager) {
         self.appManager = appManager
         self.dataManager = dataManager
-        showLoginView = false
-        showFunctionalityCheckView = false
         timer = Timer.publish(every: 1, tolerance: nil, on: .current, in: .common).autoconnect() // I know that's less elegant and efficient, but how else would I do that?
     }
     
     func onAppear() {
         appManager.reload(with: dataManager)
-        checkForNeedingToShowLoginView()
-        applyFirstLaunchedConfiguration()
+        applyFirstLaunchConfiguration()
         dataManager.loadData()
         NotificationManager.default.removeAllDeliveredAndAppropriate()
         handleIntent()
@@ -75,22 +70,38 @@ final class ContentViewModel: ObservableObject, BindingAttributeRepresentable {
         UserDefaults.standard.set(nil, forKey: UserDefaultsKeys.intentToHandle)
     }
     
-    func checkForNeedingToShowLoginView() {
-        if !isLoggedIn() && appManager.demoMode.isEnabled.unwrapped {
-            showLoginView = true
-        }
-    }
-    
-    func applyFirstLaunchedConfiguration() {
+    func applyFirstLaunchConfiguration() {
         let count = UserDefaults.standard.integer(forKey: UserDefaultsKeys.launchCount)
         switch count {
         case 1:
             NotificationManager.default.requestNotificationAuthorization()
-        case 2:
-            showFunctionalityCheckView = true
         default:
             break
         }
+    }
+    
+    private func showLoginView() -> Bool {
+        if !isLoggedIn() && !appManager.demoMode.isEnabled.unwrapped {
+            return true
+        }
+        return false
+    }
+    
+    private func showFunctionalityCheck() -> Bool {
+        if UserDefaults.standard.bool(forKey: UserDefaultsKeys.didShowFunctionalityCheck) { return false }
+        return UserDefaults.standard.integer(forKey: UserDefaultsKeys.launchCount) == 2
+    }
+    
+    func showModalSheetView() -> ModalSheetView {
+        if showLoginView() {
+            return .loginView
+        }
+        return showFunctionalityCheck() ? .functionalityCheckView : .none
+    }
+    
+    func tick() {
+        handleIntent()
+        applyFirstLaunchConfiguration()
     }
     
     enum ModalSheetView {

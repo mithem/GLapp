@@ -35,6 +35,9 @@ struct FunctionalityCheckView: View {
                 appManager.reload(with: dataManager)
                 giveCorrectHapticFeedback(with: generator)
             }
+            .onDisappear {
+                UserDefaults.standard.set(true, forKey: UserDefaultsKeys.didShowFunctionalityCheck)
+            }
             .navigationTitle("functionality_check")
             .onReceive(timer) { _ in
                 appManager.reload(with: dataManager)

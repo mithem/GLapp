@@ -30,4 +30,5 @@ struct UserDefaultsKeys {
     static let dontSaveReprPlanUpdateTimestampWhenViewingReprPlan = "dontSaveReprPlanUpdateTimestampWhenViewingReprPlan"
     static let disableSpotlightIntegration = "disableSpotlightIntegration"
     static let classTestPlanNotSupported = "classTestPlanNotSupported"
+    static let didShowFunctionalityCheck = "didShowFunctionalityCheck"
 }

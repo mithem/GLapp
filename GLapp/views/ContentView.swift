@@ -109,28 +109,16 @@ struct ContentView: View {
                     Text("(empty)")
             }
         }
-        .onChange(of: model.showLoginView) { showLoginView in
-            if showLoginView {
-                modalSheetView = .loginView
-                showingModalSheetView = true
-            } else {
-                modalSheetView = .none
-                showingModalSheetView = false
-            }
-        }
-        .onChange(of: model.showFunctionalityCheckView) { showFunctionalityCheckView in
-            if showFunctionalityCheckView {
-                modalSheetView = .functionalityCheckView
-                showingModalSheetView = true
-            } else {
-                modalSheetView = .none
-                showingModalSheetView = false
-            }
-        }
         .onReceive(model.timer) { timer in
-            model.handleIntent()
+            model.tick()
         }
-        .onAppear(perform: model.onAppear)
+        .onAppear {
+            model.onAppear()
+            modalSheetView = model.showModalSheetView()
+            if modalSheetView != .none {
+                showingModalSheetView = true
+            }
+        }
         .onDisappear(perform: model.onDisappear)
     }
     
@@ -151,9 +139,8 @@ struct ContentView: View {
     }
     
     init(dataManager: DataManager, appManager: AppManager) {
-        model = .init(appManager: appManager, dataManager: dataManager)
+        model = ContentViewModel(appManager: appManager, dataManager: dataManager)
     }
-    
 }
 
 struct ContentView_Previews: PreviewProvider {

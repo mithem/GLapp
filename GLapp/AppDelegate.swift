@@ -19,11 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let count = UserDefaults.standard.integer(forKey: UserDefaultsKeys.launchCount)
         UserDefaults.standard.set(count + 1, forKey: UserDefaultsKeys.launchCount)
         
-        let lastVersion = UserDefaults.standard.string(forKey: UserDefaultsKeys.lastLaunchedVersion)
-        UserDefaults.standard.set(Constants.appVersion, forKey: UserDefaultsKeys.lastLaunchedVersion)
-        if lastVersion != Constants.appVersion {
-            resetOnboarding()
-        }
+        AppManager.dealWithVersionChanges()
         
         try? createAppDataDirIfAppropriate()
         

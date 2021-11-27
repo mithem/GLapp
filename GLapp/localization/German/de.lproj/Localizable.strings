@@ -134,3 +134,4 @@
 "substitution_plan" = "Ersatzplan";
 "lesson" = "Stunde";
 "color_coding_error" = "Farbver- oder Entschlüsselungsfehler";
+"prerelease_version_exl_mark" = "Prerelease-Version!";

@@ -69,6 +69,10 @@ struct SettingsView: View {
                     }
                 }
             }
+            if Constants.appVersion.isPrerelease {
+                Text(NSLocalizedString("prerelease_version_exl_mark") + " (\(Constants.appVersion))")
+                    .foregroundColor(.secondary)
+            }
         }
         .onAppear {
             appManager.reload(with: dataManager)
@@ -122,13 +126,7 @@ struct SettingsView: View {
     }
     
     func resetAllData() {
-        dataManager.reset()
-        NotificationManager.default.reset()
-        IntentsManager.reset()
-        resetLoginInfo()
-        resetOnboarding()
-        UserDefaults.standard.set(0, forKey: UserDefaultsKeys.launchCount)
-        appManager.reload(with: dataManager)
+        resetAllDataOn(dataManager: dataManager, appManager: appManager)
         showingLoginView = true
     }
 }

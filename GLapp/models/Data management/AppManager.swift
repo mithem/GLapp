@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import Semver
 
 /// Responsible for app-related stuff like whether the user enabled a certain feature and version information.
 final class AppManager: ObservableObject {
@@ -132,4 +133,26 @@ final class AppManager: ObservableObject {
         classTestPlan.reset()
         demoMode.reset()
     }
+    
+    class func dealWithVersionChanges() {
+        let lastVersion = UserDefaults.standard.string(forKey: UserDefaultsKeys.lastLaunchedVersion)
+        versionCheck: if let lastVersion = lastVersion {
+            guard let lastVersion = Semver(lastVersion) else { break versionCheck }
+            var reset = false
+            if Constants.appVersion > lastVersion {
+                if Constants.appVersion.major > lastVersion.major {
+                    reset = true
+                } else if Constants.appVersion.minor > lastVersion.minor {
+                    reset = true
+                }
+                if reset {
+                    resetOnboarding()
+                }
+            } else if Constants.appVersion < lastVersion {
+                resetAllDataOn(dataManager: nil) // just for readability
+            }
+        }
+        UserDefaults.standard.set(Constants.appVersion.description, forKey: UserDefaultsKeys.lastLaunchedVersion)
+    }
+
 }

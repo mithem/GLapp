@@ -98,3 +98,15 @@ func createAppDataDirIfAppropriate() throws {
         }
     }
 }
+
+func resetAllDataOn(dataManager: DataManager? = nil, appManager: AppManager? = nil) {
+    dataManager?.reset()
+    NotificationManager.default.reset()
+    IntentsManager.reset()
+    resetLoginInfo()
+    resetOnboarding()
+    UserDefaults.standard.set(0, forKey: UserDefaultsKeys.launchCount)
+    if let dataManager = dataManager {
+        appManager?.reload(with: dataManager)
+    }
+}

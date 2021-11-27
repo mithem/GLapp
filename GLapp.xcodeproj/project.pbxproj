@@ -140,6 +140,7 @@
 		49B387602740DD8D008B16B1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 499C087627353CDF00206514 /* Localizable.strings */; };
 		49B387612740DDA7008B16B1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 499C087927353CDF00206514 /* Localizable.strings */; };
 		49B3876B2740DF7D008B16B1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49B387682740DEA6008B16B1 /* InfoPlist.strings */; };
+		49D03421275294600032B605 /* Semver in Frameworks */ = {isa = PBXBuildFile; productRef = 49D03420275294600032B605 /* Semver */; };
 		49D110A5272AD84500CEBF1D /* DateComponents+plus+minus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D110A4272AD84500CEBF1D /* DateComponents+plus+minus.swift */; };
 		49D110A7272AD87B00CEBF1D /* DateComponents+combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D110A6272AD87B00CEBF1D /* DateComponents+combine.swift */; };
 		49D67A1B273E703100ADC319 /* RepresentativePlan+Copying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D67A1A273E703100ADC319 /* RepresentativePlan+Copying.swift */; };
@@ -388,6 +389,7 @@
 			files = (
 				4976D17D27108644009C5AC2 /* SWXMLHash in Frameworks */,
 				4910A019271C285B00AAD624 /* Reachability in Frameworks */,
+				49D03421275294600032B605 /* Semver in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -943,6 +945,7 @@
 			packageProductDependencies = (
 				4976D17C27108644009C5AC2 /* SWXMLHash */,
 				4910A018271C285B00AAD624 /* Reachability */,
+				49D03420275294600032B605 /* Semver */,
 			);
 			productName = GLapp;
 			productReference = 4976D12C2710843E009C5AC2 /* GLapp.app */;
@@ -1020,6 +1023,7 @@
 			packageReferences = (
 				4976D17B27108644009C5AC2 /* XCRemoteSwiftPackageReference "SWXMLHash" */,
 				4910A017271C285B00AAD624 /* XCRemoteSwiftPackageReference "Reachability" */,
+				49D0341F275294600032B605 /* XCRemoteSwiftPackageReference "Semver" */,
 			);
 			productRefGroup = 4976D12D2710843E009C5AC2 /* Products */;
 			projectDirPath = "";
@@ -1422,7 +1426,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLapp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 23;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;
@@ -1439,7 +1443,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = "1.2.1-a1";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mithem.GLapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1456,7 +1460,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLappRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 23;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;
@@ -1473,7 +1477,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = "1.2.1-a1";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mithem.GLapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1640,6 +1644,14 @@
 				kind = branch;
 			};
 		};
+		49D0341F275294600032B605 /* XCRemoteSwiftPackageReference "Semver" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ddddxxx/Semver";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1652,6 +1664,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4976D17B27108644009C5AC2 /* XCRemoteSwiftPackageReference "SWXMLHash" */;
 			productName = SWXMLHash;
+		};
+		49D03420275294600032B605 /* Semver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 49D0341F275294600032B605 /* XCRemoteSwiftPackageReference "Semver" */;
+			productName = Semver;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -60,4 +60,10 @@ class GLDateFormatter {
         formatter.unitsStyle = .full
         return formatter
     }
+    
+    /// The `GLDateFormatter.relativeDateTimeFormatter`, except giving extra components if `timeInterval` isn't very long
+    static func getRelativeDateTimeFormatter(for timeInterval: TimeInterval) -> RelativeDateTimeFormatter {
+        let formatter = relativeDateTimeFormatter
+        return formatter
+    }
 }

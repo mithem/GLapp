@@ -42,6 +42,8 @@ struct Constants {
     static let timeIntervalRequiringUserActivityUntilNSUserActivityIsDonated: TimeInterval = 4
     static let appVersion = Bundle.main.semanticVersion!
     static let appDataDir = try? FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent(Constants.Identifiers.appId)
+    /// When to add extra component to increase (relative) precision
+    static let relativeDateTimeFormatterTimeIntervalToIncreasePrecision: TimeInterval = 60 * 60 * 24 // 24h
 
     struct Identifiers {
         static let appId = "com.mithem.GLapp"

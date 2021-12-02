@@ -220,7 +220,10 @@ class DataManager: ObservableObject {
         }
     }
     
-    func clearAllLocalData() {
+    func clearAllLocalData(withHapticFeedback: Bool = false) {
+        let generator: UINotificationFeedbackGenerator? = withHapticFeedback ? .init() : nil
+        generator?.prepare()
+        
         setRepresentativePlan(nil)
         setClassTestPlan(nil)
         setTimetable(nil)
@@ -230,6 +233,8 @@ class DataManager: ObservableObject {
         clearLocalData(for: \.getClassTestPlan)
         clearLocalData(for: \.getTimetable)
         clearLocalData(for: \.subjectColorMap)
+        
+        generator?.notificationOccurred(.success)
     }
     
     func getRepresentativePlan(completion: @escaping (NetworkResult<String, NetworkError>) -> Void) {
@@ -523,15 +528,17 @@ class DataManager: ObservableObject {
         saveSubjectColorMap()
     }
     
-    func loadData() {
-        let generator = UINotificationFeedbackGenerator()
-        generator.prepare()
+    func loadData(withHapticFeedBack: Bool = false) {
+        let generator: UINotificationFeedbackGenerator? = withHapticFeedBack ? .init() : nil
+        generator?.prepare()
         loadRepresentativePlan()
         loadClassTestPlan()
         loadTimetable()
         loadSubjectColorMap()
         reloadDemoMode()
-        giveCorrectTapticFeedback(on: generator)
+        if let generator = generator {
+            giveCorrectTapticFeedback(on: generator)
+        }
     }
     
     func giveCorrectTapticFeedback(on generator: UINotificationFeedbackGenerator) {

@@ -32,9 +32,23 @@ class UpcomingClassTestViewModel: ObservableObject {
     
     var timeInterval: String? {
         guard let classTest = classTest else { return nil }
-
-        let formatter = GLDateFormatter.relativeDateTimeFormatter
-        return formatter.localizedString(for: classTest.startDate ?? classTest.classTestDate, relativeTo: .rightNow)
+        
+        let interval = classTest.classTestDate.timeIntervalSince(.rightNow)
+        
+        let components = Set([Calendar.Component.year, .month, .day, .hour, .minute])
+        let classTestComponents = Calendar.current.dateComponents(components, from: classTest.startDate ?? classTest.classTestDate)
+        let todayComponents = Calendar.current.dateComponents(components, from: .rightNow)
+        
+        let difComponents = classTestComponents - todayComponents
+        
+        let formatter = GLDateFormatter.dateComponentsFormatter
+        formatter.allowedUnits = [.month, .day, .hour]
+        
+        if interval < Constants.relativeDateTimeFormatterTimeIntervalToIncreasePrecision {
+            formatter.allowedUnits.insert(.minute)
+        }
+        
+        return formatter.string(from: difComponents)
     }
     
     func subjectColor(colorScheme: ColorScheme) -> Color {

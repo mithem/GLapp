@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 func getUrl(for path: String, queryItems: Dictionary<String, String> = [:], authenticate: Bool = false) throws -> URL? {
     guard var components = URLComponents(string: Constants.apiHostname + path) else { return nil }
@@ -71,11 +72,14 @@ func isLoggedIn() -> Bool {
     return key != nil && key != ""
 }
 
-func resetOnboarding() {
+func resetOnboarding(withHapticFeedback: Bool = false) {
+    let generator: UINotificationFeedbackGenerator? = withHapticFeedback ? .init() : nil
+    generator?.prepare()
     UserDefaults.standard.set(0, forKey: UserDefaultsKeys.launchCount)
     UserDefaults.standard.set(false, forKey: UserDefaultsKeys.didShowFunctionalityCheck)
     IntentsManager.reset()
     removeLastReprPlanUpdateTimestamp()
+    generator?.notificationOccurred(.success)
 }
 
 func removeLastReprPlanUpdateTimestamp() {

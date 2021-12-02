@@ -26,9 +26,13 @@ struct SettingsView: View {
                 }
                 if dataManager.tasks.getClassTestPlan.error != .classTestPlanNotSupported {
                     Toggle(appManager.classTestReminders.title, isOn: appManager.classTestReminders.isEnabledBinding(appManager: appManager, dataManager: dataManager, setCompletion: handleIsEnabledBindingResult))
-                    Stepper(NSLocalizedString("remind_n_days_before_class_tests_colon") + String(remindNDaysBeforeClassTests), value: $remindNDaysBeforeClassTests, in: 1...31)
+                    Stepper(value: $remindNDaysBeforeClassTests, in: 1...31) {
+                        Text(NSLocalizedString("remind_n_days_before_class_tests_colon") + String(remindNDaysBeforeClassTests))
+                            .lineLimit(nil) // not sure why that was a problem
+                    }
                         .onChange(of: remindNDaysBeforeClassTests) { _ in
                             appManager.classTestReminders.scheduleClassTestRemindersIfAppropriate(with: dataManager)
+                            UIImpactFeedbackGenerator(style: .light).impactOccurred(intensity: 0.5)
                         }
                     Toggle(appManager.classTestCalendarEvents.title, isOn: appManager.classTestCalendarEvents.isEnabledBinding(appManager: appManager, dataManager: dataManager, setCompletion: handleIsEnabledBindingResult))
                 }
@@ -48,8 +52,12 @@ struct SettingsView: View {
                         showingLoginView = true
                     }
                 }
-                Button("clear_cache", action: dataManager.clearAllLocalData)
-                Button("reset_onboarding", action: resetOnboarding)
+                Button("clear_cache") {
+                    dataManager.clearAllLocalData(withHapticFeedback: true)
+                }
+                Button("reset_onboarding") {
+                    resetOnboarding(withHapticFeedback: true)
+                }
                 Group {
                     if #available(iOS 15, *) {
                         Button("reset_all_data", role: .destructive, action: resetAllData)
@@ -126,8 +134,10 @@ struct SettingsView: View {
     }
     
     func resetAllData() {
+        let generator = UINotificationFeedbackGenerator()
         resetAllDataOn(dataManager: dataManager, appManager: appManager)
         showingLoginView = true
+        generator.notificationOccurred(.success)
     }
 }
 

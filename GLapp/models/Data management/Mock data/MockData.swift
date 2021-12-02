@@ -32,7 +32,7 @@ struct MockData {
     static let representativePlan = RepresentativePlan(date: .init(timeIntervalSinceNow: -600), representativeDays: [.init(date: nDaysFromNow(), lessons: [representativeLesson2, representativeLesson])], lessons: [], notes: ["Test-Eintrag für das Android-App-Team"])
     static let classTest = ClassTest(date: .init(timeIntervalSinceNow: -10000), classTestDate: nDaysFromNow(), start: 1, end: 1, room: "A11", subject: subject4, teacher: "ABC", individual: true, opened: true, alias: "PSE")
     static let classTest2 = ClassTest(date: .init(timeIntervalSinceNow: -7200), classTestDate: nDaysFromNow(7), start: 2, end: 5, room: "A10", subject: subject, teacher: "PST", individual: true, opened: true, alias: "M")
-    static let classTest3 = ClassTest(date: .init(timeIntervalSinceNow: -7200), classTestDate: nDaysFromNow(4), start: 4, end: 5, room: "E38", subject: subject3, teacher: "DUY", individual: true, opened: true, alias: "K")
+    static let classTest3 = ClassTest(date: .init(timeIntervalSinceNow: -7200), classTestDate: nDaysFromNow(2), start: 4, end: 5, room: "E38", subject: subject3, teacher: "DEF", individual: true, opened: true, alias: "K")
     static let classTestPlan = ClassTestPlan(date: .init(timeIntervalSinceNow: -100000), classTests: [classTest, classTest2, classTest3])
     static let timetable = Timetable(date: .init(timeIntervalSinceNow: -100000), weekdays: [
         .init(id: 0, lessons: [lesson, lesson2, lesson3, lesson4]),

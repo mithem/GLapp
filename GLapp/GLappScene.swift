@@ -17,23 +17,23 @@ struct GLappScene: Scene {
         .commands {
             CommandMenu("data_management") {
                 Button("reload_all") {
-                    dataManager.loadData()
+                    dataManager.loadData(withHapticFeedBack: true) // maybe that day will come [where iPads have a taptic engine]
                 }
                 .keyboardShortcut("R", modifiers: [.command, .shift])
                 Button("reload_timetable") {
-                    dataManager.loadTimetable()
+                    dataManager.loadTimetable(withHapticFeedback: true)
                 }
                 .keyboardShortcut(.init(.init(NSLocalizedString("keyboard_shortcut_reload_timetable"))))
                 Button("reload_class_tests") {
-                    dataManager.loadClassTestPlan()
+                    dataManager.loadClassTestPlan(withHapticFeedback: true)
                 }
                 .keyboardShortcut(.init(.init(NSLocalizedString("keyboard_shortcut_reload_class_test_plan"))))
                 Button("reload_representative_plan") {
-                    dataManager.loadRepresentativePlan()
+                    dataManager.loadRepresentativePlan(withHapticFeedback: true)
                 }
                 .keyboardShortcut(.init(.init(NSLocalizedString("keyboard_shortcut_reload_representative_plan"))))
                 Button("clear_cache") {
-                    dataManager.clearAllLocalData()
+                    dataManager.clearAllLocalData(withHapticFeedback: true)
                 }
                 .keyboardShortcut(KeyEquivalent.delete, modifiers: [.command, .shift])
             }

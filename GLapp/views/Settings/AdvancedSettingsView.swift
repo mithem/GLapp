@@ -32,6 +32,9 @@ struct AdvancedSettingsView: View {
                 }
                 Section {
                     Stepper(GLDateFormatter.dateComponentsFormatter.string(from: .init(hour: Int(reprPlanNotificationHighRelevanceTimeInterval / 3600))) ?? "not_available", value: $reprPlanNotificationHighRelevanceTimeInterval, in: 3600...24 * 3600, step: 3600)
+                        .onChange(of: reprPlanNotificationHighRelevanceTimeInterval) { _ in
+                            UIImpactFeedbackGenerator(style: .light).impactOccurred(intensity: 0.5)
+                        }
                     Text(NSLocalizedString("repr_plan_notifications_high_relevance_explanation"))
                         .foregroundColor(.secondary)
                 }

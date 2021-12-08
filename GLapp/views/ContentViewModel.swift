@@ -11,6 +11,7 @@ import SwiftUI
 final class ContentViewModel: ObservableObject, BindingAttributeRepresentable {
     @Published var appManager: AppManager
     @Published var dataManager: DataManager
+    @Published var showingConfirmationDialog: Bool
     
     let timer: Publishers.Autoconnect<Timer.TimerPublisher>
     
@@ -27,6 +28,7 @@ final class ContentViewModel: ObservableObject, BindingAttributeRepresentable {
         self.appManager = appManager
         self.dataManager = dataManager
         timer = Timer.publish(every: 1, tolerance: nil, on: .current, in: .common).autoconnect() // I know that's less elegant and efficient, but how else would I do that?
+        showingConfirmationDialog = false
     }
     
     func onAppear() {

@@ -42,9 +42,12 @@ class UpcomingClassTestViewModel: ObservableObject {
         let difComponents = classTestComponents - todayComponents
         
         let formatter = GLDateFormatter.dateComponentsFormatter
-        formatter.allowedUnits = [.month, .day, .hour]
+        formatter.allowedUnits = [.month, .day]
         
         if interval < Constants.relativeDateTimeFormatterTimeIntervalToIncreasePrecision {
+            formatter.allowedUnits.insert(.hour)
+        }
+        if interval < Constants.relativeDateTimeFormatterTimeIntervalToIncreasePrecision / 3 {
             formatter.allowedUnits.insert(.minute)
         }
         

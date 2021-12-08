@@ -11,10 +11,10 @@ struct SettingsView: View {
     @State private var showingLoginView = false
     @State private var showingFunctionalityCheckView = false
     @State private var functionalityError = Functionality.Error.notImplemented
-    @State private var showingErrorActionSheet = false
     @AppStorage(UserDefaultsKeys.classTestReminderNotificationBeforeDays) var remindNDaysBeforeClassTests = Constants.defaultClassTestReminderNotificationsBeforeDays
     @ObservedObject var dataManager: DataManager
     @ObservedObject var appManager: AppManager
+    @ObservedObject var confirmationDialogProvider: ConfirmationDialogProvider
     var FormView: some View {
         Form {
             Section {
@@ -88,36 +88,18 @@ struct SettingsView: View {
         .onDisappear {
             appManager.reload(with: dataManager)
         }
+        .confirmationDialog(provider: confirmationDialogProvider, actionButtons: [], cancelButtons: [(title: "ok", callback: {
+            showingFunctionalityCheckView = true
+        })])
         .navigationTitle("settings")
-    }
-    
-    var InnerView: some View {
-        Group {
-            if #available(iOS 15, *) {
-                FormView
-                    .confirmationDialog("error_occured", isPresented: $showingErrorActionSheet, actions: {
-                        Button("ok", role: .cancel) {
-                            showingErrorActionSheet = false
-                            showingFunctionalityCheckView = true
-                        }
-                    }) {
-                        Text(functionalityError.localizedMessage)
-                    }
-            } else {
-                FormView
-                    .actionSheet(isPresented: $showingErrorActionSheet) {
-                        ActionSheet(title: Text("error_occured"), message: Text(functionalityError.localizedMessage), buttons: [.default(Text("ok"))])
-                    }
-            }
-        }
     }
     
     var body: some View {
         if UIDevice.current.userInterfaceIdiom == .pad {
-            InnerView
+            FormView
         } else if UIDevice.current.userInterfaceIdiom == .phone {
             NavigationView {
-                InnerView
+                FormView
             }
             .navigationViewStyle(.stack)
         }
@@ -128,8 +110,8 @@ struct SettingsView: View {
             case .success():
                 break
             case .failure(let error):
-                functionalityError = error
-                showingErrorActionSheet = true
+                confirmationDialogProvider.confirmationDialog?.body = error.localizedMessage
+                confirmationDialogProvider.showingConfirmationDialog = true
             }
     }
     
@@ -138,6 +120,12 @@ struct SettingsView: View {
         resetAllDataOn(dataManager: dataManager, appManager: appManager)
         showingLoginView = true
         generator.notificationOccurred(.success)
+    }
+    
+    init(dataManager: DataManager, appManager: AppManager) {
+        self.dataManager = dataManager
+        self.appManager = appManager
+        self.confirmationDialogProvider = .init(title: "error_occured", body: "unkown_error")
     }
 }
 

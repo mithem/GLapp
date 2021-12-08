@@ -154,5 +154,4 @@ final class AppManager: ObservableObject {
         }
         UserDefaults.standard.set(Constants.appVersion.description, forKey: UserDefaultsKeys.lastLaunchedVersion)
     }
-
 }

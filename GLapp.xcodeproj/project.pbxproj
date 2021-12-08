@@ -156,6 +156,8 @@
 		49D67A2F273EC7B900ADC319 /* Array+Copying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D67A2E273EC7B900ADC319 /* Array+Copying.swift */; };
 		49D67A31273EC87C00ADC319 /* Copying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D67A30273EC87C00ADC319 /* Copying.swift */; };
 		49E59DE6271C7180009A1609 /* LessonOrSubjectInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E59DE5271C7180009A1609 /* LessonOrSubjectInfoView.swift */; };
+		49E97377275A2A23008D91A2 /* AdvancedSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E97376275A2A23008D91A2 /* AdvancedSettingsViewModel.swift */; };
+		49E97379275A45F5008D91A2 /* ConfirmationDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E97378275A45F5008D91A2 /* ConfirmationDialog.swift */; };
 		49EEDE47272158A0009A4C6A /* Functionality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EEDE46272158A0009A4C6A /* Functionality.swift */; };
 		49EEDE4C27215BDD009A4C6A /* FunctionalityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EEDE4B27215BDD009A4C6A /* FunctionalityProtocol.swift */; };
 		49EEDE4E272167D8009A4C6A /* FNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EEDE4D272167D8009A4C6A /* FNotifications.swift */; };
@@ -362,6 +364,8 @@
 		49D67A30273EC87C00ADC319 /* Copying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Copying.swift; sourceTree = "<group>"; };
 		49D67A32273ECA7D00ADC319 /* QuickTestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = QuickTestPlan.xctestplan; sourceTree = "<group>"; };
 		49E59DE5271C7180009A1609 /* LessonOrSubjectInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonOrSubjectInfoView.swift; sourceTree = "<group>"; };
+		49E97376275A2A23008D91A2 /* AdvancedSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedSettingsViewModel.swift; sourceTree = "<group>"; };
+		49E97378275A45F5008D91A2 /* ConfirmationDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationDialog.swift; sourceTree = "<group>"; };
 		49EEDE46272158A0009A4C6A /* Functionality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functionality.swift; sourceTree = "<group>"; };
 		49EEDE4B27215BDD009A4C6A /* FunctionalityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalityProtocol.swift; sourceTree = "<group>"; };
 		49EEDE4D272167D8009A4C6A /* FNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FNotifications.swift; sourceTree = "<group>"; };
@@ -760,6 +764,7 @@
 				4991A2A5271996F8008559F9 /* LoginView.swift */,
 				4991A2A1271996F8008559F9 /* UIConstants.swift */,
 				495E7C50271ABFC9000085C7 /* DataManagementTaskView.swift */,
+				49E9737C275A4978008D91A2 /* ViewModifiers */,
 				49E59DE4271C7170009A1609 /* Settings */,
 				494FD6742713254D0023E1B5 /* Extensions */,
 				49A5B2472719A4A300577767 /* Functionality check */,
@@ -858,12 +863,21 @@
 			children = (
 				4991A29F271996F8008559F9 /* SettingsView.swift */,
 				499C085F2734FBD000206514 /* AdvancedSettingsView.swift */,
+				49E97376275A2A23008D91A2 /* AdvancedSettingsViewModel.swift */,
 				49E59DE5271C7180009A1609 /* LessonOrSubjectInfoView.swift */,
 				4980CB482748EBDE000E751F /* LessonOrSubjectInfoViewModel.swift */,
 				49517FFB271F668A0085BEA6 /* SubjectAttributeView.swift */,
 				490A22C6274622C20090C5AC /* ScheduledNotificationsView */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		49E9737C275A4978008D91A2 /* ViewModifiers */ = {
+			isa = PBXGroup;
+			children = (
+				49E97378275A45F5008D91A2 /* ConfirmationDialog.swift */,
+			);
+			path = ViewModifiers;
 			sourceTree = "<group>";
 		};
 		49EEDE452721587E009A4C6A /* Mock data */ = {
@@ -1147,6 +1161,7 @@
 				49AF336D2719963A00F406D1 /* TimetableView.swift in Sources */,
 				4934052D2712CA67008B059B /* Int+init.swift in Sources */,
 				49F380E32710DF15002AE814 /* DataManager.swift in Sources */,
+				49E97377275A2A23008D91A2 /* AdvancedSettingsViewModel.swift in Sources */,
 				494C5FBC274013A4003D39DC /* IntentsManager.swift in Sources */,
 				4934051F2711E45D008B059B /* MockData.swift in Sources */,
 				49AF33632719962100F406D1 /* ClassTestPlanView.swift in Sources */,
@@ -1209,6 +1224,7 @@
 				4991A2A9271996F8008559F9 /* UIConstants.swift in Sources */,
 				4991A2B627199768008559F9 /* ClassTestPlanParser.swift in Sources */,
 				49AA51822750EC0500BD03D8 /* Color+init.swift in Sources */,
+				49E97379275A45F5008D91A2 /* ConfirmationDialog.swift in Sources */,
 				499A3EEC2719F7350045683D /* ClassTest+Comparable.swift in Sources */,
 				49686D83271DD28E0075F14A /* Subject+Equatable.swift in Sources */,
 				495E6B9327188BD00052B565 /* BackgroundTaskManager.swift in Sources */,
@@ -1443,7 +1459,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = "1.2.1-a1";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mithem.GLapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1477,7 +1493,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = "1.2.1-a1";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mithem.GLapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

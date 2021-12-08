@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct AdvancedSettingsView: View {
-    @ObservedObject var appManager: AppManager
-    @ObservedObject var dataManager: DataManager
+    @ObservedObject var model: AdvancedSettingsViewModel
     @State private var showingScheduledNotificationsView = false
     @State private var provisionalAuthorization = false
     @AppStorage(UserDefaultsKeys.reprPlanNotificationsHighRelevanceTimeInterval) var reprPlanNotificationHighRelevanceTimeInterval = Constants.defaultReprPlanNotificationsHighRelevanceTimeInterval
@@ -18,16 +17,16 @@ struct AdvancedSettingsView: View {
     var body: some View {
         Form {
             Section {
-                Button("regenerate_colors", action: dataManager.regenerateColors)
+                Button("regenerate_colors", action: model.dataManager.regenerateColors)
             }
-            if appManager.notifications.isEnabled.unwrapped {
+            if model.appManager.notifications.isEnabled.unwrapped {
                 Section {
                     Button("show_scheduled_notifications") {
                         showingScheduledNotificationsView = true
                     }
-                    .disabled(!appManager.notifications.isEnabled.unwrapped)
+                    .disabled(!model.appManager.notifications.isEnabled.unwrapped)
                     .sheet(isPresented: $showingScheduledNotificationsView) {
-                        ScheduledNotificationsView(dataManager: dataManager)
+                        ScheduledNotificationsView(dataManager: model.dataManager)
                     }
                 }
                 Section {
@@ -65,10 +64,12 @@ struct AdvancedSettingsView: View {
                 }
             }
         }
-        .onAppear {
-            appManager.reload(with: dataManager)
-        }
+        .onAppear(perform: model.onAppear)
         .navigationTitle("advanced_settings")
+    }
+    
+    init(appManager: AppManager, dataManager: DataManager) {
+        model = .init(appManager: appManager, dataManager: dataManager)
     }
 }
 

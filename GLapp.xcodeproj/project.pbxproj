@@ -27,6 +27,8 @@
 		492804C2272010220055ED63 /* ClassTestPlan+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492804C1272010220055ED63 /* ClassTestPlan+Equatable.swift */; };
 		492804C42720104D0055ED63 /* RepresentativePlan+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492804C32720104D0055ED63 /* RepresentativePlan+Equatable.swift */; };
 		492804C8272026EF0055ED63 /* GLappError+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492804C7272026EF0055ED63 /* GLappError+Equatable.swift */; };
+		4931D929276372CC003DCF28 /* ClassTest+isOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4931D928276372CC003DCF28 /* ClassTest+isOver.swift */; };
+		4931D92E2763770C003DCF28 /* TestDateComponents+combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4931D92D2763770C003DCF28 /* TestDateComponents+combine.swift */; };
 		49340503271178ED008B059B /* TestRepresentativePlanParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49340502271178ED008B059B /* TestRepresentativePlanParser.swift */; };
 		4934050627117C88008B059B /* ParserError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4934050527117C88008B059B /* ParserError.swift */; };
 		4934050A271196C6008B059B /* GLappError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49340509271196C6008B059B /* GLappError.swift */; };
@@ -228,6 +230,8 @@
 		492804C1272010220055ED63 /* ClassTestPlan+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClassTestPlan+Equatable.swift"; sourceTree = "<group>"; };
 		492804C32720104D0055ED63 /* RepresentativePlan+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepresentativePlan+Equatable.swift"; sourceTree = "<group>"; };
 		492804C7272026EF0055ED63 /* GLappError+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GLappError+Equatable.swift"; sourceTree = "<group>"; };
+		4931D928276372CC003DCF28 /* ClassTest+isOver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClassTest+isOver.swift"; sourceTree = "<group>"; };
+		4931D92D2763770C003DCF28 /* TestDateComponents+combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TestDateComponents+combine.swift"; sourceTree = "<group>"; };
 		49340502271178ED008B059B /* TestRepresentativePlanParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRepresentativePlanParser.swift; sourceTree = "<group>"; };
 		4934050527117C88008B059B /* ParserError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserError.swift; sourceTree = "<group>"; };
 		49340509271196C6008B059B /* GLappError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLappError.swift; sourceTree = "<group>"; };
@@ -437,6 +441,14 @@
 			path = CustomDebugStringConvertible;
 			sourceTree = "<group>";
 		};
+		4931D92C276376F9003DCF28 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4931D92D2763770C003DCF28 /* TestDateComponents+combine.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		4934050427117C7A008B059B /* errors */ = {
 			isa = PBXGroup;
 			children = (
@@ -565,6 +577,7 @@
 				4962EC44274A412E000CDD4E /* ClassTest+DeliverableByNotification.swift */,
 				4962EC42274A3E1A000CDD4E /* ClassTest+CSIndexable.swift */,
 				4962EC56274A4960000CDD4E /* ClassTest+Rewritable.swift */,
+				4931D928276372CC003DCF28 /* ClassTest+isOver.swift */,
 			);
 			path = ClassTest;
 			sourceTree = "<group>";
@@ -737,6 +750,7 @@
 				494595C22727C5050096B5D7 /* TestRepresentativeLesson.swift */,
 				49680F25272A64AB00884096 /* TestRepresentativePlan.swift */,
 				4952B1EE273D689100504D3E /* TestFunctionality.swift */,
+				4931D92C276376F9003DCF28 /* Extensions */,
 				499A3EE82719D5B20045683D /* ExtensiveTestPlan.xctestplan */,
 				49D67A32273ECA7D00ADC319 /* QuickTestPlan.xctestplan */,
 			);
@@ -1090,6 +1104,7 @@
 				49AF334E271995FA00F406D1 /* ContentView+LoginViewDelegate.swift in Sources */,
 				4921C48027319E8700DA256D /* ScheduledNotificationsView.swift in Sources */,
 				4991A2B427199768008559F9 /* RepresentativePlanParser.swift in Sources */,
+				4931D929276372CC003DCF28 /* ClassTest+isOver.swift in Sources */,
 				49D67A21273E72FE00ADC319 /* RepresentativeLesson+CustomDebugStringConvertible.swift.swift in Sources */,
 				4948CFEF2742BF380047D443 /* RepresentativePlanViewModel.swift in Sources */,
 				49A5B2462719A3C400577767 /* FunctionalityCheckView.swift in Sources */,
@@ -1247,6 +1262,7 @@
 				495E6B8B271833ED0052B565 /* TestClassTestPlanParser.swift in Sources */,
 				49340503271178ED008B059B /* TestRepresentativePlanParser.swift in Sources */,
 				49680F26272A64AB00884096 /* TestRepresentativePlan.swift in Sources */,
+				4931D92E2763770C003DCF28 /* TestDateComponents+combine.swift in Sources */,
 				494595C32727C5050096B5D7 /* TestRepresentativeLesson.swift in Sources */,
 				495E6B8D271837180052B565 /* TestTimetableParser.swift in Sources */,
 				4952B1EF273D689100504D3E /* TestFunctionality.swift in Sources */,
@@ -1442,7 +1458,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLapp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;
@@ -1476,7 +1492,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLappRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;

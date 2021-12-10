@@ -29,6 +29,9 @@ struct UpcomingClassTestView: View {
                     Spacer()
                 }
             }
+            if model.pseudoBool {
+                EmptyView()
+            }
         } else {
             EmptyView()
         }

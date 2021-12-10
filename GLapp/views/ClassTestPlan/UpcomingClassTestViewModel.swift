@@ -6,14 +6,27 @@
 //
 
 import SwiftUI
+import Combine
 
 class UpcomingClassTestViewModel: ObservableObject {
     @Published var appManager: AppManager
     @Published var classTests: [ClassTest]
+    @Published var pseudoBool: Bool
+    
+    private var timer: Publishers.Autoconnect<Timer.TimerPublisher>
+    private var cancellableTimer: Cancellable!
     
     init(appManager: AppManager, classTests: [ClassTest]) {
         self.appManager = appManager
         self.classTests = classTests
+        pseudoBool = false
+        timer = Timer.publish(every: 30, tolerance: 10, on: .current, in: .common).autoconnect()
+        cancellableTimer = nil
+        cancellableTimer = timer.sink { _ in
+            DispatchQueue.main.async {
+                self.pseudoBool.toggle()
+            }
+        }
     }
     
     var classTest: ClassTest? {
@@ -55,9 +68,16 @@ class UpcomingClassTestViewModel: ObservableObject {
     }
     
     func subjectColor(colorScheme: ColorScheme) -> Color {
+        if classTest?.isOver == true {
+            return .secondary
+        }
         if appManager.coloredInlineSubjects.isEnabled.unwrapped {
             return .init(classTest?.subject.color.getColoredForegroundColor(colorScheme: colorScheme) ?? .primary)
         }
         return .primary
+    }
+    
+    deinit {
+        cancellableTimer.cancel()
     }
 }

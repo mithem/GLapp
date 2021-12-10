@@ -28,7 +28,9 @@ class ClassTest: ObservableObject, Identifiable, Codable {
     
     var endDate: Date? {
         guard let end = end else { return nil }
-        return Calendar.current.date(byAdding: Constants.lessonEndDateComponents[end]!, to: classTestDate)
+        let components = Constants.lessonEndDateComponents[end]!
+        let endDate = Calendar.current.date(byAdding: components, to: classTestDate)
+        return endDate
     }
     
     func reloadSubject(with dataManager: DataManager) {

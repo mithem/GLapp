@@ -13,7 +13,7 @@
 "login" = "Login";
 "note_all_traffic_encrypted" = "Jegliche Daten werden über eine verschlüsselte Verbindung übertragen.";
 "error_submitting_login_information_returning_data" = "Das Übertragen der Logininformationen hat fälschlicherweise Daten zurückgegeben.";
-"error_colon_msg %@" = "Fehler: %@";
+"error_colon" = "Fehler: ";
 "error_occured" = "Fehler aufgetreten";
 "not_authorized" = "Nicht authorisiert.";
 "no_data" = "Keine Daten verfügbar.";
@@ -135,3 +135,8 @@
 "lesson" = "Stunde";
 "color_coding_error" = "Farbver- oder Entschlüsselungsfehler";
 "prerelease_version_exl_mark" = "Prerelease-Version!";
+"cancel" = "Abbrechen";
+"invalid_with_advice" = "Ungültig. Bitte eine zuverlässige Quelle überprüfen.";
+"repr_plan_contains_invalid_lessons_title" = "Vertretungsplan enthält ungültige Stunden.";
+"repr_plan_contains_invalid_lessons_description" = "Dies ist ein Fehler, der im Schulsystem auftritt. Der Interne Bereich könnte ebenfalls ungültige Daten zeigen.";
+"open_interner_bereich" = "Internen Bereich öffnen";

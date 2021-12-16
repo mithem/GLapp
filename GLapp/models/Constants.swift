@@ -11,6 +11,7 @@ import Semver
 
 struct Constants {
     static let apiHostname = "https://mobil.gymnasium-lohmar.org"
+    static let internerBereichReprPlanURL = URL(string: "https://mobil.gymnasium-lohmar.org/?show=vplan")!
     static let timeoutInterval: TimeInterval = 15
     static let checkReprPlanInBackgroundAfterMinTimeInterval: TimeInterval = 10 * 60
     static let weekdayStringIDMap = [

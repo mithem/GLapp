@@ -30,14 +30,14 @@
       codeCoverageEnabled = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:GLappTests/ExtensiveTestPlan.xctestplan"
-            default = "YES">
+            reference = "container:GLappTests/ExtensiveTestPlan.xctestplan">
          </TestPlanReference>
          <TestPlanReference
             reference = "container:GLappUITests/UITestPlan.xctestplan">
          </TestPlanReference>
          <TestPlanReference
-            reference = "container:GLappTests/QuickTestPlan.xctestplan">
+            reference = "container:GLappTests/QuickTestPlan.xctestplan"
+            default = "YES">
          </TestPlanReference>
       </TestPlans>
       <Testables>

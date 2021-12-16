@@ -16,6 +16,10 @@ struct RepresentativeLessonInlineView: View {
                 Text(model.title)
                     .bold()
                     .foregroundColor(model.titleColor(colorScheme: colorScheme))
+                    .confirmationDialog(provider: model.confirmationDialogProvider, actionButtons: model.self.actionButtons, cancelButtons: model.self.cancelButtons)
+                    .onTapGesture {
+                        model.onTapTitle()
+                    }
                 HStack {
                     if let room = model.lesson.room {
                         Text(room)

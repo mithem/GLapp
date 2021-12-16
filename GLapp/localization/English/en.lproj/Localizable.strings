@@ -13,7 +13,7 @@
 "login" = "Login";
 "note_all_traffic_encrypted" = "All traffic is sent over an encrypted connection.";
 "error_submitting_login_information_returning_data" = "Submitting login information falsely returned data.";
-"error_colon_msg %@" = "Error: %@";
+"error_colon" = "Error: ";
 "error_occured" = "Error occured";
 "not_authorized" = "Not authorized.";
 "no_data" = "No data.";
@@ -134,3 +134,8 @@
 "lesson" = "lesson";
 "color_coding_error" = "Color coding error";
 "prerelease_version_exl_mark" = "Prerelease version!";
+"cancel" = "Cancel";
+"invalid_with_advice" = "Invalid. Check somewhere reliable.";
+"repr_plan_contains_invalid_lessons_title" = "Repr. plan contains invalid lessons";
+"repr_plan_contains_invalid_lessons_description" = "This is an error occurring with the school system. Interner Bereich may also show invalid data.";
+"open_interner_bereich" = "Open interner Bereich";

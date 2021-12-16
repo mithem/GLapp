@@ -17,38 +17,39 @@ struct LoginView: View {
     @State private var error: NetworkError? = nil
     @State private var loading = false
     
-    @State private var actionSheetReason = ActionSheetReason.error
-    @State private var showingActionSheet = false
+    @State private var confirmationDialogReason = ConfirmationDialogReason.error
     
     @Environment(\.presentationMode) private var presentationMode
     
     @ObservedObject var appManager: AppManager
     @ObservedObject var dataManager: DataManager
+    @ObservedObject var confirmationDialogProvider = ConfirmationDialogProvider(title: "not_available", body: "not_available")
     
     let delegate: LoginViewDelegate
     
-    func getActionSheet() -> (title: String, action: () -> Button<Text>, actionText: Text, actionCallback: () -> Void, label: () -> Text) {
-        switch actionSheetReason {
+    var confirmationDialogButtons: (actionButton: ConfirmationDialog.Button?, cancelButton: ConfirmationDialog.Button) {
+        switch confirmationDialogReason {
         case .error:
-            return (title: NSLocalizedString("error_occured"), action: {
-                if #available(iOS 15, *) {
-                    return Button("ok", role: .cancel) {}
-                } else {
-                    return Button("ok") {}
-                }
-            }, actionText: Text("ok"), actionCallback: {}, label: {
-                Text("error_colon_msg \(error?.localizedMessage ?? "unkown")")
-            })
+            return (actionButton: nil, cancelButton: (title: "ok", callback: {}))
         case .demoMode:
-            return (title: NSLocalizedString("user_credentials_empty"), action: {
-                Button("enable", action: activateDemoMode)
-            }, actionText: Text("enable"), actionCallback: activateDemoMode, label: {
-                Text("user_credentials_empty_activate_demo_mode")
-            })
+            return (actionButton: (title: "enable", callback: activateDemoMode), cancelButton: (title: "cancel", {}))
         }
     }
     
-    var Content: some View {
+    private func showActionSheet(reason: ConfirmationDialogReason) {
+        confirmationDialogReason = reason
+        DispatchQueue.main.async {
+            switch reason {
+            case .error:
+                confirmationDialogProvider.confirmationDialog = (title: "error_occured", body: NSLocalizedString("error_colon") + " \(error?.localizedMessage ?? "unkown_error")")
+            case .demoMode:
+                confirmationDialogProvider.confirmationDialog = (title: "user_credentials_empty", body: "user_credentials_empty_activate_demo_mode")
+            }
+            confirmationDialogProvider.showingConfirmationDialog = true
+        }
+    }
+    
+    var body: some View {
         NavigationView {
             VStack {
                 Form {
@@ -59,6 +60,8 @@ struct LoginView: View {
                         .textContentType(.password)
                         .disableAutocorrection(true)
                     Toggle("teacher", isOn: $userIsTeacher)
+                    let actionButtons = [confirmationDialogButtons.actionButton].compactMap({$0})
+                    let cancelButtons = [confirmationDialogButtons.cancelButton]
                     Button(action: submitLogin) {
                         HStack(spacing: 10) {
                             Text("send")
@@ -67,6 +70,7 @@ struct LoginView: View {
                             }
                         }
                     }
+                    .confirmationDialog(provider: confirmationDialogProvider, actionButtons: actionButtons, cancelButtons: cancelButtons)
                     .keyboardShortcut(.defaultAction)
                     .disabled(loading)
                     Text("note_all_traffic_encrypted")
@@ -77,23 +81,9 @@ struct LoginView: View {
         }
     }
     
-    var body: some View {
-        let actionSheet = getActionSheet()
-        if #available(iOS 15, *) {
-            Content
-            .confirmationDialog(actionSheet.title, isPresented: $showingActionSheet, actions: actionSheet.action, message: actionSheet.label)
-        } else {
-            Content
-                .actionSheet(isPresented: $showingActionSheet) {
-                    ActionSheet(title: Text(actionSheet.title), message: actionSheet.label(), buttons: [.default(actionSheet.actionText, action: actionSheet.actionCallback)])
-                }
-        }
-    }
-    
     func submitLogin() {
         if username.isEmpty && password.isEmpty {
-            actionSheetReason = .demoMode
-            showingActionSheet = true
+            showActionSheet(reason: .demoMode)
             return
         }
         if appManager.demoMode.isEnabled.unwrapped {
@@ -133,8 +123,7 @@ struct LoginView: View {
     
     func handle(error: NetworkError, generator: UINotificationFeedbackGenerator) {
         self.error = error
-        actionSheetReason = .error
-        showingActionSheet = true
+        showActionSheet(reason: .error)
         generator.notificationOccurred(.error)
     }
     
@@ -148,7 +137,7 @@ struct LoginView: View {
         presentationMode.wrappedValue.dismiss()
     }
     
-    private enum ActionSheetReason {
+    private enum ConfirmationDialogReason {
         case error, demoMode
     }
 }

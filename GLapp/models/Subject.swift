@@ -77,4 +77,8 @@ final class Subject: ObservableObject, Codable, Hashable {
     private enum CodingKeys: CodingKey {
         case className, subjectType, teacher, subjectName, color
     }
+    
+    class var invalid: Subject {
+        .init(dataManager: MockDataManager(), className: "", subjectType: nil, teacher: nil, subjectName: nil, color: nil)
+    }
 }

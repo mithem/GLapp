@@ -15,7 +15,7 @@ struct ConfirmationDialog<Provider>: ViewModifier where Provider: ConfirmationDi
     func body(content: Content) -> some View {
         if #available(iOS 15, *) {
             content
-                .confirmationDialog(provider.confirmationDialog?.title ?? "not_available", isPresented: $provider.showingConfirmationDialog, actions: {
+                .confirmationDialog(NSLocalizedString(provider.confirmationDialog?.title ?? "not_available"), isPresented: $provider.showingConfirmationDialog, titleVisibility: .visible, actions: {
                     ForEach(actionButtons, id: \.title) { button in
                         SwiftUI.Button(NSLocalizedString(button.title), action: button.callback)
                     }
@@ -23,7 +23,7 @@ struct ConfirmationDialog<Provider>: ViewModifier where Provider: ConfirmationDi
                         SwiftUI.Button(NSLocalizedString(button.title), role: .cancel, action: button.callback)
                     }
                 }, message: {
-                    Text(provider.confirmationDialog?.body ?? "not_available")
+                    Text(NSLocalizedString(provider.confirmationDialog?.body ?? "not_available"))
                 })
         } else {
             content
@@ -35,7 +35,7 @@ struct ConfirmationDialog<Provider>: ViewModifier where Provider: ConfirmationDi
                     for button in cancelButtons {
                         buttons.append(.cancel(Text(NSLocalizedString(button.title)), action: button.callback))
                     }
-                    return ActionSheet(title: .init(provider.confirmationDialog?.title ?? "not_available"), message: .init(provider.confirmationDialog?.body ?? "not_available"), buttons: buttons)
+                    return ActionSheet(title: .init(NSLocalizedString(provider.confirmationDialog?.title ?? "not_available")), message: .init(NSLocalizedString(provider.confirmationDialog?.body ?? "not_available")), buttons: buttons)
                 }
         }
     }
@@ -48,8 +48,8 @@ struct ConfirmationDialog<Provider>: ViewModifier where Provider: ConfirmationDi
 }
 
 protocol ConfirmationDialogProviding: ObservableObject {
-    var confirmationDialog: (title: String, body: String)? { get }
-    var showingConfirmationDialog: Bool { get set }
+    @MainActor var confirmationDialog: (title: String, body: String)? { get }
+    @MainActor var showingConfirmationDialog: Bool { get set }
 }
 
 extension View {
@@ -74,9 +74,9 @@ fileprivate struct ConfirmationDialogDemo: View {
     }
 }
 
-final class ConfirmationDialogProvider: ConfirmationDialogProviding {
-    @Published var confirmationDialog: (title: String, body: String)?
-    @Published var showingConfirmationDialog: Bool
+@MainActor final class ConfirmationDialogProvider: ConfirmationDialogProviding {
+    @MainActor @Published var confirmationDialog: (title: String, body: String)?
+    @MainActor @Published var showingConfirmationDialog: Bool
     
     init(title: String, body: String) {
         self.showingConfirmationDialog = false

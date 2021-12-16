@@ -609,5 +609,6 @@ class DataManager: ObservableObject {
     
     deinit {
         saveLocalData()
+        reachability.stopNotifier()
     }
 }

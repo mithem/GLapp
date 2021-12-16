@@ -30,6 +30,9 @@ final class RepresentativeLesson: ObservableObject, Identifiable {
         return .rightNow > endDate
     }
     
+    var isInvalid: Bool {
+        self == .invalid
+    }
     
     func updateSubject(with dataManager: DataManager) {
         subject = dataManager.getSubject(subjectName: subject.subjectName ?? subject.className, className: nil) // assume className is unkown
@@ -87,4 +90,6 @@ final class RepresentativeLesson: ObservableObject, Identifiable {
             return lesson
         }
     }
+    
+    class var invalid: RepresentativeLesson { .init(date: .init(timeIntervalSince1970: 0), lesson: 1, room: nil, newRoom: nil, note: nil, subject: .invalid, normalTeacher: "", representativeTeacher: nil) }
 }

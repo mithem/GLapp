@@ -13,16 +13,16 @@ final class FSpotlightIntegration: Functionality {
         isSupported = UIDevice.current.userInterfaceIdiom == .phone ? .yes : .no
     }
     override func reloadIsEnabled(with appManager: AppManager, dataManager: DataManager) throws {
-        isEnabled = UserDefaults.standard.bool(forKey: UserDefaultsKeys.disableSpotlightIntegration) ? .no : .yes
+        isEnabled = UserDefaults.standard.bool(for: \.disableSpotlightIntegration) ? .no : .yes
     }
     
     override func doEnable(with appManager: AppManager, dataManager: DataManager) throws {
-        UserDefaults.standard.set(false, forKey: UserDefaultsKeys.disableSpotlightIntegration)
+        UserDefaults.standard.set(false, for: \.disableSpotlightIntegration)
         dataManager.indexContent()
     }
     
     override func doDisable(with appManager: AppManager, dataManager: DataManager) throws {
-        UserDefaults.standard.set(true, forKey: UserDefaultsKeys.disableSpotlightIntegration)
+        UserDefaults.standard.set(true, for: \.disableSpotlightIntegration)
         IntentsManager.reset()
     }
     

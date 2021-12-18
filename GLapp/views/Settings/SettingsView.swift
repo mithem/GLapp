@@ -7,44 +7,34 @@
 
 import SwiftUI
 
-struct SettingsView: View {
+struct SettingsView: View, SettingsViewIsEnabledBindingResultHandling {
     @State private var showingLoginView = false
     @State private var showingFunctionalityCheckView = false
     @State private var functionalityError = Functionality.Error.notImplemented
-    @AppStorage(UserDefaultsKeys.classTestReminderNotificationBeforeDays) var remindNDaysBeforeClassTests = Constants.defaultClassTestReminderNotificationsBeforeDays
     @ObservedObject var dataManager: DataManager
     @ObservedObject var appManager: AppManager
     @ObservedObject var confirmationDialogProvider: ConfirmationDialogProvider
     var FormView: some View {
         Form {
             Section {
+                NavigationLink("general") {
+                    GeneralSettings(dataManager: dataManager, appManager: appManager, handler: self)
+                }
+                if dataManager.tasks.getClassTestPlan.error != .classTestPlanNotSupported {
+                    NavigationLink("class_test_reminders") {
+                        ClassTestReminderSettings(dataManager: dataManager, appManager: appManager, handler: self)
+                    }
+                }
+                NavigationLink("advanced_settings") {
+                    AdvancedSettingsView(appManager: appManager, dataManager: dataManager)
+                }
                 Button("check_for_functionality") {
                     showingFunctionalityCheckView = true
                 }
                 .sheet(isPresented: $showingFunctionalityCheckView) {
                     FunctionalityCheckView(appManager: appManager, dataManager: dataManager)
                 }
-                if dataManager.tasks.getClassTestPlan.error != .classTestPlanNotSupported {
-                    Toggle(appManager.classTestReminders.title, isOn: appManager.classTestReminders.isEnabledBinding(appManager: appManager, dataManager: dataManager, setCompletion: handleIsEnabledBindingResult))
-                    Stepper(value: $remindNDaysBeforeClassTests, in: 1...31) {
-                        Text(NSLocalizedString("remind_n_days_before_class_tests_colon") + String(remindNDaysBeforeClassTests))
-                            .lineLimit(nil) // not sure why that was a problem
-                    }
-                        .onChange(of: remindNDaysBeforeClassTests) { _ in
-                            appManager.classTestReminders.scheduleClassTestRemindersIfAppropriate(with: dataManager)
-                            UIImpactFeedbackGenerator(style: .light).impactOccurred(intensity: 0.5)
-                        }
-                    Toggle(appManager.classTestCalendarEvents.title, isOn: appManager.classTestCalendarEvents.isEnabledBinding(appManager: appManager, dataManager: dataManager, setCompletion: handleIsEnabledBindingResult))
-                }
-                Toggle(appManager.backgroundReprPlanNotifications.title, isOn: appManager.backgroundReprPlanNotifications.isEnabledBinding(appManager: appManager, dataManager: dataManager, setCompletion: handleIsEnabledBindingResult))
-                Toggle(appManager.coloredInlineSubjects.title, isOn: appManager.coloredInlineSubjects.isEnabledBinding(appManager: appManager, dataManager: dataManager, setCompletion: handleIsEnabledBindingResult))
-                if appManager.spotlightIntegration.isSupported.unwrapped {
-                    Toggle(appManager.spotlightIntegration.title, isOn: appManager.spotlightIntegration.isEnabledBinding(appManager: appManager, dataManager: dataManager, setCompletion: handleIsEnabledBindingResult))
-                }
                 Link("feedback", destination: Constants.mailToURL)
-                NavigationLink("advanced_settings") {
-                    AdvancedSettingsView(appManager: appManager, dataManager: dataManager)
-                }
             }
             Section {
                 if !isLoggedIn() {
@@ -57,6 +47,9 @@ struct SettingsView: View {
                 }
                 Button("reset_onboarding") {
                     resetOnboarding(withHapticFeedback: true)
+                }
+                Button("reset_preferences") {
+                    resetPreferences(appManager: appManager, dataManager: dataManager, withHapticFeedback: true)
                 }
                 Group {
                     if #available(iOS 15, *) {

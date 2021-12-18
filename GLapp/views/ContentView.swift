@@ -11,7 +11,7 @@ import Combine
 struct ContentView: View {
     @ObservedObject var model: ContentViewModel
     @State var currentiPadOSView: ContentViewModel.SubView? = .timetable // when using custom bindings created in VM, SwiftUI isn't notified of any change, so the view doesn't update (my best guess, anyways)
-    @AppStorage(UserDefaultsKeys.lastTabView) var lastTabView = 0 // using a state keeper in VM always lead to **some** unexpected behavior
+    @AppStorage(UserDefaultsKeys().lastTabView) var lastTabView = 0 // using a state keeper in VM always lead to **some** unexpected behavior
     @State private var modalSheetView = ContentViewModel.ModalSheetView.none
     @State private var showingModalSheetView = false
     

@@ -12,9 +12,9 @@ class FClassTestPlan: Functionality {
     override func reloadIsSupported(with appManager: AppManager, dataManager: DataManager) throws {
         isSupported = dataManager.tasks.getClassTestPlan.error != .classTestPlanNotSupported ? .yes : .no
         if isSupported == .yes && dataManager.classTestPlan == nil { // didn't load yet
-            isSupported = UserDefaults.standard.bool(forKey: UserDefaultsKeys.classTestPlanNotSupported) ? .no : .yes
+            isSupported = UserDefaults.standard.bool(for: \.classTestPlanNotSupported) ? .no : .yes
         } else if !isSupported.unwrapped {
-            UserDefaults.standard.set(true, forKey: UserDefaultsKeys.classTestPlanNotSupported)
+            UserDefaults.standard.set(true, for: \.classTestPlanNotSupported)
         }
         if isSupported == .no {
             throw GLappError.classTestPlanNotSupported
@@ -34,7 +34,7 @@ class FClassTestPlan: Functionality {
     }
     
     func reset() {
-        UserDefaults.standard.set(false, forKey: UserDefaultsKeys.classTestPlanNotSupported)
+        UserDefaults.standard.set(false, for: \.classTestPlanNotSupported)
     }
     
     required init() {

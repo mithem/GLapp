@@ -140,3 +140,9 @@
 "repr_plan_contains_invalid_lessons_title" = "Vertretungsplan enthält ungültige Stunden.";
 "repr_plan_contains_invalid_lessons_description" = "Dies ist ein Fehler, der im Schulsystem auftritt. Der Interne Bereich könnte ebenfalls ungültige Daten zeigen.";
 "open_interner_bereich" = "Internen Bereich öffnen";
+"class_test_reminder_time_mode_at_class_test_time" = "Relativ zu Klausurbeginn";
+"class_test_reminder_time_mode_manual" = "Manuell";
+"class_test_reminder_time_time" = "Zustellzeit";
+"reset_preferences" = "Einstellungen zurücksetzen";
+"general" = "Allgemein";
+"class_test_reminders" = "Klausurerinnerungen";

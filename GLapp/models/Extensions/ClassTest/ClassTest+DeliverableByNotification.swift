@@ -17,7 +17,7 @@ extension ClassTest: DeliverableByNotification {
     var notificationTitle: String { title }
     
     var notificationSummary: String {
-        var daysBeforeClassTest = UserDefaults.standard.integer(forKey: UserDefaultsKeys.classTestReminderNotificationBeforeDays)
+        var daysBeforeClassTest = UserDefaults.standard.integer(for: \.classTestReminderNotificationBeforeDays)
         if daysBeforeClassTest == 0 { // no previous initialization e.g. by SettingsView
             daysBeforeClassTest = Constants.defaultClassTestReminderNotificationsBeforeDays
         }

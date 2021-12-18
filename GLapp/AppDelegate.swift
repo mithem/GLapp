@@ -16,8 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         UNUserNotificationCenter.current().delegate = self
         
-        let count = UserDefaults.standard.integer(forKey: UserDefaultsKeys.launchCount)
-        UserDefaults.standard.set(count + 1, forKey: UserDefaultsKeys.launchCount)
+        let count = UserDefaults.standard.integer(for: \.launchCount)
+        UserDefaults.standard.set(count + 1, for: \.launchCount)
         
         AppManager.dealWithVersionChanges()
         

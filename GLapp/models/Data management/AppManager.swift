@@ -135,7 +135,7 @@ final class AppManager: ObservableObject {
     }
     
     class func dealWithVersionChanges() {
-        let lastVersion = UserDefaults.standard.string(forKey: UserDefaultsKeys.lastLaunchedVersion)
+        let lastVersion = UserDefaults.standard.string(for: \.lastLaunchedVersion)
         versionCheck: if let lastVersion = lastVersion {
             guard let lastVersion = Semver(lastVersion) else { break versionCheck }
             var reset = false
@@ -152,6 +152,6 @@ final class AppManager: ObservableObject {
                 resetAllDataOn(dataManager: nil) // just for readability
             }
         }
-        UserDefaults.standard.set(Constants.appVersion.description, forKey: UserDefaultsKeys.lastLaunchedVersion)
+        UserDefaults.standard.set(Constants.appVersion.description, for: \.lastLaunchedVersion)
     }
 }

@@ -59,7 +59,7 @@ final class NotificationManager {
     }
     
     func checkRepresentativePlanAndDeliverNotification(task: BGTask) {
-        let lastUpdateTimestamp = UserDefaults.standard.double(forKey: UserDefaultsKeys.lastReprPlanUpdateTimestamp)
+        let lastUpdateTimestamp = UserDefaults.standard.double(for: \.lastReprPlanUpdateTimestamp)
         let dataManager = DataManager(appManager: .init())
         dataManager.getRepresenativePlanUpdate { result in
             switch result {
@@ -78,7 +78,7 @@ final class NotificationManager {
                             }
                         }
                     }
-                } else if UserDefaults.standard.bool(forKey: UserDefaultsKeys.dontSaveReprPlanUpdateTimestampWhenViewingReprPlan) && UserDefaults.standard.bool(forKey: UserDefaultsKeys.reprPlanNotificationsEntireReprPlan) {
+                } else if UserDefaults.standard.bool(for: \.dontSaveReprPlanUpdateTimestampWhenViewingReprPlan) && UserDefaults.standard.bool(for: \.reprPlanNotificationsEntireReprPlan) {
                     self.deliverNotification(plan)
                 }
                 task.setTaskCompleted(success: true)
@@ -121,18 +121,15 @@ final class NotificationManager {
     }
     
     func scheduleClassTestReminder(for classTest: ClassTest) {
-        let classTestDate = classTest.startDate ?? classTest.classTestDate
-        let classTestDateComponents = Calendar(identifier: .gregorian).dateComponents([.year, .month, .day, .hour, .minute], from: classTestDate)
-        var daysBeforeClassTest = UserDefaults.standard.integer(forKey: UserDefaultsKeys.classTestReminderNotificationBeforeDays)
-        if daysBeforeClassTest == 0 { // no previous initialization e.g. by SettingsView
-            daysBeforeClassTest = Constants.defaultClassTestReminderNotificationsBeforeDays
+        let reminderComponents = Self._getClassTestReminderDeliveryComponents(for: classTest)
+        let triggerComponents: DateComponents
+        switch reminderComponents {
+        case .failure(_):
+            return
+        case .success(let reminderComponents):
+            triggerComponents = reminderComponents
         }
-        var reminderComponents = classTestDateComponents
-        reminderComponents.day! -= daysBeforeClassTest
-        reminderComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: Calendar.current.date(from: reminderComponents)!) // if a classTest is scheduled at the beginning of the month, for example, this is a way for that to actually give valid dateComponents as a trigger, otherwise they would contain negative numbers and not trigger anything
-        let reminderDate = Calendar.current.date(from: reminderComponents)!
-        guard reminderDate > .rightNow else { return }
-        let trigger = UNCalendarNotificationTrigger(dateMatching: reminderComponents, repeats: false)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerComponents, repeats: false)
         
         let content = UNMutableNotificationContent()
         content.title = classTest.notificationTitle
@@ -153,6 +150,34 @@ final class NotificationManager {
                 self.requests.append(request)
             }
         }
+    }
+    
+    enum GetClassTestReminderDeliveryComponentsError: Error {
+        /// The appropriate delivery date lies in the past.
+        case dateInPast
+    }
+    
+    static func _getClassTestReminderDeliveryComponents(for classTest: ClassTest) -> Result<DateComponents, GetClassTestReminderDeliveryComponentsError> {
+        let classTestDate = classTest.startDate ?? classTest.classTestDate
+        let classTestDateComponents = Calendar(identifier: .gregorian).dateComponents([.year, .month, .day, .hour, .minute], from: classTestDate)
+        var daysBeforeClassTest = UserDefaults.standard.integer(for: \.classTestReminderNotificationBeforeDays)
+        if daysBeforeClassTest == 0 { // no previous initialization e.g. by SettingsView
+            daysBeforeClassTest = Constants.defaultClassTestReminderNotificationsBeforeDays
+        }
+        var reminderComponents = classTestDateComponents
+        reminderComponents.day! -= daysBeforeClassTest
+        reminderComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: Calendar.current.date(from: reminderComponents)!) // if a classTest is scheduled at the beginning of the month, for example, this is a way for that to actually give valid dateComponents as a trigger, otherwise they would contain negative numbers and not trigger anything
+        checkForManualTimeMode: if ClassTestReminderTimeMode(rawValue: UserDefaults.standard.integer(for: \.classTestReminderTimeMode)) == .manual {
+            if let date = UserDefaults.standard.object(for: \.classTestReminderManualTime, decodeTo: Date.self) {
+                let components = Calendar.current.dateComponents([.hour, .minute], from: date)
+                guard components.hour != nil && components.minute != nil else { break checkForManualTimeMode } // just a precaution
+                reminderComponents.hour = components.hour
+                reminderComponents.minute = components.minute
+            }
+        }
+        let reminderDate = Calendar.current.date(from: reminderComponents)!
+        guard reminderDate > .rightNow else { return .failure(.dateInPast) }
+        return .success(reminderComponents)
     }
     
     func scheduleClassTestsReminders(for classTests: [ClassTest]) {

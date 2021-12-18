@@ -14,15 +14,15 @@ class FColoredInlineSubjects: Functionality {
     }
     
     override func reloadIsEnabled(with appManager: AppManager, dataManager: DataManager) throws {
-        isEnabled = UserDefaults.standard.bool(forKey: UserDefaultsKeys.coloredInlineSubjects) ? .yes : .no
+        isEnabled = UserDefaults.standard.bool(for: \.coloredInlineSubjects) ? .yes : .no
     }
     
     override func doEnable(with appManager: AppManager, dataManager: DataManager) throws {
-        UserDefaults.standard.set(true, forKey: UserDefaultsKeys.coloredInlineSubjects)
+        UserDefaults.standard.set(true, for: \.coloredInlineSubjects)
     }
     
     override func doDisable(with appManager: AppManager, dataManager: DataManager) throws {
-        UserDefaults.standard.set(false, forKey: UserDefaultsKeys.coloredInlineSubjects)
+        UserDefaults.standard.set(false, for: \.coloredInlineSubjects)
     }
     
     required init() {

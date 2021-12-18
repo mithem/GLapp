@@ -73,7 +73,7 @@ enum IntentToHandle {
     ]
     
     func save() {
-        UserDefaults.standard.set(rawValue, forKey: UserDefaultsKeys.intentToHandle)
+        UserDefaults.standard.set(rawValue, for: \.intentToHandle)
     }
     
     func donate() {

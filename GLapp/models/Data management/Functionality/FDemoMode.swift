@@ -13,23 +13,23 @@ class FDemoMode: Functionality {
     }
     
     override func reloadIsEnabled(with appManager: AppManager, dataManager: DataManager) throws {
-        isEnabled = UserDefaults.standard.bool(forKey: UserDefaultsKeys.demoMode) ? .yes : .no
+        isEnabled = UserDefaults.standard.bool(for: \.demoMode) ? .yes : .no
     }
     
     override func doEnable(with appManager: AppManager, dataManager: DataManager) throws {
-        UserDefaults.standard.set(true, forKey: UserDefaultsKeys.demoMode)
+        UserDefaults.standard.set(true, for: \.demoMode)
         dataManager.reset()
         dataManager.loadData()
     }
     
     override func doDisable(with appManager: AppManager, dataManager: DataManager) throws {
-        UserDefaults.standard.set(false, forKey: UserDefaultsKeys.demoMode)
+        UserDefaults.standard.set(false, for: \.demoMode)
         dataManager.reset()
         dataManager.loadData()
     }
     
     func reset() {
-        UserDefaults.standard.set(false, forKey: UserDefaultsKeys.demoMode)
+        UserDefaults.standard.set(false, for: \.demoMode)
     }
     
     required init() {

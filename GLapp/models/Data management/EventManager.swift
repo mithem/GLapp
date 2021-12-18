@@ -52,12 +52,14 @@ final class EventManager {
                     return
                 }
                 try? self.removeAllCreatedEvents(subjects: classTests.map { $0.subject })
+                let demoMode = UserDefaults.standard.bool(for: \.demoMode)
                 for classTest in classTests {
                     let start = classTest.classTestDate - 1
                     let end = classTest.classTestDate + 60 * 60 * 24 + 1 // just to be safe
                     let predicate = self.store.predicateForEvents(withStart: start, end: end, calendars: nil)
                     let events = self.store.events(matching: predicate)
                     if let event = events.first(where: {$0.title == classTest.subject.className}) {
+                        event.location = classTest.room
                         if let start = classTest.startDate, let end = classTest.endDate {
                             event.startDate = start
                             event.endDate = end
@@ -68,7 +70,8 @@ final class EventManager {
                         let event = EKEvent(eventStore: self.store)
                         guard let cal = self.store.defaultCalendarForNewEvents else { continue }
                         event.calendar = cal
-                        event.title = classTest.subject.className
+                        event.title = classTest.subject.className + (demoMode ? " (demo)" : "")
+                        event.location = classTest.room
                         if let start = classTest.startDate, let end = classTest.endDate {
                             event.startDate = start
                             event.endDate = end

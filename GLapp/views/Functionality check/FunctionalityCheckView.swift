@@ -36,7 +36,7 @@ struct FunctionalityCheckView: View {
                 giveCorrectHapticFeedback(with: generator)
             }
             .onDisappear {
-                UserDefaults.standard.set(true, forKey: UserDefaultsKeys.didShowFunctionalityCheck)
+                UserDefaults.standard.set(true, for: \.didShowFunctionalityCheck)
             }
             .navigationTitle("functionality_check")
             .onReceive(timer) { _ in

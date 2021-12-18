@@ -12,8 +12,8 @@ func getUrl(for path: String, queryItems: Dictionary<String, String> = [:], auth
     guard var components = URLComponents(string: Constants.apiHostname + path) else { return nil }
     components.queryItems = []
     if authenticate {
-        let isTeacher = UserDefaults.standard.bool(forKey: UserDefaultsKeys.userIsTeacher)
-        guard let mobileKey = UserDefaults.standard.string(forKey: UserDefaultsKeys.mobileKey) else { throw NetworkError.mobileKeyNotConfigured }
+        let isTeacher = UserDefaults.standard.bool(for: \.userIsTeacher)
+        guard let mobileKey = UserDefaults.standard.string(for: \.mobileKey) else { throw NetworkError.mobileKeyNotConfigured }
         let keyKey: String
         if isTeacher {
             keyKey = "mobilKey_lehrer"
@@ -44,7 +44,7 @@ func submitLoginAndSaveMobileKey(username: String, password: String, completion:
                 } else if str == "0" {
                     completion(.failure(.notAuthorized))
                 } else {
-                    UserDefaults.standard.set(str, forKey: UserDefaultsKeys.mobileKey)
+                    UserDefaults.standard.set(str, for: \.mobileKey)
                     completion(.success)
                 }
             } else {
@@ -60,30 +60,30 @@ func resetLoginInfo() {
 }
 
 func removeMobileKey() {
-    UserDefaults.standard.set("", forKey: UserDefaultsKeys.mobileKey)
+    UserDefaults.standard.set("", for: \.mobileKey)
 }
 
 func removeTeacherInformation() {
-    UserDefaults.standard.set(false, forKey: UserDefaultsKeys.userIsTeacher)
+    UserDefaults.standard.set(false, for: \.userIsTeacher)
 }
 
 func isLoggedIn() -> Bool {
-    let key = UserDefaults.standard.string(forKey: UserDefaultsKeys.mobileKey)
+    let key = UserDefaults.standard.string(for: \.mobileKey)
     return key != nil && key != ""
 }
 
 func resetOnboarding(withHapticFeedback: Bool = false) {
     let generator: UINotificationFeedbackGenerator? = withHapticFeedback ? .init() : nil
     generator?.prepare()
-    UserDefaults.standard.set(0, forKey: UserDefaultsKeys.launchCount)
-    UserDefaults.standard.set(false, forKey: UserDefaultsKeys.didShowFunctionalityCheck)
+    UserDefaults.standard.set(0, for: \.launchCount)
+    UserDefaults.standard.set(false, for: \.didShowFunctionalityCheck)
     IntentsManager.reset()
     removeLastReprPlanUpdateTimestamp()
     generator?.notificationOccurred(.success)
 }
 
 func removeLastReprPlanUpdateTimestamp() {
-    UserDefaults.standard.set(0.0, forKey: UserDefaultsKeys.lastReprPlanUpdateTimestamp)
+    UserDefaults.standard.set(0.0, for: \.lastReprPlanUpdateTimestamp)
 }
 
 func NSLocalizedString(_ key: String) -> String {
@@ -109,8 +109,27 @@ func resetAllDataOn(dataManager: DataManager? = nil, appManager: AppManager? = n
     IntentsManager.reset()
     resetLoginInfo()
     resetOnboarding()
-    UserDefaults.standard.set(0, forKey: UserDefaultsKeys.launchCount)
+    UserDefaults.standard.set(0, for: \.launchCount)
     if let dataManager = dataManager {
         appManager?.reload(with: dataManager)
     }
+}
+
+func resetPreferences(appManager: AppManager, dataManager: DataManager, withHapticFeedback: Bool = false) {
+    let generator: UINotificationFeedbackGenerator? = withHapticFeedback ? .init() : nil
+    generator?.prepare()
+    UserDefaults.standard.set(ClassTestReminderTimeMode.atClassTestTime, for: \.classTestReminderTimeMode)
+    UserDefaults.standard.set(Constants.defaultClassTestReminderManualTime, for: \.classTestReminderManualTime)
+    UserDefaults.standard.set(Constants.defaultClassTestReminderNotificationsBeforeDays, for: \.classTestReminderNotificationBeforeDays)
+    UserDefaults.standard.set(Constants.defaultReprPlanNotificationsHighRelevanceTimeInterval, for: \.reprPlanNotificationsHighRelevanceTimeInterval)
+    UserDefaults.standard.set(false, for: \.reprPlanNotificationsEntireReprPlan)
+    UserDefaults.standard.set(false, for: \.dontSaveReprPlanUpdateTimestampWhenViewingReprPlan)
+    try? appManager.classTestReminders.enable(with: appManager, dataManager: dataManager)
+    try? appManager.demoMode.disable(with: appManager, dataManager: dataManager)
+    try? appManager.backgroundReprPlanNotifications.enable(with: appManager, dataManager: dataManager)
+    try? appManager.classTestCalendarEvents.enable(with: appManager, dataManager: dataManager)
+    try? appManager.spotlightIntegration.enable(with: appManager, dataManager: dataManager)
+    try? appManager.coloredInlineSubjects.enable(with: appManager, dataManager: dataManager)
+    appManager.reload(with: dataManager)
+    generator?.notificationOccurred(.success)
 }

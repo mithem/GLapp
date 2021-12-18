@@ -139,3 +139,9 @@
 "repr_plan_contains_invalid_lessons_title" = "Repr. plan contains invalid lessons";
 "repr_plan_contains_invalid_lessons_description" = "This is an error occurring with the school system. Interner Bereich may also show invalid data.";
 "open_interner_bereich" = "Open interner Bereich";
+"class_test_reminder_time_mode_at_class_test_time" = "At class test time";
+"class_test_reminder_time_mode_manual" = "Manual";
+"class_test_reminder_time_time" = "Delivery time";
+"reset_preferences" = "Reset preferences";
+"general" = "General";
+"class_test_reminders" = "Class test reminders";

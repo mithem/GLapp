@@ -65,9 +65,9 @@ class DataManager: ObservableObject {
             self.indexReprPlan()
         }
         
-        if let plan = plan, !UserDefaults.standard.bool(forKey: UserDefaultsKeys.dontSaveReprPlanUpdateTimestampWhenViewingReprPlan) {
+        if let plan = plan, !UserDefaults.standard.bool(for: \.dontSaveReprPlanUpdateTimestampWhenViewingReprPlan) {
             if let date = plan.date {
-                UserDefaults.standard.set(date.timeIntervalSince1970, forKey: UserDefaultsKeys.lastReprPlanUpdateTimestamp)
+                UserDefaults.standard.set(date.timeIntervalSince1970, for: \.lastReprPlanUpdateTimestamp)
             }
         }
     }
@@ -307,7 +307,7 @@ class DataManager: ObservableObject {
     func getRepresenativePlanUpdate(useTimestampQuery: Bool = true, completion: @escaping (Result<RepresentativePlan, GLappError>) -> Void) {
         let queryItems: Dictionary<String, String>
         if useTimestampQuery {
-            var timestamp: Int? = UserDefaults.standard.integer(forKey: UserDefaultsKeys.lastReprPlanUpdateTimestamp)
+            var timestamp: Int? = UserDefaults.standard.integer(for: \.lastReprPlanUpdateTimestamp)
             if timestamp == 0 {
                 timestamp = nil
             }
@@ -349,10 +349,10 @@ class DataManager: ObservableObject {
                     let result = RepresentativePlanParser.parse(plan: s, with: self)
                     switch result {
                     case .success(let plan):
-                        if let date = plan.date, !UserDefaults.standard.bool(forKey: UserDefaultsKeys.dontSaveReprPlanUpdateTimestampWhenViewingReprPlan) {
-                            UserDefaults.standard.set(date.timeIntervalSince1970, forKey: UserDefaultsKeys.lastReprPlanUpdateTimestamp)
+                        if let date = plan.date, !UserDefaults.standard.bool(for: \.dontSaveReprPlanUpdateTimestampWhenViewingReprPlan) {
+                            UserDefaults.standard.set(date.timeIntervalSince1970, for: \.lastReprPlanUpdateTimestamp)
                         }
-                        if !UserDefaults.standard.bool(forKey: UserDefaultsKeys.reprPlanNotificationsEntireReprPlan) {
+                        if !UserDefaults.standard.bool(for: \.reprPlanNotificationsEntireReprPlan) {
                             if let previous = self.representativePlan {
                                 completion(.success(plan - previous))
                                 return
@@ -574,7 +574,7 @@ class DataManager: ObservableObject {
     
     func reloadDemoMode() {
         DispatchQueue.main.async {
-            self.demoMode = UserDefaults.standard.bool(forKey: UserDefaultsKeys.demoMode)
+            self.demoMode = UserDefaults.standard.bool(for: \.demoMode)
         }
     }
     

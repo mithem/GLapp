@@ -10,6 +10,6 @@ import Intents
 
 struct IntentHandler {
     static func handle(_ intent: IntentToHandle) {
-        UserDefaults.standard.set(intent.rawValue, forKey: UserDefaultsKeys.intentToHandle)
+        UserDefaults.standard.set(intent.rawValue, for: \.intentToHandle)
     }
 }

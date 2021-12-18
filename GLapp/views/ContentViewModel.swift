@@ -46,19 +46,19 @@ final class ContentViewModel: ObservableObject, BindingAttributeRepresentable {
     
     func handleIntent() {
         guard UIDevice.current.userInterfaceIdiom == .phone else { return } // iPadOS UI doesn't support that
-        let intentToHandle = UserDefaults.standard.string(forKey: UserDefaultsKeys.intentToHandle)
+        let intentToHandle = UserDefaults.standard.string(for: \.intentToHandle)
         let intent = IntentToHandle(rawValue: intentToHandle ?? "")
         switch intent {
         case .showTimetable:
-            UserDefaults.standard.set(0, forKey: UserDefaultsKeys.lastTabView)
+            UserDefaults.standard.set(0, for: \.lastTabView)
         case .showClassTestPlan:
             if appManager.classTestPlan.isEnabled.unwrapped {
-                UserDefaults.standard.set(1, forKey: UserDefaultsKeys.lastTabView)
+                UserDefaults.standard.set(1, for: \.lastTabView)
             } else {
-                UserDefaults.standard.set(0, forKey: UserDefaultsKeys.lastTabView)
+                UserDefaults.standard.set(0, for: \.lastTabView)
             }
         case .showRepresentativePlan:
-            UserDefaults.standard.set(2, forKey: UserDefaultsKeys.lastTabView)
+            UserDefaults.standard.set(2, for: \.lastTabView)
         case .unknown(identifier: let identifier):
             let found = dataManager.findIntent(with: identifier)
             if let found = found {
@@ -69,11 +69,11 @@ final class ContentViewModel: ObservableObject, BindingAttributeRepresentable {
         case .none:
             return // may be executed before DataManager has loaded data, so intents may not be dealt with
         }
-        UserDefaults.standard.set(nil, forKey: UserDefaultsKeys.intentToHandle)
+        UserDefaults.standard.setNil(for: \.intentToHandle)
     }
     
     func applyFirstLaunchConfiguration() {
-        let count = UserDefaults.standard.integer(forKey: UserDefaultsKeys.launchCount)
+        let count = UserDefaults.standard.integer(for: \.launchCount)
         switch count {
         case 1:
             NotificationManager.default.requestNotificationAuthorization()
@@ -90,8 +90,8 @@ final class ContentViewModel: ObservableObject, BindingAttributeRepresentable {
     }
     
     private func showFunctionalityCheck() -> Bool {
-        if UserDefaults.standard.bool(forKey: UserDefaultsKeys.didShowFunctionalityCheck) { return false }
-        return UserDefaults.standard.integer(forKey: UserDefaultsKeys.launchCount) == 2
+        if UserDefaults.standard.bool(for: \.didShowFunctionalityCheck) { return false }
+        return UserDefaults.standard.integer(for: \.launchCount) == 2
     }
     
     func showModalSheetView() -> ModalSheetView {

@@ -11,9 +11,9 @@ struct AdvancedSettingsView: View {
     @ObservedObject var model: AdvancedSettingsViewModel
     @State private var showingScheduledNotificationsView = false
     @State private var provisionalAuthorization = false
-    @AppStorage(UserDefaultsKeys.reprPlanNotificationsHighRelevanceTimeInterval) var reprPlanNotificationHighRelevanceTimeInterval = Constants.defaultReprPlanNotificationsHighRelevanceTimeInterval
-    @AppStorage(UserDefaultsKeys.reprPlanNotificationsEntireReprPlan) var reprPlanNotificationsEntireReprPlan = false
-    @AppStorage(UserDefaultsKeys.dontSaveReprPlanUpdateTimestampWhenViewingReprPlan) var dontSaveReprPlanUpdateTimestampWhenViewingReprPlan = false
+    @AppStorage(UserDefaultsKeys().reprPlanNotificationsHighRelevanceTimeInterval) var reprPlanNotificationHighRelevanceTimeInterval = Constants.defaultReprPlanNotificationsHighRelevanceTimeInterval
+    @AppStorage(UserDefaultsKeys().reprPlanNotificationsEntireReprPlan) var reprPlanNotificationsEntireReprPlan = false
+    @AppStorage(UserDefaultsKeys().dontSaveReprPlanUpdateTimestampWhenViewingReprPlan) var dontSaveReprPlanUpdateTimestampWhenViewingReprPlan = false
     var body: some View {
         Form {
             Section {

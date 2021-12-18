@@ -12,7 +12,7 @@ struct LoginView: View {
     @State private var username = ""
     @State private var password = ""
     
-    @AppStorage(UserDefaultsKeys.userIsTeacher) private var userIsTeacher = false
+    @AppStorage(UserDefaultsKeys().userIsTeacher) private var userIsTeacher = false
     
     @State private var error: NetworkError? = nil
     @State private var loading = false

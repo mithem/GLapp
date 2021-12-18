@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		490A22C52746186F0090C5AC /* ClassTest+CustomDebugStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490A22C42746186F0090C5AC /* ClassTest+CustomDebugStringConvertible.swift */; };
 		490A22CA274623480090C5AC /* Date+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490A22C9274623480090C5AC /* Date+Identifiable.swift */; };
-		4910A019271C285B00AAD624 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 4910A018271C285B00AAD624 /* Reachability */; };
+		49118E76276E28F900A5B7A2 /* ClassTestReminderTimeMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49118E75276E28F900A5B7A2 /* ClassTestReminderTimeMode.swift */; };
 		491C4829273566D60027707E /* GLappScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491C4828273566D60027707E /* GLappScene.swift */; };
 		491C482B273573BC0027707E /* UIColor+getForegroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491C482A273573BC0027707E /* UIColor+getForegroundColor.swift */; };
 		4921C47E2731979600DA256D /* Date+janFirst2000.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4921C47D2731979600DA256D /* Date+janFirst2000.swift */; };
@@ -98,7 +98,6 @@
 		4976D173271085EB009C5AC2 /* Subject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4976D170271085EB009C5AC2 /* Subject.swift */; };
 		4976D174271085EB009C5AC2 /* RepresentativeLesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4976D171271085EB009C5AC2 /* RepresentativeLesson.swift */; };
 		4976D175271085EB009C5AC2 /* RepresentativeDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4976D172271085EB009C5AC2 /* RepresentativeDay.swift */; };
-		4976D17D27108644009C5AC2 /* SWXMLHash in Frameworks */ = {isa = PBXBuildFile; productRef = 4976D17C27108644009C5AC2 /* SWXMLHash */; };
 		4980CB492748EBDE000E751F /* LessonOrSubjectInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4980CB482748EBDE000E751F /* LessonOrSubjectInfoViewModel.swift */; };
 		4980CB4B2748F304000E751F /* String+Rewritable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4980CB4A2748F304000E751F /* String+Rewritable.swift */; };
 		4980CB4D2748F4C4000E751F /* Rewritable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4980CB4C2748F4C4000E751F /* Rewritable.swift */; };
@@ -142,7 +141,7 @@
 		49B387602740DD8D008B16B1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 499C087627353CDF00206514 /* Localizable.strings */; };
 		49B387612740DDA7008B16B1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 499C087927353CDF00206514 /* Localizable.strings */; };
 		49B3876B2740DF7D008B16B1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49B387682740DEA6008B16B1 /* InfoPlist.strings */; };
-		49D03421275294600032B605 /* Semver in Frameworks */ = {isa = PBXBuildFile; productRef = 49D03420275294600032B605 /* Semver */; };
+		49B8D08A276CF9CF0099B0F3 /* UserDefaults+keyPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B8D089276CF9CF0099B0F3 /* UserDefaults+keyPaths.swift */; };
 		49D110A5272AD84500CEBF1D /* DateComponents+plus+minus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D110A4272AD84500CEBF1D /* DateComponents+plus+minus.swift */; };
 		49D110A7272AD87B00CEBF1D /* DateComponents+combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D110A6272AD87B00CEBF1D /* DateComponents+combine.swift */; };
 		49D67A1B273E703100ADC319 /* RepresentativePlan+Copying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D67A1A273E703100ADC319 /* RepresentativePlan+Copying.swift */; };
@@ -178,6 +177,14 @@
 		49F575FB2743790E005E11BF /* ClassTestInlineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F575FA2743790E005E11BF /* ClassTestInlineViewModel.swift */; };
 		49F575FD2743B493005E11BF /* ClassTestPlanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F575FC2743B493005E11BF /* ClassTestPlanViewModel.swift */; };
 		49FDEDD3271359850013341B /* String+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FDEDD2271359850013341B /* String+Identifiable.swift */; };
+		49FE0C6D276DD9B000643682 /* Semver in Frameworks */ = {isa = PBXBuildFile; productRef = 49FE0C6C276DD9B000643682 /* Semver */; };
+		49FE0C70276DD9DF00643682 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 49FE0C6F276DD9DF00643682 /* Reachability */; };
+		49FE0C73276DD9ED00643682 /* SWXMLHash in Frameworks */ = {isa = PBXBuildFile; productRef = 49FE0C72276DD9ED00643682 /* SWXMLHash */; };
+		49FE0C77276DFE2800643682 /* Date+today.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE0C76276DFE2800643682 /* Date+today.swift */; };
+		49FE0C7C276E094700643682 /* ClassTestReminderSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE0C7B276E094700643682 /* ClassTestReminderSettings.swift */; };
+		49FE0C7E276E0A8600643682 /* SettingsViewIsEnabledBindingResultHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE0C7D276E0A8600643682 /* SettingsViewIsEnabledBindingResultHandling.swift */; };
+		49FE0C81276E171200643682 /* GeneralSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE0C80276E171200643682 /* GeneralSettings.swift */; };
+		49FE0C83276E1FAA00643682 /* TestNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE0C82276E1FAA00643682 /* TestNotificationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -213,6 +220,7 @@
 /* Begin PBXFileReference section */
 		490A22C42746186F0090C5AC /* ClassTest+CustomDebugStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClassTest+CustomDebugStringConvertible.swift"; sourceTree = "<group>"; };
 		490A22C9274623480090C5AC /* Date+Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Identifiable.swift"; sourceTree = "<group>"; };
+		49118E75276E28F900A5B7A2 /* ClassTestReminderTimeMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassTestReminderTimeMode.swift; sourceTree = "<group>"; };
 		491C4828273566D60027707E /* GLappScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLappScene.swift; sourceTree = "<group>"; };
 		491C482A273573BC0027707E /* UIColor+getForegroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+getForegroundColor.swift"; sourceTree = "<group>"; };
 		4921C47D2731979600DA256D /* Date+janFirst2000.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+janFirst2000.swift"; sourceTree = "<group>"; };
@@ -352,6 +360,7 @@
 		49B387512740DCB9008B16B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49B387672740DEA6008B16B1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		49B387692740DEA8008B16B1 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		49B8D089276CF9CF0099B0F3 /* UserDefaults+keyPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+keyPaths.swift"; sourceTree = "<group>"; };
 		49D110A4272AD84500CEBF1D /* DateComponents+plus+minus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponents+plus+minus.swift"; sourceTree = "<group>"; };
 		49D110A6272AD87B00CEBF1D /* DateComponents+combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponents+combine.swift"; sourceTree = "<group>"; };
 		49D67A1A273E703100ADC319 /* RepresentativePlan+Copying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepresentativePlan+Copying.swift"; sourceTree = "<group>"; };
@@ -388,6 +397,11 @@
 		49F575FA2743790E005E11BF /* ClassTestInlineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassTestInlineViewModel.swift; sourceTree = "<group>"; };
 		49F575FC2743B493005E11BF /* ClassTestPlanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassTestPlanViewModel.swift; sourceTree = "<group>"; };
 		49FDEDD2271359850013341B /* String+Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Identifiable.swift"; sourceTree = "<group>"; };
+		49FE0C76276DFE2800643682 /* Date+today.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+today.swift"; sourceTree = "<group>"; };
+		49FE0C7B276E094700643682 /* ClassTestReminderSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassTestReminderSettings.swift; sourceTree = "<group>"; };
+		49FE0C7D276E0A8600643682 /* SettingsViewIsEnabledBindingResultHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewIsEnabledBindingResultHandling.swift; sourceTree = "<group>"; };
+		49FE0C80276E171200643682 /* GeneralSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettings.swift; sourceTree = "<group>"; };
+		49FE0C82276E1FAA00643682 /* TestNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestNotificationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -395,9 +409,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4976D17D27108644009C5AC2 /* SWXMLHash in Frameworks */,
-				4910A019271C285B00AAD624 /* Reachability in Frameworks */,
-				49D03421275294600032B605 /* Semver in Frameworks */,
+				49FE0C73276DD9ED00643682 /* SWXMLHash in Frameworks */,
+				49FE0C6D276DD9B000643682 /* Semver in Frameworks */,
+				49FE0C70276DD9DF00643682 /* Reachability in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,6 +530,7 @@
 				492804C7272026EF0055ED63 /* GLappError+Equatable.swift */,
 				499C08632735321100206514 /* UNAuthorizationStatus+functionalityState.swift */,
 				499C0865273532CA00206514 /* EKAuthorizationStatus+functionalityState.swift */,
+				49B8D089276CF9CF0099B0F3 /* UserDefaults+keyPaths.swift */,
 				4921C4872731B85E00DA256D /* CustomDebugStringConvertible */,
 			);
 			path = Extensions;
@@ -637,6 +652,7 @@
 				498D5E21272C1F0F007722F6 /* Date+rightNow.swift */,
 				4921C47D2731979600DA256D /* Date+janFirst2000.swift */,
 				490A22C9274623480090C5AC /* Date+Identifiable.swift */,
+				49FE0C76276DFE2800643682 /* Date+today.swift */,
 			);
 			path = Date;
 			sourceTree = "<group>";
@@ -750,6 +766,7 @@
 				494595C22727C5050096B5D7 /* TestRepresentativeLesson.swift */,
 				49680F25272A64AB00884096 /* TestRepresentativePlan.swift */,
 				4952B1EE273D689100504D3E /* TestFunctionality.swift */,
+				49FE0C82276E1FAA00643682 /* TestNotificationManager.swift */,
 				4931D92C276376F9003DCF28 /* Extensions */,
 				499A3EE82719D5B20045683D /* ExtensiveTestPlan.xctestplan */,
 				49D67A32273ECA7D00ADC319 /* QuickTestPlan.xctestplan */,
@@ -793,6 +810,7 @@
 			isa = PBXGroup;
 			children = (
 				4976D15F27108514009C5AC2 /* Constants.swift */,
+				49118E75276E28F900A5B7A2 /* ClassTestReminderTimeMode.swift */,
 				4934052727121FCF008B059B /* Data management */,
 				4934052427121B94008B059B /* Extensions */,
 				4934050427117C7A008B059B /* errors */,
@@ -876,11 +894,11 @@
 			isa = PBXGroup;
 			children = (
 				4991A29F271996F8008559F9 /* SettingsView.swift */,
-				499C085F2734FBD000206514 /* AdvancedSettingsView.swift */,
-				49E97376275A2A23008D91A2 /* AdvancedSettingsViewModel.swift */,
-				49E59DE5271C7180009A1609 /* LessonOrSubjectInfoView.swift */,
-				4980CB482748EBDE000E751F /* LessonOrSubjectInfoViewModel.swift */,
-				49517FFB271F668A0085BEA6 /* SubjectAttributeView.swift */,
+				49FE0C7D276E0A8600643682 /* SettingsViewIsEnabledBindingResultHandling.swift */,
+				49FE0C7F276E170600643682 /* GeneralSettings */,
+				49FE0C7A276E093300643682 /* ClassTestReminderSettings */,
+				49FE0C79276E091100643682 /* LessonOrSubjectInfoView */,
+				49FE0C78276E08EB00643682 /* AdvancedSettings */,
 				490A22C6274622C20090C5AC /* ScheduledNotificationsView */,
 			);
 			path = Settings;
@@ -953,6 +971,41 @@
 			path = Parsers;
 			sourceTree = "<group>";
 		};
+		49FE0C78276E08EB00643682 /* AdvancedSettings */ = {
+			isa = PBXGroup;
+			children = (
+				499C085F2734FBD000206514 /* AdvancedSettingsView.swift */,
+				49E97376275A2A23008D91A2 /* AdvancedSettingsViewModel.swift */,
+			);
+			path = AdvancedSettings;
+			sourceTree = "<group>";
+		};
+		49FE0C79276E091100643682 /* LessonOrSubjectInfoView */ = {
+			isa = PBXGroup;
+			children = (
+				49E59DE5271C7180009A1609 /* LessonOrSubjectInfoView.swift */,
+				4980CB482748EBDE000E751F /* LessonOrSubjectInfoViewModel.swift */,
+				49517FFB271F668A0085BEA6 /* SubjectAttributeView.swift */,
+			);
+			path = LessonOrSubjectInfoView;
+			sourceTree = "<group>";
+		};
+		49FE0C7A276E093300643682 /* ClassTestReminderSettings */ = {
+			isa = PBXGroup;
+			children = (
+				49FE0C7B276E094700643682 /* ClassTestReminderSettings.swift */,
+			);
+			path = ClassTestReminderSettings;
+			sourceTree = "<group>";
+		};
+		49FE0C7F276E170600643682 /* GeneralSettings */ = {
+			isa = PBXGroup;
+			children = (
+				49FE0C80276E171200643682 /* GeneralSettings.swift */,
+			);
+			path = GeneralSettings;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -971,9 +1024,9 @@
 			);
 			name = GLapp;
 			packageProductDependencies = (
-				4976D17C27108644009C5AC2 /* SWXMLHash */,
-				4910A018271C285B00AAD624 /* Reachability */,
-				49D03420275294600032B605 /* Semver */,
+				49FE0C6C276DD9B000643682 /* Semver */,
+				49FE0C6F276DD9DF00643682 /* Reachability */,
+				49FE0C72276DD9ED00643682 /* SWXMLHash */,
 			);
 			productName = GLapp;
 			productReference = 4976D12C2710843E009C5AC2 /* GLapp.app */;
@@ -1049,9 +1102,9 @@
 			);
 			mainGroup = 4976D1232710843E009C5AC2;
 			packageReferences = (
-				4976D17B27108644009C5AC2 /* XCRemoteSwiftPackageReference "SWXMLHash" */,
-				4910A017271C285B00AAD624 /* XCRemoteSwiftPackageReference "Reachability" */,
-				49D0341F275294600032B605 /* XCRemoteSwiftPackageReference "Semver" */,
+				49FE0C6B276DD9B000643682 /* XCRemoteSwiftPackageReference "Semver" */,
+				49FE0C6E276DD9DF00643682 /* XCRemoteSwiftPackageReference "Reachability" */,
+				49FE0C71276DD9ED00643682 /* XCRemoteSwiftPackageReference "SWXMLHash" */,
 			);
 			productRefGroup = 4976D12D2710843E009C5AC2 /* Products */;
 			projectDirPath = "";
@@ -1109,6 +1162,7 @@
 				4948CFEF2742BF380047D443 /* RepresentativePlanViewModel.swift in Sources */,
 				49A5B2462719A3C400577767 /* FunctionalityCheckView.swift in Sources */,
 				49D67A1B273E703100ADC319 /* RepresentativePlan+Copying.swift in Sources */,
+				49B8D08A276CF9CF0099B0F3 /* UserDefaults+keyPaths.swift in Sources */,
 				49F380E82710E05F002AE814 /* Timetable.swift in Sources */,
 				49517FFC271F668A0085BEA6 /* SubjectAttributeView.swift in Sources */,
 				4980CB4D2748F4C4000E751F /* Rewritable.swift in Sources */,
@@ -1195,6 +1249,7 @@
 				499A3EEA2719F7220045683D /* ClassTest+Equatable.swift in Sources */,
 				498D5E22272C1F0F007722F6 /* Date+rightNow.swift in Sources */,
 				49F380EC2710E0E4002AE814 /* Lesson.swift in Sources */,
+				49FE0C7E276E0A8600643682 /* SettingsViewIsEnabledBindingResultHandling.swift in Sources */,
 				4934050627117C88008B059B /* ParserError.swift in Sources */,
 				49E59DE6271C7180009A1609 /* LessonOrSubjectInfoView.swift in Sources */,
 				495D25DD273AA6EA00F3899D /* RepresentativeDay+Equatable.swift in Sources */,
@@ -1217,15 +1272,19 @@
 				4976D173271085EB009C5AC2 /* Subject.swift in Sources */,
 				49F2662E27325D6800F89A7B /* FClassTestCalendarEvents.swift in Sources */,
 				49F266322732925500F89A7B /* FCalendarAccess.swift in Sources */,
+				49FE0C81276E171200643682 /* GeneralSettings.swift in Sources */,
+				49118E76276E28F900A5B7A2 /* ClassTestReminderTimeMode.swift in Sources */,
 				499C1BEA2724A58A00849955 /* FDemoMode.swift in Sources */,
 				49526F9427218E8700FD0242 /* FBackgroundReprPlanNotifications.swift in Sources */,
 				494C5FCC2740204E003D39DC /* Intents.intentdefinition in Sources */,
 				4991A2AC271996F8008559F9 /* AccentColorButton.swift in Sources */,
 				499C08642735321100206514 /* UNAuthorizationStatus+functionalityState.swift in Sources */,
+				49FE0C7C276E094700643682 /* ClassTestReminderSettings.swift in Sources */,
 				491C4829273566D60027707E /* GLappScene.swift in Sources */,
 				49EEDE4E272167D8009A4C6A /* FNotifications.swift in Sources */,
 				49AF33622719962100F406D1 /* ClassTestInlineView.swift in Sources */,
 				49D67A25273E786200ADC319 /* RepresentativeDay+Differentiable.swift in Sources */,
+				49FE0C77276DFE2800643682 /* Date+today.swift in Sources */,
 				49517FFA271F30500085BEA6 /* DeliverableByNotification.swift in Sources */,
 				495E7C51271ABFC9000085C7 /* DataManagementTaskView.swift in Sources */,
 				4991A2BA27199789008559F9 /* GLDateFormatter.swift in Sources */,
@@ -1261,6 +1320,7 @@
 			files = (
 				495E6B8B271833ED0052B565 /* TestClassTestPlanParser.swift in Sources */,
 				49340503271178ED008B059B /* TestRepresentativePlanParser.swift in Sources */,
+				49FE0C83276E1FAA00643682 /* TestNotificationManager.swift in Sources */,
 				49680F26272A64AB00884096 /* TestRepresentativePlan.swift in Sources */,
 				4931D92E2763770C003DCF28 /* TestDateComponents+combine.swift in Sources */,
 				494595C32727C5050096B5D7 /* TestRepresentativeLesson.swift in Sources */,
@@ -1458,7 +1518,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLapp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;
@@ -1492,7 +1552,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLappRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;
@@ -1660,15 +1720,23 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		4910A017271C285B00AAD624 /* XCRemoteSwiftPackageReference "Reachability" */ = {
+		49FE0C6B276DD9B000643682 /* XCRemoteSwiftPackageReference "Semver" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ddddxxx/Semver";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		49FE0C6E276DD9DF00643682 /* XCRemoteSwiftPackageReference "Reachability" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
+				branch = master;
+				kind = branch;
 			};
 		};
-		4976D17B27108644009C5AC2 /* XCRemoteSwiftPackageReference "SWXMLHash" */ = {
+		49FE0C71276DD9ED00643682 /* XCRemoteSwiftPackageReference "SWXMLHash" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/drmohundro/SWXMLHash.git";
 			requirement = {
@@ -1676,31 +1744,23 @@
 				kind = branch;
 			};
 		};
-		49D0341F275294600032B605 /* XCRemoteSwiftPackageReference "Semver" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ddddxxx/Semver";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.2.1;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4910A018271C285B00AAD624 /* Reachability */ = {
+		49FE0C6C276DD9B000643682 /* Semver */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4910A017271C285B00AAD624 /* XCRemoteSwiftPackageReference "Reachability" */;
+			package = 49FE0C6B276DD9B000643682 /* XCRemoteSwiftPackageReference "Semver" */;
+			productName = Semver;
+		};
+		49FE0C6F276DD9DF00643682 /* Reachability */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 49FE0C6E276DD9DF00643682 /* XCRemoteSwiftPackageReference "Reachability" */;
 			productName = Reachability;
 		};
-		4976D17C27108644009C5AC2 /* SWXMLHash */ = {
+		49FE0C72276DD9ED00643682 /* SWXMLHash */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4976D17B27108644009C5AC2 /* XCRemoteSwiftPackageReference "SWXMLHash" */;
+			package = 49FE0C71276DD9ED00643682 /* XCRemoteSwiftPackageReference "SWXMLHash" */;
 			productName = SWXMLHash;
-		};
-		49D03420275294600032B605 /* Semver */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 49D0341F275294600032B605 /* XCRemoteSwiftPackageReference "Semver" */;
-			productName = Semver;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

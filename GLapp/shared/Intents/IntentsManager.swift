@@ -14,7 +14,7 @@ class IntentsManager {
     static func reset() {
         INVoiceShortcutCenter.shared.setShortcutSuggestions([])
         CSSearchableIndex.default().deleteAllSearchableItems(completionHandler: nil)
-        UserDefaults.standard.set(nil, forKey: UserDefaultsKeys.intentToHandle)
+        UserDefaults.standard.setNil(for: \.intentToHandle)
     }
     
     static func index<ContentType>(items: [ContentType]) where ContentType: CSIndexable {

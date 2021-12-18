@@ -14,7 +14,7 @@ class FClassTestCalendarEvents: Functionality {
     }
     
     override func reloadIsEnabled(with appManager: AppManager, dataManager: DataManager) throws {
-        isEnabled = UserDefaults.standard.bool(forKey: UserDefaultsKeys.classTestCalendarEvents) ? .yes : .no
+        isEnabled = UserDefaults.standard.bool(for: \.classTestCalendarEvents) ? .yes : .no
     }
     
     override func doEnable(with appManager: AppManager, dataManager: DataManager) throws {
@@ -24,14 +24,14 @@ class FClassTestCalendarEvents: Functionality {
         if appManager.classTestPlan.isSupported != .yes || appManager.classTestPlan.isEnabled != .yes {
             try appManager.classTestPlan.enable(with: appManager, dataManager: dataManager)
         }
-        UserDefaults.standard.set(true, forKey: UserDefaultsKeys.classTestCalendarEvents)
+        UserDefaults.standard.set(true, for: \.classTestCalendarEvents)
         if let plan = dataManager.classTestPlan {
             EventManager.default.createClassTestEvents(from: plan.classTests) { _ in }
         }
     }
     
     override func doDisable(with appManager: AppManager, dataManager: DataManager) throws {
-        UserDefaults.standard.set(false, forKey: UserDefaultsKeys.classTestCalendarEvents)
+        UserDefaults.standard.set(false, for: \.classTestCalendarEvents)
         try EventManager.default.removeAllCreatedEvents(subjects: .init(dataManager.subjects ?? .init()))
     }
     

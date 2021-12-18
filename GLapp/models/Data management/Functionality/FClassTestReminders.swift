@@ -9,7 +9,7 @@ import Foundation
 
 class FClassTestReminders: Functionality {
     override func reloadIsEnabled(with appManager: AppManager, dataManager: DataManager) throws {
-        isEnabled = UserDefaults.standard.bool(forKey: UserDefaultsKeys.automaticallyRemindBeforeClassTests) ? .yes : .no
+        isEnabled = UserDefaults.standard.bool(for: \.automaticallyRemindBeforeClassTests) ? .yes : .no
     }
     
     override func reloadIsSupported(with appManager: AppManager, dataManager: DataManager) throws {
@@ -17,7 +17,7 @@ class FClassTestReminders: Functionality {
     }
     
     override func doEnable(with appManager: AppManager, dataManager: DataManager) throws {
-        UserDefaults.standard.set(true, forKey: UserDefaultsKeys.automaticallyRemindBeforeClassTests)
+        UserDefaults.standard.set(true, for: \.automaticallyRemindBeforeClassTests)
         // always try so that provisional notification authorization can be changed into authorized
         try appManager.notifications.enable(with: appManager, dataManager: dataManager)
         if appManager.classTestPlan.isEnabled != .yes {
@@ -27,7 +27,7 @@ class FClassTestReminders: Functionality {
     }
     
     override func doDisable(with appManager: AppManager, dataManager: DataManager) throws {
-        UserDefaults.standard.set(false, forKey: UserDefaultsKeys.automaticallyRemindBeforeClassTests)
+        UserDefaults.standard.set(false, for: \.automaticallyRemindBeforeClassTests)
         NotificationManager.default.removeScheduledClassTestReminders()
     }
     
@@ -36,7 +36,7 @@ class FClassTestReminders: Functionality {
     }
     
     func scheduleClassTestRemindersIfAppropriate(with dataManager: DataManager) {
-        guard UserDefaults.standard.bool(forKey: UserDefaultsKeys.automaticallyRemindBeforeClassTests) else { // not using isEnabled as that's reloaded after doEnable runs
+        guard UserDefaults.standard.bool(for: \.automaticallyRemindBeforeClassTests) else { // not using isEnabled as that's reloaded after doEnable runs
             return
         }
         guard let plan = dataManager.classTestPlan else { return }

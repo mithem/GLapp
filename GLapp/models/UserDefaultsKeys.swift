@@ -16,6 +16,7 @@ struct UserDefaultsKeys {
     let classTestReminderNotificationBeforeDays = "classTestReminderNotificationBeforeDays"
     let automaticallyRemindBeforeClassTests = "automaticallyRemindBeforeClassTests"
     let backgroundReprPlanNotificationsEnabled = "backgroundReprPlanNotificationsEnabled"
+    let backgroundReprPlanCheckTimeInterval = "backgroundReprPlanCheckTimeInterval"
     let demoMode = "demoMode"
     let launchCount = "launchCount"
     let lastLaunchedVersion = "lastLaunchedVersion"

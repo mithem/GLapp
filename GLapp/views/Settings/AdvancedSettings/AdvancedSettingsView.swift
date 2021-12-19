@@ -14,6 +14,7 @@ struct AdvancedSettingsView: View {
     @AppStorage(UserDefaultsKeys().reprPlanNotificationsHighRelevanceTimeInterval) var reprPlanNotificationHighRelevanceTimeInterval = Constants.defaultReprPlanNotificationsHighRelevanceTimeInterval
     @AppStorage(UserDefaultsKeys().reprPlanNotificationsEntireReprPlan) var reprPlanNotificationsEntireReprPlan = false
     @AppStorage(UserDefaultsKeys().dontSaveReprPlanUpdateTimestampWhenViewingReprPlan) var dontSaveReprPlanUpdateTimestampWhenViewingReprPlan = false
+    @AppStorage(UserDefaultsKeys().backgroundReprPlanCheckTimeInterval) var backgroundReprCheckTimeInterval = Constants.defaultBackgroundReprPlanCheckMinimumTimeInterval * 60
     var body: some View {
         Form {
             Section {
@@ -32,9 +33,21 @@ struct AdvancedSettingsView: View {
                 Section {
                     Stepper(GLDateFormatter.dateComponentsFormatter.string(from: .init(hour: Int(reprPlanNotificationHighRelevanceTimeInterval / 3600))) ?? "not_available", value: $reprPlanNotificationHighRelevanceTimeInterval, in: 3600...24 * 3600, step: 3600)
                         .onChange(of: reprPlanNotificationHighRelevanceTimeInterval) { _ in
-                            UIImpactFeedbackGenerator(style: .light).impactOccurred(intensity: 0.5)
+                            UIImpactFeedbackGenerator(style: .light).impactOccurred(intensity: Constants.stepperValueChangedImpactFeedbackIntensity)
                         }
-                    Text(NSLocalizedString("repr_plan_notifications_high_relevance_explanation"))
+                    Text("repr_plan_notifications_high_relevance_explanation")
+                        .foregroundColor(.secondary)
+                }
+                Section {
+                    Stepper(GLDateFormatter.dateComponentsFormatter.string(from: .init(second: Int(backgroundReprCheckTimeInterval))) ?? NSLocalizedString("not_available"), value: $backgroundReprCheckTimeInterval, in: 600...3600, step: 60)
+                        .onChange(of: backgroundReprCheckTimeInterval) { timeInterval in
+                            UIImpactFeedbackGenerator(style: .light).impactOccurred(intensity: Constants.stepperValueChangedImpactFeedbackIntensity)
+                        }
+                        .onDisappear {
+                            BackgroundTaskManager.cancelBackgroundRepresentativePlanCheck()
+                            BackgroundTaskManager.scheduleRepresentativeCheckTask()
+                        }
+                    Text("background_check_minimum_time_interval_explanation")
                         .foregroundColor(.secondary)
                 }
                 Section {

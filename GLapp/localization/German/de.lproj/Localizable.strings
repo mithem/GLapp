@@ -146,3 +146,4 @@
 "reset_preferences" = "Einstellungen zurücksetzen";
 "general" = "Allgemein";
 "class_test_reminders" = "Klausurerinnerungen";
+"background_check_minimum_time_interval_explanation" = "Minimales Zeitintervall, zu dem das System die Hintergrundaktualisierung des Vertretungsplans vornehmen kann.";

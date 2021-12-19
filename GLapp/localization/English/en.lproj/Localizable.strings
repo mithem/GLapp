@@ -145,3 +145,4 @@
 "reset_preferences" = "Reset preferences";
 "general" = "General";
 "class_test_reminders" = "Class test reminders";
+"background_check_minimum_time_interval_explanation" = "Minimum time interval the system can schedule a representative plan background check after.";

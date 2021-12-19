@@ -124,6 +124,7 @@ func resetPreferences(appManager: AppManager, dataManager: DataManager, withHapt
     UserDefaults.standard.set(Constants.defaultReprPlanNotificationsHighRelevanceTimeInterval, for: \.reprPlanNotificationsHighRelevanceTimeInterval)
     UserDefaults.standard.set(false, for: \.reprPlanNotificationsEntireReprPlan)
     UserDefaults.standard.set(false, for: \.dontSaveReprPlanUpdateTimestampWhenViewingReprPlan)
+    UserDefaults.standard.set(Constants.defaultBackgroundReprPlanCheckMinimumTimeInterval, for: \.backgroundReprPlanCheckTimeInterval)
     try? appManager.classTestReminders.enable(with: appManager, dataManager: dataManager)
     try? appManager.demoMode.disable(with: appManager, dataManager: dataManager)
     try? appManager.backgroundReprPlanNotifications.enable(with: appManager, dataManager: dataManager)

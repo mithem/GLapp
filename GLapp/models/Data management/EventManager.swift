@@ -35,7 +35,7 @@ final class EventManager {
         let predicate = self.store.predicateForEvents(withStart: start, end: end, calendars: nil)
         let events = store.events(matching: predicate)
         for event in events {
-            if eventIds.contains(event.eventIdentifier) || classNames.contains(event.title) {
+            if eventIds.contains(event.eventIdentifier ?? "") || classNames.contains(event.title) {
                 try store.remove(event, span: .thisEvent)
             } else if event.title.isRewrite {
                 try store.remove(event, span: .thisEvent)

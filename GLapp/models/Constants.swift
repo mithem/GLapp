@@ -13,7 +13,7 @@ struct Constants {
     static let apiHostname = "https://mobil.gymnasium-lohmar.org"
     static let internerBereichReprPlanURL = URL(string: "https://mobil.gymnasium-lohmar.org/?show=vplan")!
     static let timeoutInterval: TimeInterval = 15
-    static let checkReprPlanInBackgroundAfterMinTimeInterval: TimeInterval = 10 * 60
+    static let defaultBackgroundReprPlanCheckMinimumTimeInterval: TimeInterval = 10 * 60
     static let weekdayStringIDMap = [
         "Montag": 0,
         "Dienstag": 1,
@@ -46,6 +46,8 @@ struct Constants {
     /// When to add the first extra component (hours, at 1/3rd this interval also minutes) to increase (relative) precision
     static let relativeDateTimeFormatterTimeIntervalToIncreasePrecision: TimeInterval = 60 * 60 * 24 * 3
     static let defaultClassTestReminderManualTime = Date.today(at: .init(hour: 9))
+    static let stepperValueChangedImpactFeedbackIntensity = 0.5
+    static let segmentedControlValueChangedImpactFeedbackIntensity = 0.75
 
     struct Identifiers {
         static let appId = "com.mithem.GLapp"

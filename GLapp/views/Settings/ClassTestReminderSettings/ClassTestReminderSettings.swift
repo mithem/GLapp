@@ -30,6 +30,9 @@ struct ClassTestReminderSettings: View {
                 Text("class_test_reminder_time_mode_manual").tag(ClassTestReminderTimeMode.manual)
             }
                 .pickerStyle(.segmented)
+                .onChange(of: classTestReminderTimeMode) { mode in
+                    UIImpactFeedbackGenerator(style: .light).impactOccurred(intensity: Constants.segmentedControlValueChangedImpactFeedbackIntensity)
+                }
             if classTestReminderTimeMode == .manual {
                 DatePicker("class_test_reminder_time_time", selection: $classTestReminderTimeManualTime, displayedComponents: .hourAndMinute)
                     .datePickerStyle(.compact)

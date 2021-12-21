@@ -28,14 +28,14 @@ final class EventManager {
     }
     
     func removeAllCreatedEvents(subjects: [Subject]) throws {
-        let classNames = subjects.map { $0.className }
+        let classNames = (subjects + MockData.classTestPlan.classTests.map(\.subject)).map(\.className)
         let yTimeInterval: TimeInterval = 60 * 60 * 24 * 365
         let start = Date.rightNow.addingTimeInterval(-yTimeInterval)
         let end = Date.rightNow.addingTimeInterval(yTimeInterval)
         let predicate = self.store.predicateForEvents(withStart: start, end: end, calendars: nil)
         let events = store.events(matching: predicate)
         for event in events {
-            if eventIds.contains(event.eventIdentifier ?? "") || classNames.contains(event.title) || classNames.contains(String(event.title.dropLast(7))){
+            if eventIds.contains(event.eventIdentifier ?? "") || classNames.contains(event.title) || event.title.hasSuffix(" (demo)") {
                 try store.remove(event, span: .thisEvent)
             } else if event.title.isRewrite {
                 try store.remove(event, span: .thisEvent)

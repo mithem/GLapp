@@ -11,19 +11,13 @@ extension RepresentativeLesson: DeliverableByNotification {
      var notificationSummary: String {
         let timeInterval = date.timeIntervalSinceNow
         let timeDescription: String
-        if timeInterval > 2 * 24 * 60 * 60 { // 2 days
-            timeDescription = GLDateFormatter.relativeDateTimeFormatter.localizedString(fromTimeInterval: timeInterval)
+        if timeInterval < -24 * 60 * 60 || timeInterval > 2 * 24 * 60 * 60 { // 2 days
+            //timeDescription = GLDateFormatter.numericRelativeDateTimeFormatter.localizedString(fromTimeInterval: timeInterval)
+            timeDescription = GLDateFormatter.dateOnlyFormatter.string(from: date)
         } else {
-            let components = Calendar.current.dateComponents([.year, .month, .day, .weekday], from: date)
-            let todayComponents = Calendar.current.dateComponents([.year, .month, .day, .weekday], from: .rightNow)
-            if components == todayComponents {
-                timeDescription = NSLocalizedString("today")
-            } else if let weekday = components.weekday {
-                let str = Constants.weekdayIDStringMap[weekday - 1]! // weekdays are from 1-7
-                timeDescription = NSLocalizedString(str)
-            } else {
-                timeDescription = GLDateFormatter.relativeDateTimeFormatter.localizedString(fromTimeInterval: timeInterval)
-            }
+            let components = Calendar.current.dateComponents([.calendar, .timeZone, .year, .month, .day, .weekday], from: date)
+            let todayComponents = Calendar.current.dateComponents([.calendar, .timeZone, .year, .month, .day, .weekday], from: .rightNow)
+            timeDescription = GLDateFormatter.namedRelativeDateTimeFormatter.localizedString(from: components - todayComponents)
         }
         let formatter = NumberFormatter()
         formatter.numberStyle = .ordinal

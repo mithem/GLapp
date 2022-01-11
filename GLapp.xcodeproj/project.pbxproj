@@ -125,6 +125,7 @@
 		499C08642735321100206514 /* UNAuthorizationStatus+functionalityState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499C08632735321100206514 /* UNAuthorizationStatus+functionalityState.swift */; };
 		499C0866273532CA00206514 /* EKAuthorizationStatus+functionalityState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499C0865273532CA00206514 /* EKAuthorizationStatus+functionalityState.swift */; };
 		499C1BEA2724A58A00849955 /* FDemoMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499C1BE92724A58A00849955 /* FDemoMode.swift */; };
+		49A0A212278CBF55000202DE /* FRequireAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A0A211278CBF55000202DE /* FRequireAuthentication.swift */; };
 		49A5B2462719A3C400577767 /* FunctionalityCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A5B2452719A3C400577767 /* FunctionalityCheckView.swift */; };
 		49A5B24B2719A5BF00577767 /* FunctionalityInlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A5B24A2719A5BF00577767 /* FunctionalityInlineView.swift */; };
 		49AA517D2750DEF000BD03D8 /* CodableColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AA517C2750DEF000BD03D8 /* CodableColor.swift */; };
@@ -159,6 +160,10 @@
 		49E59DE6271C7180009A1609 /* LessonOrSubjectInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E59DE5271C7180009A1609 /* LessonOrSubjectInfoView.swift */; };
 		49E97377275A2A23008D91A2 /* AdvancedSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E97376275A2A23008D91A2 /* AdvancedSettingsViewModel.swift */; };
 		49E97379275A45F5008D91A2 /* ConfirmationDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E97378275A45F5008D91A2 /* ConfirmationDialog.swift */; };
+		49ED95F8278D947F00E3A878 /* AppLockedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ED95F7278D947F00E3A878 /* AppLockedView.swift */; };
+		49ED95FA278D959700E3A878 /* AppLockedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ED95F9278D959700E3A878 /* AppLockedViewModel.swift */; };
+		49ED95FE278E08AA00E3A878 /* View+onChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ED95FD278E08AA00E3A878 /* View+onChange.swift */; };
+		49ED9600278E0CCB00E3A878 /* View+onReceive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ED95FF278E0CCB00E3A878 /* View+onReceive.swift */; };
 		49EEDE47272158A0009A4C6A /* Functionality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EEDE46272158A0009A4C6A /* Functionality.swift */; };
 		49EEDE4C27215BDD009A4C6A /* FunctionalityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EEDE4B27215BDD009A4C6A /* FunctionalityProtocol.swift */; };
 		49EEDE4E272167D8009A4C6A /* FNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EEDE4D272167D8009A4C6A /* FNotifications.swift */; };
@@ -344,6 +349,7 @@
 		499C087727353CDF00206514 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		499C087A27353CDF00206514 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		499C1BE92724A58A00849955 /* FDemoMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FDemoMode.swift; sourceTree = "<group>"; };
+		49A0A211278CBF55000202DE /* FRequireAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRequireAuthentication.swift; sourceTree = "<group>"; };
 		49A5B2452719A3C400577767 /* FunctionalityCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalityCheckView.swift; sourceTree = "<group>"; };
 		49A5B24A2719A5BF00577767 /* FunctionalityInlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalityInlineView.swift; sourceTree = "<group>"; };
 		49AA517C2750DEF000BD03D8 /* CodableColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableColor.swift; sourceTree = "<group>"; };
@@ -379,6 +385,10 @@
 		49E59DE5271C7180009A1609 /* LessonOrSubjectInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonOrSubjectInfoView.swift; sourceTree = "<group>"; };
 		49E97376275A2A23008D91A2 /* AdvancedSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedSettingsViewModel.swift; sourceTree = "<group>"; };
 		49E97378275A45F5008D91A2 /* ConfirmationDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationDialog.swift; sourceTree = "<group>"; };
+		49ED95F7278D947F00E3A878 /* AppLockedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockedView.swift; sourceTree = "<group>"; };
+		49ED95F9278D959700E3A878 /* AppLockedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockedViewModel.swift; sourceTree = "<group>"; };
+		49ED95FD278E08AA00E3A878 /* View+onChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+onChange.swift"; sourceTree = "<group>"; };
+		49ED95FF278E0CCB00E3A878 /* View+onReceive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+onReceive.swift"; sourceTree = "<group>"; };
 		49EEDE46272158A0009A4C6A /* Functionality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functionality.swift; sourceTree = "<group>"; };
 		49EEDE4B27215BDD009A4C6A /* FunctionalityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalityProtocol.swift; sourceTree = "<group>"; };
 		49EEDE4D272167D8009A4C6A /* FNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FNotifications.swift; sourceTree = "<group>"; };
@@ -567,6 +577,8 @@
 			children = (
 				49AF334C271995F900F406D1 /* ContentView+LoginViewDelegate.swift */,
 				4991A2AF27199706008559F9 /* SettingsView+LoginViewDelegate.swift */,
+				49ED95FD278E08AA00E3A878 /* View+onChange.swift */,
+				49ED95FF278E0CCB00E3A878 /* View+onReceive.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -790,6 +802,8 @@
 				4991A2A4271996F8008559F9 /* AccentColorButton.swift */,
 				4991A2A3271996F8008559F9 /* ContentView.swift */,
 				4980CB4E27491D94000E751F /* ContentViewModel.swift */,
+				49ED95F7278D947F00E3A878 /* AppLockedView.swift */,
+				49ED95F9278D959700E3A878 /* AppLockedViewModel.swift */,
 				4991A2A6271996F8008559F9 /* EmptyContentView.swift */,
 				4991A2A2271996F8008559F9 /* LoadingView.swift */,
 				4991A2A5271996F8008559F9 /* LoginView.swift */,
@@ -937,6 +951,7 @@
 				49F266312732925500F89A7B /* FCalendarAccess.swift */,
 				49F2662D27325D6800F89A7B /* FClassTestCalendarEvents.swift */,
 				4962EC67274A966B000CDD4E /* FSpotlightIntegration.swift */,
+				49A0A211278CBF55000202DE /* FRequireAuthentication.swift */,
 			);
 			path = Functionality;
 			sourceTree = "<group>";
@@ -1198,6 +1213,7 @@
 				4962EC64274A505B000CDD4E /* String+init+Optional<CustomStringConvertible>.swift in Sources */,
 				49F2662C2732577A00F89A7B /* FClassTestPlan.swift in Sources */,
 				49F380EF2710E146002AE814 /* ClassTestPlan.swift in Sources */,
+				49ED95FE278E08AA00E3A878 /* View+onChange.swift in Sources */,
 				493E8AC9273008DE008C9B13 /* UIColor+getColoredForegroundColor.swift in Sources */,
 				49AF336B2719963A00F406D1 /* TimetableViewModel.swift in Sources */,
 				49D67A31273EC87C00ADC319 /* Copying.swift in Sources */,
@@ -1212,6 +1228,8 @@
 				4934050A271196C6008B059B /* GLappError.swift in Sources */,
 				494C5FA3273FC105003D39DC /* IntentHandler.swift in Sources */,
 				4921C4892731B87000DA256D /* Subject+CustomDebugStringConvertible.swift in Sources */,
+				49A0A212278CBF55000202DE /* FRequireAuthentication.swift in Sources */,
+				49ED95FA278D959700E3A878 /* AppLockedViewModel.swift in Sources */,
 				495E6B9127188B5A0052B565 /* NotificationManager.swift in Sources */,
 				4921C47E2731979600DA256D /* Date+janFirst2000.swift in Sources */,
 				4991A2B527199768008559F9 /* TimetableParser.swift in Sources */,
@@ -1261,6 +1279,7 @@
 				49D67A27273E78D900ADC319 /* RepresentativeLesson+Comparable.swift in Sources */,
 				4980CB4F27491D94000E751F /* ContentViewModel.swift in Sources */,
 				49F380E52710DFE0002AE814 /* RepresentativePlan.swift in Sources */,
+				49ED9600278E0CCB00E3A878 /* View+onReceive.swift in Sources */,
 				49D67A2B273EA6B900ADC319 /* RepresentativeLesson+Copying.swift in Sources */,
 				490A22CA274623480090C5AC /* Date+Identifiable.swift in Sources */,
 				499C0866273532CA00206514 /* EKAuthorizationStatus+functionalityState.swift in Sources */,
@@ -1284,6 +1303,7 @@
 				49EEDE4E272167D8009A4C6A /* FNotifications.swift in Sources */,
 				49AF33622719962100F406D1 /* ClassTestInlineView.swift in Sources */,
 				49D67A25273E786200ADC319 /* RepresentativeDay+Differentiable.swift in Sources */,
+				49ED95F8278D947F00E3A878 /* AppLockedView.swift in Sources */,
 				49FE0C77276DFE2800643682 /* Date+today.swift in Sources */,
 				49517FFA271F30500085BEA6 /* DeliverableByNotification.swift in Sources */,
 				495E7C51271ABFC9000085C7 /* DataManagementTaskView.swift in Sources */,
@@ -1520,7 +1540,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLapp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;
@@ -1537,7 +1557,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.3;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mithem.GLapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1554,7 +1574,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLappRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;
@@ -1571,7 +1591,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.3;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mithem.GLapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

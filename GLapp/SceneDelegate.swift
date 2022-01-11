@@ -19,6 +19,14 @@ class SceneDelegate: NSObject, UIWindowSceneDelegate {
         handleUserActivity(userActivity)
     }
     
+    func sceneDidDisconnect(_ scene: UIScene) {
+        lockApp()
+    }
+    
+    func sceneDidEnterBackground(_ scene: UIScene) {
+        lockApp()
+    }
+    
     func handleUserActivity(_ activity: NSUserActivity) {
         var intent: IntentToHandle? = nil
         if let interaction = activity.interaction {

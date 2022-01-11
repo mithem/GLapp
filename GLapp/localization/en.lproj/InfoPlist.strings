@@ -6,3 +6,4 @@
   
 */
 "NSCalendarsUsageDescription" = "Allow GLapp to access the calendar in order to enable convenient features like class test events.";
+"NSFaceIDUsageDescription" = "Unlock GLapp.";

@@ -46,8 +46,6 @@ struct Constants {
     /// When to add the first extra component (hours, at 1/3rd this interval also minutes) to increase (relative) precision
     static let relativeDateTimeFormatterTimeIntervalToIncreasePrecision: TimeInterval = 60 * 60 * 24 * 3
     static let defaultClassTestReminderManualTime = Date.today(at: .init(hour: 9))
-    static let stepperValueChangedImpactFeedbackIntensity = 0.5
-    static let segmentedControlValueChangedImpactFeedbackIntensity = 0.75
 
     struct Identifiers {
         static let appId = "com.mithem.GLapp"
@@ -75,6 +73,17 @@ struct Constants {
             static let calendarAccess = Functionality.Identifier("calendar_access")
             static let classTestCalendarEvents = Functionality.Identifier("class_test_calendar_events")
             static let spotlightIntegration = Functionality.Identifier("spotlight_integration")
+            static let requireAuthentication = Functionality.Identifier("authentication")
+        }
+    }
+    
+    struct FeedbackGenerator {
+        static func didChangeStepperValue() {
+            //UIImpactFeedbackGenerator(style: .light).impactOccurred(intensity: 0.5)
+            UISelectionFeedbackGenerator().selectionChanged()
+        }
+        static func didChangeSegmentedControlValue() {
+            UIImpactFeedbackGenerator(style: .medium).impactOccurred(intensity: 0.5)
         }
     }
     

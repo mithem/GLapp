@@ -60,6 +60,8 @@
 "feature_spotlight_integration_description" = "Make content searchable for the system.";
 "feature_time_sensitive_notifications_title" = "Time sensitive notifications";
 "feature_time_sensitive_notifications_description" = "Let notifications break through focus (without overriding the ring/silent switch).";
+"feature_authentication_title" = "Authentication";
+"feature_authentication_description" = "User authentication using the secure enclave on your device.";
 "enable" = "Enable";
 "upcoming" = "Upcoming";
 "clear_cache" = "Clear cache";
@@ -146,3 +148,5 @@
 "general" = "General";
 "class_test_reminders" = "Class test reminders";
 "background_check_minimum_time_interval_explanation" = "Minimum time interval the system can schedule a representative plan background check after.";
+"app_locked" = "App locked.";
+"unlock" = "Unlock";

@@ -23,7 +23,7 @@ struct ClassTestReminderSettings: View {
             }
                 .onChange(of: remindNDaysBeforeClassTests) { _ in
                     appManager.classTestReminders.scheduleClassTestRemindersIfAppropriate(with: dataManager)
-                    UIImpactFeedbackGenerator(style: .light).impactOccurred(intensity: 0.5)
+                    Constants.FeedbackGenerator.didChangeStepperValue()
                 }
             Picker("class_test_reminder_time_mode", selection: $classTestReminderTimeMode) {
                 Text("class_test_reminder_time_mode_at_class_test_time").tag(ClassTestReminderTimeMode.atClassTestTime)
@@ -31,7 +31,7 @@ struct ClassTestReminderSettings: View {
             }
                 .pickerStyle(.segmented)
                 .onChange(of: classTestReminderTimeMode) { mode in
-                    UIImpactFeedbackGenerator(style: .light).impactOccurred(intensity: Constants.segmentedControlValueChangedImpactFeedbackIntensity)
+                    Constants.FeedbackGenerator.didChangeSegmentedControlValue()
                 }
             if classTestReminderTimeMode == .manual {
                 DatePicker("class_test_reminder_time_time", selection: $classTestReminderTimeManualTime, displayedComponents: .hourAndMinute)

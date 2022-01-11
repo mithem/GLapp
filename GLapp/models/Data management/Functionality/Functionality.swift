@@ -19,7 +19,7 @@ class Functionality: ObservableObject, FunctionalityProtocol, Identifiable {
     let role: Role
     @Published var isSupported: State
     @Published var isEnabled: State
-    internal var dependencies: [FunctionalityType]
+    @Published var dependencies: [FunctionalityType]
     
     var mayRequireUsersAttention: State {
         isEnabled.reversed
@@ -62,6 +62,7 @@ class Functionality: ObservableObject, FunctionalityProtocol, Identifiable {
         do {
             try doEnable(with: appManager, dataManager: dataManager, tappedByUser: tappedByUser)
         } catch {
+            isEnabled = .no
             throw error
         }
         try reload(with: appManager, dataManager: dataManager)
@@ -102,9 +103,20 @@ class Functionality: ObservableObject, FunctionalityProtocol, Identifiable {
                 break
             }
         }
-        try reloadIsSupported(with: appManager, dataManager: dataManager)
+        do {
+            try reloadIsSupported(with: appManager, dataManager: dataManager)
+        } catch {
+            isSupported = .no
+            isEnabled = .no
+            throw error
+        }
         if isSupported == .yes {
-            try reloadIsEnabled(with: appManager, dataManager: dataManager)
+            do {
+                try reloadIsEnabled(with: appManager, dataManager: dataManager)
+            } catch {
+                isEnabled = .no
+                throw error
+            }
         } else {
             isEnabled = isSupported
             if isEnabled == .no {
@@ -201,7 +213,7 @@ class Functionality: ObservableObject, FunctionalityProtocol, Identifiable {
     }
     
     enum FunctionalityType {
-        case notifications, timeSensitiveNotifications, backgroundRefresh, backgroundReprPlanNotifications, classTestReminders, demoMode, coloredInlineSubjects, classTestPlan, calendarAccess, classTestCalendarEvents, spotlightIntegration
+        case notifications, timeSensitiveNotifications, backgroundRefresh, backgroundReprPlanNotifications, classTestReminders, demoMode, coloredInlineSubjects, classTestPlan, calendarAccess, classTestCalendarEvents, spotlightIntegration, requireAuthentication
         
         var id: Identifier {
             switch self {
@@ -227,6 +239,8 @@ class Functionality: ObservableObject, FunctionalityProtocol, Identifiable {
                 return Constants.Identifiers.Functionalities.spotlightIntegration
             case .timeSensitiveNotifications:
                 return Constants.Identifiers.Functionalities.timeSensitiveNotifications
+            case .requireAuthentication:
+                return Constants.Identifiers.Functionalities.requireAuthentication
             }
         }
     }

@@ -55,8 +55,8 @@ class TestRepresentativePlanParser: XCTestCase {
 \t\t\t</Vertretungsplan>\n\t\t\t\n\t\t\t
 """
         let dataManager = MockDataManager()
-        let date = Calendar(identifier: .gregorian).date(from: .init(timeZone: .init(identifier: "Europe/Berlin"), year: 2021, month: 10, day: 26))!
-        let date2 = Calendar(identifier: .gregorian).date(from: .init(timeZone: .init(identifier: "Europe/Berlin"), year: 2021, month: 10, day: 27))!
+        let date = Calendar.current.date(from: .init(timeZone: .init(identifier: "Europe/Berlin"), year: 2021, month: 10, day: 26))!
+        let date2 = Calendar.current.date(from: .init(timeZone: .init(identifier: "Europe/Berlin"), year: 2021, month: 10, day: 27))!
         let sPH = Subject(dataManager: dataManager, className: "PH", subjectType: nil, teacher: "SEN", subjectName: "PH")
         let sD = Subject(dataManager: dataManager, className: "D", subjectType: nil, teacher: "ABC", subjectName: "D")
         let sE = Subject(dataManager: dataManager, className: "E", subjectType: nil, teacher: "DEF", subjectName: "E")
@@ -81,7 +81,7 @@ class TestRepresentativePlanParser: XCTestCase {
     
     func testParseBrokenServerResponse() throws {
         // This did happen (is happening)
-        // Esp. note that these are repr lessons where I don't have any
+        // Esp. note that these are repr lessons where I don't have any lessons
         let input = """
 <Vertretungsplan Stand="2021-12-13 12:36:00" Timestamp="1639395360">
 <Vertretungstag Datum="Mittwoch, 15.12.2021">
@@ -96,7 +96,7 @@ class TestRepresentativePlanParser: XCTestCase {
 """
         let dataManager = MockDataManager()
         let date = Calendar(identifier: .gregorian).date(from: .init(timeZone: .init(identifier: "Europe/Berlin"), year: 2021, month: 12, day: 13, hour: 12, minute: 36))!
-        let date2 = Calendar(identifier: .gregorian).date(from: .init(timeZone:  .init(identifier: "Europe/Berlin"), year: 2021, month: 12, day: 15))!
+        let date2 = Calendar.current.date(from: .init(timeZone:  .init(identifier: "Europe/Berlin"), year: 2021, month: 12, day: 15))! // not sure why a forced gregorian calendar or the `current` one on both lines leads to problems with some (not all) non-gregorian calendars
         let sABC = Subject(dataManager: dataManager, className: "ABC", subjectType: nil, teacher: "DEF", subjectName: "ABC")
         let expected = RepresentativePlan(date: date, representativeDays: [
             .init(date: date2, lessons: [

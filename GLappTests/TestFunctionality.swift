@@ -66,10 +66,13 @@ class TestFunctionality: XCTestCase {
     
     func testNotImplementedFunctionsThrowError() {
         let functionality = Functionality(id: "tmp", role: .critical, dependencies: [])
-        XCTAssertThrowsError(try functionality.doEnable(with: appManager, dataManager: dataManager))
-        XCTAssertThrowsError(try functionality.doDisable(with: appManager, dataManager: dataManager))
+        XCTAssertThrowsError(try functionality.enable(with: appManager, dataManager: dataManager))
+        XCTAssertThrowsError(try functionality.disable(with: appManager, dataManager: dataManager))
         XCTAssertThrowsError(try functionality.reloadIsEnabled(with: appManager, dataManager: dataManager))
         XCTAssertThrowsError(try functionality.reloadIsSupported(with: appManager, dataManager: dataManager))
+        
+        XCTAssertEqual(functionality.isSupported, .unknown)
+        XCTAssertEqual(functionality.isEnabled, .no)
     }
     
     func testIsSupportedByDependenciesYesNoDependencies() throws {

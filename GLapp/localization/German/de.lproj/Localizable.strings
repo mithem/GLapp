@@ -60,6 +60,8 @@
 "feature_spotlight_integration_description" = "Inhalt für das System durchsuchbar machen.";
 "feature_time_sensitive_notifications_title" = "Dringliche Mitteilungen";
 "feature_time_sensitive_notifications_description" = "Benachrichtigungen können den Fokus durchbrechen (ohne den Lautstärkeschalter zu umgehen).";
+"feature_authentication_title" = "Authentifizierung";
+"feature_authentication_description" = "Benutzerauthentifizierung mittels der Secure Enclave auf dem Gerät.";
 "enable" = "Aktivieren";
 "upcoming" = "Anstehend";
 "clear_cache" = "Cache leeren";
@@ -147,3 +149,5 @@
 "general" = "Allgemein";
 "class_test_reminders" = "Klausurerinnerungen";
 "background_check_minimum_time_interval_explanation" = "Minimales Zeitintervall, zu dem das System die Hintergrundaktualisierung des Vertretungsplans vornehmen kann.";
+"app_locked" = "App gesperrt.";
+"unlock" = "Entsperren";

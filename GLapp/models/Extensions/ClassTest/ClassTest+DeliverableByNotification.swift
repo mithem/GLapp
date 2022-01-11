@@ -22,6 +22,6 @@ extension ClassTest: DeliverableByNotification {
             daysBeforeClassTest = Constants.defaultClassTestReminderNotificationsBeforeDays
         }
         let deltaComponents = DateComponents(day: daysBeforeClassTest)
-        return "\(alias) \(GLDateFormatter.relativeDateTimeFormatter.localizedString(from: deltaComponents))"
+        return "\(alias) \(GLDateFormatter.numericRelativeDateTimeFormatter.localizedString(from: deltaComponents))"
     }
 }

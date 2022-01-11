@@ -134,3 +134,11 @@ func resetPreferences(appManager: AppManager, dataManager: DataManager, withHapt
     appManager.reload(with: dataManager)
     generator?.notificationOccurred(.success)
 }
+
+func isAppLocked() -> Bool {
+    UserDefaults.standard.bool(for: \.requireAuthentication) && !UserDefaults.standard.bool(for: \.didUnlockInCurrentSession)
+}
+
+func lockApp() {
+    UserDefaults.standard.set(false, for: \.didUnlockInCurrentSession)
+}

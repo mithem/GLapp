@@ -20,7 +20,7 @@ class TestRepresentativePlan: XCTestCase {
     
     override func setUpWithError() throws {
         dataManager = MockDataManager()
-        currentComponents = Calendar(identifier: .gregorian).dateComponents([.year, .month, .day, .weekday], from: .init(timeIntervalSinceNow: 0))
+        currentComponents = Calendar(identifier: .gregorian).dateComponents([.year, .month, .day, .weekday], from: .rightNow)
         berlinCalendar = .init(identifier: .gregorian)
         berlinCalendar.timeZone = .init(identifier: "Europe/Berlin")!
         date = berlinCalendar.date(from: .init(calendar: berlinCalendar, timeZone: .init(identifier: "Europe/Berlin"), year: currentComponents.year!, month: currentComponents.month!, day: currentComponents.day!))!
@@ -43,6 +43,18 @@ class TestRepresentativePlan: XCTestCase {
         ], lessons: [], notes: ["test information 3"])
         
         XCTAssertEqual(plan.notificationSummary, "test information 3; \(l1.notificationSummary), \(l2.notificationSummary); test information 1, test information 2, \(l3.notificationSummary)")
+    }
+    
+    func testSummary2() {
+        let calendar = Calendar(identifier: .gregorian)
+        let components = DateComponents(calendar: calendar, timeZone: .init(identifier: "Europe/Berlin"), year: 2022, month: 1, day: 10, hour: 0, minute: 0)
+        let date = calendar.date(from: components)!
+        let l = RepresentativeLesson(date: date, lesson: 2, room: "A16", newRoom: nil, note: "", subject: sD, normalTeacher: "DRO", representativeTeacher: nil)
+        let plan = RepresentativePlan(date: date, representativeDays: [
+            .init(date: date, lessons: [l], notes: [])
+        ], lessons: [], notes: [])
+        
+        XCTAssertEqual(plan.notificationSummary, l.notificationSummary)
     }
     
     func testDifferenceIdentical() {

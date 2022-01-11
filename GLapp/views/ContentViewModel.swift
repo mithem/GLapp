@@ -14,6 +14,7 @@ final class ContentViewModel: ObservableObject, BindingAttributeRepresentable {
     @Published var showingConfirmationDialog: Bool
     
     let timer: Publishers.Autoconnect<Timer.TimerPublisher>
+    @AppStorage(UserDefaultsKeys().didUnlockInCurrentSession) var didUnlockInCurrentSession = false
     
     var reprPlanTabItemIcon: String {
         if #available(iOS 15, *) {

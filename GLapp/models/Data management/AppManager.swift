@@ -22,10 +22,11 @@ final class AppManager: ObservableObject {
     @Published var calendarAccess: FCalendarAccess
     @Published var classTestCalendarEvents: FClassTestCalendarEvents
     @Published var spotlightIntegration: FSpotlightIntegration
+    @Published var requireAuthentication: FRequireAuthentication
     @Published var userAttentionMayBeRequired: Bool
     
     var userExperienceRelevantFunctionalities: [Functionality] { // ncomputed property so it's redrawn every time FunctionalityCheckView refreshes
-        var types = [Functionality.FunctionalityType.notifications, .timeSensitiveNotifications, .backgroundRefresh, .backgroundReprPlanNotifications, .spotlightIntegration]
+        var types = [Functionality.FunctionalityType.notifications, .timeSensitiveNotifications, .backgroundRefresh, .backgroundReprPlanNotifications, .spotlightIntegration, .requireAuthentication]
         if classTestPlan.isEnabled.unwrapped {
             types.append(contentsOf: [.calendarAccess, .classTestReminders, .classTestCalendarEvents])
         }
@@ -51,6 +52,7 @@ final class AppManager: ObservableObject {
         calendarAccess = .init()
         classTestCalendarEvents = .init()
         spotlightIntegration = .init()
+        requireAuthentication = .init()
         userAttentionMayBeRequired = false
     }
     
@@ -84,6 +86,7 @@ final class AppManager: ObservableObject {
             self.reload(.calendarAccess, with: dataManager)
             self.reload(.classTestCalendarEvents, with: dataManager)
             self.reload(.spotlightIntegration, with: dataManager)
+            self.reload(.requireAuthentication, with: dataManager)
         }
     }
     
@@ -111,6 +114,8 @@ final class AppManager: ObservableObject {
             return classTestCalendarEvents
         case .spotlightIntegration:
             return spotlightIntegration
+        case .requireAuthentication:
+            return requireAuthentication
         }
     }
     

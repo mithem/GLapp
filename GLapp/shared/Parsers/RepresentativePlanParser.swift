@@ -37,7 +37,7 @@ class RepresentativePlanParser {
                         guard let lessonNo = Int(elem.attribute(by: "Std")?.text ?? "") else { continue }
                         guard let normalTeacher = elem.attribute(by: "FLehrer")?.text else { continue }
                         guard let subjectText = elem.attribute(by: "Fach")?.text else { continue }
-                        if subjectText.isEmpty || normalTeacher.isEmpty { // did happen. For an example, see TestRepresentativePlanParser.testParseBrokenServerResponse
+                        if subjectText.isEmpty || normalTeacher.isEmpty { // did happen. For an example, see `TestRepresentativePlanParser.testParseBrokenServerResponse`
                             reprDay.lessons.append(.invalid)
                             continue
                         }

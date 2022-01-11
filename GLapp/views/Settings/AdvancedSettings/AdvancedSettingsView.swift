@@ -14,7 +14,7 @@ struct AdvancedSettingsView: View {
     @AppStorage(UserDefaultsKeys().reprPlanNotificationsHighRelevanceTimeInterval) var reprPlanNotificationHighRelevanceTimeInterval = Constants.defaultReprPlanNotificationsHighRelevanceTimeInterval
     @AppStorage(UserDefaultsKeys().reprPlanNotificationsEntireReprPlan) var reprPlanNotificationsEntireReprPlan = false
     @AppStorage(UserDefaultsKeys().dontSaveReprPlanUpdateTimestampWhenViewingReprPlan) var dontSaveReprPlanUpdateTimestampWhenViewingReprPlan = false
-    @AppStorage(UserDefaultsKeys().backgroundReprPlanCheckTimeInterval) var backgroundReprCheckTimeInterval = Constants.defaultBackgroundReprPlanCheckMinimumTimeInterval * 60
+    @AppStorage(UserDefaultsKeys().backgroundReprPlanCheckTimeInterval) var backgroundReprCheckTimeInterval = Constants.defaultBackgroundReprPlanCheckMinimumTimeInterval
     var body: some View {
         Form {
             Section {
@@ -33,7 +33,7 @@ struct AdvancedSettingsView: View {
                 Section {
                     Stepper(GLDateFormatter.dateComponentsFormatter.string(from: .init(hour: Int(reprPlanNotificationHighRelevanceTimeInterval / 3600))) ?? "not_available", value: $reprPlanNotificationHighRelevanceTimeInterval, in: 3600...24 * 3600, step: 3600)
                         .onChange(of: reprPlanNotificationHighRelevanceTimeInterval) { _ in
-                            UIImpactFeedbackGenerator(style: .light).impactOccurred(intensity: Constants.stepperValueChangedImpactFeedbackIntensity)
+                            Constants.FeedbackGenerator.didChangeStepperValue()
                         }
                     Text("repr_plan_notifications_high_relevance_explanation")
                         .foregroundColor(.secondary)
@@ -41,7 +41,7 @@ struct AdvancedSettingsView: View {
                 Section {
                     Stepper(GLDateFormatter.dateComponentsFormatter.string(from: .init(second: Int(backgroundReprCheckTimeInterval))) ?? NSLocalizedString("not_available"), value: $backgroundReprCheckTimeInterval, in: 600...3600, step: 60)
                         .onChange(of: backgroundReprCheckTimeInterval) { timeInterval in
-                            UIImpactFeedbackGenerator(style: .light).impactOccurred(intensity: Constants.stepperValueChangedImpactFeedbackIntensity)
+                            Constants.FeedbackGenerator.didChangeStepperValue()
                         }
                         .onDisappear {
                             BackgroundTaskManager.cancelBackgroundRepresentativePlanCheck()
@@ -55,17 +55,15 @@ struct AdvancedSettingsView: View {
                     Text("repr_plan_notifications_send_entire_repr_plan_explanation")
                         .foregroundColor(.secondary)
                 }
-                if reprPlanNotificationsEntireReprPlan {
-                    Section {
-                        Toggle("dont_save_repr_plan_update_timestamp_when_viewing_app", isOn: $dontSaveReprPlanUpdateTimestampWhenViewingReprPlan)
-                            .onChange(of: dontSaveReprPlanUpdateTimestampWhenViewingReprPlan) { dontSave in
-                                if dontSave {
-                                    removeLastReprPlanUpdateTimestamp()
+                Section {
+                    Toggle("dont_save_repr_plan_update_timestamp_when_viewing_app", isOn: $dontSaveReprPlanUpdateTimestampWhenViewingReprPlan)
+                        .onChange(of: dontSaveReprPlanUpdateTimestampWhenViewingReprPlan) { dontSave in
+                            if dontSave {
+                                removeLastReprPlanUpdateTimestamp()
                             }
                         }
-                        Text("dont_save_repr_plan_update_timestamp_when_viewing_app_explanation")
-                            .foregroundColor(.secondary)
-                    }
+                    Text("dont_save_repr_plan_update_timestamp_when_viewing_app_explanation")
+                        .foregroundColor(.secondary)
                 }
             } else {
                 Section {

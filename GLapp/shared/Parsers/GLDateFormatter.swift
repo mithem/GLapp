@@ -47,9 +47,16 @@ class GLDateFormatter {
         return formatter
     }
     
-    static var relativeDateTimeFormatter: RelativeDateTimeFormatter {
+    static var numericRelativeDateTimeFormatter: RelativeDateTimeFormatter {
         let formatter = RelativeDateTimeFormatter()
         formatter.dateTimeStyle = .numeric
+        return formatter
+    }
+    
+    static var namedRelativeDateTimeFormatter: RelativeDateTimeFormatter {
+        let formatter = RelativeDateTimeFormatter()
+        formatter.dateTimeStyle = .named
+        formatter.formattingContext = .beginningOfSentence
         return formatter
     }
     
@@ -63,7 +70,7 @@ class GLDateFormatter {
     
     /// The `GLDateFormatter.relativeDateTimeFormatter`, except giving extra components if `timeInterval` isn't very long
     static func getRelativeDateTimeFormatter(for timeInterval: TimeInterval) -> RelativeDateTimeFormatter {
-        let formatter = relativeDateTimeFormatter
+        let formatter = numericRelativeDateTimeFormatter
         return formatter
     }
 }

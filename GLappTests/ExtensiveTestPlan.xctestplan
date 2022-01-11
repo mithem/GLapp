@@ -31,6 +31,30 @@
         "language" : "de",
         "region" : "DE"
       }
+    },
+    {
+      "id" : "2055C834-848D-44CC-BC39-D62AF151BAF1",
+      "name" : "cn-CN",
+      "options" : {
+        "language" : "zh-HK",
+        "region" : "HK"
+      }
+    },
+    {
+      "id" : "2C37F41E-0DE1-46C1-803D-15987A9774FF",
+      "name" : "jp-JP",
+      "options" : {
+        "language" : "ja",
+        "region" : "JP"
+      }
+    },
+    {
+      "id" : "4F6DF854-CC99-45B1-9E68-C3F512129744",
+      "name" : "af-AF",
+      "options" : {
+        "language" : "ar",
+        "region" : "AF"
+      }
     }
   ],
   "defaultOptions" : {

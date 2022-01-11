@@ -159,7 +159,7 @@ final class NotificationManager {
     
     static func _getClassTestReminderDeliveryComponents(for classTest: ClassTest) -> Result<DateComponents, GetClassTestReminderDeliveryComponentsError> {
         let classTestDate = classTest.startDate ?? classTest.classTestDate
-        let classTestDateComponents = Calendar(identifier: .gregorian).dateComponents([.year, .month, .day, .hour, .minute], from: classTestDate)
+        let classTestDateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: classTestDate)
         var daysBeforeClassTest = UserDefaults.standard.integer(for: \.classTestReminderNotificationBeforeDays)
         if daysBeforeClassTest == 0 { // no previous initialization e.g. by SettingsView
             daysBeforeClassTest = Constants.defaultClassTestReminderNotificationsBeforeDays

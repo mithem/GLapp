@@ -12,7 +12,7 @@ struct GLappScene: Scene {
     @ObservedObject var appManager: AppManager
     var body: some Scene {
         WindowGroup {
-            ContentView(dataManager: dataManager, appManager: appManager)
+            AppLockGateView(dataManager: dataManager, appManager: appManager)
         }
         .commands {
             CommandMenu("data_management") {

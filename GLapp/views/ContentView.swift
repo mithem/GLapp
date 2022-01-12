@@ -14,7 +14,6 @@ struct ContentView: View {
     @State private var modalSheetView = ContentViewModel.ModalSheetView.none
     @State private var showingModalSheetView = false
     @AppStorage(UserDefaultsKeys().lastTabView) var lastTabView = 0 // using a state keeper in VM always lead to **some** unexpected behavior
-    @Environment(\.scenePhase) var scenePhase
     
     var iOSView: some View {
         TabView(selection: $lastTabView) {
@@ -89,9 +88,7 @@ struct ContentView: View {
     var OSSpecificView: some View {
         let idiom = UIDevice.current.userInterfaceIdiom
         return Group {
-            if isAppLocked() {
-                AppLockedView()
-            } else if idiom == .phone {
+            if idiom == .phone {
                 iOSView
             } else if idiom == .pad {
                 iPadOSView
@@ -111,7 +108,6 @@ struct ContentView: View {
                     Text("(empty)")
             }
         }
-        .onChange(of: scenePhase, to: .background, perform: lockApp)
         .onReceive(model.timer) { timer in
             model.tick()
         }

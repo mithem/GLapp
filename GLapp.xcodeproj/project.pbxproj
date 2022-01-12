@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49065529278EADF90074B346 /* AppLockGateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49065528278EADF90074B346 /* AppLockGateView.swift */; };
 		490A22C52746186F0090C5AC /* ClassTest+CustomDebugStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490A22C42746186F0090C5AC /* ClassTest+CustomDebugStringConvertible.swift */; };
 		490A22CA274623480090C5AC /* Date+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490A22C9274623480090C5AC /* Date+Identifiable.swift */; };
 		49118E76276E28F900A5B7A2 /* ClassTestReminderTimeMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49118E75276E28F900A5B7A2 /* ClassTestReminderTimeMode.swift */; };
@@ -223,6 +224,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		49065528278EADF90074B346 /* AppLockGateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockGateView.swift; sourceTree = "<group>"; };
 		490A22C42746186F0090C5AC /* ClassTest+CustomDebugStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClassTest+CustomDebugStringConvertible.swift"; sourceTree = "<group>"; };
 		490A22C9274623480090C5AC /* Date+Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Identifiable.swift"; sourceTree = "<group>"; };
 		49118E75276E28F900A5B7A2 /* ClassTestReminderTimeMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassTestReminderTimeMode.swift; sourceTree = "<group>"; };
@@ -800,6 +802,7 @@
 			isa = PBXGroup;
 			children = (
 				4991A2A4271996F8008559F9 /* AccentColorButton.swift */,
+				49065528278EADF90074B346 /* AppLockGateView.swift */,
 				4991A2A3271996F8008559F9 /* ContentView.swift */,
 				4980CB4E27491D94000E751F /* ContentViewModel.swift */,
 				49ED95F7278D947F00E3A878 /* AppLockedView.swift */,
@@ -1176,6 +1179,7 @@
 				49D67A21273E72FE00ADC319 /* RepresentativeLesson+CustomDebugStringConvertible.swift.swift in Sources */,
 				4948CFEF2742BF380047D443 /* RepresentativePlanViewModel.swift in Sources */,
 				49A5B2462719A3C400577767 /* FunctionalityCheckView.swift in Sources */,
+				49065529278EADF90074B346 /* AppLockGateView.swift in Sources */,
 				49D67A1B273E703100ADC319 /* RepresentativePlan+Copying.swift in Sources */,
 				49B8D08A276CF9CF0099B0F3 /* UserDefaults+keyPaths.swift in Sources */,
 				49F380E82710E05F002AE814 /* Timetable.swift in Sources */,
@@ -1540,7 +1544,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLapp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;
@@ -1574,7 +1578,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLappRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;

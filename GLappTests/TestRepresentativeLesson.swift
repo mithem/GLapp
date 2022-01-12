@@ -58,4 +58,14 @@ class TestRepresentativeLesson: XCTestCase {
         
         XCTAssertEqual(lesson.notificationSummary, "\(dateStr) \(numStr) PH")
     }
+    
+    func testRelevancePastLesson() {
+        let l1 = RepresentativeLesson(date: .init(timeIntervalSinceNow: -1_000_000), lesson: 1, room: nil, newRoom: nil, note: nil, subject: sPH, normalTeacher: "SEN", representativeTeacher: nil) // about in 12d
+        XCTAssertEqual(l1.relevance, 1)
+    }
+    
+    func testRelevanceFarFutureLesson() {
+        let l2 = RepresentativeLesson(date: .distantFuture, lesson: 1, room: nil, newRoom: nil, note: nil, subject: sPH, normalTeacher: "SEN", representativeTeacher: nil)
+        XCTAssertEqual(l2.relevance, 0)
+    }
 }

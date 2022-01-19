@@ -9,34 +9,37 @@ import Foundation
 
 extension RepresentativeLesson: DeliverableByNotification {
      var notificationSummary: String {
-        let timeInterval = date.timeIntervalSinceNow
-        let timeDescription: String
-        if timeInterval < -24 * 60 * 60 || timeInterval > 2 * 24 * 60 * 60 { // 2 days
-            //timeDescription = GLDateFormatter.numericRelativeDateTimeFormatter.localizedString(fromTimeInterval: timeInterval)
-            timeDescription = GLDateFormatter.dateOnlyFormatter.string(from: date)
-        } else {
-            let components = Calendar.current.dateComponents([.calendar, .timeZone, .year, .month, .day, .weekday], from: date)
-            let todayComponents = Calendar.current.dateComponents([.calendar, .timeZone, .year, .month, .day, .weekday], from: .rightNow)
-            timeDescription = GLDateFormatter.namedRelativeDateTimeFormatter.localizedString(from: components - todayComponents)
-        }
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .ordinal
-        var summary = "\(timeDescription) \(formatter.string(from: .init(value: lesson))!) \(subject.subjectName ?? subject.className)"
-        if let newRoom = newRoom {
-            summary += " \(NSLocalizedString("in_mid_sentence")) \(newRoom)"
-        }
-        if let representativeTeacher = representativeTeacher {
-            summary += " \(NSLocalizedString("with_mid_sentence")) \(representativeTeacher)"
-        }
-        if let note = note {
-            if note.starts(with: "(") && note.last! == ")" {
-                summary += " \(note)"
-            } else {
-                summary += " (\(note))"
-            }
-        }
-        return summary
-    }
+         if isInvalid {
+             return ""
+         }
+         let timeInterval = date.timeIntervalSinceNow
+         let timeDescription: String
+         if timeInterval < -24 * 60 * 60 || timeInterval > 2 * 24 * 60 * 60 { // 2 days
+             //timeDescription = GLDateFormatter.numericRelativeDateTimeFormatter.localizedString(fromTimeInterval: timeInterval)
+             timeDescription = GLDateFormatter.dateOnlyFormatter.string(from: date)
+         } else {
+             let components = Calendar.current.dateComponents([.calendar, .timeZone, .year, .month, .day, .weekday], from: date)
+             let todayComponents = Calendar.current.dateComponents([.calendar, .timeZone, .year, .month, .day, .weekday], from: .rightNow)
+             timeDescription = GLDateFormatter.namedRelativeDateTimeFormatter.localizedString(from: components - todayComponents)
+         }
+         let formatter = NumberFormatter()
+         formatter.numberStyle = .ordinal
+         var summary = "\(timeDescription) \(formatter.string(from: .init(value: lesson))!) \(subject.subjectName ?? subject.className)"
+         if let newRoom = newRoom {
+             summary += " \(NSLocalizedString("in_mid_sentence")) \(newRoom)"
+         }
+         if let representativeTeacher = representativeTeacher {
+             summary += " \(NSLocalizedString("with_mid_sentence")) \(representativeTeacher)"
+         }
+         if let note = note {
+             if note.starts(with: "(") && note.last! == ")" {
+                 summary += " \(note)"
+             } else {
+                 summary += " (\(note))"
+             }
+         }
+         return summary
+     }
     
     var notificationId: KeyPath<Constants.Identifiers.Notifications, String>? { \.reprPlanUpdateNotification }
     

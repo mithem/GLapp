@@ -9,7 +9,7 @@ import Foundation
 
 extension RepresentativeDay: DeliverableByNotification {
     var notificationSummary: String {
-        var str = lessons.map {$0.notificationSummary}.joined(separator: ", ")
+        var str = lessons.filter {!$0.isInvalid}.map(\.notificationSummary).joined(separator: ", ")
         if !notes.isEmpty {
             str.append("; " + notes.joined(separator: ", "))
         }

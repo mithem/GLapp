@@ -8,10 +8,25 @@
 import Foundation
 
 class MockDataManager: DataManager {
+    /// For testing behavior in secondary stage I and transitions from stage I to II
+    let sendEmptyClassTestPlan: Bool
+    
+    init(appManager: AppManager, sendEmptyClassTestPlan: Bool) {
+        self.sendEmptyClassTestPlan = sendEmptyClassTestPlan
+        super.init(appManager: appManager)
+    }
+    
+    init() {
+        self.sendEmptyClassTestPlan = false
+        super.init(appManager: .init())
+    }
+    
     override func getRepresentativePlan(completion: @escaping (NetworkResult<String, NetworkError>) -> Void) {
         let plan = """
 <Vertretungsplan Stand="2000-01-01 00:00:00" Timestamp="946681200">
-<Vertretungstag/>
+<Vertretungstag Datum="Montag, 17.01.2022">
+<Stunde Std="2" Kurs="IF-GK1" Raum="121" Fach="IF" RaumNeu="" Zeitstempel="" Bemerkung="(frei)" FLehrer="NFD" VLehrer=""/>
+</Vertretungstag>
 <Informationen> </Informationen>
 </Vertretungsplan>
 """
@@ -87,6 +102,9 @@ class MockDataManager: DataManager {
     }
     
     override func getClassTestPlan(completion: @escaping (NetworkResult<String, NetworkError>) -> Void) {
+        if sendEmptyClassTestPlan {
+            return completion(.successWithData(MockData.emptyClassTestPlanString))
+        }
         let plan = """
 <Klausurplan Stand="29.09.2021 08:55:04" Timestamp="1632898504">
 <Klausur individuell="1" Datum="26.10.2021" freigegeben="0" vonStd="-" bisStd="-" raum="-" bezeichnung="D-GK3" fach="D" stand="2021-09-29 08:55:04" lehrer="DRO"/>
@@ -103,9 +121,5 @@ class MockDataManager: DataManager {
 </Klausurplan>
 """
         completion(.successWithData(plan))
-    }
-    
-    init() {
-        super.init(appManager: .init())
     }
 }

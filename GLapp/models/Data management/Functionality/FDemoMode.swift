@@ -19,7 +19,10 @@ class FDemoMode: Functionality {
     override func doEnable(with appManager: AppManager, dataManager: DataManager) throws {
         UserDefaults.standard.set(true, for: \.demoMode)
         dataManager.reset()
-        dataManager.loadData()
+        try appManager.classTestPlan.reload(with: appManager, dataManager: dataManager)
+        DispatchQueue.global(qos: .background).async {
+            dataManager.loadData()
+        }
     }
     
     override func doDisable(with appManager: AppManager, dataManager: DataManager) throws {
@@ -30,6 +33,13 @@ class FDemoMode: Functionality {
     
     func reset() {
         UserDefaults.standard.set(false, for: \.demoMode)
+    }
+    
+    /// Just return whether demo mode is enabled. Does not interact with `isEnabled` or something else at all.
+    ///
+    /// Useful, when `AppManager` may not have reloaded yet.
+    func checkIsEnabled() -> State {
+        UserDefaults.standard.bool(for: \.demoMode) ? .yes : .no
     }
     
     required init() {

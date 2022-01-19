@@ -10,6 +10,7 @@ import LocalAuthentication
 
 struct AppLockedView: View {
     @ObservedObject var model: AppLockedViewModel
+    @Environment(\.scenePhase) var scenePhase
     var body: some View {
         VStack {
             EmptyContentView(image: model.emptyViewIcon, text: "app_locked")
@@ -19,6 +20,10 @@ struct AppLockedView: View {
             .disabled(model.unlocking)
         }
             .onAppear(perform: unlock)
+            .onChange(of: scenePhase, to: .active) {
+                unlock()
+                model.enterForeground()
+            }
     }
     
     init() {
@@ -26,9 +31,7 @@ struct AppLockedView: View {
     }
     
     func unlock() {
-        if isAppLocked() {
-            model.unlock()
-        }
+        model.unlock()
     }
 }
 

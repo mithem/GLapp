@@ -37,7 +37,7 @@ import Combine
     }
     
     func reload() {
-        dataManager.loadClassTestPlan(withHapticFeedback: true)
+        dataManager.loadData(withHapticFeedBack: true) // reprPlanView & timetable do the same, therefore don't introduce unexpected behavior
         donateIntent(force: true)
     }
 }

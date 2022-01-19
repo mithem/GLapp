@@ -16,70 +16,6 @@ class TestTimetableParser: XCTestCase {
     }
     
     func testParseSuccessOberstufe () throws {
-        let timetable = """
-<Stundenplan Datum="2021-09-13 09:26:44" Timestamp="1631518004">
-<Wochentag Tag="Montag">
-<Stunde Std="1" Kurs="PL-GK1" Raum="A14" Fach="PL" Kursart="GKM" Lehrer="TRR"/>
-<Stunde Std="2" Kurs="IF-GK1" Raum="IR1" Fach="IF" Kursart="GKS" Lehrer="NFD"/>
-<Stunde Std="3" Kurs="IF-GK1" Raum="IR1" Fach="IF" Kursart="GKS" Lehrer="NFD"/>
-<Stunde Std="4" Kurs="E-GK1" Raum="A14" Fach="E" Kursart="AB3" Lehrer="ERD"/>
-<Stunde Std="5" Kurs="E-GK1" Raum="A14" Fach="E" Kursart="AB3" Lehrer="ERD"/>
-<Stunde Std="6" Kurs="M-LK2" Raum="A11" Fach="M" Kursart="LK1" Lehrer="PST"/>
-<Stunde Std="7" Kurs="M-LK2" Raum="A11" Fach="M" Kursart="LK1" Lehrer="PST"/>
-<Stunde Std="8" Kurs="EK-GK1" Raum="A16" Fach="EK" Kursart="GKM" Lehrer="BCH"/>
-<Stunde Std="9" Kurs="EK-GK1" Raum="A16" Fach="EK" Kursart="GKM" Lehrer="BCH"/>
-<Stunde Std="10" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
-</Wochentag>
-<Wochentag Tag="Dienstag">
-<Stunde Std="1" Kurs="GE-GK1" Raum="A17" Fach="GE" Kursart="GKM" Lehrer="BCH"/>
-<Stunde Std="2" Kurs="SW-GK1" Raum="A16" Fach="SW" Kursart="AB4" Lehrer="HBS"/>
-<Stunde Std="3" Kurs="SW-GK1" Raum="A16" Fach="SW" Kursart="AB4" Lehrer="HBS"/>
-<Stunde Std="4" Kurs="D-GK3" Raum="A16" Fach="D" Kursart="GKS" Lehrer="DRO"/>
-<Stunde Std="5" Kurs="D-GK3" Raum="A16" Fach="D" Kursart="GKS" Lehrer="DRO"/>
-<Stunde Std="6" Kurs="PH-LK1" Raum="PR2" Fach="PH" Kursart="LK2" Lehrer="SEN"/>
-<Stunde Std="7" Kurs="PH-LK1" Raum="PR2" Fach="PH" Kursart="LK2" Lehrer="SEN"/>
-<Stunde Std="8" Kurs="PSE-PJK1" Raum="IR3" Fach="PSE" Kursart="PJK" Lehrer="BLN"/>
-<Stunde Std="9" Kurs="PSE-PJK1" Raum="IR3" Fach="PSE" Kursart="PJK" Lehrer="BLN"/>
-<Stunde Std="10" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
-</Wochentag>
-<Wochentag Tag="Mittwoch">
-<Stunde Std="1" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
-<Stunde Std="2" Kurs="M-LK2" Raum="A11" Fach="M" Kursart="LK1" Lehrer="PST"/>
-<Stunde Std="3" Kurs="M-LK2" Raum="A11" Fach="M" Kursart="LK1" Lehrer="PST"/>
-<Stunde Std="4" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
-<Stunde Std="5" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
-<Stunde Std="6" Kurs="E-GK1" Raum="A14" Fach="E" Kursart="AB3" Lehrer="ERD"/>
-<Stunde Std="7" Kurs="IF-GK1" Raum="IR1" Fach="IF" Kursart="GKS" Lehrer="NFD"/>
-<Stunde Std="8" Kurs="SP-GK2" Raum="TH5" Fach="SP" Kursart="GKM" Lehrer="FDK"/>
-<Stunde Std="9" Kurs="SP-GK2" Raum="TH5" Fach="SP" Kursart="GKM" Lehrer="FDK"/>
-<Stunde Std="10" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
-</Wochentag>
-<Wochentag Tag="Donnerstag">
-<Stunde Std="1" Kurs="PH-LK1" Raum="PR2" Fach="PH" Kursart="LK2" Lehrer="SEN"/>
-<Stunde Std="2" Kurs="PL-GK1" Raum="A14" Fach="PL" Kursart="GKM" Lehrer="TRR"/>
-<Stunde Std="3" Kurs="PL-GK1" Raum="A14" Fach="PL" Kursart="GKM" Lehrer="TRR"/>
-<Stunde Std="4" Kurs="GE-GK1" Raum="A17" Fach="GE" Kursart="GKM" Lehrer="BCH"/>
-<Stunde Std="5" Kurs="GE-GK1" Raum="A17" Fach="GE" Kursart="GKM" Lehrer="BCH"/>
-<Stunde Std="6" Kurs="SW-GK1" Raum="A16" Fach="SW" Kursart="AB4" Lehrer="HBS"/>
-<Stunde Std="7" Kurs="D-GK3" Raum="A16" Fach="D" Kursart="GKS" Lehrer="DRO"/>
-<Stunde Std="8" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
-<Stunde Std="9" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
-<Stunde Std="10" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
-</Wochentag>
-<Wochentag Tag="Freitag">
-<Stunde Std="1" Kurs="EK-GK1" Raum="A16" Fach="EK" Kursart="GKM" Lehrer="BCH"/>
-<Stunde Std="2" Kurs="PH-LK1" Raum="PR2" Fach="PH" Kursart="LK2" Lehrer="SEN"/>
-<Stunde Std="3" Kurs="PH-LK1" Raum="PR2" Fach="PH" Kursart="LK2" Lehrer="SEN"/>
-<Stunde Std="4" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
-<Stunde Std="5" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
-<Stunde Std="6" Kurs="M-LK2" Raum="A11" Fach="M" Kursart="LK1" Lehrer="PST"/>
-<Stunde Std="7" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
-<Stunde Std="8" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
-<Stunde Std="9" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
-<Stunde Std="10" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
-</Wochentag>
-</Stundenplan>
-"""
         let sPL = Subject(dataManager: manager, className: "PL-GK1", subjectType: "GKM", teacher: "TRR", subjectName: "PL")
         let sIF = Subject(dataManager: manager, className: "IF-GK1", subjectType: "GKS", teacher: "NFD", subjectName: "IF")
         let sE = Subject(dataManager: manager, className: "E-GK1", subjectType: "AB3", teacher: "ERD", subjectName: "E")
@@ -141,7 +77,7 @@ class TestTimetableParser: XCTestCase {
         ])
         let expectation = XCTestExpectation(description: "parses successfully")
         
-        TimetableParser.parse(timetable: timetable, with: manager) { result in
+        TimetableParser.parse(timetable: MockData.validTimetableString, with: manager) { result in
             switch result {
             case .success(let timetable):
                 XCTAssertEqual(timetable.date, date)

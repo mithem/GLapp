@@ -109,7 +109,7 @@
 "no_scheduled_notifications" = "No scheduled notifications.";
 "advanced_settings" = "Advanced settings";
 "test_notification" = "Test notification";
-"repr_plan_notifications_high_relevance_explanation" = "Maximum distance in time of a representative plan notification to the corresponding lesson making the notification being marked as relevant. This results in it being sent as a time-sensitive notification and/or being prioritized in notification center.";
+"repr_plan_notifications_high_relevance_explanation" = "Maximum distance in time of a representative plan notification to the corresponding lesson making the notification being marked as relevant. This results in it being sent as a time-sensitive notification and being prioritized in notification center.";
 "not_available" = "N/A";
 "repr_plan_notifications_send_entire_repr_plan" = "Send entire repr. plan in notifications";
 "repr_plan_notifications_send_entire_repr_plan_explanation" = "Send the entire representative plan in notifications instead of just the updates (which only includes additions/changes to the plan, not removals).";
@@ -143,10 +143,11 @@
 "open_interner_bereich" = "Open interner Bereich";
 "class_test_reminder_time_mode_at_class_test_time" = "At class test time";
 "class_test_reminder_time_mode_manual" = "Manual";
-"class_test_reminder_time_time" = "Delivery time";
+"class_test_reminder_time_manual_time" = "Manual delivery time";
 "reset_preferences" = "Reset preferences";
 "general" = "General";
 "class_test_reminders" = "Class test reminders";
 "background_check_minimum_time_interval_explanation" = "Minimum time interval the system can schedule a representative plan background check after.";
 "app_locked" = "App locked.";
 "unlock" = "Unlock";
+"version_abbreviation" = "v";

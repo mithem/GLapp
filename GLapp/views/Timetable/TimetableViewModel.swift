@@ -79,7 +79,7 @@ final class TimetableViewModel: ObservableObject {
     }
     
     func reload() {
-        dataManager.loadTimetable(withHapticFeedback: true)
+        dataManager.loadData(withHapticFeedBack: true) // so you can reload class test plan even when it's not available (empty) yet
         donateIntent(force: true)
     }
     

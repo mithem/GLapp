@@ -15,6 +15,8 @@ struct FunctionalityCheckView: View {
     var body: some View {
         NavigationView {
             ScrollView {
+                Text(NSLocalizedString("version_abbreviation") + Constants.appVersion.description)
+                        .foregroundColor(.secondary)
                 VStack(spacing: 100) {
                     VStack(alignment: .leading, spacing: 50) {
                         ForEach(appManager.userExperienceRelevantFunctionalities.filter {$0.isSupported == .yes}) { functionality in

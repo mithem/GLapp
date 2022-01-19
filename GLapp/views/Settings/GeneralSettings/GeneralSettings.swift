@@ -15,14 +15,14 @@ struct GeneralSettings: View {
     var body: some View {
         Form {
             if dataManager.tasks.getClassTestPlan.error != .classTestPlanNotSupported {
-                Toggle(appManager.classTestCalendarEvents.title, isOn: appManager.classTestCalendarEvents.isEnabledBinding(appManager: appManager, dataManager: dataManager, setCompletion: handler.handleIsEnabledBindingResult))
+                Toggle(settingsValue: \.classTestCalendarEvents, appManager: appManager, dataManager: dataManager, setCompletion: handler.handleIsEnabledBindingResult)
             }
-            Toggle(appManager.backgroundReprPlanNotifications.title, isOn: appManager.backgroundReprPlanNotifications.isEnabledBinding(appManager: appManager, dataManager: dataManager, setCompletion: handler.handleIsEnabledBindingResult))
-            Toggle(appManager.coloredInlineSubjects.title, isOn: appManager.coloredInlineSubjects.isEnabledBinding(appManager: appManager, dataManager: dataManager, setCompletion: handler.handleIsEnabledBindingResult))
+            Toggle(settingsValue: \.backgroundReprPlanNotifications, appManager: appManager, dataManager: dataManager, setCompletion: handler.handleIsEnabledBindingResult)
+            Toggle(settingsValue: \.coloredInlineSubjects, appManager: appManager, dataManager: dataManager, setCompletion: handler.handleIsEnabledBindingResult)
             if appManager.spotlightIntegration.isSupported.unwrapped {
-                Toggle(appManager.spotlightIntegration.title, isOn: appManager.spotlightIntegration.isEnabledBinding(appManager: appManager, dataManager: dataManager, setCompletion: handler.handleIsEnabledBindingResult))
+                Toggle(settingsValue: \.spotlightIntegration, appManager: appManager, dataManager: dataManager, setCompletion: handler.handleIsEnabledBindingResult)
             }
-            Toggle(appManager.requireAuthentication.title, isOn: appManager.requireAuthentication.isEnabledBinding(appManager: appManager, dataManager: dataManager, setCompletion: handler.handleIsEnabledBindingResult))
+            Toggle(settingsValue: \.requireAuthentication, appManager: appManager, dataManager: dataManager, setCompletion: handler.handleIsEnabledBindingResult)
         }
         .onReceive(timer) {
             appManager.reload(with: dataManager)

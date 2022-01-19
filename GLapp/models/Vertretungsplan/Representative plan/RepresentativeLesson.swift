@@ -31,7 +31,7 @@ final class RepresentativeLesson: ObservableObject, Identifiable {
     }
     
     var isInvalid: Bool {
-        self == .invalid
+        normalTeacher == "" || subject == .invalid || room == nil
     }
     
     func updateSubject(with dataManager: DataManager) {

@@ -49,7 +49,7 @@ struct SettingsView: View, SettingsViewIsEnabledBindingResultHandling {
                     resetOnboarding(withHapticFeedback: true)
                 }
                 Button("reset_preferences") {
-                    resetPreferences(appManager: appManager, dataManager: dataManager, withHapticFeedback: true)
+                    appManager.settingsStore.reset(withHapticFeedback: true)
                 }
                 Group {
                     if #available(iOS 15, *) {

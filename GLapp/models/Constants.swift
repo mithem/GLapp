@@ -13,7 +13,6 @@ struct Constants {
     static let apiHostname = "https://mobil.gymnasium-lohmar.org"
     static let internerBereichReprPlanURL = URL(string: "https://mobil.gymnasium-lohmar.org/?show=vplan")!
     static let timeoutInterval: TimeInterval = 15
-    static let defaultBackgroundReprPlanCheckMinimumTimeInterval: TimeInterval = 10 * 60
     static let weekdayStringIDMap = [
         "Montag": 0,
         "Dienstag": 1,
@@ -24,7 +23,6 @@ struct Constants {
         "Sonntag": 6
     ]
     static let weekdayIDStringMap = getWeekdayIDStringMap()
-    static let defaultClassTestReminderNotificationsBeforeDays = 3
     static let mailToURL = URL(string: "mailto:miguel.themann@gmail.com")!
     static let functionalityReloadInterval: TimeInterval = 10
     static let lessonStartDateComponents: [Int: DateComponents] = [
@@ -36,16 +34,17 @@ struct Constants {
         6: .init(hour: 12, minute: 20),
         7: .init(hour: 13, minute: 10),
         8: .init(hour: 14, minute: 10),
-        9: .init(hour: 14, minute: 55)
+        9: .init(hour: 14, minute: 55),
+        10: .init(hour: 15, minute: 00), // from here on just precautions
+        11: .init(hour: 15, minute: 50),
+        12: .init(hour: 16, minute: 40)
     ]
     static let lessonEndDateComponents = getLessonEndDateComponents()
-    static let defaultReprPlanNotificationsHighRelevanceTimeInterval: TimeInterval = 4 * 60 * 60 // 4h
     static let timeIntervalRequiringUserActivityUntilNSUserActivityIsDonated: TimeInterval = 4
     static let appVersion = Bundle.main.semanticVersion!
     static let appDataDir = try? FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent(Constants.Identifiers.appId)
     /// When to add the first extra component (hours, at 1/3rd this interval also minutes) to increase (relative) precision
     static let relativeDateTimeFormatterTimeIntervalToIncreasePrecision: TimeInterval = 60 * 60 * 24 * 3
-    static let defaultClassTestReminderManualTime = Date.today(at: .init(hour: 9))
 
     struct Identifiers {
         static let appId = "com.mithem.GLapp"
@@ -85,6 +84,10 @@ struct Constants {
         static func didChangeSegmentedControlValue() {
             UIImpactFeedbackGenerator(style: .medium).impactOccurred(intensity: 0.5)
         }
+    }
+    
+    struct SettingsValues { // not static for KeyPath support, not static props on `SettingsValue` itself as static props on generics aren't supported
+        
     }
     
     private static func getWeekdayIDStringMap() -> Dictionary<Int, String> {

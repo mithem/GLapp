@@ -110,7 +110,7 @@
 "advanced_settings" = "Fortgeschrittene Einstellungen";
 "privacy_calendars_usage_description" = "GLapp erlauben, Einträge zum Kalendar hinzuzufügen, z.B. bevorstehende Klausuren.";
 "test_notification" = "Test-Benachrichtigung";
-"repr_plan_notifications_high_relevance_explanation" = "Maximaler zeitlicher Abstand einer Vertretungsplanbenachrichtigung von einer Vertretungsstunde, um als relevant gewertet zu werden. Dann werden Mitteilungen als dringlich bewertet und/oder erscheinen priorisiert in der Mitteilungszentrale.";
+"repr_plan_notifications_high_relevance_explanation" = "Maximaler zeitlicher Abstand einer Vertretungsplanbenachrichtigung von einer Vertretungsstunde, um als relevant gewertet zu werden. Dann werden Mitteilungen als dringlich bewertet und erscheinen priorisiert in der Mitteilungszentrale.";
 "not_available" = "N/A";
 "repr_plan_notifications_send_entire_repr_plan" = "Gesamten Vertr.-plan in Benachr. senden";
 "repr_plan_notifications_send_entire_repr_plan_explanation" = "Bei Vertretungsplanänderungen nicht nur die jeweiligen Änderungen (Ergänzungen/Änderungen, nicht Löschungen) versenden, sondern den gesamten Vertretungsplan.";
@@ -144,10 +144,11 @@
 "open_interner_bereich" = "Internen Bereich öffnen";
 "class_test_reminder_time_mode_at_class_test_time" = "Relativ zu Klausurbeginn";
 "class_test_reminder_time_mode_manual" = "Manuell";
-"class_test_reminder_time_time" = "Zustellzeit";
+"class_test_reminder_time_manual_time" = "Manuelle Zustellzeit";
 "reset_preferences" = "Einstellungen zurücksetzen";
 "general" = "Allgemein";
 "class_test_reminders" = "Klausurerinnerungen";
 "background_check_minimum_time_interval_explanation" = "Minimales Zeitintervall, zu dem das System die Hintergrundaktualisierung des Vertretungsplans vornehmen kann.";
 "app_locked" = "App gesperrt.";
 "unlock" = "Entsperren";
+"version_abbreviation" = "v";

@@ -8,11 +8,15 @@
 import Foundation
 import SwiftUI
 
-class ScheduledNotificationsViewModel: ObservableObject {
+class ScheduledNotificationsViewModel: ObservableObject, ConfirmationDialogProviding {
     @Published var dataManager: DataManager
     @Published var notifications: [NotificationManager.NotificationRequest]
-    @Published var showingTestNotificationConfirmationDialog: Bool
+    @Published var showingConfirmationDialog: Bool
     let timer = Timer.publish(every: 2, tolerance: nil, on: .current, in: .common).autoconnect()
+    
+    var confirmationDialog: (title: String, body: String)? {
+        (title: "test_notification", body: "")
+    }
     
     var emptyContentImage: String {
         if #available(iOS 15, *) {
@@ -30,10 +34,10 @@ class ScheduledNotificationsViewModel: ObservableObject {
         })
     }
     
-    init(dataManager: DataManager) {
+    @MainActor init(dataManager: DataManager) {
         self.dataManager = dataManager
         notifications = []
-        showingTestNotificationConfirmationDialog = false
+        showingConfirmationDialog = false
         reload()
     }
     

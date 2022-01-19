@@ -28,6 +28,14 @@
 		492804C2272010220055ED63 /* ClassTestPlan+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492804C1272010220055ED63 /* ClassTestPlan+Equatable.swift */; };
 		492804C42720104D0055ED63 /* RepresentativePlan+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492804C32720104D0055ED63 /* RepresentativePlan+Equatable.swift */; };
 		492804C8272026EF0055ED63 /* GLappError+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492804C7272026EF0055ED63 /* GLappError+Equatable.swift */; };
+		492B9A86278F6111009B866D /* SettingsValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492B9A85278F6111009B866D /* SettingsValue.swift */; };
+		492B9A8827907081009B866D /* Stepper+init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492B9A8727907081009B866D /* Stepper+init.swift */; };
+		492B9A8A2790A6AE009B866D /* OptionalStridable+Stridable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492B9A892790A6AE009B866D /* OptionalStridable+Stridable.swift */; };
+		492B9A8D2790ACD3009B866D /* SettingsValueWithFunctionality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492B9A8C2790ACD3009B866D /* SettingsValueWithFunctionality.swift */; };
+		492B9A8F2790AE96009B866D /* Toggle+init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492B9A8E2790AE96009B866D /* Toggle+init.swift */; };
+		492B9A9127914096009B866D /* SettingsValueStrideable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492B9A9027914096009B866D /* SettingsValueStrideable.swift */; };
+		492B9A932791C99D009B866D /* Picker+init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492B9A922791C99D009B866D /* Picker+init.swift */; };
+		492B9A952791DA5D009B866D /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492B9A942791DA5D009B866D /* SettingsStore.swift */; };
 		4931D929276372CC003DCF28 /* ClassTest+isOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4931D928276372CC003DCF28 /* ClassTest+isOver.swift */; };
 		4931D92E2763770C003DCF28 /* TestDateComponents+combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4931D92D2763770C003DCF28 /* TestDateComponents+combine.swift */; };
 		49340503271178ED008B059B /* TestRepresentativePlanParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49340502271178ED008B059B /* TestRepresentativePlanParser.swift */; };
@@ -118,6 +126,7 @@
 		4991A2B627199768008559F9 /* ClassTestPlanParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4991A2B327199768008559F9 /* ClassTestPlanParser.swift */; };
 		4991A2B82719976F008559F9 /* functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4991A2B72719976F008559F9 /* functions.swift */; };
 		4991A2BA27199789008559F9 /* GLDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4991A2B927199789008559F9 /* GLDateFormatter.swift */; };
+		4994278D27935EBD0009ADD8 /* AppStorage+init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4994278C27935EBD0009ADD8 /* AppStorage+init.swift */; };
 		499A3EE62719D0FA0045683D /* TestGLappUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A3EE52719D0FA0045683D /* TestGLappUI.swift */; };
 		499A3EEA2719F7220045683D /* ClassTest+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A3EE92719F7220045683D /* ClassTest+Equatable.swift */; };
 		499A3EEC2719F7350045683D /* ClassTest+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A3EEB2719F7350045683D /* ClassTest+Comparable.swift */; };
@@ -245,6 +254,14 @@
 		492804C1272010220055ED63 /* ClassTestPlan+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClassTestPlan+Equatable.swift"; sourceTree = "<group>"; };
 		492804C32720104D0055ED63 /* RepresentativePlan+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepresentativePlan+Equatable.swift"; sourceTree = "<group>"; };
 		492804C7272026EF0055ED63 /* GLappError+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GLappError+Equatable.swift"; sourceTree = "<group>"; };
+		492B9A85278F6111009B866D /* SettingsValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsValue.swift; sourceTree = "<group>"; };
+		492B9A8727907081009B866D /* Stepper+init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Stepper+init.swift"; sourceTree = "<group>"; };
+		492B9A892790A6AE009B866D /* OptionalStridable+Stridable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionalStridable+Stridable.swift"; sourceTree = "<group>"; };
+		492B9A8C2790ACD3009B866D /* SettingsValueWithFunctionality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsValueWithFunctionality.swift; sourceTree = "<group>"; };
+		492B9A8E2790AE96009B866D /* Toggle+init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toggle+init.swift"; sourceTree = "<group>"; };
+		492B9A9027914096009B866D /* SettingsValueStrideable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsValueStrideable.swift; sourceTree = "<group>"; };
+		492B9A922791C99D009B866D /* Picker+init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Picker+init.swift"; sourceTree = "<group>"; };
+		492B9A942791DA5D009B866D /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
 		4931D928276372CC003DCF28 /* ClassTest+isOver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClassTest+isOver.swift"; sourceTree = "<group>"; };
 		4931D92D2763770C003DCF28 /* TestDateComponents+combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TestDateComponents+combine.swift"; sourceTree = "<group>"; };
 		49340502271178ED008B059B /* TestRepresentativePlanParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRepresentativePlanParser.swift; sourceTree = "<group>"; };
@@ -339,6 +356,7 @@
 		4991A2B327199768008559F9 /* ClassTestPlanParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassTestPlanParser.swift; sourceTree = "<group>"; };
 		4991A2B72719976F008559F9 /* functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = functions.swift; sourceTree = "<group>"; };
 		4991A2B927199789008559F9 /* GLDateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLDateFormatter.swift; sourceTree = "<group>"; };
+		4994278C27935EBD0009ADD8 /* AppStorage+init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStorage+init.swift"; sourceTree = "<group>"; };
 		499A3EE52719D0FA0045683D /* TestGLappUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestGLappUI.swift; sourceTree = "<group>"; };
 		499A3EE72719D37A0045683D /* UITestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UITestPlan.xctestplan; sourceTree = "<group>"; };
 		499A3EE82719D5B20045683D /* ExtensiveTestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = ExtensiveTestPlan.xctestplan; sourceTree = "<group>"; };
@@ -467,6 +485,17 @@
 			path = CustomDebugStringConvertible;
 			sourceTree = "<group>";
 		};
+		492B9A8B2790ACC4009B866D /* SettingsValue */ = {
+			isa = PBXGroup;
+			children = (
+				492B9A942791DA5D009B866D /* SettingsStore.swift */,
+				492B9A85278F6111009B866D /* SettingsValue.swift */,
+				492B9A8C2790ACD3009B866D /* SettingsValueWithFunctionality.swift */,
+				492B9A9027914096009B866D /* SettingsValueStrideable.swift */,
+			);
+			path = SettingsValue;
+			sourceTree = "<group>";
+		};
 		4931D92C276376F9003DCF28 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -543,6 +572,7 @@
 				499C08632735321100206514 /* UNAuthorizationStatus+functionalityState.swift */,
 				499C0865273532CA00206514 /* EKAuthorizationStatus+functionalityState.swift */,
 				49B8D089276CF9CF0099B0F3 /* UserDefaults+keyPaths.swift */,
+				492B9A892790A6AE009B866D /* OptionalStridable+Stridable.swift */,
 				4921C4872731B85E00DA256D /* CustomDebugStringConvertible */,
 			);
 			path = Extensions;
@@ -581,6 +611,10 @@
 				4991A2AF27199706008559F9 /* SettingsView+LoginViewDelegate.swift */,
 				49ED95FD278E08AA00E3A878 /* View+onChange.swift */,
 				49ED95FF278E0CCB00E3A878 /* View+onReceive.swift */,
+				492B9A8727907081009B866D /* Stepper+init.swift */,
+				492B9A8E2790AE96009B866D /* Toggle+init.swift */,
+				492B9A922791C99D009B866D /* Picker+init.swift */,
+				4994278C27935EBD0009ADD8 /* AppStorage+init.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -828,6 +862,7 @@
 			children = (
 				4976D15F27108514009C5AC2 /* Constants.swift */,
 				49118E75276E28F900A5B7A2 /* ClassTestReminderTimeMode.swift */,
+				492B9A8B2790ACC4009B866D /* SettingsValue */,
 				4934052727121FCF008B059B /* Data management */,
 				4934052427121B94008B059B /* Extensions */,
 				4934050427117C7A008B059B /* errors */,
@@ -1191,6 +1226,7 @@
 				49F380F32710E174002AE814 /* ClassTest.swift in Sources */,
 				495D25DF273AA72900F3899D /* RepresentativePlan+Codable.swift in Sources */,
 				4934052B2712BC6A008B059B /* DataManagementTask.swift in Sources */,
+				492B9A8A2790A6AE009B866D /* OptionalStridable+Stridable.swift in Sources */,
 				49517FFE271F73BD0085BEA6 /* Timetable+Equatable.swift in Sources */,
 				495BC538274C00C900BE3E05 /* RepresentativeLessonInlineViewModel.swift in Sources */,
 				49250B652720A8DE0096411F /* AppManager.swift in Sources */,
@@ -1203,6 +1239,7 @@
 				4991A2B027199706008559F9 /* SettingsView+LoginViewDelegate.swift in Sources */,
 				4921C48B2731BEA900DA256D /* Lesson+CustomDebugStringConvertible.swift in Sources */,
 				49F380EA2710E095002AE814 /* Weekday.swift in Sources */,
+				492B9A9127914096009B866D /* SettingsValueStrideable.swift in Sources */,
 				49D67A1F273E728F00ADC319 /* RepresentativeDay+CustomDebugStringConvertible.swift in Sources */,
 				49AF336C2719963A00F406D1 /* LessonInlineView.swift in Sources */,
 				49D67A29273E9E6600ADC319 /* RepresentativeLesson+Differentiable.swift in Sources */,
@@ -1238,10 +1275,13 @@
 				4921C47E2731979600DA256D /* Date+janFirst2000.swift in Sources */,
 				4991A2B527199768008559F9 /* TimetableParser.swift in Sources */,
 				493E8AC5273003DA008C9B13 /* UIColor+isDark+isTransparent.swift in Sources */,
+				492B9A8D2790ACD3009B866D /* SettingsValueWithFunctionality.swift in Sources */,
 				495D25E1273AA75600F3899D /* RepresentativeDay+Codable.swift in Sources */,
 				49AF33662719962C00F406D1 /* RepresentativePlanView.swift in Sources */,
 				493405172711BADE008B059B /* MockDataManager.swift in Sources */,
 				49D67A1D273E718500ADC319 /* RepresentativePlan+CustomDebugStringConvertible.swift in Sources */,
+				492B9A952791DA5D009B866D /* SettingsStore.swift in Sources */,
+				492B9A86278F6111009B866D /* SettingsValue.swift in Sources */,
 				49526F96272190D900FD0242 /* FClassTestReminders.swift in Sources */,
 				499A3EEE2719FB010045683D /* UpcomingClassTestView.swift in Sources */,
 				4962EC5F274A4E36000CDD4E /* Weekday+CustomStringConvertible.swift in Sources */,
@@ -1275,6 +1315,7 @@
 				4934050627117C88008B059B /* ParserError.swift in Sources */,
 				49E59DE6271C7180009A1609 /* LessonOrSubjectInfoView.swift in Sources */,
 				495D25DD273AA6EA00F3899D /* RepresentativeDay+Equatable.swift in Sources */,
+				492B9A932791C99D009B866D /* Picker+init.swift in Sources */,
 				4991A2A7271996F8008559F9 /* SettingsView.swift in Sources */,
 				494C5FAB273FC8D1003D39DC /* IntentToHandle.swift in Sources */,
 				492804C2272010220055ED63 /* ClassTestPlan+Equatable.swift in Sources */,
@@ -1287,6 +1328,7 @@
 				49D67A2B273EA6B900ADC319 /* RepresentativeLesson+Copying.swift in Sources */,
 				490A22CA274623480090C5AC /* Date+Identifiable.swift in Sources */,
 				499C0866273532CA00206514 /* EKAuthorizationStatus+functionalityState.swift in Sources */,
+				492B9A8827907081009B866D /* Stepper+init.swift in Sources */,
 				4962EC4F274A45A6000CDD4E /* RepresentativeLesson+CSIndexable.swift in Sources */,
 				49AA517D2750DEF000BD03D8 /* CodableColor.swift in Sources */,
 				4991A2B82719976F008559F9 /* functions.swift in Sources */,
@@ -1305,6 +1347,7 @@
 				49FE0C7C276E094700643682 /* ClassTestReminderSettings.swift in Sources */,
 				491C4829273566D60027707E /* GLappScene.swift in Sources */,
 				49EEDE4E272167D8009A4C6A /* FNotifications.swift in Sources */,
+				4994278D27935EBD0009ADD8 /* AppStorage+init.swift in Sources */,
 				49AF33622719962100F406D1 /* ClassTestInlineView.swift in Sources */,
 				49D67A25273E786200ADC319 /* RepresentativeDay+Differentiable.swift in Sources */,
 				49ED95F8278D947F00E3A878 /* AppLockedView.swift in Sources */,
@@ -1334,6 +1377,7 @@
 				4934052627121BA0008B059B /* Date+formatting.swift in Sources */,
 				49524BC0272F24370069880B /* UIColor+random.swift in Sources */,
 				4962EC55274A491F000CDD4E /* RepresentativeDay+DeliverableByNotification.swift in Sources */,
+				492B9A8F2790AE96009B866D /* Toggle+init.swift in Sources */,
 				4921C4862731AD6A00DA256D /* DateComponents+Comparable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1544,7 +1588,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLapp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;
@@ -1578,7 +1622,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLappRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;

@@ -11,10 +11,10 @@ struct AdvancedSettingsView: View {
     @ObservedObject var model: AdvancedSettingsViewModel
     @State private var showingScheduledNotificationsView = false
     @State private var provisionalAuthorization = false
-    @AppStorage(UserDefaultsKeys().reprPlanNotificationsHighRelevanceTimeInterval) var reprPlanNotificationHighRelevanceTimeInterval = Constants.defaultReprPlanNotificationsHighRelevanceTimeInterval
-    @AppStorage(UserDefaultsKeys().reprPlanNotificationsEntireReprPlan) var reprPlanNotificationsEntireReprPlan = false
-    @AppStorage(UserDefaultsKeys().dontSaveReprPlanUpdateTimestampWhenViewingReprPlan) var dontSaveReprPlanUpdateTimestampWhenViewingReprPlan = false
-    @AppStorage(UserDefaultsKeys().backgroundReprPlanCheckTimeInterval) var backgroundReprCheckTimeInterval = Constants.defaultBackgroundReprPlanCheckMinimumTimeInterval
+    @AppStorage(UserDefaultsKeys().reprPlanNotificationsHighRelevanceTimeInterval) var reprPlanNotificationHighRelevanceTimeInterval = SettingsStore().reprPlanNotificationsHighRelevanceTimeInterval.defaultValue
+    @AppStorage(UserDefaultsKeys().reprPlanNotificationsEntireReprPlan) var reprPlanNotificationsEntireReprPlan = SettingsStore().reprPlanNotificationsEntireReprPlan.defaultValue
+    @AppStorage(UserDefaultsKeys().dontSaveReprPlanUpdateTimestampWhenViewingReprPlan) var dontSaveReprPlanUpdateTimestampWhenViewingReprPlan = SettingsStore().dontSaveReprPlanUpdateTimestampWhenViewingReprPlan.defaultValue
+    @AppStorage(UserDefaultsKeys().backgroundReprPlanCheckTimeInterval) var backgroundReprPlanCheckTimeInterval = SettingsStore().backgroundReprPlanCheckTimeInterval.defaultValue
     var body: some View {
         Form {
             Section {
@@ -31,37 +31,36 @@ struct AdvancedSettingsView: View {
                     }
                 }
                 Section {
-                    Stepper(GLDateFormatter.dateComponentsFormatter.string(from: .init(hour: Int(reprPlanNotificationHighRelevanceTimeInterval / 3600))) ?? "not_available", value: $reprPlanNotificationHighRelevanceTimeInterval, in: 3600...24 * 3600, step: 3600)
-                        .onChange(of: reprPlanNotificationHighRelevanceTimeInterval) { _ in
-                            Constants.FeedbackGenerator.didChangeStepperValue()
-                        }
+                    Stepper(settingsValue: \.reprPlanNotificationsHighRelevanceTimeInterval) {
+                        GLDateFormatter.dateComponentsFormatter.string(from: .init(second: Int(reprPlanNotificationHighRelevanceTimeInterval))) ?? "not_available"
+                    }
+                    .onChange(of: reprPlanNotificationHighRelevanceTimeInterval) {_ in
+                        Constants.FeedbackGenerator.didChangeSegmentedControlValue()
+                    }
                     Text("repr_plan_notifications_high_relevance_explanation")
                         .foregroundColor(.secondary)
                 }
                 Section {
-                    Stepper(GLDateFormatter.dateComponentsFormatter.string(from: .init(second: Int(backgroundReprCheckTimeInterval))) ?? NSLocalizedString("not_available"), value: $backgroundReprCheckTimeInterval, in: 600...3600, step: 60)
-                        .onChange(of: backgroundReprCheckTimeInterval) { timeInterval in
-                            Constants.FeedbackGenerator.didChangeStepperValue()
-                        }
-                        .onDisappear {
-                            BackgroundTaskManager.cancelBackgroundRepresentativePlanCheck()
-                            BackgroundTaskManager.scheduleRepresentativeCheckTask()
-                        }
+                    Stepper(settingsValue: \.backgroundReprPlanCheckTimeInterval) {
+                        GLDateFormatter.dateComponentsFormatter.string(from: .init(second: Int(backgroundReprPlanCheckTimeInterval))) ?? NSLocalizedString("not_available")
+                    }
+                    .onChange(of: backgroundReprPlanCheckTimeInterval) {_ in
+                        Constants.FeedbackGenerator.didChangeSegmentedControlValue()
+                    }
+                    .onDisappear {
+                        BackgroundTaskManager.cancelBackgroundRepresentativePlanCheck()
+                        BackgroundTaskManager.scheduleRepresentativeCheckTask()
+                    }
                     Text("background_check_minimum_time_interval_explanation")
                         .foregroundColor(.secondary)
                 }
                 Section {
-                    Toggle("repr_plan_notifications_send_entire_repr_plan", isOn: $reprPlanNotificationsEntireReprPlan)
+                    Toggle(settingsValue: \.reprPlanNotificationsEntireReprPlan, title: "repr_plan_notifications_send_entire_repr_plan")
                     Text("repr_plan_notifications_send_entire_repr_plan_explanation")
                         .foregroundColor(.secondary)
                 }
                 Section {
-                    Toggle("dont_save_repr_plan_update_timestamp_when_viewing_app", isOn: $dontSaveReprPlanUpdateTimestampWhenViewingReprPlan)
-                        .onChange(of: dontSaveReprPlanUpdateTimestampWhenViewingReprPlan) { dontSave in
-                            if dontSave {
-                                removeLastReprPlanUpdateTimestamp()
-                            }
-                        }
+                    Toggle(settingsValue: \.dontSaveReprPlanUpdateTimestampWhenViewingReprPlan, title: "dont_save_repr_plan_update_timestamp_when_viewing_app")
                     Text("dont_save_repr_plan_update_timestamp_when_viewing_app_explanation")
                         .foregroundColor(.secondary)
                 }

@@ -115,26 +115,6 @@ func resetAllDataOn(dataManager: DataManager? = nil, appManager: AppManager? = n
     }
 }
 
-func resetPreferences(appManager: AppManager, dataManager: DataManager, withHapticFeedback: Bool = false) {
-    let generator: UINotificationFeedbackGenerator? = withHapticFeedback ? .init() : nil
-    generator?.prepare()
-    UserDefaults.standard.set(ClassTestReminderTimeMode.atClassTestTime, for: \.classTestReminderTimeMode)
-    UserDefaults.standard.set(Constants.defaultClassTestReminderManualTime, for: \.classTestReminderManualTime)
-    UserDefaults.standard.set(Constants.defaultClassTestReminderNotificationsBeforeDays, for: \.classTestReminderNotificationBeforeDays)
-    UserDefaults.standard.set(Constants.defaultReprPlanNotificationsHighRelevanceTimeInterval, for: \.reprPlanNotificationsHighRelevanceTimeInterval)
-    UserDefaults.standard.set(false, for: \.reprPlanNotificationsEntireReprPlan)
-    UserDefaults.standard.set(false, for: \.dontSaveReprPlanUpdateTimestampWhenViewingReprPlan)
-    UserDefaults.standard.set(Constants.defaultBackgroundReprPlanCheckMinimumTimeInterval, for: \.backgroundReprPlanCheckTimeInterval)
-    try? appManager.classTestReminders.enable(with: appManager, dataManager: dataManager)
-    try? appManager.demoMode.disable(with: appManager, dataManager: dataManager)
-    try? appManager.backgroundReprPlanNotifications.enable(with: appManager, dataManager: dataManager)
-    try? appManager.classTestCalendarEvents.enable(with: appManager, dataManager: dataManager)
-    try? appManager.spotlightIntegration.enable(with: appManager, dataManager: dataManager)
-    try? appManager.coloredInlineSubjects.enable(with: appManager, dataManager: dataManager)
-    appManager.reload(with: dataManager)
-    generator?.notificationOccurred(.success)
-}
-
 func isAppLocked() -> Bool {
     UserDefaults.standard.bool(for: \.requireAuthentication) && !UserDefaults.standard.bool(for: \.didUnlockInCurrentSession)
 }

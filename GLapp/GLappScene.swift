@@ -10,6 +10,7 @@ import SwiftUI
 struct GLappScene: Scene {
     @ObservedObject var dataManager: DataManager
     @ObservedObject var appManager: AppManager
+    @AppStorage(UserDefaultsKeys().demoMode) var demoMode = SettingsStore().demoMode.defaultValue
     var body: some Scene {
         WindowGroup {
             AppLockGateView(dataManager: dataManager, appManager: appManager)

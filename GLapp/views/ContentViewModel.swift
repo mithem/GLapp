@@ -33,6 +33,7 @@ final class ContentViewModel: ObservableObject, BindingAttributeRepresentable {
     }
     
     func onAppear() {
+        appManager.selfRepair()
         appManager.reload(with: dataManager)
         applyFirstLaunchConfiguration()
         dataManager.loadData()

@@ -24,6 +24,7 @@ final class AppManager: ObservableObject {
     @Published var spotlightIntegration: FSpotlightIntegration
     @Published var requireAuthentication: FRequireAuthentication
     @Published var userAttentionMayBeRequired: Bool
+    @Published var settingsStore: SettingsStore
     
     var userExperienceRelevantFunctionalities: [Functionality] { // ncomputed property so it's redrawn every time FunctionalityCheckView refreshes
         var types = [Functionality.FunctionalityType.notifications, .timeSensitiveNotifications, .backgroundRefresh, .backgroundReprPlanNotifications, .spotlightIntegration, .requireAuthentication]
@@ -54,6 +55,7 @@ final class AppManager: ObservableObject {
         spotlightIntegration = .init()
         requireAuthentication = .init()
         userAttentionMayBeRequired = false
+        settingsStore = .init()
     }
     
     /// Reload whether user attention may be required. Must be called from the main thread.
@@ -158,5 +160,9 @@ final class AppManager: ObservableObject {
             }
         }
         UserDefaults.standard.set(Constants.appVersion.description, for: \.lastLaunchedVersion)
+    }
+    
+    func selfRepair() {
+        settingsStore.selfRepair()
     }
 }

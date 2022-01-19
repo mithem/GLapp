@@ -10,12 +10,10 @@ import UIKit
 
 final class BackgroundTaskManager {
     class func scheduleRepresentativeCheckTask() {
-        var timeInterval: TimeInterval? = .init(UserDefaults.standard.double(for: \.backgroundReprPlanCheckTimeInterval))
-        if timeInterval ?? 0 < 600 { // arbitrary restriction
-            timeInterval = nil
-        }
+        let backgroundCheckTimeInterval = SettingsStore().backgroundReprPlanCheckTimeInterval
+        let timeInterval: TimeInterval = backgroundCheckTimeInterval.getCurrentValue() ?? backgroundCheckTimeInterval.defaultValue
         let request = BGAppRefreshTaskRequest(identifier: Constants.Identifiers.backgroundCheckRepresentativePlan)
-        request.earliestBeginDate = Date(timeIntervalSinceNow: timeInterval ?? Constants.defaultBackgroundReprPlanCheckMinimumTimeInterval)
+        request.earliestBeginDate = Date(timeIntervalSinceNow: timeInterval)
         do {
             try BGTaskScheduler.shared.submit(request)
         } catch {

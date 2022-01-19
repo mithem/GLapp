@@ -162,12 +162,12 @@ final class NotificationManager {
         let classTestDateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: classTestDate)
         var daysBeforeClassTest = UserDefaults.standard.integer(for: \.classTestReminderNotificationBeforeDays)
         if daysBeforeClassTest == 0 { // no previous initialization e.g. by SettingsView
-            daysBeforeClassTest = Constants.defaultClassTestReminderNotificationsBeforeDays
+            daysBeforeClassTest = SettingsStore().classTestRemindersRemindBeforeDays.defaultValue
         }
         var reminderComponents = classTestDateComponents
         reminderComponents.day! -= daysBeforeClassTest
         reminderComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: Calendar.current.date(from: reminderComponents)!) // if a classTest is scheduled at the beginning of the month, for example, this is a way for that to actually give valid dateComponents as a trigger, otherwise they would contain negative numbers and not trigger anything
-        checkForManualTimeMode: if ClassTestReminderTimeMode(rawValue: UserDefaults.standard.integer(for: \.classTestReminderTimeMode)) == .manual {
+        checkForManualTimeMode: if SettingsStore().classTestRemindersTimeMode.getCurrentValue() == .manual || (classTestDateComponents.hour == 0 && classTestDateComponents.minute == 0) { // startDate (lesson) not available yet
             if let date = UserDefaults.standard.object(for: \.classTestReminderManualTime, decodeTo: Date.self) {
                 let components = Calendar.current.dateComponents([.hour, .minute], from: date)
                 guard components.hour != nil && components.minute != nil else { break checkForManualTimeMode } // just a precaution

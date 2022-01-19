@@ -56,7 +56,7 @@ extension RepresentativeLesson: DeliverableByNotification {
         }
         var highRelevanceInterval = UserDefaults.standard.double(for: \.reprPlanNotificationsHighRelevanceTimeInterval)
         if highRelevanceInterval == 0 {
-            highRelevanceInterval = Constants.defaultReprPlanNotificationsHighRelevanceTimeInterval
+            highRelevanceInterval = UserDefaults.standard.double(for: SettingsStore().reprPlanNotificationsHighRelevanceTimeInterval.key)
         }
         if timeInterval > 2 * highRelevanceInterval {
             return 0

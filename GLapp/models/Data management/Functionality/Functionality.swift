@@ -12,6 +12,7 @@ import SwiftUI
 class Functionality: ObservableObject, FunctionalityProtocol, Identifiable {
     
     typealias Identifier = String
+    typealias SetCompletion = (Result<Void, Functionality.Error>) -> Void
     
     let id: Identifier
     let title: String
@@ -38,18 +39,17 @@ class Functionality: ObservableObject, FunctionalityProtocol, Identifiable {
         }
     }
     
-    func isEnabledBinding(appManager: AppManager, dataManager: DataManager, setCompletion: @escaping (Result<Void, Error>) -> Void) -> Binding<Bool> {
+    func isEnabledBinding(appManager: AppManager, dataManager: DataManager, setCompletion: @escaping SetCompletion) -> Binding<Bool> {
         .init(get: {
             self.isEnabled == .yes
         }, set: { enabled in
             do {
                 if enabled {
                     try self.enable(with: appManager, dataManager: dataManager)
-                    setCompletion(.success(Void()))
                 } else {
                     try self.disable(with: appManager, dataManager: dataManager)
-                    setCompletion(.success(Void()))
                 }
+                setCompletion(.success(Void()))
             } catch {
                 guard let error = error as? Error else { return }
                 setCompletion(.failure(error))

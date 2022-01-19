@@ -8,42 +8,34 @@
 import SwiftUI
 
 struct ClassTestReminderSettings: View {
-    @AppStorage(UserDefaultsKeys().classTestReminderNotificationBeforeDays) var remindNDaysBeforeClassTests = Constants.defaultClassTestReminderNotificationsBeforeDays
-    @AppStorage(UserDefaultsKeys().classTestReminderTimeMode) var classTestReminderTimeMode = ClassTestReminderTimeMode.atClassTestTime
-    @State private var classTestReminderTimeManualTime = Constants.defaultClassTestReminderManualTime
+    @AppStorage(UserDefaultsKeys().classTestReminderNotificationBeforeDays) var classTestRemindersRemindBeforeDays = SettingsStore().classTestRemindersRemindBeforeDays.defaultValue
+    @State private var classTestReminderTimeManualTime = SettingsStore().classTestRemindersManualTime.defaultValue
     @ObservedObject var dataManager: DataManager
     @ObservedObject var appManager: AppManager
     let handler: SettingsViewIsEnabledBindingResultHandling
     var body: some View {
         Form {
-            Toggle(appManager.classTestReminders.title, isOn: appManager.classTestReminders.isEnabledBinding(appManager: appManager, dataManager: dataManager, setCompletion: handler.handleIsEnabledBindingResult))
-            Stepper(value: $remindNDaysBeforeClassTests, in: 1...31) {
-                Text(NSLocalizedString("remind_n_days_before_class_tests_colon") + String(remindNDaysBeforeClassTests))
-                    .lineLimit(nil) // not sure why that was a problem
+            Toggle(settingsValue: \.classTestReminders, appManager: appManager, dataManager: dataManager, setCompletion: handler.handleIsEnabledBindingResult)
+            Stepper(settingsValue: \.classTestRemindersRemindBeforeDays) {
+                NSLocalizedString("remind_n_days_before_class_tests_colon") + String(classTestRemindersRemindBeforeDays)
             }
-                .onChange(of: remindNDaysBeforeClassTests) { _ in
-                    appManager.classTestReminders.scheduleClassTestRemindersIfAppropriate(with: dataManager)
-                    Constants.FeedbackGenerator.didChangeStepperValue()
-                }
-            Picker("class_test_reminder_time_mode", selection: $classTestReminderTimeMode) {
+            .onChange(of: classTestRemindersRemindBeforeDays) { _ in
+                Constants.FeedbackGenerator.didChangeStepperValue()
+            }
+            Picker(settingsValue: appManager.settingsStore.classTestRemindersTimeMode, title: "class_test_reminder_time_mode") {
                 Text("class_test_reminder_time_mode_at_class_test_time").tag(ClassTestReminderTimeMode.atClassTestTime)
                 Text("class_test_reminder_time_mode_manual").tag(ClassTestReminderTimeMode.manual)
             }
                 .pickerStyle(.segmented)
-                .onChange(of: classTestReminderTimeMode) { mode in
-                    Constants.FeedbackGenerator.didChangeSegmentedControlValue()
+            DatePicker("class_test_reminder_time_manual_time", selection: $classTestReminderTimeManualTime, displayedComponents: .hourAndMinute)
+                .datePickerStyle(.compact)
+                .onAppear {
+                    classTestReminderTimeManualTime = UserDefaults.standard.object(for: \.classTestReminderManualTime, decodeTo: Date.self) ?? SettingsStore().classTestRemindersManualTime.defaultValue
                 }
-            if classTestReminderTimeMode == .manual {
-                DatePicker("class_test_reminder_time_time", selection: $classTestReminderTimeManualTime, displayedComponents: .hourAndMinute)
-                    .datePickerStyle(.compact)
-                    .onAppear {
-                        classTestReminderTimeManualTime = UserDefaults.standard.object(for: \.classTestReminderManualTime, decodeTo: Date.self) ?? Constants.defaultClassTestReminderManualTime
-                    }
-                    .onDisappear {
-                        UserDefaults.standard.set(classTestReminderTimeManualTime, for: \.classTestReminderManualTime)
-                        appManager.classTestReminders.scheduleClassTestRemindersIfAppropriate(with: dataManager)
-                    }
-            }
+                .onDisappear {
+                    UserDefaults.standard.set(classTestReminderTimeManualTime, for: \.classTestReminderManualTime)
+                    appManager.classTestReminders.scheduleClassTestRemindersIfAppropriate(with: dataManager)
+                }
         }
         .navigationTitle("class_test_reminders")
     }

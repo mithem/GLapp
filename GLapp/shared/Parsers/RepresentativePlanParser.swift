@@ -69,6 +69,7 @@ class RepresentativePlanParser {
                         let lesson = RepresentativeLesson(date: date, lesson: lessonNo, room: room, newRoom: newRoom, note: note, subject: subject, normalTeacher: normalTeacher, representativeTeacher: reprTeacher)
                         reprDay.lessons.append(lesson)
                     } else if elem.name.lowercased() == "informationen" {
+                        reprDay.notes.append(contentsOf: extractNotes(from: dayIndex))
                         var note = elem.text
                         note = note.replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: "\t", with: "")
                         if note != "" && note != " " {
@@ -80,13 +81,22 @@ class RepresentativePlanParser {
                     reprPlan.representativeDays.append(reprDay)
                 }
             } else if childElem.name == "Informationen" {
-                var note = childElem.text
-                note = note.replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: "\t", with: "")
-                if note != ""  && note != " " {
-                    reprPlan.notes.append(note)
-                }
+                reprPlan.notes.append(contentsOf: extractNotes(from: childIndex))
             }
         }
         return .success(reprPlan)
+    }
+    
+    static private func extractNotes(from indexer: XMLIndexer) -> [String] {
+        var notes = [String]()
+        for infoIndex in indexer.children {
+            guard let elem = infoIndex.element else { continue }
+            guard elem.name == "Info" else { continue }
+            let note = elem.attribute(by: "text")
+            if note?.text != "" && note?.text != " ", note?.text != nil {
+                notes.append(note!.text)
+            }
+        }
+        return notes
     }
 }

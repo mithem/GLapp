@@ -37,23 +37,6 @@ class TestRepresentativePlanParser: XCTestCase {
     }
     
     func testParseSuccess() throws {
-        let input = """
-<Vertretungsplan Stand="2021-10-25 12:07:00" Timestamp="1635156420">
-<Vertretungstag Datum="Montag, 25.10.2021"></Vertretungstag>
-<Vertretungstag Datum="Dienstag, 26.10.2021">
-    <Stunde Std="6" \n\t\t\t\t\t\t\t\tKlasse="Q2" \n\t\t\t\t\t\t\t\tRaum="PR2" \n\t\t\t\t\t\t\t\tFach="PH" RaumNeu="" Zeitstempel="" Bemerkung="(frei)" FLehrer="SEN" VLehrer=""></Stunde>
-    <Stunde Std="7" \n\t\t\t\t\t\t\t\tKlasse="Q2" \n\t\t\t\t\t\t\t\tRaum="PR2" \n\t\t\t\t\t\t\t\tFach="PH" RaumNeu="" Zeitstempel="" Bemerkung="(frei)" FLehrer="SEN" VLehrer="SEN"></Stunde>
-    <Stunde Std="8" Klasse="05a" Raum="130" Fach="D" RaumNeu="A16" Zeitstempel="" Bemerkung="Raumänderung" FLehrer="ABC" VLehrer="DEF" />
-    <Stunde Std="9" Klasse="5b" Raum="124" Fach="E" RaumNeu="E14" Zeitstempel="" Bemerkung="raum?nderung" FLehrer="DEF" VLehrer="GHI"></Stunde>
-    <Stunde Std="10" Klasse="5b" Raum="124" Fach="E" RaumNeu="E14" Zeitstempel="" Bemerkung="" FLehrer="DEF" VLehrer="GHI" />
-    <Informationen>\n\t\t\t\t\t\tTest information</Informationen>
-</Vertretungstag>\t\t\t
-<Vertretungstag Datum="Mittwoch, 27.10.2021">
-    <Stunde Std="2" Klasse="08b" Raum="130" Fach="PL" RaumNeu="" Zeitstempel="" Bemerkung="" FLehrer="JKL" VLehrer="MNO"></Stunde>
-</Vertretungstag>
-<Informationen>\n\t\t\tAnother test information\t\t\t</Informationen>\n\t\t\t\n
-\t\t\t</Vertretungsplan>\n\t\t\t\n\t\t\t
-"""
         let dataManager = MockDataManager()
         let date = Calendar.current.date(from: .init(timeZone: .init(identifier: "Europe/Berlin"), year: 2021, month: 10, day: 26))!
         let date2 = Calendar.current.date(from: .init(timeZone: .init(identifier: "Europe/Berlin"), year: 2021, month: 10, day: 27))!
@@ -74,7 +57,7 @@ class TestRepresentativePlanParser: XCTestCase {
             ], notes: [])
         ], lessons: [], notes: ["Another test information"])
         
-        let result = RepresentativePlanParser.parse(plan: input, with: dataManager)
+        let result = RepresentativePlanParser.parse(plan: MockData.validReprPlanString, with: dataManager)
         
         XCTAssertEqual(try result.get(), expected)
     }

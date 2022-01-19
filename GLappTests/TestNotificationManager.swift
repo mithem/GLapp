@@ -14,18 +14,20 @@ class TestNotificationManager: XCTestCase {
     static let distantYear = Calendar.current.dateComponents([.year], from: .distantFuture).year!
     static let distantClassTestDate = Calendar.current.date(from: .init(calendar: .init(identifier: .gregorian), year: distantYear, month: 12, day: 3))! // when choosing a sooner date, it runs the risk of finding the appropriate time to schedule to be a "dateInPast"
     static let distantClassTest = ClassTest(date: .rightNow, classTestDate: distantClassTestDate, start: 1, end: 5, room: nil, subject: MockData.subject, teacher: nil, individual: true, opened: true, alias: "")
+    var settingsStore: SettingsStore!
     
     override func setUpWithError() throws {
-        UserDefaults.standard.set(Self.beforeDays, for: \.classTestReminderNotificationBeforeDays)
+        settingsStore = .init()
+        settingsStore.classTestRemindersRemindBeforeDays.set(to: Self.beforeDays)
     }
     
     func atClassTestTime() {
-        UserDefaults.standard.set(ClassTestReminderTimeMode.atClassTestTime, for: \.classTestReminderTimeMode)
+        settingsStore.classTestRemindersTimeMode.set(to: .atClassTestTime)
     }
     
     func manualTime() {
-        UserDefaults.standard.set(ClassTestReminderTimeMode.manual.rawValue, for: \.classTestReminderTimeMode)
-        UserDefaults.standard.set(Date.today(at: .init(hour: 10, minute: 37)), for: \.classTestReminderManualTime)
+        settingsStore.classTestRemindersTimeMode.set(to: .manual)
+        settingsStore.classTestRemindersManualTime.set(to:  .today(at: .init(hour: 10, minute: 37)))
     }
     
     func testGetClassTestReminderDeliveryComponentsTimeOfClassTestAtClassTestTime() throws {

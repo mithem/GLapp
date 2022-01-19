@@ -16,13 +16,6 @@ class TestClassTestPlanParser: XCTestCase {
     }
     
     func testParseSuccess() throws {
-        let plan = """
-<Klausurplan Stand="29.09.2021 08:55:04" Timestamp="1632898504">
-<Klausur individuell="1" Datum="29.10.2021" freigegeben="1" vonStd="2" bisStd="5" raum="PR2" bezeichnung="PH-LK1" fach="PH" stand="2021-09-29 08:55:05" lehrer="SEN"/>
-<Klausur individuell="0" Datum="02.11.2021" freigegeben="1" vonStd="-" bisStd="-" raum="-" bezeichnung="SW-GK1" fach="SW" stand="2021-09-29 08:55:05" lehrer="HBS"/>
-<Klausur individuell="1" Datum="01.12.2021" freigegeben="0" vonStd="-" bisStd="-" raum="-" bezeichnung="M-LK2" fach="M" stand="2021-09-29 08:55:07" lehrer="PST"/>
-</Klausurplan>
-"""
         func d(month: Int, day: Int) -> Date {
             let components = DateComponents(year: 2021, month: month, day: day)
             return Calendar(identifier: .gregorian).date(from: components)!
@@ -37,7 +30,7 @@ class TestClassTestPlanParser: XCTestCase {
             .init(date: anyDate, classTestDate: d(month: 12, day: 1), start: nil, end: nil, room: nil, subject: sM, teacher: "PST", individual: true, opened: false, alias: "M-LK2")
         ])
         
-        let result = try ClassTestPlanParser.parse(plan: plan, with: manager).get()
+        let result = try ClassTestPlanParser.parse(plan: MockData.validClassTestPlanString, with: manager).get()
         
         XCTAssertEqual(result.date, expected.date)
         XCTAssertEqual(result.classTests.count, expected.classTests.count)
@@ -59,6 +52,11 @@ class TestClassTestPlanParser: XCTestCase {
     
     func testParseNoTimestamp() {
         let result = ClassTestPlanParser.parse(plan: "<Klausurplan></Klausurplan>", with: manager)
+        XCTAssertEqual(result, .failure(.noTimestamp))
+    }
+    
+    func testSecondaryStageI() {
+        let result = ClassTestPlanParser.parse(plan: MockData.emptyClassTestPlanString, with: manager)
         XCTAssertEqual(result, .failure(.noTimestamp))
     }
     

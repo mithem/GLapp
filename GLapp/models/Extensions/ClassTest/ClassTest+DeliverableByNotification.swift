@@ -18,8 +18,9 @@ extension ClassTest: DeliverableByNotification {
     
     var notificationSummary: String {
         var daysBeforeClassTest = UserDefaults.standard.integer(for: \.classTestReminderNotificationBeforeDays)
+        let remindBeforeDays = SettingsStore().classTestRemindersRemindBeforeDays
         if daysBeforeClassTest == 0 { // no previous initialization e.g. by SettingsView
-            daysBeforeClassTest = Constants.defaultClassTestReminderNotificationsBeforeDays
+            daysBeforeClassTest = remindBeforeDays.getCurrentValue() ?? remindBeforeDays.defaultValue
         }
         let deltaComponents = DateComponents(day: daysBeforeClassTest)
         return "\(alias) \(GLDateFormatter.numericRelativeDateTimeFormatter.localizedString(from: deltaComponents))"

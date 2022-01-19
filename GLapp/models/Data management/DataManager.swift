@@ -238,6 +238,9 @@ class DataManager: ObservableObject {
     }
     
     func getRepresentativePlan(completion: @escaping (NetworkResult<String, NetworkError>) -> Void) {
+        if demoMode {
+            return completion(.successWithData(MockData.validReprPlanString))
+        }
         let req: URLRequest
         do {
             guard let url = try getUrl(for: "/XML/vplan.php", authenticate: true) else {
@@ -275,13 +278,6 @@ class DataManager: ObservableObject {
         let generator = UINotificationFeedbackGenerator()
         if withHapticFeedback {
             generator.prepare()
-        }
-        if demoMode {
-            let plan = MockData.representativePlan
-            setContent(plan, for: \.getRepresentativePlan, with: withHapticFeedback ? generator : nil)
-            setError(nil, for: \.getRepresentativePlan)
-            saveLocalData()
-            return
         }
         startTask(\.getRepresentativePlan)
         getRepresentativePlan { result in
@@ -368,6 +364,9 @@ class DataManager: ObservableObject {
     }
     
     func getClassTestPlan(completion: @escaping (NetworkResult<String, NetworkError>) -> Void) {
+        if demoMode {
+            return completion(.successWithData(MockData.validClassTestPlanString))
+        }
         let req: URLRequest
         do {
             guard let url = try getUrl(for: "/XML/klausur.php", authenticate: true) else {
@@ -405,13 +404,6 @@ class DataManager: ObservableObject {
         if withHapticFeedback {
             generator.prepare()
         }
-        if demoMode {
-            let plan = MockData.classTestPlan
-            setContent(plan, for: \.getClassTestPlan, with: withHapticFeedback ? generator : nil)
-            setError(nil, for: \.getClassTestPlan)
-            saveLocalData()
-            return
-        }
         startTask(\.getClassTestPlan)
         getClassTestPlan() { result in
             switch result {
@@ -445,6 +437,9 @@ class DataManager: ObservableObject {
     }
     
     func getTimetable(completion: @escaping (NetworkResult<String, NetworkError>) -> Void) {
+        if demoMode {
+            return completion(.successWithData(MockData.validTimetableString))
+        }
         let req: URLRequest
         do {
             guard let url = try getUrl(for: "/XML/stupla.php", authenticate: true) else {
@@ -480,13 +475,6 @@ class DataManager: ObservableObject {
         let generator = UINotificationFeedbackGenerator()
         if withHapticFeedback {
             generator.prepare()
-        }
-        if demoMode {
-            let timetable = MockData.timetable
-            setContent(timetable, for: \.getTimetable, with: withHapticFeedback ? generator : nil)
-            setError(nil, for: \.getTimetable)
-            saveLocalData()
-            return
         }
         startTask(\.getTimetable)
         getTimetable() { result in
@@ -531,11 +519,11 @@ class DataManager: ObservableObject {
     func loadData(withHapticFeedBack: Bool = false) {
         let generator: UINotificationFeedbackGenerator? = withHapticFeedBack ? .init() : nil
         generator?.prepare()
+        reloadDemoMode()
         loadRepresentativePlan()
         loadClassTestPlan()
         loadTimetable()
         loadSubjectColorMap()
-        reloadDemoMode()
         if let generator = generator {
             giveCorrectTapticFeedback(on: generator)
         }

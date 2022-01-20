@@ -17,7 +17,7 @@ class TimetableParser {
             if timetableElem.name != "Stundenplan" {
                 return completion(.failure(.invalidRootElement))
             }
-            guard let timestampText = timetableElem.attribute(by: "Timestamp")?.text else { return completion(.failure(.noTimestamp)) }
+            guard let timestampText = timetableElem.attribute(by: "Timestamp")?.text.trimmed() else { return completion(.failure(.noTimestamp)) }
             guard let timestampInterval = TimeInterval(timestampText) else { return completion(.failure(.invalidTimestamp)) }
             let date = Date(timeIntervalSince1970: timestampInterval)
             let timetable = Timetable(date: date)
@@ -27,7 +27,7 @@ class TimetableParser {
                 if childElem.name != "Wochentag" {
                     continue
                 }
-                guard let weekdayNText = childElem.attribute(by: "Tag")?.text else { continue }
+                guard let weekdayNText = childElem.attribute(by: "Tag")?.text.trimmed() else { continue }
                 guard let weekdayN = Int(weekday: weekdayNText) else { continue }
                 let weekday = Weekday(id: weekdayN)
                 
@@ -36,15 +36,15 @@ class TimetableParser {
                     if lessonElem.name != "Stunde" {
                         continue
                     }
-                    guard let lessonNText = lessonElem.attribute(by: "Std")?.text else { continue }
+                    guard let lessonNText = lessonElem.attribute(by: "Std")?.text.trimmed() else { continue }
                     guard let lessonN = Int(lessonNText) else { continue }
-                    guard var className = lessonElem.attribute(by: "Kurs")?.text else { continue }
-                    guard let room = lessonElem.attribute(by: "Raum")?.text else { continue }
-                    var teacher = lessonElem.attribute(by: "Lehrer")?.text
+                    guard var className = lessonElem.attribute(by: "Kurs")?.text.trimmed() else { continue }
+                    guard let room = lessonElem.attribute(by: "Raum")?.text.trimmed() else { continue }
+                    var teacher = lessonElem.attribute(by: "Lehrer")?.text.trimmed()
                     if teacher?.isEmpty ?? false { teacher = nil }
-                    var subjectType = lessonElem.attribute(by: "Kursart")?.text
+                    var subjectType = lessonElem.attribute(by: "Kursart")?.text.trimmed()
                     if subjectType?.isEmpty ?? false { subjectType = nil }
-                    var subjectName = lessonElem.attribute(by: "Fach")?.text
+                    var subjectName = lessonElem.attribute(by: "Fach")?.text.trimmed()
                     if subjectName?.isEmpty ?? false { subjectName = nil }
                     
                     if className.isEmpty && room.isEmpty && teacher?.isEmpty ?? true && subjectType?.isEmpty ?? true && subjectName?.isEmpty ?? true { // free lesson

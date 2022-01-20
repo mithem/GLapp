@@ -16,7 +16,7 @@ class RepresentativePlanParser {
         if reprPlanElem.name.lowercased() != "vertretungsplan" {
             return .failure(.invalidRootElement)
         }
-        guard let timestampText = reprPlanElem.attribute(by: "Timestamp")?.text else { return .failure(.noTimestamp) }
+        guard let timestampText = reprPlanElem.attribute(by: "Timestamp")?.text.trimmed() else { return .failure(.noTimestamp) }
         guard let timestampInterval = TimeInterval(timestampText) else { return .failure(.invalidTimestamp) }
         var date: Date? = Date(timeIntervalSince1970: timestampInterval)
         if date == .janFirst2000 { // gets sent for whatever reason when reprPlan is empty

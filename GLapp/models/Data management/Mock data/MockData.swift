@@ -48,7 +48,7 @@ struct MockData {
 """
     
     static let validReprPlanString = """
-<Vertretungsplan Stand="2021-10-25 12:07:00" Timestamp="1635156420">
+<Vertretungsplan Stand=" 2021-10-25 12:07:00\t" Timestamp=" \t 1635156420\t ">
 <Vertretungstag Datum="Montag, 25.10.2021"></Vertretungstag>
 <Vertretungstag Datum="Dienstag, 26.10.2021">
     <Stunde Std="2" Klasse="" Raum="" RaumNeu="" Zeitstempel="" Bemerkung="" FLehrer="" VLehrer=""/>
@@ -78,17 +78,17 @@ struct MockData {
 """
     
     static let validClassTestPlanString = """
-<Klausurplan Stand="29.09.2021 08:55:04" Timestamp="1632898504">
-<Klausur individuell="1" Datum="29.10.2021" freigegeben="1" vonStd="2" bisStd="5" raum="PR2" bezeichnung="PH-LK1" fach="PH" stand="2021-09-29 08:55:05" lehrer="SEN"/>
+<Klausurplan Stand=" 29.09.2021 08:55:04\t" Timestamp="\t1632898504 ">
+<Klausur individuell=" 1\t" Datum="\t29.10.2021 " freigegeben=" 1\t" vonStd="\t2 " bisStd=" 5\t" raum="\tPR2 " bezeichnung=" PH-LK1\t" fach="\tPH " stand=" 2021-09-29 08:55:05\t" lehrer="\tSEN "/>
 <Klausur individuell="0" Datum="02.11.2021" freigegeben="1" vonStd="-" bisStd="-" raum="-" bezeichnung="SW-GK1" fach="SW" stand="2021-09-29 08:55:05" lehrer="HBS"/>
 <Klausur individuell="1" Datum="01.12.2021" freigegeben="0" vonStd="-" bisStd="-" raum="-" bezeichnung="M-LK2" fach="M" stand="2021-09-29 08:55:07" lehrer="PST"/>
 </Klausurplan>
 """
     
     static let validTimetableString = """
-<Stundenplan Datum="2021-09-13 09:26:44" Timestamp="1631518004">
+<Stundenplan Datum=" 2021-09-13 09:26:44\t" Timestamp="\t1631518004 ">
 <Wochentag Tag="Montag">
-<Stunde Std="1" Kurs="PL-GK1" Raum="A14" Fach="PL" Kursart="GKM" Lehrer="TRR"/>
+<Stunde Std=" \t 1\t \t" Kurs="  PL-GK1  " Raum="\t\tA14\t\t \t" Fach="  PL \t\t\t" Kursart=" GKM " Lehrer="\tTRR\t"/>
 <Stunde Std="2" Kurs="IF-GK1" Raum="IR1" Fach="IF" Kursart="GKS" Lehrer="NFD"/>
 <Stunde Std="3" Kurs="IF-GK1" Raum="IR1" Fach="IF" Kursart="GKS" Lehrer="NFD"/>
 <Stunde Std="4" Kurs="E-GK1" Raum="A14" Fach="E" Kursart="AB3" Lehrer="ERD"/>

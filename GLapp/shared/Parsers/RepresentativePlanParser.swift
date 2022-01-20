@@ -27,33 +27,40 @@ class RepresentativePlanParser {
         for childIndex in reprPlanIndex.children {
             guard let childElem = childIndex.element else { continue }
             if childElem.name.lowercased() == "vertretungstag" {
-                guard var dateText = childElem.attribute(by: "Datum")?.text else { continue }
+                guard var dateText = childElem.attribute(by: "Datum")?.text.trimmed() else { continue }
                 dateText = String(dateText.suffix(10)) // dd.MM.yyyy
                 guard let date = GLDateFormatter.berlinFormatter.date(from: dateText) else { continue }
                 let reprDay = RepresentativeDay(date: date)
                 for dayIndex in childIndex.children {
                     guard let elem = dayIndex.element else { continue }
                     if elem.name.lowercased() == "stunde" {
-                        guard let lessonNo = Int(elem.attribute(by: "Std")?.text ?? "") else { continue }
-                        guard let normalTeacher = elem.attribute(by: "FLehrer")?.text else { continue }
-                        guard let subjectText = elem.attribute(by: "Fach")?.text else { continue }
-                        if subjectText.isEmpty || normalTeacher.isEmpty { // did happen. For an example, see `TestRepresentativePlanParser.testParseBrokenServerResponse`
-                            reprDay.lessons.append(.invalid)
-                            continue
+                        guard let lessonNo = Int(elem.attribute(by: "Std")?.text.trimmed() ?? "") else { continue }
+                        var normalTeacher = elem.attribute(by: "FLehrer")?.text.trimmed()
+                        if normalTeacher?.isEmpty == true {
+                            normalTeacher = nil
                         }
-                        let subject = dataManager.getSubject(subjectName: subjectText, className: nil)
-                        if subject.subjectName == nil {
-                            subject.subjectName = subjectText
+                        let subjectText = elem.attribute(by: "Fach")?.text.trimmed()
+                        var subject: Subject?
+                        if subjectText?.isEmpty != false && normalTeacher?.isEmpty != false { // did happen. For an example, see `TestRepresentativePlanParser.testParseBrokenServerResponse`
+                            subject = nil
+                        } else if let subjectText = subjectText {
+                            subject = dataManager.getSubject(subjectName: subjectText, className: nil)
+                            if subject?.subjectName == nil {
+                                subject?.subjectName = subjectText
+                            }
+                            if subject?.teacher == nil {
+                                subject?.teacher = normalTeacher
+                            }
                         }
-                        if subject.teacher == nil {
-                            subject.teacher = normalTeacher
+                        var room = elem.attribute(by: "Raum")?.text.trimmed()
+                        if room?.isEmpty == true {
+                            room = nil
                         }
-                        let room = elem.attribute(by: "Raum")?.text
-                        var newRoom = elem.attribute(by: "RaumNeu")?.text
+                        var newRoom = elem.attribute(by: "RaumNeu")?.text.trimmed()
                         if newRoom?.isEmpty == true {
                             newRoom = nil
                         }
-                        var note = elem.attribute(by: "Bemerkung")?.text
+                        var note = elem.attribute(by: "Bemerkung")?.text.trimmed()
                         if note == nil || note?.isEmpty == true {
                             note = newRoom != nil ? "Raumänderung" : nil
                         } else if note != nil {
@@ -61,7 +68,7 @@ class RepresentativePlanParser {
                                 note = note!.lowercased().replacingOccurrences(of: "raum?nderung", with: "raumänderung").localizedCapitalized
                             }
                         }
-                        var reprTeacher = elem.attribute(by: "VLehrer")?.text
+                        var reprTeacher = elem.attribute(by: "VLehrer")?.text.trimmed()
                         if reprTeacher?.isEmpty == true || reprTeacher == normalTeacher { // yep, just another reality
                             reprTeacher = nil
                         }
@@ -70,11 +77,6 @@ class RepresentativePlanParser {
                         reprDay.lessons.append(lesson)
                     } else if elem.name.lowercased() == "informationen" {
                         reprDay.notes.append(contentsOf: extractNotes(from: dayIndex))
-                        var note = elem.text
-                        note = note.replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: "\t", with: "")
-                        if note != "" && note != " " {
-                            reprDay.notes.append(note)
-                        }
                     }
                 }
                 if !reprDay.isEmpty {
@@ -92,9 +94,9 @@ class RepresentativePlanParser {
         for infoIndex in indexer.children {
             guard let elem = infoIndex.element else { continue }
             guard elem.name == "Info" else { continue }
-            let note = elem.attribute(by: "text")
-            if note?.text != "" && note?.text != " ", note?.text != nil {
-                notes.append(note!.text)
+            let note = elem.attribute(by: "text")?.text.trimmed()
+            if let note = note, note != "" {
+                notes.append(note)
             }
         }
         return notes

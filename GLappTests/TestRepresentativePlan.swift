@@ -34,7 +34,7 @@ class TestRepresentativePlan: XCTestCase {
     func testSummary() {
         let yesterday = berlinCalendar.date(byAdding: .init(day: -1), to: date)!
         let tomorrow = berlinCalendar.date(byAdding: .init(day: 1), to: date)!
-        let li = RepresentativeLesson.invalid
+        let li = RepresentativeLesson(date: yesterday, lesson: 3, room: nil, newRoom: nil, note: nil, subject: nil, normalTeacher: nil, representativeTeacher: nil) // invalid lesson
         let l1 = RepresentativeLesson(date: date, lesson: 4, room: "PR2", newRoom: nil, note: "Vertretung", subject: sPH, normalTeacher: "SEN", representativeTeacher: "DOH")
         let l2 = RepresentativeLesson(date: date, lesson: 5, room: "PR2", newRoom: nil, note: "Vertretung", subject: sPH, normalTeacher: "SEN", representativeTeacher: "DOH")
         let l3 = RepresentativeLesson(date: tomorrow, lesson: 2, room: "A16", newRoom: "A18", note: "Raumänderung", subject: sD, normalTeacher: "DRO", representativeTeacher: nil)

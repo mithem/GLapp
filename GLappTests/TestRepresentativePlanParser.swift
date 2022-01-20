@@ -37,6 +37,12 @@ class TestRepresentativePlanParser: XCTestCase {
     }
     
     func testParseSuccess() throws {
+        /// some notes, in case your confused when seeing the input string. The following things are supposed to be tested:
+        /// - obvious: parsing days, lessons, notes with required attributes (e.g. date)
+        /// - when parsing a plan that contains multiple items for the same lesson (no.), swallow. Useful for secondary stage I & invalid server responses
+        /// - trimming of (hopefully) all values off whitespaces
+        /// - ignore days with no lessons & notes with no content
+        /// - even accept invalid lessons (like ones without subject & normalTeacher)
         let dataManager = MockDataManager()
         let date = Calendar.current.date(from: .init(timeZone: .init(identifier: "Europe/Berlin"), year: 2021, month: 10, day: 26))!
         let date2 = Calendar.current.date(from: .init(timeZone: .init(identifier: "Europe/Berlin"), year: 2021, month: 10, day: 27))!
@@ -46,6 +52,9 @@ class TestRepresentativePlanParser: XCTestCase {
         let sPL = Subject(dataManager: dataManager, className: "PL", subjectType: nil, teacher: "JKL", subjectName: "PL")
         let expected = RepresentativePlan(date: .init(timeIntervalSince1970: 1635156420), representativeDays: [
             .init(date: date, lessons: [
+                .init(date: date, lesson: 2, room: nil, newRoom: nil, note: nil, subject: nil, normalTeacher: nil, representativeTeacher: nil),
+                .init(date: date, lesson: 3, room: "A11", newRoom: nil, note: "EF No Prakt.", subject: nil, normalTeacher: nil, representativeTeacher: "SLM"),
+                .init(date: date, lesson: 6, room: "PR2", newRoom: nil, note: "(frei)", subject: sPH, normalTeacher: "SEN", representativeTeacher: nil),
                 .init(date: date, lesson: 6, room: "PR2", newRoom: nil, note: "(frei)", subject: sPH, normalTeacher: "SEN", representativeTeacher: nil),
                 .init(date: date, lesson: 7, room: "PR2", newRoom: nil, note: "(frei)", subject: sPH, normalTeacher: "SEN", representativeTeacher: nil),
                 .init(date: date, lesson: 8, room: "130", newRoom: "A16", note: "Raumänderung", subject: sD, normalTeacher: "ABC", representativeTeacher: "DEF"),
@@ -55,7 +64,7 @@ class TestRepresentativePlanParser: XCTestCase {
             .init(date: date2, lessons: [
                 .init(date: date2, lesson: 2, room: "130", newRoom: nil, note: nil, subject: sPL, normalTeacher: "JKL", representativeTeacher: "MNO")
             ], notes: [])
-        ], lessons: [], notes: ["Another test information"])
+        ], lessons: [], notes: ["Another test information", "Hello, world!"])
         
         let result = RepresentativePlanParser.parse(plan: MockData.validReprPlanString, with: dataManager)
         
@@ -81,11 +90,16 @@ class TestRepresentativePlanParser: XCTestCase {
         let date = Calendar(identifier: .gregorian).date(from: .init(timeZone: .init(identifier: "Europe/Berlin"), year: 2021, month: 12, day: 13, hour: 12, minute: 36))!
         let date2 = Calendar.current.date(from: .init(timeZone:  .init(identifier: "Europe/Berlin"), year: 2021, month: 12, day: 15))! // not sure why a forced gregorian calendar or the `current` one on both lines leads to problems with some (not all) non-gregorian calendars
         let sABC = Subject(dataManager: dataManager, className: "ABC", subjectType: nil, teacher: "DEF", subjectName: "ABC")
+        
+        func lesson(_ no: Int, reprTeacher: String) -> RepresentativeLesson {
+            .init(date: date2, lesson: no, room: nil, newRoom: nil, note: nil, subject: nil, normalTeacher: nil, representativeTeacher: reprTeacher)
+        }
+        
         let expected = RepresentativePlan(date: date, representativeDays: [
             .init(date: date2, lessons: [
-                .invalid,
-                .invalid,
-                .invalid,
+                lesson(1, reprTeacher: "ERD"),
+                lesson(4, reprTeacher: "ERD"),
+                lesson(5, reprTeacher: "ELV"),
                 .init(date: date2, lesson: 6, room: "A11", newRoom: nil, note: "(frei)", subject: sABC, normalTeacher: "DEF", representativeTeacher: nil)
             ], notes: [])
         ], lessons: [], notes: [])

@@ -24,7 +24,11 @@ extension RepresentativeLesson: DeliverableByNotification {
          }
          let formatter = NumberFormatter()
          formatter.numberStyle = .ordinal
-         var summary = "\(timeDescription) \(formatter.string(from: .init(value: lesson))!) \(subject.subjectName ?? subject.className)"
+         let subjectDescription = subject?.subjectName ?? subject?.className
+         var summary = "\(timeDescription) \(formatter.string(from: .init(value: lesson))!)"
+         if let subjectDescription = subjectDescription {
+             summary += " " + subjectDescription
+         }
          if let newRoom = newRoom {
              summary += " \(NSLocalizedString("in_mid_sentence")) \(newRoom)"
          }

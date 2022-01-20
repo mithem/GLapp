@@ -30,6 +30,9 @@ struct RepresentativePlanView: View {
                             }
                             ForEach(reprPlan.representativeDays) { reprDay in
                                 Section(content: {
+                                    ForEach(reprDay.notes) { note in
+                                        Text(note)
+                                    }
                                     ForEach(reprDay.lessons) { lesson in
                                         RepresentativeLessonInlineView(lesson: lesson, appManager: model.appManager, dataManager: model.dataManager)
                                     }

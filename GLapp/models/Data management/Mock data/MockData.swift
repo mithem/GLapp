@@ -29,6 +29,7 @@ struct MockData {
     static let lesson13 = Lesson(lesson: 5, room: "IR3", subject: subject4)
     static let representativeLesson = RepresentativeLesson(date: nDaysFromNow(), lesson: 5, room: "A10", newRoom: "A11", note: "Raumänderung", subject: subject, normalTeacher: "PST")
     static let representativeLesson2 = RepresentativeLesson(date: nDaysFromNow(), lesson: 2, room: "PR1", newRoom: nil, note: "EVA", subject: subject2, normalTeacher: "PR1")
+    static let representativeLesson3 = RepresentativeLesson(date: nDaysFromNow(), lesson: 7, room: "A16", newRoom: nil, note: nil, subject: subject3, normalTeacher: "BUS", representativeTeacher: "ABC")
     static let representativePlan = RepresentativePlan(date: .init(timeIntervalSinceNow: -600), representativeDays: [.init(date: nDaysFromNow(), lessons: [representativeLesson2, representativeLesson])], lessons: [], notes: ["Test-Eintrag für das Android-App-Team"])
     static let classTest = ClassTest(date: .init(timeIntervalSinceNow: -10000), classTestDate: nDaysFromNow(), start: 1, end: 1, room: "A11", subject: subject4, teacher: "ABC", individual: true, opened: true, alias: "PSE")
     static let classTest2 = ClassTest(date: .init(timeIntervalSinceNow: -7200), classTestDate: nDaysFromNow(7), start: 2, end: 5, room: "A10", subject: subject, teacher: "PST", individual: true, opened: true, alias: "M")
@@ -50,20 +51,29 @@ struct MockData {
 <Vertretungsplan Stand="2021-10-25 12:07:00" Timestamp="1635156420">
 <Vertretungstag Datum="Montag, 25.10.2021"></Vertretungstag>
 <Vertretungstag Datum="Dienstag, 26.10.2021">
-    <Stunde Std="6" \n\t\t\t\t\t\t\t\tKlasse="Q2" \n\t\t\t\t\t\t\t\tRaum="PR2" \n\t\t\t\t\t\t\t\tFach="PH" RaumNeu="" Zeitstempel="" Bemerkung="(frei)" FLehrer="SEN" VLehrer=""></Stunde>
+    <Stunde Std="2" Klasse="" Raum="" RaumNeu="" Zeitstempel="" Bemerkung="" FLehrer="" VLehrer=""/>
+    <Stunde Std="3" Klasse="" Raum="A11" RaumNeu="" Zeitstempel="" Bemerkung="EF No Prakt." FLehrer="" VLehrer="SLM"/>
+    <Stunde Std=" 6\t" \n\t\t\t\t\t\t\t\tKlasse="\tQ2 " \n\t\t\t\t\t\t\t\tRaum=" PR2\t" \n\t\t\t\t\t\t\t\tFach="\tPH " RaumNeu=" \t" Zeitstempel="" Bemerkung=" (frei)\t" FLehrer="\tSEN " VLehrer=""></Stunde>
+    <Stunde Std=" 6\t" \n\t\t\t\t\t\t\t\tKlasse="\tQ2 " \n\t\t\t\t\t\t\t\tRaum=" PR2\t" \n\t\t\t\t\t\t\t\tFach="\tPH " RaumNeu=" \t" Zeitstempel="" Bemerkung=" (frei)\t" FLehrer="\tSEN " VLehrer=""></Stunde>
     <Stunde Std="7" \n\t\t\t\t\t\t\t\tKlasse="Q2" \n\t\t\t\t\t\t\t\tRaum="PR2" \n\t\t\t\t\t\t\t\tFach="PH" RaumNeu="" Zeitstempel="" Bemerkung="(frei)" FLehrer="SEN" VLehrer="SEN"></Stunde>
-    <Stunde Std="8" Klasse="05a" Raum="130" Fach="D" RaumNeu="A16" Zeitstempel="" Bemerkung="Raumänderung" FLehrer="ABC" VLehrer="DEF" />
-    <Stunde Std="9" Klasse="5b" Raum="124" Fach="E" RaumNeu="E14" Zeitstempel="" Bemerkung="raum?nderung" FLehrer="DEF" VLehrer="GHI"></Stunde>
-    <Stunde Std="10" Klasse="5b" Raum="124" Fach="E" RaumNeu="E14" Zeitstempel="" Bemerkung="" FLehrer="DEF" VLehrer="GHI" />
+    <Stunde Std="8" Klasse="05a" Raum="130" Fach="D" RaumNeu="A16" Zeitstempel="" Bemerkung=" Raumänderung\t" FLehrer="ABC" VLehrer="DEF" />
+    <Stunde Std="9" Klasse="5b" Raum="124" Fach="E" RaumNeu="E14" Zeitstempel="" Bemerkung="raum?nderung" FLehrer="\tDEF " VLehrer="GHI"></Stunde>
+    <Stunde Std="10" Klasse="5b" Raum="124" Fach="E" RaumNeu="E14" Zeitstempel="" Bemerkung="" FLehrer="DEF" VLehrer=" GHI\t" />
     <Informationen>
 <Info urgent="0" text="Test information"/>
+<Info urgent="0" text=""/>
+<Information urgent="1" text="Shouldn't exist"/>
 </Informationen>
 </Vertretungstag>\t\t\t
 <Vertretungstag Datum="Mittwoch, 27.10.2021">
     <Stunde Std="2" Klasse="08b" Raum="130" Fach="PL" RaumNeu="" Zeitstempel="" Bemerkung="" FLehrer="JKL" VLehrer="MNO"></Stunde>
 </Vertretungstag>
 <Informationen>
-    <Info urgent="0" text="Another test information"/>\t\t\t</Informationen>\n\t\t\t\n
+    <Info urgent="0" text="Another test information"/>\t\t\t
+<Information urgent="1" text="Shouldn't exist either"/>
+<Info />
+<Info text="\tHello, world! "/>
+</Informationen>\n\t\t\t\n
 \t\t\t</Vertretungsplan>\n\t\t\t\n\t\t\t
 """
     

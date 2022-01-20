@@ -10,10 +10,7 @@ import Foundation
 #if DEBUG
 extension RepresentativeLesson: CustomDebugStringConvertible {
     var debugDescription: String {
-        if self == .invalid {
-            return "RepresentativeLesson(invalid)"
-        }
-        return "RepresentativeLesson(date: \(date), lesson: \(lesson), room: \(String(describing: room)), newRoom: \(String(describing: newRoom)), normalTeacher: \(normalTeacher), reprTeacher: \(String(describing: representativeTeacher)), subject: \(subject))"
+        return "RepresentativeLesson(date: \(date), lesson: \(lesson), room: \(String(describing: room)), newRoom: \(String(describing: newRoom)), normalTeacher: \(String(describing: normalTeacher)), reprTeacher: \(String(describing: representativeTeacher)), subject: \(String(describing: subject))"
     }
 }
 #endif

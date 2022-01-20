@@ -8,7 +8,7 @@
 import Foundation
 
 extension RepresentativeLesson: CSIndexable {
-    var indexItemTitle: String { subject.title }
+    var indexItemTitle: String { subject?.title ?? String(lesson) }
     var keywords: [String] {
         ["representative_lesson", "representative_plan", "substitution_lesson", "substitution_plan"]
     }

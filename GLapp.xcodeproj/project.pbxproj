@@ -61,6 +61,7 @@
 		49517FFE271F73BD0085BEA6 /* Timetable+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49517FFD271F73BD0085BEA6 /* Timetable+Equatable.swift */; };
 		49524BC0272F24370069880B /* UIColor+random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49524BBF272F24370069880B /* UIColor+random.swift */; };
 		49524BC4272F25E40069880B /* FColoredInlineSubjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49524BC3272F25E40069880B /* FColoredInlineSubjects.swift */; };
+		49526C2E27982F3300B1C124 /* String+trimmed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49526C2D27982F3300B1C124 /* String+trimmed.swift */; };
 		49526F9427218E8700FD0242 /* FBackgroundReprPlanNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49526F9327218E8700FD0242 /* FBackgroundReprPlanNotifications.swift */; };
 		49526F96272190D900FD0242 /* FClassTestReminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49526F95272190D900FD0242 /* FClassTestReminders.swift */; };
 		4952B1EF273D689100504D3E /* TestFunctionality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4952B1EE273D689100504D3E /* TestFunctionality.swift */; };
@@ -287,6 +288,7 @@
 		49517FFD271F73BD0085BEA6 /* Timetable+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timetable+Equatable.swift"; sourceTree = "<group>"; };
 		49524BBF272F24370069880B /* UIColor+random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+random.swift"; sourceTree = "<group>"; };
 		49524BC3272F25E40069880B /* FColoredInlineSubjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FColoredInlineSubjects.swift; sourceTree = "<group>"; };
+		49526C2D27982F3300B1C124 /* String+trimmed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+trimmed.swift"; sourceTree = "<group>"; };
 		49526F9327218E8700FD0242 /* FBackgroundReprPlanNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBackgroundReprPlanNotifications.swift; sourceTree = "<group>"; };
 		49526F95272190D900FD0242 /* FClassTestReminders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FClassTestReminders.swift; sourceTree = "<group>"; };
 		4952B1EE273D689100504D3E /* TestFunctionality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFunctionality.swift; sourceTree = "<group>"; };
@@ -726,6 +728,7 @@
 				49FDEDD2271359850013341B /* String+Identifiable.swift */,
 				4962EC63274A505B000CDD4E /* String+init+Optional<CustomStringConvertible>.swift */,
 				4962EC60274A4E95000CDD4E /* String+init+CustomStringConvertible.swift */,
+				49526C2D27982F3300B1C124 /* String+trimmed.swift */,
 			);
 			path = String;
 			sourceTree = "<group>";
@@ -1358,6 +1361,7 @@
 				490A22C52746186F0090C5AC /* ClassTest+CustomDebugStringConvertible.swift in Sources */,
 				49686D87271DDA250075F14A /* Lesson+Equatable.swift in Sources */,
 				49FDEDD3271359850013341B /* String+Identifiable.swift in Sources */,
+				49526C2E27982F3300B1C124 /* String+trimmed.swift in Sources */,
 				4962EC53274A48E2000CDD4E /* RepresentativePlan+DeliverableByNotification.swift in Sources */,
 				49D110A7272AD87B00CEBF1D /* DateComponents+combine.swift in Sources */,
 				4980CB4B2748F304000E751F /* String+Rewritable.swift in Sources */,
@@ -1588,7 +1592,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLapp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;
@@ -1622,7 +1626,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLappRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;

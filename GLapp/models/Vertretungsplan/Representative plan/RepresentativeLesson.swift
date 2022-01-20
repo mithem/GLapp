@@ -8,14 +8,14 @@
 import Foundation
 
 final class RepresentativeLesson: ObservableObject, Identifiable {
-    var id: String { subject.className + GLDateFormatter.localFormatter.string(from: startDate) }
+    var id: String { subject?.className ?? String(lesson) + GLDateFormatter.localFormatter.string(from: startDate) }
     @Published var date: Date
     @Published var lesson: Int
     @Published var room: String?
     @Published var newRoom: String?
     @Published var note: String?
-    @Published var subject: Subject
-    @Published var normalTeacher: String
+    @Published var subject: Subject?
+    @Published var normalTeacher: String?
     @Published var representativeTeacher: String?
     
     var startDate: Date {
@@ -35,10 +35,12 @@ final class RepresentativeLesson: ObservableObject, Identifiable {
     }
     
     func updateSubject(with dataManager: DataManager) {
-        subject = dataManager.getSubject(subjectName: subject.subjectName ?? subject.className, className: nil) // assume className is unkown
+        if let subject = subject {
+            self.subject = dataManager.getSubject(subjectName: subject.subjectName ?? subject.className, className: nil) // assume className is unknown
+        }
     }
     
-    init(date: Date, lesson: Int, room: String?, newRoom: String?, note: String?, subject: Subject, normalTeacher: String, representativeTeacher: String? = nil) {
+    init(date: Date, lesson: Int, room: String?, newRoom: String?, note: String?, subject: Subject?, normalTeacher: String?, representativeTeacher: String? = nil) {
         self.date = date
         self.lesson = lesson
         self.room = room
@@ -90,6 +92,4 @@ final class RepresentativeLesson: ObservableObject, Identifiable {
             return lesson
         }
     }
-    
-    class var invalid: RepresentativeLesson { .init(date: .init(timeIntervalSince1970: 0), lesson: 1, room: nil, newRoom: nil, note: nil, subject: .invalid, normalTeacher: "", representativeTeacher: nil) }
 }

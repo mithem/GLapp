@@ -24,15 +24,23 @@ struct RepresentativeLessonInlineView: View {
                     if let room = model.lesson.room {
                         Text(room)
                             .strikethrough(model.lesson.newRoom != nil)
-                        if let newRoom = model.lesson.newRoom {
-                            Text(newRoom)
-                        }
+                    }
+                    if let newRoom = model.lesson.newRoom {
+                        Text(newRoom)
                     }
                 }
             }
             Spacer()
             VStack(alignment: .trailing) {
-                Text(model.lesson.normalTeacher)
+                HStack {
+                    if let normalTeacher = model.lesson.normalTeacher {
+                        Text(normalTeacher)
+                            .strikethrough(model.lesson.representativeTeacher != nil)
+                    }
+                    if let reprTeacher = model.lesson.representativeTeacher {
+                        Text(reprTeacher)
+                    }
+                }
                 if let note = model.lesson.note {
                     Text(note)
                 } else {
@@ -42,10 +50,12 @@ struct RepresentativeLessonInlineView: View {
         }
         .foregroundColor(model.lesson.isOver ? .secondary : .primary)
         .contextMenu {
-            Button(action: {
-                model.showingLessonOrSubjectInfoView = true
-            }) {
-                Label("more", systemImage: "ellipsis.circle")
+            if !model.lesson.isInvalid {
+                Button(action: {
+                    model.showingLessonOrSubjectInfoView = true
+                }) {
+                    Label("more", systemImage: "ellipsis.circle")
+                }
             }
         }
         .sheet(isPresented: $model.showingLessonOrSubjectInfoView) {
@@ -63,6 +73,8 @@ struct RepresentativeLessonInlineView_Previews: PreviewProvider {
         Group {
             RepresentativeLessonInlineView(lesson: MockData.representativeLesson, appManager: .init(), dataManager: MockDataManager())
             RepresentativeLessonInlineView(lesson: MockData.representativeLesson2, appManager: .init(), dataManager: MockDataManager())
+            RepresentativeLessonInlineView(lesson: .init(date: .rightNow, lesson: 3, room: nil, newRoom: nil, note: nil, subject: nil, normalTeacher: nil, representativeTeacher: nil), appManager: .init(), dataManager: MockDataManager())
+            RepresentativeLessonInlineView(lesson: MockData.representativeLesson3, appManager: .init(), dataManager: MockDataManager())
         }
         .previewLayout(.sizeThatFits)
     }

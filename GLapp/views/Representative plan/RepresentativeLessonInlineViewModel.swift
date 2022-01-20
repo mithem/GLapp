@@ -15,23 +15,22 @@ import SwiftUI
     @Published var confirmationDialogProvider: ConfirmationDialogProvider
     
     var title: String {
-        if lesson.isInvalid {
-            return NSLocalizedString("invalid_with_advice")
-        }
         let formatter = NumberFormatter()
         formatter.numberStyle = .ordinal
-        return "\(formatter.string(from: NSNumber(value: lesson.lesson))!) \(lesson.subject.subjectName ?? lesson.subject.className)"
+        let subjectDescription = lesson.subject?.subjectName ?? lesson.subject?.className
+        var title = "\(formatter.string(from: NSNumber(value: lesson.lesson))!)"
+        if let subjectDescription = subjectDescription {
+            title += " " + subjectDescription
+        }
+        return title
     }
     
     func titleColor(colorScheme: ColorScheme) -> Color {
-        if lesson.isInvalid {
-            return .red
-        }
         if lesson.isOver {
             return .secondary
         }
         if appManager.coloredInlineSubjects.isEnabled.unwrapped {
-            return .init(lesson.subject.color.getColoredForegroundColor(colorScheme: colorScheme))
+            return .init(lesson.subject?.color.getColoredForegroundColor(colorScheme: colorScheme) ?? .primary)
         }
         return .primary
     }

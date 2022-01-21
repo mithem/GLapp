@@ -36,4 +36,5 @@ struct UserDefaultsKeys {
     let classTestReminderManualTime = "classTestReminderManualTime"
     let requireAuthentication = "requireAuthentication"
     let didUnlockInCurrentSession = "didUnlockInCurrentSession"
+    let isUnlocking = "isUnlocking"
 }

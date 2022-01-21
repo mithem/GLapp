@@ -27,6 +27,8 @@ class SettingsStore: ObservableObject {
     @Published var spotlightIntegration = SettingsValueWithFunctionality(key: \.disableSpotlightIntegration, functionality: \.spotlightIntegration, defaultValue: false)
     @Published var requireAuthentication = SettingsValueWithFunctionality(key: \.requireAuthentication, functionality: \.requireAuthentication, defaultValue: false)
     @Published var demoMode = SettingsValueWithFunctionality(key: \.demoMode, functionality: \.demoMode, defaultValue: false)
+    @Published var didUnlockInCurrentSession = SettingsValue(key: \.didUnlockInCurrentSession, defaultValue: false)
+    @Published var isUnlocking = SettingsValue(key: \.isUnlocking, defaultValue: false)
     
     func reset(withHapticFeedback: Bool = false) {
         let generator: UINotificationFeedbackGenerator? = withHapticFeedback ? .init() : nil
@@ -45,6 +47,8 @@ class SettingsStore: ObservableObject {
         spotlightIntegration.resetToDefault()
         requireAuthentication.resetToDefault()
         demoMode.resetToDefault()
+        didUnlockInCurrentSession.resetToDefault()
+        isUnlocking.resetToDefault()
         generator?.notificationOccurred(.success)
     }
     

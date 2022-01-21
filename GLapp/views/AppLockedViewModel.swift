@@ -8,10 +8,9 @@
 import LocalAuthentication
 
 @MainActor final class AppLockedViewModel: ObservableObject {
-    /// Currently using LA to unlock the app (e.g. showing FaceID view).
     @Published var unlocking: Bool
-    /// To track when unlocking starts and disabled when app reenters foreground after authentication.
-    @Published var unlockingForegroundTracker: Bool
+    
+    private var settingsStore: SettingsStore
     
     var emptyViewIcon: String {
         if #available(iOS 15, *) {
@@ -21,16 +20,16 @@ import LocalAuthentication
     }
     
     func unlock() {
-        if !isAppLocked() || unlocking || unlockingForegroundTracker { return }
-        unlockingForegroundTracker = true
-        unlocking = true
-        let didUnlockInCurrentSession = UserDefaults.standard.bool(for: \.didUnlockInCurrentSession)
+        if !isAppLocked() || unlocking || settingsStore.isUnlocking.getCurrentValue() == true { return }
+        settingsStore.isUnlocking.set(to: true)
+        self.unlocking = true
+        let didUnlockInCurrentSession = settingsStore.didUnlockInCurrentSession.getCurrentValue() == true
         guard !didUnlockInCurrentSession, FRequireAuthentication.checkIfEnabled().unwrapped else { return }
         let context = LAContext()
         let reason = NSLocalizedString("feature_authentication_description")
         context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason) { success, error in
             if success {
-                UserDefaults.standard.set(true, for: \.didUnlockInCurrentSession)
+                self.settingsStore.didUnlockInCurrentSession.set(to: true)
             }
             DispatchQueue.main.async {
                 self.unlocking = false
@@ -39,13 +38,13 @@ import LocalAuthentication
     }
     
     func enterForeground() {
-        if unlockingForegroundTracker && !unlocking {
-            unlockingForegroundTracker = false
+        if settingsStore.isUnlocking.getCurrentValue() == true && !unlocking {
+            settingsStore.isUnlocking.set(to: false)
         }
     }
     
     init() {
         unlocking = false
-        unlockingForegroundTracker = false
+        settingsStore = .init()
     }
 }

@@ -10,6 +10,7 @@ import LocalAuthentication
 
 struct AppLockedView: View {
     @ObservedObject var model: AppLockedViewModel
+    @AppStorage(UserDefaultsKeys().isUnlocking) var isUnlocking = false
     @Environment(\.scenePhase) var scenePhase
     var body: some View {
         VStack {
@@ -17,9 +18,8 @@ struct AppLockedView: View {
             AccentColorButton("unlock") {
                 unlock()
             }
-            .disabled(model.unlocking)
+            .disabled(model.unlocking || isUnlocking)
         }
-            .onAppear(perform: unlock)
             .onChange(of: scenePhase, to: .active) {
                 unlock()
                 model.enterForeground()

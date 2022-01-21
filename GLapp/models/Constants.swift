@@ -13,32 +13,9 @@ struct Constants {
     static let apiHostname = "https://mobil.gymnasium-lohmar.org"
     static let internerBereichReprPlanURL = URL(string: "https://mobil.gymnasium-lohmar.org/?show=vplan")!
     static let timeoutInterval: TimeInterval = 15
-    static let weekdayStringIDMap = [
-        "Montag": 0,
-        "Dienstag": 1,
-        "Mittwoch": 2,
-        "Donnerstag": 3,
-        "Freitag": 4,
-        "Samstag": 5,
-        "Sonntag": 6
-    ]
-    static let weekdayIDStringMap = getWeekdayIDStringMap()
     static let mailToURL = URL(string: "mailto:miguel.themann@gmail.com")!
     static let functionalityReloadInterval: TimeInterval = 10
-    static let lessonStartDateComponents: [Int: DateComponents] = [
-        1: .init(hour: 7, minute: 45),
-        2: .init(hour: 8,  minute: 35),
-        3: .init(hour: 9, minute: 25),
-        4: .init(hour: 10, minute: 30),
-        5: .init(hour: 11, minute: 20),
-        6: .init(hour: 12, minute: 20),
-        7: .init(hour: 13, minute: 10),
-        8: .init(hour: 14, minute: 10),
-        9: .init(hour: 14, minute: 55),
-        10: .init(hour: 15, minute: 00), // from here on just precautions
-        11: .init(hour: 15, minute: 50),
-        12: .init(hour: 16, minute: 40)
-    ]
+    static let lessonStartDateComponents = getLessonStartDateComponents()
     static let lessonEndDateComponents = getLessonEndDateComponents()
     static let timeIntervalRequiringUserActivityUntilNSUserActivityIsDonated: TimeInterval = 4
     static let appVersion = Bundle.main.semanticVersion!
@@ -86,17 +63,25 @@ struct Constants {
         }
     }
     
-    struct SettingsValues { // not static for KeyPath support, not static props on `SettingsValue` itself as static props on generics aren't supported
-        
-    }
-    
-    private static func getWeekdayIDStringMap() -> Dictionary<Int, String> {
-        var map = Dictionary<Int, String>()
-        for string in weekdayStringIDMap.keys {
-            guard let id = weekdayStringIDMap[string] else { continue }
-            map[id] = NSLocalizedString(string)
+    private static func getLessonStartDateComponents() -> [Int: DateComponents] {
+        var components: [Int: DateComponents] = [
+            1: .init(hour: 7, minute: 45),
+            2: .init(hour: 8,  minute: 35),
+            3: .init(hour: 9, minute: 25),
+            4: .init(hour: 10, minute: 30),
+            5: .init(hour: 11, minute: 20),
+            6: .init(hour: 12, minute: 20),
+            7: .init(hour: 13, minute: 10),
+            8: .init(hour: 14, minute: 10),
+            9: .init(hour: 14, minute: 55),
+        ]
+        for i in 10...19 { // till midnight
+            let prevComponents = components[i - 1]!
+            let calendar = Calendar.current
+            let newComponents = calendar.dateComponents([.hour, .minute], from: calendar.date(from: prevComponents + .init(minute: 50))!)
+            components[i] = newComponents
         }
-        return map
+        return components
     }
     
     private static func getLessonEndDateComponents() -> [Int: DateComponents] {

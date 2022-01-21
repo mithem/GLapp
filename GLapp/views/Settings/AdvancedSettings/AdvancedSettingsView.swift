@@ -83,8 +83,10 @@ struct AdvancedSettingsView: View {
     }
 }
 
+#if DEBUG
 struct AdvancedSettingsView_Previews: PreviewProvider {
     static var previews: some View {
         AdvancedSettingsView(appManager: .init(), dataManager: MockDataManager())
     }
 }
+#endif

@@ -73,8 +73,10 @@ struct ClassTestPlanView: View {
     }
 }
 
+#if DEBUG
 struct ClassTestPlanView_Previews: PreviewProvider {
     static var previews: some View {
         ClassTestPlanView(appManager: .init(), dataManager: MockDataManager())
     }
 }
+#endif

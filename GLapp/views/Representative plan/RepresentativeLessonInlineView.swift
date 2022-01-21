@@ -20,14 +20,18 @@ struct RepresentativeLessonInlineView: View {
                     .onTapGesture {
                         model.onTapTitle()
                     }
-                HStack {
-                    if let room = model.lesson.room {
-                        Text(room)
-                            .strikethrough(model.lesson.newRoom != nil)
+                if model.lesson.room != nil || model.lesson.newRoom != nil {
+                    HStack {
+                        if let room = model.lesson.room {
+                            Text(room)
+                                .strikethrough(model.lesson.newRoom != nil)
+                        }
+                        if let newRoom = model.lesson.newRoom {
+                            Text(newRoom)
+                        }
                     }
-                    if let newRoom = model.lesson.newRoom {
-                        Text(newRoom)
-                    }
+                } else {
+                    Spacer()
                 }
             }
             Spacer()
@@ -68,6 +72,7 @@ struct RepresentativeLessonInlineView: View {
     }
 }
 
+#if DEBUG
 struct RepresentativeLessonInlineView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
@@ -79,3 +84,4 @@ struct RepresentativeLessonInlineView_Previews: PreviewProvider {
         .previewLayout(.sizeThatFits)
     }
 }
+#endif

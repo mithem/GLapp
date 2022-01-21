@@ -10,6 +10,7 @@ import Foundation
 class GLDateFormatter {
     static var berlinFormatter: DateFormatter {
         let formatter = DateFormatter()
+        formatter.locale = .init(identifier: "de-DE")
         formatter.dateFormat = "dd.MM.yy"
         formatter.timeZone = .init(identifier: "Europe/Berlin")
         return formatter

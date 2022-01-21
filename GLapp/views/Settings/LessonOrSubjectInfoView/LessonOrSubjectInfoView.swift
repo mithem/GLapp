@@ -50,8 +50,10 @@ struct LessonOrSubjectInfoView: View {
     }
 }
 
+#if DEBUG
 struct EditSubjectView_Previews: PreviewProvider{
     static var previews: some View {
         LessonOrSubjectInfoView(lesson: MockData.lesson, dataManager: MockDataManager())
     }
 }
+#endif

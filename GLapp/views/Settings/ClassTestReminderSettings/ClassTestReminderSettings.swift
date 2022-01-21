@@ -41,6 +41,7 @@ struct ClassTestReminderSettings: View {
     }
 }
 
+#if DEBUG
 struct ClassTestReminderSettings_Previews: PreviewProvider {
     static var previews: some View {
         ClassTestReminderSettings(dataManager: MockDataManager(), appManager: .init(), handler: self as! SettingsViewIsEnabledBindingResultHandling)
@@ -48,3 +49,4 @@ struct ClassTestReminderSettings_Previews: PreviewProvider {
     
     func handleIsEnabledBindingResult(_ result: Result<Void, Functionality.Error>) {}
 }
+#endif

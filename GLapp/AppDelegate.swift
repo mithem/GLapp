@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import Intents
-import LocalAuthentication
 
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     var window: UIWindow?
@@ -39,5 +37,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
         UserDefaults.standard.set(false, for: \.didUnlockInCurrentSession)
     }
-    
 }

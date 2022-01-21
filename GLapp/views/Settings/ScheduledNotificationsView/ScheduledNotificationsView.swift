@@ -47,8 +47,10 @@ struct ScheduledNotificationsView: View {
     }
 }
 
+#if DEBUG
 struct ScheduledNotfificationsViewPreviews: PreviewProvider {
     static var previews: some View {
         ScheduledNotificationsView(dataManager: MockDataManager())
     }
 }
+#endif

@@ -49,6 +49,10 @@ final class Subject: ObservableObject, Codable, Hashable {
         return "\(subjectName ?? className)\(subjectType)"
     }
     
+    var isInvalid: Bool {
+        className.isEmpty || teacher?.isEmpty != false
+    }
+    
     func hash(into hasher: inout Hasher) {
         hasher.combine(className)
         hasher.combine(subjectType)
@@ -76,9 +80,5 @@ final class Subject: ObservableObject, Codable, Hashable {
     
     private enum CodingKeys: CodingKey {
         case className, subjectType, teacher, subjectName, color
-    }
-    
-    class var invalid: Subject {
-        .init(dataManager: MockDataManager(), className: "", subjectType: nil, teacher: nil, subjectName: nil, color: nil)
     }
 }

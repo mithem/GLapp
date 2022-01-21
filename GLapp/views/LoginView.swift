@@ -41,7 +41,7 @@ struct LoginView: View {
         DispatchQueue.main.async {
             switch reason {
             case .error:
-                confirmationDialogProvider.confirmationDialog = (title: "error_occured", body: NSLocalizedString("error_colon") + " \(error?.localizedMessage ?? "unkown_error")")
+                confirmationDialogProvider.confirmationDialog = (title: "error_occured", body: NSLocalizedString("error_colon") + " \(error?.localizedMessage ?? "unknown_error")")
             case .demoMode:
                 confirmationDialogProvider.confirmationDialog = (title: "user_credentials_empty", body: "user_credentials_empty_activate_demo_mode")
             }
@@ -60,7 +60,7 @@ struct LoginView: View {
                         .textContentType(.password)
                         .disableAutocorrection(true)
                     Toggle("teacher", isOn: $userIsTeacher)
-                    let actionButtons = [confirmationDialogButtons.actionButton].compactMap({$0})
+                    let actionButtons = [confirmationDialogButtons.actionButton].compactMap()
                     let cancelButtons = [confirmationDialogButtons.cancelButton]
                     Button(action: submitLogin) {
                         HStack(spacing: 10) {
@@ -142,6 +142,7 @@ struct LoginView: View {
     }
 }
 
+#if DEBUG
 struct LoginView_Previews: PreviewProvider, LoginViewDelegate {
     func didSaveWithSuccess() {}
     
@@ -151,6 +152,7 @@ struct LoginView_Previews: PreviewProvider, LoginViewDelegate {
         }
     }
 }
+#endif
 
 protocol LoginViewDelegate {
     func didSaveWithSuccess()

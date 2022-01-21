@@ -9,6 +9,6 @@ import Foundation
 
 extension Weekday: CustomStringConvertible {
     var description: String {
-        NSLocalizedString(Constants.weekdayIDStringMap[id]!)
+        GLDateFormatter.berlinFormatter.standaloneWeekdaySymbols[id]
     }
 }

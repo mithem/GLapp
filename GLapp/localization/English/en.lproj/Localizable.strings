@@ -18,7 +18,7 @@
 "not_authorized" = "Not authorized.";
 "no_data" = "No data.";
 "bad_request" = "Bad request.";
-"unkown_error" = "Unkown error.";
+"unknown_error" = "unknown error.";
 "ok" = "OK";
 "settings" = "Settings";
 "timetable" = "Timetable";
@@ -68,13 +68,6 @@
 "last_fetched" = "Last fetched: ";
 "upcoming_class_test" = "Upcoming class test";
 "set_reminder" = "Set reminder";
-"Montag" = "Mo";
-"Dienstag" = "Tu";
-"Mittwoch" = "We";
-"Donnerstag" = "Th";
-"Freitag" = "Fr";
-"Samstag" = "Sa";
-"Sonntag" = "Su";
 "navigation" = "Navigation";
 "reset_onboarding" = "Reset onboarding";
 "repr_plan_update" = "Representative plan update";
@@ -123,7 +116,7 @@
 "request_provisional_notification_permission" = "Request provisional notification permission";
 "currently_enabled" = "Currently enabled";
 "currently_disabled" = "Currently disabled";
-"unkown_state" = "Unkown state";
+"unknown_state" = "unknown state";
 "semi_enabled_state" = "Semi-enabled state";
 "permission_provisional_or_ephemeral" = "Permission provisional or ephemeral";
 "current_repr_plan" = "Current repr. plan";

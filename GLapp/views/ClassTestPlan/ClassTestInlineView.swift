@@ -53,8 +53,10 @@ struct ClassTestInlineView: View {
     }
 }
 
+#if DEBUG
 struct ClassTestInlineView_Previews: PreviewProvider {
     static var previews: some View {
         ClassTestInlineView(classTest: MockData.classTest, appManager: .init(), dataManager: MockDataManager())
     }
 }
+#endif

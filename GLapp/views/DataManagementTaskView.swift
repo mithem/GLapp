@@ -51,8 +51,10 @@ struct DataManagementTaskView<ContentType>: View where ContentType: Codable {
     }
 }
 
+#if DEBUG
 struct DataManagementTaskView_Previews: PreviewProvider {
     static var previews: some View {
         DataManagementTaskView(date: MockData.timetable.date, lastFetched: MockData.timetable.lastFetched, task: MockDataManager().tasks.getTimetable)
     }
 }
+#endif

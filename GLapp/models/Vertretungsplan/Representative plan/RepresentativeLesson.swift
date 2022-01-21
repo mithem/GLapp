@@ -8,7 +8,7 @@
 import Foundation
 
 final class RepresentativeLesson: ObservableObject, Identifiable {
-    var id: String { subject?.className ?? String(lesson) + GLDateFormatter.localFormatter.string(from: startDate) }
+    var id: Double { startDate.timeIntervalSince1970 }
     @Published var date: Date
     @Published var lesson: Int
     @Published var room: String?
@@ -31,7 +31,7 @@ final class RepresentativeLesson: ObservableObject, Identifiable {
     }
     
     var isInvalid: Bool {
-        normalTeacher == "" || subject == .invalid || room == nil
+        normalTeacher == "" || subject?.isInvalid != false || room == nil
     }
     
     func updateSubject(with dataManager: DataManager) {

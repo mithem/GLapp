@@ -7,6 +7,7 @@
 
 import Foundation
 
+#if DEBUG
 class MockDataManager: DataManager {
     /// For testing behavior in secondary stage I and transitions from stage I to II
     let sendEmptyClassTestPlan: Bool
@@ -123,3 +124,5 @@ class MockDataManager: DataManager {
         completion(.successWithData(plan))
     }
 }
+
+#endif

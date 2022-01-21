@@ -8,7 +8,11 @@
 import Foundation
 
 struct MockData {
+    #if DEBUG
     static let dataManager = MockDataManager()
+    #else
+    static let dataManager = DataManager(appManager: .init())
+    #endif
     static let subject = Subject(dataManager: dataManager, className: "M-LK2", subjectType: "LK", teacher: "PST", color: .blue)
     static let subject2 = Subject(dataManager: dataManager, className: "PH-LK1", subjectType: "LK", teacher: "SEN", color: .green)
     static let subject3 = Subject(dataManager: dataManager, className: "EK-GK2", subjectType: "GKM", teacher: "BUS", color: .purple)
@@ -99,7 +103,7 @@ struct MockData {
 <Stunde Std="9" Kurs="EK-GK1" Raum="A16" Fach="EK" Kursart="GKM" Lehrer="BCH"/>
 <Stunde Std="10" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
 </Wochentag>
-<Wochentag Tag="Dienstag">
+<Wochentag Tag="dienstag">
 <Stunde Std="1" Kurs="GE-GK1" Raum="A17" Fach="GE" Kursart="GKM" Lehrer="BCH"/>
 <Stunde Std="2" Kurs="SW-GK1" Raum="A16" Fach="SW" Kursart="AB4" Lehrer="HBS"/>
 <Stunde Std="3" Kurs="SW-GK1" Raum="A16" Fach="SW" Kursart="AB4" Lehrer="HBS"/>
@@ -123,7 +127,7 @@ struct MockData {
 <Stunde Std="9" Kurs="SP-GK2" Raum="TH5" Fach="SP" Kursart="GKM" Lehrer="FDK"/>
 <Stunde Std="10" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
 </Wochentag>
-<Wochentag Tag="Donnerstag">
+<Wochentag Tag="donnerstag">
 <Stunde Std="1" Kurs="PH-LK1" Raum="PR2" Fach="PH" Kursart="LK2" Lehrer="SEN"/>
 <Stunde Std="2" Kurs="PL-GK1" Raum="A14" Fach="PL" Kursart="GKM" Lehrer="TRR"/>
 <Stunde Std="3" Kurs="PL-GK1" Raum="A14" Fach="PL" Kursart="GKM" Lehrer="TRR"/>
@@ -145,6 +149,95 @@ struct MockData {
 <Stunde Std="7" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
 <Stunde Std="8" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
 <Stunde Std="9" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
+<Stunde Std="10" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
+</Wochentag>
+</Stundenplan>
+"""
+    
+    static let allWeekTimetableString = """
+<Stundenplan Datum=" 2021-09-13 09:26:44\t" Timestamp="\t1631518004 ">
+<Wochentag Tag="Montag">
+<Stunde Std=" \t 1\t \t" Kurs="  PL-GK1  " Raum="\t\tA14\t\t \t" Fach="  PL \t\t\t" Kursart=" GKM " Lehrer="\tTRR\t"/>
+<Stunde Std="2" Kurs="IF-GK1" Raum="IR1" Fach="IF" Kursart="GKS" Lehrer="NFD"/>
+<Stunde Std="3" Kurs="IF-GK1" Raum="IR1" Fach="IF" Kursart="GKS" Lehrer="NFD"/>
+<Stunde Std="4" Kurs="E-GK1" Raum="A14" Fach="E" Kursart="AB3" Lehrer="ERD"/>
+<Stunde Std="5" Kurs="E-GK1" Raum="A14" Fach="E" Kursart="AB3" Lehrer="ERD"/>
+<Stunde Std="6" Kurs="M-LK2" Raum="A11" Fach="M" Kursart="LK1" Lehrer="PST"/>
+<Stunde Std="7" Kurs="M-LK2" Raum="A11" Fach="M" Kursart="LK1" Lehrer="PST"/>
+<Stunde Std="8" Kurs="EK-GK1" Raum="A16" Fach="EK" Kursart="GKM" Lehrer="BCH"/>
+<Stunde Std="9" Kurs="EK-GK1" Raum="A16" Fach="EK" Kursart="GKM" Lehrer="BCH"/>
+<Stunde Std="10" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
+</Wochentag>
+<Wochentag Tag="dienstag">
+<Stunde Std="1" Kurs="GE-GK1" Raum="A17" Fach="GE" Kursart="GKM" Lehrer="BCH"/>
+<Stunde Std="2" Kurs="SW-GK1" Raum="A16" Fach="SW" Kursart="AB4" Lehrer="HBS"/>
+<Stunde Std="3" Kurs="SW-GK1" Raum="A16" Fach="SW" Kursart="AB4" Lehrer="HBS"/>
+<Stunde Std="4" Kurs="D-GK3" Raum="A16" Fach="D" Kursart="GKS" Lehrer="DRO"/>
+<Stunde Std="5" Kurs="D-GK3" Raum="A16" Fach="D" Kursart="GKS" Lehrer="DRO"/>
+<Stunde Std="6" Kurs="PH-LK1" Raum="PR2" Fach="PH" Kursart="LK2" Lehrer="SEN"/>
+<Stunde Std="7" Kurs="PH-LK1" Raum="PR2" Fach="PH" Kursart="LK2" Lehrer="SEN"/>
+<Stunde Std="8" Kurs="PSE-PJK1" Raum="IR3" Fach="PSE" Kursart="PJK" Lehrer="BLN"/>
+<Stunde Std="9" Kurs="PSE-PJK1" Raum="IR3" Fach="PSE" Kursart="PJK" Lehrer="BLN"/>
+<Stunde Std="10" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
+</Wochentag>
+<Wochentag Tag="Mittwoch">
+<Stunde Std="1" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
+<Stunde Std="2" Kurs="M-LK2" Raum="A11" Fach="M" Kursart="LK1" Lehrer="PST"/>
+<Stunde Std="3" Kurs="M-LK2" Raum="A11" Fach="M" Kursart="LK1" Lehrer="PST"/>
+<Stunde Std="4" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
+<Stunde Std="5" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
+<Stunde Std="6" Kurs="E-GK1" Raum="A14" Fach="E" Kursart="AB3" Lehrer="ERD"/>
+<Stunde Std="7" Kurs="IF-GK1" Raum="IR1" Fach="IF" Kursart="GKS" Lehrer="NFD"/>
+<Stunde Std="8" Kurs="SP-GK2" Raum="TH5" Fach="SP" Kursart="GKM" Lehrer="FDK"/>
+<Stunde Std="9" Kurs="SP-GK2" Raum="TH5" Fach="SP" Kursart="GKM" Lehrer="FDK"/>
+<Stunde Std="10" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
+</Wochentag>
+<Wochentag Tag="donnerstag">
+<Stunde Std="1" Kurs="PH-LK1" Raum="PR2" Fach="PH" Kursart="LK2" Lehrer="SEN"/>
+<Stunde Std="2" Kurs="PL-GK1" Raum="A14" Fach="PL" Kursart="GKM" Lehrer="TRR"/>
+<Stunde Std="3" Kurs="PL-GK1" Raum="A14" Fach="PL" Kursart="GKM" Lehrer="TRR"/>
+<Stunde Std="4" Kurs="GE-GK1" Raum="A17" Fach="GE" Kursart="GKM" Lehrer="BCH"/>
+<Stunde Std="5" Kurs="GE-GK1" Raum="A17" Fach="GE" Kursart="GKM" Lehrer="BCH"/>
+<Stunde Std="6" Kurs="SW-GK1" Raum="A16" Fach="SW" Kursart="AB4" Lehrer="HBS"/>
+<Stunde Std="7" Kurs="D-GK3" Raum="A16" Fach="D" Kursart="GKS" Lehrer="DRO"/>
+<Stunde Std="8" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
+<Stunde Std="9" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
+<Stunde Std="10" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
+</Wochentag>
+<Wochentag Tag="Freitag">
+<Stunde Std="1" Kurs="EK-GK1" Raum="A16" Fach="EK" Kursart="GKM" Lehrer="BCH"/>
+<Stunde Std="2" Kurs="PH-LK1" Raum="PR2" Fach="PH" Kursart="LK2" Lehrer="SEN"/>
+<Stunde Std="3" Kurs="PH-LK1" Raum="PR2" Fach="PH" Kursart="LK2" Lehrer="SEN"/>
+<Stunde Std="4" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
+<Stunde Std="5" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
+<Stunde Std="6" Kurs="M-LK2" Raum="A11" Fach="M" Kursart="LK1" Lehrer="PST"/>
+<Stunde Std="7" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
+<Stunde Std="8" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
+<Stunde Std="9" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
+<Stunde Std="10" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
+</Wochentag>
+<Wochentag Tag="samstag">
+<Stunde Std="1" Kurs="EK-GK1" Raum="A16" Fach="EK" Kursart="GKM" Lehrer="BCH"/>
+<Stunde Std="2" Kurs="PH-LK1" Raum="PR2" Fach="PH" Kursart="LK2" Lehrer="SEN"/>
+<Stunde Std="3" Kurs="PH-LK1" Raum="PR2" Fach="PH" Kursart="LK2" Lehrer="SEN"/>
+<Stunde Std="4" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
+<Stunde Std="5" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
+<Stunde Std="6" Kurs="M-LK2" Raum="A11" Fach="M" Kursart="LK1" Lehrer="PST"/>
+<Stunde Std="7" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
+<Stunde Std="8" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
+<Stunde Std="9" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
+<Stunde Std="10" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
+</Wochentag>
+<Wochentag Tag="Sonntag">
+<Stunde Std=" \t 1\t \t" Kurs="  PL-GK1  " Raum="\t\tA14\t\t \t" Fach="  PL \t\t\t" Kursart=" GKM " Lehrer="\tTRR\t"/>
+<Stunde Std="2" Kurs="IF-GK1" Raum="IR1" Fach="IF" Kursart="GKS" Lehrer="NFD"/>
+<Stunde Std="3" Kurs="IF-GK1" Raum="IR1" Fach="IF" Kursart="GKS" Lehrer="NFD"/>
+<Stunde Std="4" Kurs="E-GK1" Raum="A14" Fach="E" Kursart="AB3" Lehrer="ERD"/>
+<Stunde Std="5" Kurs="E-GK1" Raum="A14" Fach="E" Kursart="AB3" Lehrer="ERD"/>
+<Stunde Std="6" Kurs="M-LK2" Raum="A11" Fach="M" Kursart="LK1" Lehrer="PST"/>
+<Stunde Std="7" Kurs="M-LK2" Raum="A11" Fach="M" Kursart="LK1" Lehrer="PST"/>
+<Stunde Std="8" Kurs="EK-GK1" Raum="A16" Fach="EK" Kursart="GKM" Lehrer="BCH"/>
+<Stunde Std="9" Kurs="EK-GK1" Raum="A16" Fach="EK" Kursart="GKM" Lehrer="BCH"/>
 <Stunde Std="10" Kurs="" Raum="" Fach="" Kursart="" Lehrer=""/>
 </Wochentag>
 </Stundenplan>

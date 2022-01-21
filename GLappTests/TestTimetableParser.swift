@@ -11,22 +11,23 @@ import SwiftUI
 
 class TestTimetableParser: XCTestCase {
     var manager: DataManager!
+    var sPL, sIF, sE, sM, sEK, sGE, sSW, sD, sPH, sPSE, sSP: Subject!
     override func setUpWithError() throws {
         manager = MockDataManager()
+        sPL = Subject(dataManager: manager, className: "PL-GK1", subjectType: "GKM", teacher: "TRR", subjectName: "PL")
+        sIF = Subject(dataManager: manager, className: "IF-GK1", subjectType: "GKS", teacher: "NFD", subjectName: "IF")
+        sE = Subject(dataManager: manager, className: "E-GK1", subjectType: "AB3", teacher: "ERD", subjectName: "E")
+        sM = Subject(dataManager: manager, className: "M-LK2", subjectType: "LK1", teacher: "PST", subjectName: "M")
+        sEK = Subject(dataManager: manager, className: "EK-GK1", subjectType: "GKM", teacher: "BCH", subjectName: "EK")
+        sGE = Subject(dataManager: manager, className: "GE-GK1", subjectType: "GKM", teacher: "BCH", subjectName: "GE")
+        sSW = Subject(dataManager: manager, className: "SW-GK1", subjectType: "AB4", teacher: "HBS", subjectName: "SW")
+        sD = Subject(dataManager: manager, className: "D-GK3", subjectType: "GKS", teacher: "DRO", subjectName: "D")
+        sPH = Subject(dataManager: manager, className: "PH-LK1", subjectType: "LK2", teacher: "SEN", subjectName: "PH")
+        sPSE = Subject(dataManager: manager, className: "PSE-PJK1", subjectType: "PJK", teacher: "BLN", subjectName: "PSE")
+        sSP = Subject(dataManager: manager, className: "SP-GK2", subjectType: "GKM", teacher: "FDK", subjectName: "SP")
     }
     
     func testParseSuccessOberstufe () throws {
-        let sPL = Subject(dataManager: manager, className: "PL-GK1", subjectType: "GKM", teacher: "TRR", subjectName: "PL")
-        let sIF = Subject(dataManager: manager, className: "IF-GK1", subjectType: "GKS", teacher: "NFD", subjectName: "IF")
-        let sE = Subject(dataManager: manager, className: "E-GK1", subjectType: "AB3", teacher: "ERD", subjectName: "E")
-        let sM = Subject(dataManager: manager, className: "M-LK2", subjectType: "LK1", teacher: "PST", subjectName: "M")
-        let sEK = Subject(dataManager: manager, className: "EK-GK1", subjectType: "GKM", teacher: "BCH", subjectName: "EK")
-        let sGE = Subject(dataManager: manager, className: "GE-GK1", subjectType: "GKM", teacher: "BCH", subjectName: "GE")
-        let sSW = Subject(dataManager: manager, className: "SW-GK1", subjectType: "AB4", teacher: "HBS", subjectName: "SW")
-        let sD = Subject(dataManager: manager, className: "D-GK3", subjectType: "GKS", teacher: "DRO", subjectName: "D")
-        let sPH = Subject(dataManager: manager, className: "PH-LK1", subjectType: "LK2", teacher: "SEN", subjectName: "PH")
-        let sPSE = Subject(dataManager: manager, className: "PSE-PJK1", subjectType: "PJK", teacher: "BLN", subjectName: "PSE")
-        let sSP = Subject(dataManager: manager, className: "SP-GK2", subjectType: "GKM", teacher: "FDK", subjectName: "SP")
         let date = Date(timeIntervalSince1970: 1631518004)
         let expected = Timetable(date: date, weekdays: [
             .init(id: 0, lessons: [
@@ -253,6 +254,72 @@ class TestTimetableParser: XCTestCase {
             }
         }
         self.wait(for: [expectation], timeout: 5)
+    }
+    
+    func testSecondaryStageII6DaysAWeek() {
+        let date = Date(timeIntervalSince1970: 1631518004)
+        let expected = Timetable(date: date, weekdays: [
+            .init(id: 0, lessons: [
+                .init(lesson: 1, room: "A14", subject: sPL),
+                .init(lesson: 2, room: "IR1", subject: sIF),
+                .init(lesson: 3, room: "IR1", subject: sIF),
+                .init(lesson: 4, room: "A14", subject: sE),
+                .init(lesson: 5, room: "A14", subject: sE),
+                .init(lesson: 6, room: "A11", subject: sM),
+                .init(lesson: 7, room: "A11", subject: sM),
+                .init(lesson: 8, room: "A16", subject: sEK),
+                .init(lesson: 9, room: "A16", subject: sEK)
+            ]),
+            .init(id: 1, lessons: [
+                .init(lesson: 1, room: "A17", subject: sGE),
+                .init(lesson: 2, room: "A16", subject: sSW),
+                .init(lesson: 3, room: "A16", subject: sSW),
+                .init(lesson: 4, room: "A16", subject: sD),
+                .init(lesson: 5, room: "A16", subject: sD),
+                .init(lesson: 6, room: "PR2", subject: sPH),
+                .init(lesson: 7, room: "PR2", subject: sPH),
+                .init(lesson: 8, room: "IR3", subject: sPSE),
+                .init(lesson: 9, room: "IR3", subject: sPSE)
+            ]),
+            .init(id: 2, lessons: [
+                .init(lesson: 2, room: "A11", subject: sM),
+                .init(lesson: 3, room: "A11", subject: sM),
+                .init(lesson: 6, room: "A14", subject: sE),
+                .init(lesson: 7, room: "IR1", subject: sIF),
+                .init(lesson: 8, room: "TH5", subject: sSP),
+                .init(lesson: 9, room: "TH5", subject: sSP)
+            ]),
+            .init(id: 3, lessons: [
+                .init(lesson: 1, room: "PR2", subject: sPH),
+                .init(lesson: 2, room: "A14", subject: sPL),
+                .init(lesson: 3, room: "A14", subject: sPL),
+                .init(lesson: 4, room: "A17", subject: sGE),
+                .init(lesson: 5, room: "A17", subject: sGE),
+                .init(lesson: 6, room: "A16", subject: sSW),
+                .init(lesson: 7, room: "A16", subject: sD)
+            ]),
+            .init(id: 4, lessons: [
+                .init(lesson: 1, room: "A16", subject: sEK),
+                .init(lesson: 2, room: "PR2", subject: sPH),
+                .init(lesson: 3, room: "PR2", subject: sPH),
+                .init(lesson: 6, room: "A11", subject: sM),
+            ]),
+            .init(id: 5, lessons: [
+                .init(lesson: 1, room: "A16", subject: sEK),
+                .init(lesson: 2, room: "PR2", subject: sPH),
+                .init(lesson: 3, room: "PR2", subject: sPH),
+                .init(lesson: 6, room: "A11", subject: sM),
+            ])
+        ])
+        
+        TimetableParser.parse(timetable: MockData.sixDayTimetableString, with: manager) { result in
+            switch result {
+            case .success(let timetable):
+                XCTAssertEqual(timetable, expected)
+            case .failure(let error):
+                XCTFail(error.localizedMessage)
+            }
+        }
     }
     
     func testParseNoRootElement() {

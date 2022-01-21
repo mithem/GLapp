@@ -41,7 +41,7 @@ class RepresentativePlanParser {
                         }
                         let subjectText = elem.attribute(by: "Fach")?.text.trimmed()
                         var subject: Subject?
-                        if subjectText?.isEmpty != false && normalTeacher?.isEmpty != false { // did happen. For an example, see `TestRepresentativePlanParser.testParseBrokenServerResponse`
+                        if subjectText?.isEmpty != false && normalTeacher?.isEmpty != false {
                             subject = nil
                         } else if let subjectText = subjectText {
                             subject = dataManager.getSubject(subjectName: subjectText, className: nil)
@@ -69,7 +69,7 @@ class RepresentativePlanParser {
                             }
                         }
                         var reprTeacher = elem.attribute(by: "VLehrer")?.text.trimmed()
-                        if reprTeacher?.isEmpty == true || reprTeacher == normalTeacher { // yep, just another reality
+                        if reprTeacher?.isEmpty == true || reprTeacher == normalTeacher {
                             reprTeacher = nil
                         }
                         

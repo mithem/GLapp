@@ -8,7 +8,7 @@
 import Foundation
 
 final class Weekday: ObservableObject, Identifiable, Codable {
-    /// Weekday number from 0 (Mon) to 6 (Sun)
+    /// Weekday number as the swift standard library uses it
     @Published var id: Int
     @Published var lessons: [Lesson]
     

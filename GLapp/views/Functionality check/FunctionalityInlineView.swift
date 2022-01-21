@@ -30,7 +30,7 @@ struct FunctionalityInlineView: View {
     
     var RawContent: some View {
         let enableBtn = Group {
-            if functionality.isEnabled != .yes { // give ability to enable manually for .no, .unkown, .semi, e.g. when only provisional notifications are enabled
+            if functionality.isEnabled != .yes { // give ability to enable manually for .no, .unknown, .semi, e.g. when only provisional notifications are enabled
                 AccentColorButton("enable") {
                     do {
                         try functionality.enable(with: appManager, dataManager: dataManager, tappedByUser: true)
@@ -94,12 +94,12 @@ struct FunctionalityInlineView: View {
                     Button("ok", role: .cancel) {
                     }
                 }) {
-                    Text(error?.localizedMessage ?? "unkown_error")
+                    Text(error?.localizedMessage ?? "unknown_error")
                 }
         } else {
             RawContent
                 .actionSheet(isPresented: $showingErrorActionSheet) {
-                    ActionSheet(title: Text("error_occured"), message: Text(error?.localizedMessage ?? "unkown_error"))
+                    ActionSheet(title: Text("error_occured"), message: Text(error?.localizedMessage ?? "unknown_error"))
                 }
         }
     }
@@ -149,6 +149,7 @@ struct FunctionalityInlineView: View {
     }
 }
 
+#if DEBUG
 struct FunctionalityInlineView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
@@ -158,3 +159,4 @@ struct FunctionalityInlineView_Previews: PreviewProvider {
         .previewLayout(.sizeThatFits)
     }
 }
+#endif

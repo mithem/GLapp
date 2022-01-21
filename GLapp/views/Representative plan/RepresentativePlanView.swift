@@ -88,8 +88,10 @@ struct RepresentativePlanView: View {
     }
 }
 
+#if DEBUG
 struct RepresentativePlanView_Previews: PreviewProvider {
     static var previews: some View {
         RepresentativePlanView(appManager: .init(), dataManager: MockDataManager())
     }
 }
+#endif

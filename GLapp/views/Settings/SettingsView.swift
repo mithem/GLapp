@@ -118,12 +118,14 @@ struct SettingsView: View, SettingsViewIsEnabledBindingResultHandling {
     init(dataManager: DataManager, appManager: AppManager) {
         self.dataManager = dataManager
         self.appManager = appManager
-        self.confirmationDialogProvider = .init(title: "error_occured", body: "unkown_error")
+        self.confirmationDialogProvider = .init(title: "error_occured", body: "unknown_error")
     }
 }
 
+#if DEBUG
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView(dataManager: MockDataManager(), appManager: .init())
     }
 }
+#endif

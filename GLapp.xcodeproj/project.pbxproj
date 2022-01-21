@@ -45,7 +45,6 @@
 		4934051F2711E45D008B059B /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4934051E2711E45D008B059B /* MockData.swift */; };
 		4934052627121BA0008B059B /* Date+formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4934052527121BA0008B059B /* Date+formatting.swift */; };
 		4934052B2712BC6A008B059B /* DataManagementTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4934052A2712BC6A008B059B /* DataManagementTask.swift */; };
-		4934052D2712CA67008B059B /* Int+init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4934052C2712CA67008B059B /* Int+init.swift */; };
 		493E8AC5273003DA008C9B13 /* UIColor+isDark+isTransparent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493E8AC4273003DA008C9B13 /* UIColor+isDark+isTransparent.swift */; };
 		493E8AC72730054B008C9B13 /* UIColor+lighten+darken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493E8AC62730054B008C9B13 /* UIColor+lighten+darken.swift */; };
 		493E8AC9273008DE008C9B13 /* UIColor+getColoredForegroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493E8AC8273008DE008C9B13 /* UIColor+getColoredForegroundColor.swift */; };
@@ -65,6 +64,7 @@
 		49526F9427218E8700FD0242 /* FBackgroundReprPlanNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49526F9327218E8700FD0242 /* FBackgroundReprPlanNotifications.swift */; };
 		49526F96272190D900FD0242 /* FClassTestReminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49526F95272190D900FD0242 /* FClassTestReminders.swift */; };
 		4952B1EF273D689100504D3E /* TestFunctionality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4952B1EE273D689100504D3E /* TestFunctionality.swift */; };
+		49545736279AB949008B57C6 /* Collection+compactMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49545735279AB949008B57C6 /* Collection+compactMap.swift */; };
 		495BC538274C00C900BE3E05 /* RepresentativeLessonInlineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495BC537274C00C900BE3E05 /* RepresentativeLessonInlineViewModel.swift */; };
 		495D25D9273AA3C500F3899D /* RepresentativeLesson+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495D25D8273AA3C500F3899D /* RepresentativeLesson+Equatable.swift */; };
 		495D25DB273AA46900F3899D /* RepresentativeLesson+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495D25DA273AA46900F3899D /* RepresentativeLesson+Codable.swift */; };
@@ -272,7 +272,6 @@
 		4934051E2711E45D008B059B /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		4934052527121BA0008B059B /* Date+formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+formatting.swift"; sourceTree = "<group>"; };
 		4934052A2712BC6A008B059B /* DataManagementTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagementTask.swift; sourceTree = "<group>"; };
-		4934052C2712CA67008B059B /* Int+init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+init.swift"; sourceTree = "<group>"; };
 		4938C1FD27410D4600F71D92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/Intents.intentdefinition; sourceTree = "<group>"; };
 		493E8AC4273003DA008C9B13 /* UIColor+isDark+isTransparent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+isDark+isTransparent.swift"; sourceTree = "<group>"; };
 		493E8AC62730054B008C9B13 /* UIColor+lighten+darken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+lighten+darken.swift"; sourceTree = "<group>"; };
@@ -292,6 +291,7 @@
 		49526F9327218E8700FD0242 /* FBackgroundReprPlanNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBackgroundReprPlanNotifications.swift; sourceTree = "<group>"; };
 		49526F95272190D900FD0242 /* FClassTestReminders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FClassTestReminders.swift; sourceTree = "<group>"; };
 		4952B1EE273D689100504D3E /* TestFunctionality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFunctionality.swift; sourceTree = "<group>"; };
+		49545735279AB949008B57C6 /* Collection+compactMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+compactMap.swift"; sourceTree = "<group>"; };
 		495BC537274C00C900BE3E05 /* RepresentativeLessonInlineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepresentativeLessonInlineViewModel.swift; sourceTree = "<group>"; };
 		495D25D8273AA3C500F3899D /* RepresentativeLesson+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepresentativeLesson+Equatable.swift"; sourceTree = "<group>"; };
 		495D25DA273AA46900F3899D /* RepresentativeLesson+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepresentativeLesson+Codable.swift"; sourceTree = "<group>"; };
@@ -567,7 +567,6 @@
 				4962EC62274A5007000CDD4E /* Weekday */,
 				49517FFD271F73BD0085BEA6 /* Timetable+Equatable.swift */,
 				49D67A2E273EC7B900ADC319 /* Array+Copying.swift */,
-				4934052C2712CA67008B059B /* Int+init.swift */,
 				492804C1272010220055ED63 /* ClassTestPlan+Equatable.swift */,
 				492804C32720104D0055ED63 /* RepresentativePlan+Equatable.swift */,
 				492804C7272026EF0055ED63 /* GLappError+Equatable.swift */,
@@ -575,6 +574,7 @@
 				499C0865273532CA00206514 /* EKAuthorizationStatus+functionalityState.swift */,
 				49B8D089276CF9CF0099B0F3 /* UserDefaults+keyPaths.swift */,
 				492B9A892790A6AE009B866D /* OptionalStridable+Stridable.swift */,
+				49545735279AB949008B57C6 /* Collection+compactMap.swift */,
 				4921C4872731B85E00DA256D /* CustomDebugStringConvertible */,
 			);
 			path = Extensions;
@@ -1293,7 +1293,6 @@
 				495E6B972718C3CC0052B565 /* AppDelegate.swift in Sources */,
 				4991A2AA271996F8008559F9 /* LoadingView.swift in Sources */,
 				49AF336D2719963A00F406D1 /* TimetableView.swift in Sources */,
-				4934052D2712CA67008B059B /* Int+init.swift in Sources */,
 				49F380E32710DF15002AE814 /* DataManager.swift in Sources */,
 				49E97377275A2A23008D91A2 /* AdvancedSettingsViewModel.swift in Sources */,
 				494C5FBC274013A4003D39DC /* IntentsManager.swift in Sources */,
@@ -1327,6 +1326,7 @@
 				49D67A27273E78D900ADC319 /* RepresentativeLesson+Comparable.swift in Sources */,
 				4980CB4F27491D94000E751F /* ContentViewModel.swift in Sources */,
 				49F380E52710DFE0002AE814 /* RepresentativePlan.swift in Sources */,
+				49545736279AB949008B57C6 /* Collection+compactMap.swift in Sources */,
 				49ED9600278E0CCB00E3A878 /* View+onReceive.swift in Sources */,
 				49D67A2B273EA6B900ADC319 /* RepresentativeLesson+Copying.swift in Sources */,
 				490A22CA274623480090C5AC /* Date+Identifiable.swift in Sources */,
@@ -1592,7 +1592,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLapp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;
@@ -1609,7 +1609,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.0;
+				MARKETING_VERSION = 1.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mithem.GLapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1626,7 +1626,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLappRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;
@@ -1643,7 +1643,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.0;
+				MARKETING_VERSION = 1.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mithem.GLapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

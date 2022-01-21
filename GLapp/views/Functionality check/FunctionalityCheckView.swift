@@ -61,8 +61,10 @@ struct FunctionalityCheckView: View {
     }
 }
 
+#if DEBUG
 struct FunctionalityCheckView_Previews: PreviewProvider {
     static var previews: some View {
         FunctionalityCheckView(appManager: .init(), dataManager: MockDataManager())
     }
 }
+#endif

@@ -56,6 +56,19 @@ enum IntentToHandle {
         }
     }
     
+    func intent() -> INIntent? {
+        switch self {
+        case .showTimetable:
+            return ShowTimetableIntent()
+        case .showClassTestPlan:
+            return ShowClassTestPlanIntent()
+        case .showRepresentativePlan:
+            return ShowRepresentativePlanIntent()
+        case .unknown(_):
+            return nil
+        }
+    }
+    
     init(CSSearchableItemActivityIdentifier id: String) {
         self = .unknown(identifier: id)
     }

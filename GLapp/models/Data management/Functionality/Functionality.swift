@@ -33,7 +33,7 @@ class Functionality: ObservableObject, FunctionalityProtocol, Identifiable {
         case .no:
             return "currently_disabled"
         case .unknown:
-            return "unkown_state"
+            return "unknown_state"
         case .semi:
             return "semi_enabled_state"
         }

@@ -27,8 +27,8 @@ class TimetableParser {
                 if childElem.name != "Wochentag" {
                     continue
                 }
-                guard let weekdayNText = childElem.attribute(by: "Tag")?.text.trimmed() else { continue }
-                guard let weekdayN = Int(weekday: weekdayNText) else { continue }
+                guard let weekdayNText = childElem.attribute(by: "Tag")?.text.trimmed().lowercased() else { continue }
+                guard let weekdayN = GLDateFormatter.berlinFormatter.standaloneWeekdaySymbols.map({$0.lowercased()}).firstIndex(of: weekdayNText) else { continue }
                 let weekday = Weekday(id: weekdayN)
                 
                 for lessonIdx in childIdx.children {

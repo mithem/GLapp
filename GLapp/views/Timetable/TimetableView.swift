@@ -22,7 +22,7 @@ struct TimetableView: View {
                         } else {
                             let grid = LazyVGrid(columns: .init(repeating: .init(), count: timetable.weekdays.count)) {
                                 ForEach(timetable.weekdays) { weekday in
-                                    Text(Constants.weekdayIDStringMap[weekday.id] ?? "unkown")
+                                    Text(GLDateFormatter.localFormatter.shortWeekdaySymbols[weekday.id])
                                         .font(.headline)
                                 }
                                 ForEach(grid) { lesson in
@@ -80,8 +80,10 @@ struct TimetableView: View {
     }
 }
 
+#if DEBUG
 struct TimetableView_Previews: PreviewProvider {
     static var previews: some View {
         TimetableView(dataManager: MockDataManager())
     }
 }
+#endif

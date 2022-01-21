@@ -20,7 +20,7 @@ class FNotifications: Functionality {
         case .no:
             return "currently_disabled"
         case .unknown:
-            return "unkown_state"
+            return "unknown_state"
         case .semi:
             return "permission_provisional_or_ephemeral"
         }

@@ -85,7 +85,7 @@ class TestFunctionality: XCTestCase {
         XCTAssertEqual(try functionality.isSupportedByDependencies(with: appManager, dataManager: dataManager), .yes)
     }
     
-    func testIsSupportedByDependenciesUnkown() throws {
+    func testIsSupportedByDependenciesUnknown() throws {
         let functionality = Functionality(id: "tmp", role: .critical, dependencies: [.backgroundRefresh, .demoMode])
         XCTAssertEqual(try functionality.isSupportedByDependencies(with: appManager, dataManager: dataManager), .unknown)
     }
@@ -132,7 +132,7 @@ class TestFunctionality: XCTestCase {
         XCTAssertThrowsError(try functionality.reload(with: appManager, dataManager: dataManager))
     }
     
-    func testReloadDisablesWhenSupportedUnkown() throws {
+    func testReloadDisablesWhenSupportedUnknown() throws {
         class FMixedBag: FTestFunctionality {
             override func reloadIsSupported(with appManager: AppManager, dataManager: DataManager) throws {
                 isSupported = .unknown

@@ -142,8 +142,10 @@ struct ContentView: View {
     }
 }
 
+#if DEBUG
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView(dataManager: MockDataManager(), appManager: .init())
     }
 }
+#endif

@@ -12,7 +12,14 @@ import UIKit
 /// Handles intents and the indexing of items for Spotlight
 class IntentsManager {
     static func reset() {
-        INVoiceShortcutCenter.shared.setShortcutSuggestions([])
+        let suggestions = [IntentToHandle.showTimetable, .showClassTestPlan, .showRepresentativePlan]
+        let transformIntentToHandleToINShortcut: (IntentToHandle) -> INShortcut? = { suggestion in
+            guard let intent = suggestion.intent() else { return nil }
+            return INShortcut(intent: intent)
+            
+        }
+        let shortcuts = suggestions.compactMap(transformIntentToHandleToINShortcut)
+        INVoiceShortcutCenter.shared.setShortcutSuggestions(shortcuts)
         CSSearchableIndex.default().deleteAllSearchableItems(completionHandler: nil)
         UserDefaults.standard.setNil(for: \.intentToHandle)
     }

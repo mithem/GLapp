@@ -31,6 +31,7 @@ struct GeneralSettings: View {
     }
 }
 
+#if DEBUG
 struct GeneralSettings_Previews: PreviewProvider, SettingsViewIsEnabledBindingResultHandling {
     static var previews: some View {
         GeneralSettings(dataManager: MockDataManager(), appManager: .init(), handler: self as! SettingsViewIsEnabledBindingResultHandling)
@@ -38,3 +39,4 @@ struct GeneralSettings_Previews: PreviewProvider, SettingsViewIsEnabledBindingRe
     
     func handleIsEnabledBindingResult(_ result: Result<Void, Functionality.Error>) {}
 }
+#endif

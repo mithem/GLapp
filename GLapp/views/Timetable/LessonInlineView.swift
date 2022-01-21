@@ -66,8 +66,10 @@ struct LessonInlineView: View {
     }
 }
 
+#if DEBUG
 struct LessonInlineView_Previews: PreviewProvider{
     static var previews: some View {
         LessonInlineView(lesson: .init(id: 0, lesson: MockData.lesson), dataManager: MockDataManager())
     }
 }
+#endif

@@ -25,8 +25,10 @@ struct AppLockGateView: View {
     }
 }
 
+#if DEBUG
 struct AppLockGateView_Previews: PreviewProvider {
     static var previews: some View {
         AppLockGateView(dataManager: MockDataManager(), appManager: .init())
     }
 }
+#endif

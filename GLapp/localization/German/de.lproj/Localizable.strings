@@ -18,7 +18,7 @@
 "not_authorized" = "Nicht authorisiert.";
 "no_data" = "Keine Daten verfügbar.";
 "bad_request" = "Fehlerhafte Anfrage.";
-"unkown_error" = "Unbekannter Fehler.";
+"unknown_error" = "Unbekannter Fehler.";
 "ok" = "OK";
 "settings" = "Einstellungen";
 "timetable" = "Stundenplan";
@@ -124,7 +124,7 @@
 "request_provisional_notification_permission" = "Provisorische Benachrichtigen aktivieren";
 "currently_enabled" = "Derzeit aktiviert";
 "currently_disabled" = "Derzeit deaktiviert";
-"unkown_state" = "Unbekannter Zustand";
+"unknown_state" = "Unbekannter Zustand";
 "semi_enabled_state" = "Zwischenzustand";
 "permission_provisional_or_ephemeral" = "Berechtigung provisorisch oder ephemerisch";
 "current_repr_plan" = "Aktueller Vertretungsplan";

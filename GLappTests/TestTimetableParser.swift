@@ -30,7 +30,7 @@ class TestTimetableParser: XCTestCase {
     func testParseSuccessOberstufe () throws {
         let date = Date(timeIntervalSince1970: 1631518004)
         let expected = Timetable(date: date, weekdays: [
-            .init(id: 0, lessons: [
+            .init(id: 1, lessons: [
                 .init(lesson: 1, room: "A14", subject: sPL),
                 .init(lesson: 2, room: "IR1", subject: sIF),
                 .init(lesson: 3, room: "IR1", subject: sIF),
@@ -41,7 +41,7 @@ class TestTimetableParser: XCTestCase {
                 .init(lesson: 8, room: "A16", subject: sEK),
                 .init(lesson: 9, room: "A16", subject: sEK)
             ]),
-            .init(id: 1, lessons: [
+            .init(id: 2, lessons: [
                 .init(lesson: 1, room: "A17", subject: sGE),
                 .init(lesson: 2, room: "A16", subject: sSW),
                 .init(lesson: 3, room: "A16", subject: sSW),
@@ -52,7 +52,7 @@ class TestTimetableParser: XCTestCase {
                 .init(lesson: 8, room: "IR3", subject: sPSE),
                 .init(lesson: 9, room: "IR3", subject: sPSE)
             ]),
-            .init(id: 2, lessons: [
+            .init(id: 3, lessons: [
                 .init(lesson: 2, room: "A11", subject: sM),
                 .init(lesson: 3, room: "A11", subject: sM),
                 .init(lesson: 6, room: "A14", subject: sE),
@@ -60,7 +60,7 @@ class TestTimetableParser: XCTestCase {
                 .init(lesson: 8, room: "TH5", subject: sSP),
                 .init(lesson: 9, room: "TH5", subject: sSP)
             ]),
-            .init(id: 3, lessons: [
+            .init(id: 4, lessons: [
                 .init(lesson: 1, room: "PR2", subject: sPH),
                 .init(lesson: 2, room: "A14", subject: sPL),
                 .init(lesson: 3, room: "A14", subject: sPL),
@@ -69,7 +69,7 @@ class TestTimetableParser: XCTestCase {
                 .init(lesson: 6, room: "A16", subject: sSW),
                 .init(lesson: 7, room: "A16", subject: sD)
             ]),
-            .init(id: 4, lessons: [
+            .init(id: 5, lessons: [
                 .init(lesson: 1, room: "A16", subject: sEK),
                 .init(lesson: 2, room: "PR2", subject: sPH),
                 .init(lesson: 3, room: "PR2", subject: sPH),
@@ -190,7 +190,7 @@ class TestTimetableParser: XCTestCase {
         let sMU = s("MU")
         let date = Date(timeIntervalSince1970: 1635493923)
         let expected = Timetable(date: date, weekdays: [
-            .init(id: 0, lessons: [
+            .init(id: 1, lessons: [
                 .init(lesson: 1, room: "130", subject: sI),
                 .init(lesson: 2, room: "TH4", subject: sSP),
                 .init(lesson: 3, room: "TH4", subject: sSP),
@@ -199,7 +199,7 @@ class TestTimetableParser: XCTestCase {
                 .init(lesson: 6, room: "130", subject: sM),
                 .init(lesson: 7, room: "131", subject: sLS)
             ]),
-            .init(id: 1, lessons: [
+            .init(id: 2, lessons: [
                 .init(lesson: 1, room: "130", subject: sD),
                 .init(lesson: 2, room: "130", subject: sF),
                 .init(lesson: 3, room: "130", subject: sF),
@@ -208,7 +208,7 @@ class TestTimetableParser: XCTestCase {
                 .init(lesson: 6, room: "E22", subject: sCH),
                 .init(lesson: 7, room: "130", subject: sLSM)
             ]),
-            .init(id: 2, lessons: [
+            .init(id: 3, lessons: [
                 .init(lesson: 2, room: "130", subject: sE),
                 .init(lesson: 3, room: "130", subject: sE),
                 .init(lesson: 4, room: "130", subject: sM),
@@ -217,7 +217,7 @@ class TestTimetableParser: XCTestCase {
                 .init(lesson: 8, room: "132", subject: sI),
                 .init(lesson: 9, room: "132", subject: sI)
             ]),
-            .init(id: 3, lessons: [
+            .init(id: 4, lessons: [
                 .init(lesson: 2, room: "MR2", subject: sMU),
                 .init(lesson: 3, room: "CR2", subject: sCH),
                 .init(lesson: 4, room: "130", subject: sD),
@@ -227,7 +227,7 @@ class TestTimetableParser: XCTestCase {
                 .init(lesson: 8, room: "KR1", subject: sKUWP),
                 .init(lesson: 9, room: "KR1", subject: sKUWP)
             ]),
-            .init(id: 4, lessons: [
+            .init(id: 5, lessons: [
                 .init(lesson: 1, room: "130", subject: sD),
                 .init(lesson: 2, room: "130", subject: sEK),
                 .init(lesson: 3, room: "130", subject: sEK),
@@ -312,7 +312,7 @@ class TestTimetableParser: XCTestCase {
             ])
         ])
         
-        TimetableParser.parse(timetable: MockData.sixDayTimetableString, with: manager) { result in
+        TimetableParser.parse(timetable: MockData.allWeekTimetableString, with: manager) { result in
             switch result {
             case .success(let timetable):
                 XCTAssertEqual(timetable, expected)

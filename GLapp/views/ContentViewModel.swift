@@ -96,11 +96,21 @@ final class ContentViewModel: ObservableObject, BindingAttributeRepresentable {
         return UserDefaults.standard.integer(for: \.launchCount) == 2
     }
     
+    private func showVersionUpdatePromoView() -> Bool {
+        UserDefaults.standard.bool(for: \.showVersionUpdatePromoView)
+    }
+    
     func showModalSheetView() -> ModalSheetView {
         if showLoginView() {
             return .loginView
         }
-        return showFunctionalityCheck() ? .functionalityCheckView : .none
+        if showFunctionalityCheck() {
+            return .functionalityCheckView
+        }
+        if showVersionUpdatePromoView() {
+            return .versionUpdatePromoView
+        }
+        return .none
     }
     
     func tick() {
@@ -109,7 +119,7 @@ final class ContentViewModel: ObservableObject, BindingAttributeRepresentable {
     }
     
     enum ModalSheetView {
-        case none, loginView, functionalityCheckView
+        case none, loginView, functionalityCheckView, versionUpdatePromoView
     }
     
     enum SubView: Int {

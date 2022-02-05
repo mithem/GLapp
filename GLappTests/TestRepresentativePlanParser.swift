@@ -44,8 +44,8 @@ class TestRepresentativePlanParser: XCTestCase {
         /// - ignore days with no lessons & notes with no content
         /// - even accept invalid lessons (like ones without subject & normalTeacher)
         let dataManager = MockDataManager()
-        let date = Calendar.current.date(from: .init(timeZone: .init(identifier: "Europe/Berlin"), year: 2021, month: 10, day: 26))!
-        let date2 = Calendar.current.date(from: .init(timeZone: .init(identifier: "Europe/Berlin"), year: 2021, month: 10, day: 27))!
+        let date = Calendar(identifier: .gregorian).date(from: .init(timeZone: .init(identifier: "Europe/Berlin"), year: 2021, month: 10, day: 26))!
+        let date2 = Calendar(identifier: .gregorian).date(from: .init(timeZone: .init(identifier: "Europe/Berlin"), year: 2021, month: 10, day: 27))!
         let sPH = Subject(dataManager: dataManager, className: "PH", subjectType: nil, teacher: "SEN", subjectName: "PH")
         let sD = Subject(dataManager: dataManager, className: "D", subjectType: nil, teacher: "ABC", subjectName: "D")
         let sE = Subject(dataManager: dataManager, className: "E", subjectType: nil, teacher: "DEF", subjectName: "E")
@@ -88,7 +88,7 @@ class TestRepresentativePlanParser: XCTestCase {
 """
         let dataManager = MockDataManager()
         let date = Calendar(identifier: .gregorian).date(from: .init(timeZone: .init(identifier: "Europe/Berlin"), year: 2021, month: 12, day: 13, hour: 12, minute: 36))!
-        let date2 = Calendar.current.date(from: .init(timeZone:  .init(identifier: "Europe/Berlin"), year: 2021, month: 12, day: 15))! // not sure why a forced gregorian calendar or the `current` one on both lines leads to problems with some (not all) non-gregorian calendars
+        let date2 = Calendar(identifier: .gregorian).date(from: .init(timeZone:  .init(identifier: "Europe/Berlin"), year: 2021, month: 12, day: 15))!
         let sABC = Subject(dataManager: dataManager, className: "ABC", subjectType: nil, teacher: "DEF", subjectName: "ABC")
         
         func lesson(_ no: Int, reprTeacher: String) -> RepresentativeLesson {

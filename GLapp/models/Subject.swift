@@ -50,7 +50,7 @@ final class Subject: ObservableObject, Codable, Hashable {
     }
     
     var isInvalid: Bool {
-        className.isEmpty || teacher?.isEmpty != false
+        className.isEmpty || teacher?.isEmpty ?? true
     }
     
     func hash(into hasher: inout Hasher) {

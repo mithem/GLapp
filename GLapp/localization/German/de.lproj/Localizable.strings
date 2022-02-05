@@ -151,4 +151,5 @@
 "background_check_minimum_time_interval_explanation" = "Minimales Zeitintervall, zu dem das System die Hintergrundaktualisierung des Vertretungsplans vornehmen kann.";
 "app_locked" = "App gesperrt.";
 "unlock" = "Entsperren";
-"version_abbreviation" = "v";
+"version_prefix" = "v";
+"whats_new" = "Neues";

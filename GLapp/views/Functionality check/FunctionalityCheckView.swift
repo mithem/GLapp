@@ -15,7 +15,7 @@ struct FunctionalityCheckView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                Text(NSLocalizedString("version_abbreviation") + Constants.appVersion.description)
+                Text(NSLocalizedString("version_prefix") + Changelog.currentVersion.description)
                         .foregroundColor(.secondary)
                 VStack(spacing: 100) {
                     VStack(alignment: .leading, spacing: 50) {

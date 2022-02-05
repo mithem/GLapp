@@ -142,24 +142,21 @@ final class AppManager: ObservableObject {
     }
     
     class func dealWithVersionChanges() {
+        if Bundle.main.semanticVersion != Changelog.currentVersion {
+            fatalError("Version mismatch between bundle version & Changelog.currentVersion. \(Bundle.main.semanticVersion ?? "nil") != \(Changelog.currentVersion)")
+        }
         let lastVersion = UserDefaults.standard.string(for: \.lastLaunchedVersion)
         versionCheck: if let lastVersion = lastVersion {
             guard let lastVersion = Semver(lastVersion) else { break versionCheck }
-            var reset = false
-            if Constants.appVersion > lastVersion {
-                if Constants.appVersion.major > lastVersion.major {
-                    reset = true
-                } else if Constants.appVersion.minor > lastVersion.minor {
-                    reset = true
-                }
-                if reset {
-                    resetOnboarding()
-                }
-            } else if Constants.appVersion < lastVersion {
-                resetAllDataOn(dataManager: nil) // just for readability
+            if Changelog.currentVersion < lastVersion {
+                resetAllDataOn(dataManager: nil)
+                return
+            }
+            let update = try? Changelog.getVersionUpdate(since: lastVersion)
+            if update?.isFeatureUpdate == true {
+                UserDefaults.standard.set(true, for: \.showVersionUpdatePromoView)
             }
         }
-        UserDefaults.standard.set(Constants.appVersion.description, for: \.lastLaunchedVersion)
     }
     
     func selfRepair() {

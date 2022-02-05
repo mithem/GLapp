@@ -13,7 +13,7 @@ struct ContentView: View {
     @State var currentiPadOSView: ContentViewModel.SubView? = .timetable // when using custom bindings created in VM, SwiftUI isn't notified of any change, so the view doesn't update (my best guess, anyways)
     @State private var modalSheetView = ContentViewModel.ModalSheetView.none
     @State private var showingModalSheetView = false
-    @AppStorage(UserDefaultsKeys().lastTabView) var lastTabView = 0 // using a state keeper in VM always lead to **some** unexpected behavior
+    @AppStorage(UserDefaultsKeys().lastTabView) var lastTabView = 0 // using a state keeper in VM always leads to **some** unexpected behavior
     
     var iOSView: some View {
         TabView(selection: $lastTabView) {
@@ -104,6 +104,11 @@ struct ContentView: View {
                     LoginView(appManager: model.appManager, dataManager: model.dataManager, delegate: self)
                 case .functionalityCheckView:
                     FunctionalityCheckView(appManager: model.appManager, dataManager: model.dataManager)
+                case .versionUpdatePromoView:
+                    VersionUpdatePromoView(appManager: model.appManager, dataManager: model.dataManager, showCloseButton: true)
+                    .onAppear {
+                        UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+                    }
                 case .none:
                     Text("(empty)")
             }

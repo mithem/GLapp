@@ -18,7 +18,6 @@ struct Constants {
     static let lessonStartDateComponents = getLessonStartDateComponents()
     static let lessonEndDateComponents = getLessonEndDateComponents()
     static let timeIntervalRequiringUserActivityUntilNSUserActivityIsDonated: TimeInterval = 4
-    static let appVersion = Bundle.main.semanticVersion!
     static let appDataDir = try? FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent(Constants.Identifiers.appId)
     /// When to add the first extra component (hours, at 1/3rd this interval also minutes) to increase (relative) precision
     static let relativeDateTimeFormatterTimeIntervalToIncreasePrecision: TimeInterval = 60 * 60 * 24 * 3

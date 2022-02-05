@@ -77,6 +77,7 @@ func resetOnboarding(withHapticFeedback: Bool = false) {
     generator?.prepare()
     UserDefaults.standard.set(0, for: \.launchCount)
     UserDefaults.standard.set(false, for: \.didShowFunctionalityCheck)
+    UserDefaults.standard.set(false, for: \.showVersionUpdatePromoView)
     IntentsManager.reset()
     removeLastReprPlanUpdateTimestamp()
     generator?.notificationOccurred(.success)

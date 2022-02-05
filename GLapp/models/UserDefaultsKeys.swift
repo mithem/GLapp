@@ -37,4 +37,5 @@ struct UserDefaultsKeys {
     let requireAuthentication = "requireAuthentication"
     let didUnlockInCurrentSession = "didUnlockInCurrentSession"
     let isUnlocking = "isUnlocking"
+    let showVersionUpdatePromoView = "showVersionUpdatePromoView"
 }

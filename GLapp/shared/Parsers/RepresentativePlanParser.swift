@@ -41,7 +41,7 @@ class RepresentativePlanParser {
                         }
                         let subjectText = elem.attribute(by: "Fach")?.text.trimmed()
                         var subject: Subject?
-                        if subjectText?.isEmpty != false && normalTeacher?.isEmpty != false {
+                        if subjectText?.isEmpty ?? true && normalTeacher?.isEmpty ?? true {
                             subject = nil
                         } else if let subjectText = subjectText {
                             subject = dataManager.getSubject(subjectName: subjectText, className: nil)

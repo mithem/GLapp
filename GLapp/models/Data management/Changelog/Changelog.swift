@@ -97,7 +97,7 @@ struct Changelog {
             "add_more_context_menu_to_repr_lessons"
         ], fixed: [
             "notifications_being_scheduled_without_time_sensitivity_regardless_of_relevance",
-            "ui_irregularities_esp_for_secondary_stage_II",
+            "ui_irregularities_esp_for_secondary_stage_I",
             "sync_class_test_subjects_with_timetable",
             "bug_fixes",
             "crashes"
@@ -122,7 +122,7 @@ struct Changelog {
             "option_to_automatically_add_class_tests_to_calendar",
             "option_for_class_tests_and_repr_lessons_to_use_subject_color"
         ], improved: [
-            "optimizations_for_secondary_stage_II",
+            "optimizations_for_secondary_stage_I",
             "tweak_colors_for_better_readability_for_all_appearances",
             "show_notifications_even_when_app_is_in_foreground",
             "give_feedback_when_certain_functionality_cant_be_enabled",

@@ -38,6 +38,7 @@ struct SettingsView: View, SettingsViewIsEnabledBindingResultHandling {
                         Spacer()
                         Text(NSLocalizedString("version_prefix") + Changelog.currentVersion.description)
                             .foregroundColor(.secondary)
+                            .font(.system(.body, design: .monospaced))
                     }
                 }
                 Button("check_for_functionality") {

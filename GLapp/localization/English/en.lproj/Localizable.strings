@@ -208,7 +208,7 @@
 "detect_semi_enabled_functionalities" = "Detect semi-enabled functionalities";
 "add_more_context_menu_to_repr_lessons" = "Add 'more' context menu to representative lessons";
 "notifications_being_scheduled_without_time_sensitivity_regardless_of_relevance" = "Notifications being scheduled without time sensitivity regardless of relevance";
-"ui_irregularities_esp_for_secondary_stage_II" = "UI irregularities, esp. for secondary stage II";
+"ui_irregularities_esp_for_secondary_stage_I" = "UI irregularities, esp. for secondary stage I";
 "sync_class_test_subjects_with_timetable" = "Sync class test subjects with timetable";
 "crashes" = "Crashes";
 "this_update_removes_support_for_iPadOS_multiple_windows_temporarily" = "This update removes support for iPadOS multiple windows temporarily.";
@@ -219,7 +219,7 @@
 "indication_in_tab_bar_icon_when_repr_plan_has_items" = "Indication in tab bar icon when representative plan has items";
 "option_to_automatically_add_class_tests_to_calendar" = "Option to automatically add class tests to calendar";
 "option_for_class_tests_and_repr_lessons_to_use_subject_color" = "Option for class tests and representative lessons to use subject color";
-"optimizations_for_secondary_stage_II" = "Optimizations for secondary stage II";
+"optimizations_for_secondary_stage_I" = "Optimizations for secondary stage I";
 "tweak_colors_for_better_readability_for_all_appearances" = "Tweak colors for better readability for all appearances";
 "show_notifications_even_when_app_is_in_foreground" = "Show notifications even when app is in foreground";
 "give_feedback_when_certain_functionality_cant_be_enabled" = "Give feedback when certain functionality can't be enabled";

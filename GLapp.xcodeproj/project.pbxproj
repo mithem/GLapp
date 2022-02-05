@@ -25,6 +25,8 @@
 		49262702273E379C00829AA7 /* Differentiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49262701273E379C00829AA7 /* Differentiable.swift */; };
 		49262704273E39BE00829AA7 /* RepresentativePlan+Differentiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49262703273E39BE00829AA7 /* RepresentativePlan+Differentiable.swift */; };
 		49276AAF274E4A9000C4063E /* FTimeSensitiveNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49276AAE274E4A9000C4063E /* FTimeSensitiveNotifications.swift */; };
+		492783F427AE7A3C00D0F276 /* VersionUpdate+CustomDebugStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492783F327AE7A3C00D0F276 /* VersionUpdate+CustomDebugStringConvertible.swift */; };
+		492783F627AE7AA300D0F276 /* ChangelogItem+CustomDebugStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492783F527AE7AA300D0F276 /* ChangelogItem+CustomDebugStringConvertible.swift */; };
 		492804C2272010220055ED63 /* ClassTestPlan+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492804C1272010220055ED63 /* ClassTestPlan+Equatable.swift */; };
 		492804C42720104D0055ED63 /* RepresentativePlan+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492804C32720104D0055ED63 /* RepresentativePlan+Equatable.swift */; };
 		492804C8272026EF0055ED63 /* GLappError+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492804C7272026EF0055ED63 /* GLappError+Equatable.swift */; };
@@ -150,6 +152,9 @@
 		49AF336B2719963A00F406D1 /* TimetableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF33682719963A00F406D1 /* TimetableViewModel.swift */; };
 		49AF336C2719963A00F406D1 /* LessonInlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF33692719963A00F406D1 /* LessonInlineView.swift */; };
 		49AF336D2719963A00F406D1 /* TimetableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF336A2719963A00F406D1 /* TimetableView.swift */; };
+		49B149DB27AD9F4F00162E80 /* VersionUpdatePromoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B149DA27AD9F4F00162E80 /* VersionUpdatePromoViewModel.swift */; };
+		49B149DD27ADA0F300162E80 /* VersionUpdateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B149DC27ADA0F300162E80 /* VersionUpdateViewModel.swift */; };
+		49B149DF27ADA25800162E80 /* ChangelogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B149DE27ADA25800162E80 /* ChangelogViewModel.swift */; };
 		49B387602740DD8D008B16B1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 499C087627353CDF00206514 /* Localizable.strings */; };
 		49B387612740DDA7008B16B1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 499C087927353CDF00206514 /* Localizable.strings */; };
 		49B3876B2740DF7D008B16B1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49B387682740DEA6008B16B1 /* InfoPlist.strings */; };
@@ -175,6 +180,17 @@
 		49ED95FA278D959700E3A878 /* AppLockedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ED95F9278D959700E3A878 /* AppLockedViewModel.swift */; };
 		49ED95FE278E08AA00E3A878 /* View+onChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ED95FD278E08AA00E3A878 /* View+onChange.swift */; };
 		49ED9600278E0CCB00E3A878 /* View+onReceive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ED95FF278E0CCB00E3A878 /* View+onReceive.swift */; };
+		49EEB01027ABCC1D00FF4BC8 /* Changelog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EEB00F27ABCC1D00FF4BC8 /* Changelog.swift */; };
+		49EEB01427ABCEC300FF4BC8 /* VersionUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EEB01327ABCEC300FF4BC8 /* VersionUpdate.swift */; };
+		49EEB01727ABCEFC00FF4BC8 /* FeaturePromo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EEB01627ABCEFC00FF4BC8 /* FeaturePromo.swift */; };
+		49EEB01927ABCF3900FF4BC8 /* ChangelogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EEB01827ABCF3900FF4BC8 /* ChangelogItem.swift */; };
+		49EEB01C27ABF42D00FF4BC8 /* FeaturePromoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EEB01B27ABF42D00FF4BC8 /* FeaturePromoView.swift */; };
+		49EEB01E27ABF51700FF4BC8 /* VersionUpdatePromoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EEB01D27ABF51700FF4BC8 /* VersionUpdatePromoView.swift */; };
+		49EEB02027AC55F100FF4BC8 /* VersionUpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EEB01F27AC55F100FF4BC8 /* VersionUpdateView.swift */; };
+		49EEB02227AC577500FF4BC8 /* ChangelogItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EEB02127AC577500FF4BC8 /* ChangelogItemView.swift */; };
+		49EEB02427AC5B1300FF4BC8 /* View+border.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EEB02327AC5B1300FF4BC8 /* View+border.swift */; };
+		49EEB02627AC5C3800FF4BC8 /* VersionUpdate+borderColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EEB02527AC5C3800FF4BC8 /* VersionUpdate+borderColor.swift */; };
+		49EEB02927AC5DC600FF4BC8 /* ChangelogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EEB02827AC5DC600FF4BC8 /* ChangelogView.swift */; };
 		49EEDE47272158A0009A4C6A /* Functionality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EEDE46272158A0009A4C6A /* Functionality.swift */; };
 		49EEDE4C27215BDD009A4C6A /* FunctionalityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EEDE4B27215BDD009A4C6A /* FunctionalityProtocol.swift */; };
 		49EEDE4E272167D8009A4C6A /* FNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EEDE4D272167D8009A4C6A /* FNotifications.swift */; };
@@ -252,6 +268,8 @@
 		49262701273E379C00829AA7 /* Differentiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Differentiable.swift; sourceTree = "<group>"; };
 		49262703273E39BE00829AA7 /* RepresentativePlan+Differentiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepresentativePlan+Differentiable.swift"; sourceTree = "<group>"; };
 		49276AAE274E4A9000C4063E /* FTimeSensitiveNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTimeSensitiveNotifications.swift; sourceTree = "<group>"; };
+		492783F327AE7A3C00D0F276 /* VersionUpdate+CustomDebugStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VersionUpdate+CustomDebugStringConvertible.swift"; sourceTree = "<group>"; };
+		492783F527AE7AA300D0F276 /* ChangelogItem+CustomDebugStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChangelogItem+CustomDebugStringConvertible.swift"; sourceTree = "<group>"; };
 		492804C1272010220055ED63 /* ClassTestPlan+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClassTestPlan+Equatable.swift"; sourceTree = "<group>"; };
 		492804C32720104D0055ED63 /* RepresentativePlan+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepresentativePlan+Equatable.swift"; sourceTree = "<group>"; };
 		492804C7272026EF0055ED63 /* GLappError+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GLappError+Equatable.swift"; sourceTree = "<group>"; };
@@ -385,6 +403,9 @@
 		49AF33682719963A00F406D1 /* TimetableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimetableViewModel.swift; sourceTree = "<group>"; };
 		49AF33692719963A00F406D1 /* LessonInlineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonInlineView.swift; sourceTree = "<group>"; };
 		49AF336A2719963A00F406D1 /* TimetableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimetableView.swift; sourceTree = "<group>"; };
+		49B149DA27AD9F4F00162E80 /* VersionUpdatePromoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionUpdatePromoViewModel.swift; sourceTree = "<group>"; };
+		49B149DC27ADA0F300162E80 /* VersionUpdateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionUpdateViewModel.swift; sourceTree = "<group>"; };
+		49B149DE27ADA25800162E80 /* ChangelogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangelogViewModel.swift; sourceTree = "<group>"; };
 		49B387512740DCB9008B16B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49B387672740DEA6008B16B1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		49B387692740DEA8008B16B1 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -411,6 +432,17 @@
 		49ED95F9278D959700E3A878 /* AppLockedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockedViewModel.swift; sourceTree = "<group>"; };
 		49ED95FD278E08AA00E3A878 /* View+onChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+onChange.swift"; sourceTree = "<group>"; };
 		49ED95FF278E0CCB00E3A878 /* View+onReceive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+onReceive.swift"; sourceTree = "<group>"; };
+		49EEB00F27ABCC1D00FF4BC8 /* Changelog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Changelog.swift; sourceTree = "<group>"; };
+		49EEB01327ABCEC300FF4BC8 /* VersionUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionUpdate.swift; sourceTree = "<group>"; };
+		49EEB01627ABCEFC00FF4BC8 /* FeaturePromo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturePromo.swift; sourceTree = "<group>"; };
+		49EEB01827ABCF3900FF4BC8 /* ChangelogItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangelogItem.swift; sourceTree = "<group>"; };
+		49EEB01B27ABF42D00FF4BC8 /* FeaturePromoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturePromoView.swift; sourceTree = "<group>"; };
+		49EEB01D27ABF51700FF4BC8 /* VersionUpdatePromoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionUpdatePromoView.swift; sourceTree = "<group>"; };
+		49EEB01F27AC55F100FF4BC8 /* VersionUpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionUpdateView.swift; sourceTree = "<group>"; };
+		49EEB02127AC577500FF4BC8 /* ChangelogItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangelogItemView.swift; sourceTree = "<group>"; };
+		49EEB02327AC5B1300FF4BC8 /* View+border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+border.swift"; sourceTree = "<group>"; };
+		49EEB02527AC5C3800FF4BC8 /* VersionUpdate+borderColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VersionUpdate+borderColor.swift"; sourceTree = "<group>"; };
+		49EEB02827AC5DC600FF4BC8 /* ChangelogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangelogView.swift; sourceTree = "<group>"; };
 		49EEDE46272158A0009A4C6A /* Functionality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functionality.swift; sourceTree = "<group>"; };
 		49EEDE4B27215BDD009A4C6A /* FunctionalityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalityProtocol.swift; sourceTree = "<group>"; };
 		49EEDE4D272167D8009A4C6A /* FNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FNotifications.swift; sourceTree = "<group>"; };
@@ -483,6 +515,8 @@
 				49D67A1E273E728F00ADC319 /* RepresentativeDay+CustomDebugStringConvertible.swift */,
 				49D67A20273E72FE00ADC319 /* RepresentativeLesson+CustomDebugStringConvertible.swift.swift */,
 				490A22C42746186F0090C5AC /* ClassTest+CustomDebugStringConvertible.swift */,
+				492783F327AE7A3C00D0F276 /* VersionUpdate+CustomDebugStringConvertible.swift */,
+				492783F527AE7AA300D0F276 /* ChangelogItem+CustomDebugStringConvertible.swift */,
 			);
 			path = CustomDebugStringConvertible;
 			sourceTree = "<group>";
@@ -575,6 +609,7 @@
 				49B8D089276CF9CF0099B0F3 /* UserDefaults+keyPaths.swift */,
 				492B9A892790A6AE009B866D /* OptionalStridable+Stridable.swift */,
 				49545735279AB949008B57C6 /* Collection+compactMap.swift */,
+				49EEB02527AC5C3800FF4BC8 /* VersionUpdate+borderColor.swift */,
 				4921C4872731B85E00DA256D /* CustomDebugStringConvertible */,
 			);
 			path = Extensions;
@@ -589,6 +624,7 @@
 				4934052A2712BC6A008B059B /* DataManagementTask.swift */,
 				49250B642720A8DE0096411F /* AppManager.swift */,
 				49F2662F27325D9300F89A7B /* EventManager.swift */,
+				49EEB01527ABCEED00FF4BC8 /* Changelog */,
 				49EEDE4A27215A07009A4C6A /* Functionality */,
 				49EEDE452721587E009A4C6A /* Mock data */,
 			);
@@ -613,6 +649,7 @@
 				4991A2AF27199706008559F9 /* SettingsView+LoginViewDelegate.swift */,
 				49ED95FD278E08AA00E3A878 /* View+onChange.swift */,
 				49ED95FF278E0CCB00E3A878 /* View+onReceive.swift */,
+				49EEB02327AC5B1300FF4BC8 /* View+border.swift */,
 				492B9A8727907081009B866D /* Stepper+init.swift */,
 				492B9A8E2790AE96009B866D /* Toggle+init.swift */,
 				492B9A922791C99D009B866D /* Picker+init.swift */,
@@ -849,6 +886,7 @@
 				4991A2A5271996F8008559F9 /* LoginView.swift */,
 				4991A2A1271996F8008559F9 /* UIConstants.swift */,
 				495E7C50271ABFC9000085C7 /* DataManagementTaskView.swift */,
+				49EEB01A27ABF3FB00FF4BC8 /* Changelog */,
 				49E9737C275A4978008D91A2 /* ViewModifiers */,
 				49E59DE4271C7170009A1609 /* Settings */,
 				494FD6742713254D0023E1B5 /* Extensions */,
@@ -965,6 +1003,32 @@
 				49E97378275A45F5008D91A2 /* ConfirmationDialog.swift */,
 			);
 			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
+		49EEB01527ABCEED00FF4BC8 /* Changelog */ = {
+			isa = PBXGroup;
+			children = (
+				49EEB00F27ABCC1D00FF4BC8 /* Changelog.swift */,
+				49EEB01327ABCEC300FF4BC8 /* VersionUpdate.swift */,
+				49EEB01627ABCEFC00FF4BC8 /* FeaturePromo.swift */,
+				49EEB01827ABCF3900FF4BC8 /* ChangelogItem.swift */,
+			);
+			path = Changelog;
+			sourceTree = "<group>";
+		};
+		49EEB01A27ABF3FB00FF4BC8 /* Changelog */ = {
+			isa = PBXGroup;
+			children = (
+				49EEB01B27ABF42D00FF4BC8 /* FeaturePromoView.swift */,
+				49EEB01D27ABF51700FF4BC8 /* VersionUpdatePromoView.swift */,
+				49B149DA27AD9F4F00162E80 /* VersionUpdatePromoViewModel.swift */,
+				49EEB01F27AC55F100FF4BC8 /* VersionUpdateView.swift */,
+				49B149DC27ADA0F300162E80 /* VersionUpdateViewModel.swift */,
+				49EEB02127AC577500FF4BC8 /* ChangelogItemView.swift */,
+				49EEB02827AC5DC600FF4BC8 /* ChangelogView.swift */,
+				49B149DE27ADA25800162E80 /* ChangelogViewModel.swift */,
+			);
+			path = Changelog;
 			sourceTree = "<group>";
 		};
 		49EEDE452721587E009A4C6A /* Mock data */ = {
@@ -1214,6 +1278,7 @@
 				4921C48027319E8700DA256D /* ScheduledNotificationsView.swift in Sources */,
 				4991A2B427199768008559F9 /* RepresentativePlanParser.swift in Sources */,
 				4931D929276372CC003DCF28 /* ClassTest+isOver.swift in Sources */,
+				49EEB01427ABCEC300FF4BC8 /* VersionUpdate.swift in Sources */,
 				49D67A21273E72FE00ADC319 /* RepresentativeLesson+CustomDebugStringConvertible.swift.swift in Sources */,
 				4948CFEF2742BF380047D443 /* RepresentativePlanViewModel.swift in Sources */,
 				49A5B2462719A3C400577767 /* FunctionalityCheckView.swift in Sources */,
@@ -1226,6 +1291,7 @@
 				4976D16527108590009C5AC2 /* NetworkError.swift in Sources */,
 				4976D174271085EB009C5AC2 /* RepresentativeLesson.swift in Sources */,
 				4962EC51274A47AC000CDD4E /* RepresentativeLesson+DeliverableByNotification.swift in Sources */,
+				49EEB02227AC577500FF4BC8 /* ChangelogItemView.swift in Sources */,
 				49F380F32710E174002AE814 /* ClassTest.swift in Sources */,
 				495D25DF273AA72900F3899D /* RepresentativePlan+Codable.swift in Sources */,
 				4934052B2712BC6A008B059B /* DataManagementTask.swift in Sources */,
@@ -1235,12 +1301,14 @@
 				49250B652720A8DE0096411F /* AppManager.swift in Sources */,
 				49D67A2F273EC7B900ADC319 /* Array+Copying.swift in Sources */,
 				49AA51802750E9C000BD03D8 /* CodableColor+passthrough.swift in Sources */,
+				49EEB01027ABCC1D00FF4BC8 /* Changelog.swift in Sources */,
 				4962EC40274A3DC0000CDD4E /* CSIndexable.swift.swift in Sources */,
 				49AF33672719962C00F406D1 /* RepresentativeLessonInlineView.swift in Sources */,
 				49EEDE4C27215BDD009A4C6A /* FunctionalityProtocol.swift in Sources */,
 				49686D89271DDC490075F14A /* Weekday+Equatable.swift in Sources */,
 				4991A2B027199706008559F9 /* SettingsView+LoginViewDelegate.swift in Sources */,
 				4921C48B2731BEA900DA256D /* Lesson+CustomDebugStringConvertible.swift in Sources */,
+				49EEB02627AC5C3800FF4BC8 /* VersionUpdate+borderColor.swift in Sources */,
 				49F380EA2710E095002AE814 /* Weekday.swift in Sources */,
 				492B9A9127914096009B866D /* SettingsValueStrideable.swift in Sources */,
 				49D67A1F273E728F00ADC319 /* RepresentativeDay+CustomDebugStringConvertible.swift in Sources */,
@@ -1253,11 +1321,13 @@
 				4921C48F2731C57200DA256D /* ScheduledNotificationsViewModel.swift in Sources */,
 				49F2663027325D9300F89A7B /* EventManager.swift in Sources */,
 				4962EC59274A49AD000CDD4E /* Subject+Rewritable.swift in Sources */,
+				49B149DB27AD9F4F00162E80 /* VersionUpdatePromoViewModel.swift in Sources */,
 				49EEDE47272158A0009A4C6A /* Functionality.swift in Sources */,
 				4962EC64274A505B000CDD4E /* String+init+Optional<CustomStringConvertible>.swift in Sources */,
 				49F2662C2732577A00F89A7B /* FClassTestPlan.swift in Sources */,
 				49F380EF2710E146002AE814 /* ClassTestPlan.swift in Sources */,
 				49ED95FE278E08AA00E3A878 /* View+onChange.swift in Sources */,
+				49EEB01927ABCF3900FF4BC8 /* ChangelogItem.swift in Sources */,
 				493E8AC9273008DE008C9B13 /* UIColor+getColoredForegroundColor.swift in Sources */,
 				49AF336B2719963A00F406D1 /* TimetableViewModel.swift in Sources */,
 				49D67A31273EC87C00ADC319 /* Copying.swift in Sources */,
@@ -1279,6 +1349,7 @@
 				4991A2B527199768008559F9 /* TimetableParser.swift in Sources */,
 				493E8AC5273003DA008C9B13 /* UIColor+isDark+isTransparent.swift in Sources */,
 				492B9A8D2790ACD3009B866D /* SettingsValueWithFunctionality.swift in Sources */,
+				49EEB02427AC5B1300FF4BC8 /* View+border.swift in Sources */,
 				495D25E1273AA75600F3899D /* RepresentativeDay+Codable.swift in Sources */,
 				49AF33662719962C00F406D1 /* RepresentativePlanView.swift in Sources */,
 				493405172711BADE008B059B /* MockDataManager.swift in Sources */,
@@ -1288,14 +1359,18 @@
 				49526F96272190D900FD0242 /* FClassTestReminders.swift in Sources */,
 				499A3EEE2719FB010045683D /* UpcomingClassTestView.swift in Sources */,
 				4962EC5F274A4E36000CDD4E /* Weekday+CustomStringConvertible.swift in Sources */,
+				49EEB02027AC55F100FF4BC8 /* VersionUpdateView.swift in Sources */,
 				49276AAF274E4A9000C4063E /* FTimeSensitiveNotifications.swift in Sources */,
 				495D25DB273AA46900F3899D /* RepresentativeLesson+Codable.swift in Sources */,
 				495E6B972718C3CC0052B565 /* AppDelegate.swift in Sources */,
 				4991A2AA271996F8008559F9 /* LoadingView.swift in Sources */,
 				49AF336D2719963A00F406D1 /* TimetableView.swift in Sources */,
 				49F380E32710DF15002AE814 /* DataManager.swift in Sources */,
+				492783F427AE7A3C00D0F276 /* VersionUpdate+CustomDebugStringConvertible.swift in Sources */,
 				49E97377275A2A23008D91A2 /* AdvancedSettingsViewModel.swift in Sources */,
 				494C5FBC274013A4003D39DC /* IntentsManager.swift in Sources */,
+				49B149DF27ADA25800162E80 /* ChangelogViewModel.swift in Sources */,
+				492783F627AE7AA300D0F276 /* ChangelogItem+CustomDebugStringConvertible.swift in Sources */,
 				4934051F2711E45D008B059B /* MockData.swift in Sources */,
 				49AF33632719962100F406D1 /* ClassTestPlanView.swift in Sources */,
 				49F575FD2743B493005E11BF /* ClassTestPlanViewModel.swift in Sources */,
@@ -1338,6 +1413,7 @@
 				49262702273E379C00829AA7 /* Differentiable.swift in Sources */,
 				4962EC57274A4960000CDD4E /* ClassTest+Rewritable.swift in Sources */,
 				4976D173271085EB009C5AC2 /* Subject.swift in Sources */,
+				49EEB01C27ABF42D00FF4BC8 /* FeaturePromoView.swift in Sources */,
 				49F2662E27325D6800F89A7B /* FClassTestCalendarEvents.swift in Sources */,
 				49F266322732925500F89A7B /* FCalendarAccess.swift in Sources */,
 				49FE0C81276E171200643682 /* GeneralSettings.swift in Sources */,
@@ -1355,6 +1431,7 @@
 				49D67A25273E786200ADC319 /* RepresentativeDay+Differentiable.swift in Sources */,
 				49ED95F8278D947F00E3A878 /* AppLockedView.swift in Sources */,
 				49FE0C77276DFE2800643682 /* Date+today.swift in Sources */,
+				49EEB01727ABCEFC00FF4BC8 /* FeaturePromo.swift in Sources */,
 				49517FFA271F30500085BEA6 /* DeliverableByNotification.swift in Sources */,
 				495E7C51271ABFC9000085C7 /* DataManagementTaskView.swift in Sources */,
 				4991A2BA27199789008559F9 /* GLDateFormatter.swift in Sources */,
@@ -1362,12 +1439,15 @@
 				49686D87271DDA250075F14A /* Lesson+Equatable.swift in Sources */,
 				49FDEDD3271359850013341B /* String+Identifiable.swift in Sources */,
 				49526C2E27982F3300B1C124 /* String+trimmed.swift in Sources */,
+				49EEB02927AC5DC600FF4BC8 /* ChangelogView.swift in Sources */,
 				4962EC53274A48E2000CDD4E /* RepresentativePlan+DeliverableByNotification.swift in Sources */,
 				49D110A7272AD87B00CEBF1D /* DateComponents+combine.swift in Sources */,
 				4980CB4B2748F304000E751F /* String+Rewritable.swift in Sources */,
 				49262704273E39BE00829AA7 /* RepresentativePlan+Differentiable.swift in Sources */,
+				49EEB01E27ABF51700FF4BC8 /* VersionUpdatePromoView.swift in Sources */,
 				4991A2A9271996F8008559F9 /* UIConstants.swift in Sources */,
 				4991A2B627199768008559F9 /* ClassTestPlanParser.swift in Sources */,
+				49B149DD27ADA0F300162E80 /* VersionUpdateViewModel.swift in Sources */,
 				49AA51822750EC0500BD03D8 /* Color+init.swift in Sources */,
 				49E97379275A45F5008D91A2 /* ConfirmationDialog.swift in Sources */,
 				499A3EEC2719F7350045683D /* ClassTest+Comparable.swift in Sources */,
@@ -1609,7 +1689,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mithem.GLapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1643,7 +1723,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mithem.GLapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

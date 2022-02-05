@@ -28,6 +28,18 @@ struct SettingsView: View, SettingsViewIsEnabledBindingResultHandling {
                 NavigationLink("advanced_settings") {
                     AdvancedSettingsView(appManager: appManager, dataManager: dataManager)
                 }
+            }
+            Section {
+                NavigationLink(destination: {
+                    ChangelogView(appManager: appManager, dataManager: dataManager)
+                }) {
+                    HStack {
+                        Text("changelog")
+                        Spacer()
+                        Text(NSLocalizedString("version_prefix") + Changelog.currentVersion.description)
+                            .foregroundColor(.secondary)
+                    }
+                }
                 Button("check_for_functionality") {
                     showingFunctionalityCheckView = true
                 }
@@ -70,8 +82,8 @@ struct SettingsView: View, SettingsViewIsEnabledBindingResultHandling {
                     }
                 }
             }
-            if Constants.appVersion.isPrerelease {
-                Text(NSLocalizedString("prerelease_version_exl_mark") + " (\(Constants.appVersion))")
+            if Changelog.currentVersion.isPrerelease {
+                Text(NSLocalizedString("prerelease_version_exl_mark") + " (\(Changelog.currentVersion))")
                     .foregroundColor(.secondary)
             }
         }

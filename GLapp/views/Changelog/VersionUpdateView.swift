@@ -86,6 +86,8 @@ struct VersionUpdateView: View {
                         Image(systemName: "sparkles.square.filled.on.square")
                             .foregroundColor(.green)
                     })
+                        .padding(5)
+                        .hoverEffect()
                 }
             }
             HStack { // grow horizontally

@@ -215,7 +215,7 @@
 "ui_irregularities_esp_for_secondary_stage_I" = "UI Unregelmäßigkeiten, besonders hinsichtlich Sekundarstufe I";
 "sync_class_test_subjects_with_timetable" = "Synchronisieren von Klausurfächern mit Stundenplan";
 "crashes" = "Abstürze";
-"this_update_removes_support_for_iPadOS_multiple_windows_temporarily" = "Dieses Update entfernt zeitweise Support für mehrere Fenster unter iPadOS";
+"this_update_removes_support_for_iPadOS_multiple_windows" = "Dieses Update entfernt Support für mehrere Fenster unter iPadOS";
 "automatic_reloading_of_data_changed_in_background" = "Automatisches Aktualisieren von geladenen Daten im Hintergrund";
 "disorganized_colors_of_timetable_on_first_launch" = "Chaotische Fachfarben im Stundenplan beim ersten App-Start";
 "handling_of_server_errors" = "Umgang mit Server-Fehlern";

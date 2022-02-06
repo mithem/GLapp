@@ -35,6 +35,8 @@ struct VersionUpdatePromoView: View {
                     AccentColorButton("close") {
                         presentationMode.wrappedValue.dismiss()
                     }
+                    .keyboardShortcut(.defaultAction)
+                    .keyboardShortcut(.cancelAction)
                 }
                 Spacer()
             }

@@ -211,7 +211,7 @@
 "ui_irregularities_esp_for_secondary_stage_I" = "UI irregularities, esp. for secondary stage I";
 "sync_class_test_subjects_with_timetable" = "Sync class test subjects with timetable";
 "crashes" = "Crashes";
-"this_update_removes_support_for_iPadOS_multiple_windows_temporarily" = "This update removes support for iPadOS multiple windows temporarily.";
+"this_update_removes_support_for_iPadOS_multiple_windows" = "This update removes support for iPadOS multiple windows.";
 "automatic_reloading_of_data_changed_in_background" = "Automatic reloading of data changed in background";
 "disorganized_colors_of_timetable_on_first_launch" = "Disorganized colors of timetable on first launch";
 "handling_of_server_errors" = "Handling of server errors";

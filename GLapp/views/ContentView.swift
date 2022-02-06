@@ -52,6 +52,7 @@ struct ContentView: View {
                     label: {
                         Label("timetable", systemImage: "calendar")
                 })
+                    .keyboardShortcut("1")
                 if model.dataManager.tasks.getClassTestPlan.error != .classTestPlanNotSupported {
                     NavigationLink(
                         destination: ClassTestPlanView(appManager: model.appManager, dataManager: model.dataManager),

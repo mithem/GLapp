@@ -108,7 +108,7 @@ struct Changelog {
             .init(titleKey: "support_for_spotlight", descriptionKey: "feature_spotlight_integration_description", symbol: {
                 Image(systemName: "magnifyingglass")
             })
-        ], note: "this_update_removes_support_for_iPadOS_multiple_windows_temporarily")!,
+        ], note: "this_update_removes_support_for_iPadOS_multiple_windows")!,
         
         .init(version: "1.1.1", new: [], improved: [], fixed: [
             "automatic_reloading_of_data_changed_in_background",

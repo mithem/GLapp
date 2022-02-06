@@ -244,4 +244,10 @@
 "color_text_in_subject_color" = "Font in Fachfarben einfärben (sorry)";
 "e_changelog" = "👋 Changelog";
 "showing_on_each_relevant_app_update" = "Anzeige nach jedem relevanten App-Update";
+"button_for_rating_in_app_store" = "Knopf zum Verfassen einer Rezension im App Store";
+"automatic_rating_requests" = "Automatische Anfragen zum Hinterlassen einer Bewertung";
+"re-add_keyboard_shortcut_for_navigating_to_timetable_p_as_that_was_lost_for_some_reason_p" = "Erneutes Hinzufügen eine des Keyboard-Shortcuts zum Navigieren zum Stundenplan (weil dieser aus Gründen verloren ging)";
+"making_sure_not_to_bug_you" = "Ohne zu nerven";
 /// MARK: end changelog block
+
+"dev_reset" = "Dev-reset";

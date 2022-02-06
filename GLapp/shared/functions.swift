@@ -111,10 +111,20 @@ func resetAllDataOn(dataManager: DataManager? = nil, appManager: AppManager? = n
     resetLoginInfo()
     resetOnboarding()
     UserDefaults.standard.set(0, for: \.launchCount)
+    UserDefaults.standard.set(date: nil, for: \.lastVersionUpdateDate)
+    // Don't reset last requested reviews as that might shoot itself in the foot (e.g. when resetting accidentially I guess)
     if let dataManager = dataManager {
         appManager?.reload(with: dataManager)
     }
 }
+
+#if DEBUG
+/// In addition to the normal `resetAllDataOn(_:_:)`, reset stuff that's just supposed to be reset be a dev (e.g. last requested review)
+func devReset(appManager: AppManager? = nil, dataManager: DataManager? = nil) {
+    resetAllDataOn(dataManager: dataManager, appManager: appManager)
+    UserDefaults.standard.set(date: nil, for: \.lastReviewRequested)
+}
+#endif
 
 func isAppLocked() -> Bool {
     UserDefaults.standard.bool(for: \.requireAuthentication) && !UserDefaults.standard.bool(for: \.didUnlockInCurrentSession)

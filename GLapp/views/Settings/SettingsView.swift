@@ -14,6 +14,7 @@ struct SettingsView: View, SettingsViewIsEnabledBindingResultHandling {
     @ObservedObject var dataManager: DataManager
     @ObservedObject var appManager: AppManager
     @ObservedObject var confirmationDialogProvider: ConfirmationDialogProvider
+    @AppStorage(UserDefaultsKeys().launchCount) var launchCount = 0
     var FormView: some View {
         Form {
             Section {
@@ -47,6 +48,7 @@ struct SettingsView: View, SettingsViewIsEnabledBindingResultHandling {
                 .sheet(isPresented: $showingFunctionalityCheckView) {
                     FunctionalityCheckView(appManager: appManager, dataManager: dataManager)
                 }
+                Link("Review", destination: Constants.appStoreWriteReviewURL)
                 Link("feedback", destination: Constants.mailToURL)
             }
             Section {
@@ -87,6 +89,14 @@ struct SettingsView: View, SettingsViewIsEnabledBindingResultHandling {
                 Text(NSLocalizedString("prerelease_version_exl_mark") + " (\(Changelog.currentVersion))")
                     .foregroundColor(.secondary)
             }
+            #if DEBUG
+            Button("dev_reset") {
+                devReset(appManager: appManager, dataManager: dataManager)
+            }
+            Stepper(settingsValue: \.launchCount) {
+                "Launch count: \(launchCount)"
+            }
+            #endif
         }
         .onAppear {
             appManager.reload(with: dataManager)

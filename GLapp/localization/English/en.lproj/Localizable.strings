@@ -240,4 +240,10 @@
 "color_text_in_subject_color" = "Color text in subject color";
 "e_changelog" = "👋 Changelog";
 "showing_on_each_relevant_app_update" = "Showing on each relevant app update";
+"button_for_rating_in_app_store" = "Button for rating in App Store";
+"automatic_rating_requests" = "Automatic rating requests";
+"re-add_keyboard_shortcut_for_navigating_to_timetable_p_as_that_was_lost_for_some_reason_p" = "Re-add keyboard shortcut for navigating to timetable (as that was lost for some reason)";
+"making_sure_not_to_bug_you" = "Making sure not to bug you";
 /// MARK: end changelog block
+
+"dev_reset" = "Dev-reset";

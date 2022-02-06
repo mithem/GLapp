@@ -29,6 +29,7 @@ class SettingsStore: ObservableObject {
     @Published var demoMode = SettingsValueWithFunctionality(key: \.demoMode, functionality: \.demoMode, defaultValue: false)
     @Published var didUnlockInCurrentSession = SettingsValue(key: \.didUnlockInCurrentSession, defaultValue: false)
     @Published var isUnlocking = SettingsValue(key: \.isUnlocking, defaultValue: false)
+    @Published var launchCount = SettingsValueStrideable(key: \.launchCount, defaultValue: 0, range: 0...Int(truncating: NSDecimalNumber(decimal: pow(10, 20))), step: 1)
     
     func reset(withHapticFeedback: Bool = false) {
         let generator: UINotificationFeedbackGenerator? = withHapticFeedback ? .init() : nil
@@ -49,6 +50,7 @@ class SettingsStore: ObservableObject {
         demoMode.resetToDefault()
         didUnlockInCurrentSession.resetToDefault()
         isUnlocking.resetToDefault()
+        launchCount.resetToDefault()
         generator?.notificationOccurred(.success)
     }
     
@@ -56,5 +58,6 @@ class SettingsStore: ObservableObject {
         backgroundReprPlanCheckTimeInterval.selfRepair()
         reprPlanNotificationsHighRelevanceTimeInterval.selfRepair()
         classTestRemindersRemindBeforeDays.selfRepair()
+        launchCount.selfRepair()
     }
 }

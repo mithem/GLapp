@@ -8,6 +8,15 @@
 import SwiftUI
 import Combine
 
+extension UIApplication {
+    var uiWindowScene: UIWindowScene? {
+        return connectedScenes
+            .filter {[.foregroundActive, .foregroundInactive].contains($0.activationState) }
+            .first(where: { $0 is UIWindowScene })
+            .flatMap {$0 as? UIWindowScene}
+    }
+}
+
 struct ContentView: View {
     @ObservedObject var model: ContentViewModel
     @State var currentiPadOSView: ContentViewModel.SubView? = .timetable // when using custom bindings created in VM, SwiftUI isn't notified of any change, so the view doesn't update (my best guess, anyways)

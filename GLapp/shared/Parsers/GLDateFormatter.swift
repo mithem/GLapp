@@ -74,4 +74,11 @@ class GLDateFormatter {
         let formatter = numericRelativeDateTimeFormatter
         return formatter
     }
+    
+    static var utcFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.timeZone = .init(secondsFromGMT: 0)
+        formatter.dateStyle = .full
+        return formatter
+    }
 }

@@ -21,6 +21,13 @@ struct Constants {
     static let appDataDir = try? FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent(Constants.Identifiers.appId)
     /// When to add the first extra component (hours, at 1/3rd this interval also minutes) to increase (relative) precision
     static let relativeDateTimeFormatterTimeIntervalToIncreasePrecision: TimeInterval = 60 * 60 * 24 * 3
+    static let appStoreWriteReviewURL = URL(string: "https://apps.apple.com/\(Locale.current.regionCode ?? "de")/app/glapp-gymnasium-lohmar-app/id1591743755?action=write-review")!
+    
+    struct ReviewRequests {
+        static let minimumTimeIntervalBetweenRequests: TimeInterval = 14 * 24 * 60 * 60 // 2 weeks
+        static let minimumLaunchCount = 10
+        static let minimumTimeIntervalSinceUpdate: TimeInterval = 2 * 24 * 60 * 60 // 2 days
+    }
 
     struct Identifiers {
         static let appId = "com.mithem.GLapp"

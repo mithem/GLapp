@@ -38,4 +38,6 @@ struct UserDefaultsKeys {
     let didUnlockInCurrentSession = "didUnlockInCurrentSession"
     let isUnlocking = "isUnlocking"
     let showVersionUpdatePromoView = "showVersionUpdatePromoView"
+    let lastReviewRequested = "lastReviewRequested"
+    let lastVersionUpdateDate = "lastVersionUpdateDate"
 }

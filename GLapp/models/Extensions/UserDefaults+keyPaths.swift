@@ -24,6 +24,13 @@ extension UserDefaults {
         }
     }
     
+    func set(date: Date?, for key: KeyPath<UserDefaultsKeys, String>) {
+        if let date = date {
+            return set(GLDateFormatter.utcFormatter.string(from: date), for: key)
+        }
+        return set(nil, forKey: UserDefaultsKeys()[keyPath: key])
+    }
+    
     func setNil(for key: KeyPath<UserDefaultsKeys, String>) {
         set(nil, forKey: UserDefaultsKeys()[keyPath: key])
     }
@@ -46,6 +53,11 @@ extension UserDefaults {
     
     func data(for key: KeyPath<UserDefaultsKeys, String>) -> Data? {
         data(forKey: UserDefaultsKeys()[keyPath: key])
+    }
+    
+    func date(for key: KeyPath<UserDefaultsKeys, String>) -> Date? {
+        guard let string = string(for: key) else { return nil }
+        return GLDateFormatter.utcFormatter.date(from: string)
     }
     
     func object<ValueType>(for key: KeyPath<UserDefaultsKeys, String>, decodeTo: ValueType.Type) -> ValueType? where ValueType: Codable {

@@ -13,13 +13,20 @@ struct Changelog {
     static let versionUpdates: [VersionUpdate] = [
         .init(version: "1.4.0", new: [
             "e_changelog",
-            "version_update_promos"
-        ], improved: [], fixed: [], promos: [
+            "version_update_promos",
+            "button_for_rating_in_app_store",
+            "automatic_rating_requests"
+        ], improved: [], fixed: [
+            "re-add_keyboard_shortcut_for_navigating_to_timetable_p_as_that_was_lost_for_some_reason_p"
+        ], promos: [
             .init(titleKey: "changelog", descriptionKey: "detailed_changelog_over_all_versions", symbol: {
                 Image(systemName: "text.badge.plus")
             }),
             .init(titleKey: "version_update_promos", descriptionKey: "showing_on_each_relevant_app_update", symbol: {
                 Image(systemName: "square.and.arrow.down")
+            }),
+            .init(titleKey: "automatic_rating_requests", descriptionKey: "making_sure_not_to_bug_you", symbol: {
+                Image(systemName: "text.badge.star")
             })
         ], note: "functionality_check_still_available_manually")!,
         

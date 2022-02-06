@@ -7,6 +7,7 @@
 
 import Combine
 import SwiftUI
+import StoreKit
 
 final class ContentViewModel: ObservableObject, BindingAttributeRepresentable {
     @Published var appManager: AppManager
@@ -39,6 +40,9 @@ final class ContentViewModel: ObservableObject, BindingAttributeRepresentable {
         dataManager.loadData()
         NotificationManager.default.removeAllDeliveredAndAppropriate()
         handleIntent()
+        if reviewRequestAppropriate(), let scene = UIApplication.shared.uiWindowScene {
+            requestReview(in: scene)
+        }
     }
     
     func onDisappear() {
@@ -116,6 +120,30 @@ final class ContentViewModel: ObservableObject, BindingAttributeRepresentable {
     func tick() {
         handleIntent()
         applyFirstLaunchConfiguration()
+    }
+    
+    func reviewRequestAppropriate() -> Bool {
+        guard UserDefaults.standard.integer(for: \.launchCount) >= Constants.ReviewRequests.minimumLaunchCount  else { return false }
+        let lastUpdate = UserDefaults.standard.date(for: \.lastVersionUpdateDate)
+        if let lastUpdate = lastUpdate {
+            guard Date.rightNow.timeIntervalSince(lastUpdate) >= Constants.ReviewRequests.minimumTimeIntervalSinceUpdate else { return false }
+        }
+        let lastRequest = UserDefaults.standard.date(for: \.lastReviewRequested)
+        if let lastRequest = lastRequest {
+            return Date.rightNow.timeIntervalSince(lastRequest) >= Constants.ReviewRequests.minimumTimeIntervalBetweenRequests
+        }
+        return true
+    }
+    
+    /// Request review after waiting a few seconds.
+    func requestReview(in scene: UIWindowScene) {
+        DispatchQueue.init(label: Constants.Identifiers.appId + ".request_review").async {
+            sleep(3)
+            DispatchQueue.main.async {
+                SKStoreReviewController.requestReview(in: scene)
+                UserDefaults.standard.set(date: Date.rightNow, for: \.lastReviewRequested)
+            }
+        }
     }
     
     enum ModalSheetView {

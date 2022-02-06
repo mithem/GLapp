@@ -153,8 +153,11 @@ final class AppManager: ObservableObject {
                 return
             }
             let update = try? Changelog.getVersionUpdate(since: lastVersion)
-            if update?.isFeatureUpdate == true {
-                UserDefaults.standard.set(true, for: \.showVersionUpdatePromoView)
+            if let update = update {
+                if update.isFeatureUpdate {
+                    UserDefaults.standard.set(true, for: \.showVersionUpdatePromoView)
+                }
+                UserDefaults.standard.set(date: .rightNow, for: \.lastVersionUpdateDate)
             }
         }
     }

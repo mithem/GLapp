@@ -247,3 +247,8 @@
 /// MARK: end changelog block
 
 "dev_reset" = "Dev-reset";
+"demo_mode_excl" = "Demo mode!";
+"demo_mode_warning" = "Demo mode warning";
+"demo_mode_warning_description" = "When active only";
+"always_show_class_test_plan" = "Always show class test plan";
+"haptic_feedback_when_reloading_data" = "Haptic feedback when reloading data";

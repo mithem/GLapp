@@ -9,12 +9,14 @@ import SwiftUI
 import Combine
 
 final class TimetableViewModel: ObservableObject {
+    @ObservedObject var appManager: AppManager
     @ObservedObject var dataManager: DataManager
     @Published var timer: Publishers.Autoconnect<Timer.TimerPublisher>
     private let startDate: Date
     private var didDonateIntent: Bool
     
-    init(dataManager: DataManager) {
+    init(appManager: AppManager, dataManager: DataManager) {
+        self.appManager = appManager
         self.dataManager = dataManager
         timer = Timer.publish(every: Constants.timeIntervalRequiringUserActivityUntilNSUserActivityIsDonated, tolerance: nil, on: .current, in: .common).autoconnect()
         startDate = .rightNow

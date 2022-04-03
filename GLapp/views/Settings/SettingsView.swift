@@ -82,6 +82,8 @@ struct SettingsView: View, SettingsViewIsEnabledBindingResultHandling {
                 Section {
                     Button("demo_mode_active") {
                         try? appManager.demoMode.disable(with: appManager, dataManager: dataManager)
+                        dataManager.reset()
+                        resetLoginInfo()
                     }
                 }
             }

@@ -11,6 +11,9 @@ struct RepresentativePlanView: View {
     @ObservedObject var model: RepresentativePlanViewModel
     var InnerView: some View {
         VStack {
+            if model.appManager.demoMode.isEnabled.unwrapped {
+                DemoModeWarningView(appManager: model.appManager, dataManager: model.dataManager)
+            }
             DataManagementTaskView(date: model.dataManager.representativePlan?.date, lastFetched: model.dataManager.representativePlan?.lastFetched, task: model.dataManager.tasks.getRepresentativePlan)
             Spacer()
             if let reprPlan = model.dataManager.representativePlan {

@@ -11,6 +11,9 @@ struct ClassTestPlanView: View {
     @ObservedObject var model: ClassTestPlanViewModel
     var InnerView: some View {
         VStack {
+            if model.appManager.demoMode.isEnabled.unwrapped {
+                DemoModeWarningView(appManager: model.appManager, dataManager: model.dataManager)
+            }
             DataManagementTaskView(date: model.dataManager.classTestPlan?.date, lastFetched: model.dataManager.classTestPlan?.lastFetched, task: model.dataManager.tasks.getClassTestPlan)
             Spacer()
             if let plan = model.dataManager.classTestPlan {

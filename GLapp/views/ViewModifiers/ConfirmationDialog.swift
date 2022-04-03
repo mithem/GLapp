@@ -65,7 +65,12 @@ fileprivate struct ConfirmationDialog_Previews: PreviewProvider {
 }
 
 fileprivate struct ConfirmationDialogDemo: View {
-    @ObservedObject var provider = ConfirmationDialogProvider(title: "Hello, world!", body: "Hello, there!")
+    @ObservedObject var provider: ConfirmationDialogProvider
+    
+    init() {
+        provider = ConfirmationDialogProvider(title: "Hello, world!", body: "Hello, there!")
+    }
+    
     var body: some View {
         Button("Show dialog") {
             provider.showingConfirmationDialog = true
@@ -74,11 +79,11 @@ fileprivate struct ConfirmationDialogDemo: View {
     }
 }
 
-@MainActor final class ConfirmationDialogProvider: ConfirmationDialogProviding {
-    @MainActor @Published var confirmationDialog: (title: String, body: String)?
-    @MainActor @Published var showingConfirmationDialog: Bool
+final class ConfirmationDialogProvider: ConfirmationDialogProviding {
+    @Published var confirmationDialog: (title: String, body: String)?
+    @Published var showingConfirmationDialog: Bool
     
-    init(title: String, body: String) {
+    @MainActor init(title: String, body: String) {
         self.showingConfirmationDialog = false
         self.confirmationDialog = (title: title, body: body)
     }

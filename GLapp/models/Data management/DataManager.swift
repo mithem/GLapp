@@ -517,24 +517,11 @@ class DataManager: ObservableObject {
     }
     
     func loadData(withHapticFeedBack: Bool = false) {
-        let generator: UINotificationFeedbackGenerator? = withHapticFeedBack ? .init() : nil
-        generator?.prepare()
         reloadDemoMode()
         loadRepresentativePlan()
         loadClassTestPlan()
-        loadTimetable()
+        loadTimetable(withHapticFeedback: withHapticFeedBack) // usually takes the longest
         loadSubjectColorMap()
-        if let generator = generator {
-            giveCorrectTapticFeedback(on: generator)
-        }
-    }
-    
-    func giveCorrectTapticFeedback(on generator: UINotificationFeedbackGenerator) {
-        if tasks.getRepresentativePlan.error != nil || tasks.getTimetable.error != nil || tasks.getClassTestPlan.error != nil {
-            generator.notificationOccurred(.error)
-        } else {
-            generator.notificationOccurred(.success)
-        }
     }
     
     func reset() {

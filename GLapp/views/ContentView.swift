@@ -8,15 +8,6 @@
 import SwiftUI
 import Combine
 
-extension UIApplication {
-    var uiWindowScene: UIWindowScene? {
-        return connectedScenes
-            .filter {[.foregroundActive, .foregroundInactive].contains($0.activationState) }
-            .first(where: { $0 is UIWindowScene })
-            .flatMap {$0 as? UIWindowScene}
-    }
-}
-
 struct ContentView: View {
     @ObservedObject var model: ContentViewModel
     @State var currentiPadOSView: ContentViewModel.SubView? = .timetable // when using custom bindings created in VM, SwiftUI isn't notified of any change, so the view doesn't update (my best guess, anyways)
@@ -26,18 +17,16 @@ struct ContentView: View {
     
     var iOSView: some View {
         TabView(selection: $lastTabView) {
-            TimetableView(dataManager: model.dataManager)
+            TimetableView(appManager: model.appManager, dataManager: model.dataManager)
                 .tag(0)
                 .tabItem {
                     Label("timetable", systemImage: "calendar")
                 }
-            if model.appManager.classTestPlan.isEnabled.unwrapped {
-                ClassTestPlanView(appManager: model.appManager, dataManager: model.dataManager)
-                    .tag(1)
-                    .tabItem {
-                        Label("classtests", systemImage: "doc.append")
-                    }
-            }
+            ClassTestPlanView(appManager: model.appManager, dataManager: model.dataManager)
+                .tag(1)
+                .tabItem {
+                    Label("classtests", systemImage: "doc.append")
+                }
             RepresentativePlanView(appManager: model.appManager, dataManager: model.dataManager)
                 .tag(2)
                 .tabItem {
@@ -55,23 +44,21 @@ struct ContentView: View {
         NavigationView {
             List {
                 NavigationLink(
-                    destination: TimetableView(dataManager: model.dataManager),
+                    destination: TimetableView(appManager: model.appManager, dataManager: model.dataManager),
                     tag: .timetable,
                     selection: $currentiPadOSView,
                     label: {
                         Label("timetable", systemImage: "calendar")
                 })
                     .keyboardShortcut("1")
-                if model.dataManager.tasks.getClassTestPlan.error != .classTestPlanNotSupported {
-                    NavigationLink(
-                        destination: ClassTestPlanView(appManager: model.appManager, dataManager: model.dataManager),
-                        tag: .classTestPlan,
-                        selection: $currentiPadOSView,
-                        label: {
-                            Label("classtests", systemImage: "doc.append")
-                    })
-                        .keyboardShortcut("2")
-                }
+                NavigationLink(
+                    destination: ClassTestPlanView(appManager: model.appManager, dataManager: model.dataManager),
+                    tag: .classTestPlan,
+                    selection: $currentiPadOSView,
+                    label: {
+                        Label("classtests", systemImage: "doc.append")
+                })
+                    .keyboardShortcut("2")
                 NavigationLink(
                     destination: RepresentativePlanView(appManager: model.appManager, dataManager: model.dataManager),
                     tag: .reprPlan,

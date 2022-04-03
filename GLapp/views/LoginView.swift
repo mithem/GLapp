@@ -23,9 +23,16 @@ struct LoginView: View {
     
     @ObservedObject var appManager: AppManager
     @ObservedObject var dataManager: DataManager
-    @ObservedObject var confirmationDialogProvider = ConfirmationDialogProvider(title: "not_available", body: "not_available")
+    @ObservedObject var confirmationDialogProvider: ConfirmationDialogProvider
     
     let delegate: LoginViewDelegate
+    
+    init(appManager: AppManager, dataManager: DataManager, delegate: LoginViewDelegate) {
+        self.appManager = appManager
+        self.dataManager = dataManager
+        self.delegate = delegate
+        self.confirmationDialogProvider = ConfirmationDialogProvider(title: "not_available", body: "not_available")
+    }
     
     var confirmationDialogButtons: (actionButton: ConfirmationDialog.Button?, cancelButton: ConfirmationDialog.Button) {
         switch confirmationDialogReason {

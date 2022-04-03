@@ -11,6 +11,16 @@ import Semver
 struct Changelog {
     /// All version updates from day 1 (or so) to this current version. But **reversed** (from current to old).
     static let versionUpdates: [VersionUpdate] = [
+        .init(version: "1.5.0", new: [], improved: [
+            "demo_mode_warning",
+            "always_show_class_test_plan"
+        ], fixed: [
+            "haptic_feedback_when_reloading_data"
+        ], promos: [
+            .init(titleKey: "demo_mode_warning", descriptionKey: "demo_mode_warning_description", symbol: {
+                Image(systemName: "exclamationmark.triangle")
+            })
+        ], note: nil)!,
         .init(version: "1.4.0", new: [
             "e_changelog",
             "version_update_promos",

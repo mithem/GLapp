@@ -152,6 +152,9 @@
 		49AF336B2719963A00F406D1 /* TimetableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF33682719963A00F406D1 /* TimetableViewModel.swift */; };
 		49AF336C2719963A00F406D1 /* LessonInlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF33692719963A00F406D1 /* LessonInlineView.swift */; };
 		49AF336D2719963A00F406D1 /* TimetableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF336A2719963A00F406D1 /* TimetableView.swift */; };
+		49B0E91F27F217CE007F6861 /* DemoModeWarningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B0E91E27F217CE007F6861 /* DemoModeWarningView.swift */; };
+		49B0E92227F21818007F6861 /* DemoModeWarningViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B0E92127F21818007F6861 /* DemoModeWarningViewModel.swift */; };
+		49B0E92427F22040007F6861 /* UIApplication+uiWindowScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B0E92327F22040007F6861 /* UIApplication+uiWindowScene.swift */; };
 		49B149DB27AD9F4F00162E80 /* VersionUpdatePromoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B149DA27AD9F4F00162E80 /* VersionUpdatePromoViewModel.swift */; };
 		49B149DD27ADA0F300162E80 /* VersionUpdateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B149DC27ADA0F300162E80 /* VersionUpdateViewModel.swift */; };
 		49B149DF27ADA25800162E80 /* ChangelogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B149DE27ADA25800162E80 /* ChangelogViewModel.swift */; };
@@ -403,6 +406,9 @@
 		49AF33682719963A00F406D1 /* TimetableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimetableViewModel.swift; sourceTree = "<group>"; };
 		49AF33692719963A00F406D1 /* LessonInlineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonInlineView.swift; sourceTree = "<group>"; };
 		49AF336A2719963A00F406D1 /* TimetableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimetableView.swift; sourceTree = "<group>"; };
+		49B0E91E27F217CE007F6861 /* DemoModeWarningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoModeWarningView.swift; sourceTree = "<group>"; };
+		49B0E92127F21818007F6861 /* DemoModeWarningViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoModeWarningViewModel.swift; sourceTree = "<group>"; };
+		49B0E92327F22040007F6861 /* UIApplication+uiWindowScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+uiWindowScene.swift"; sourceTree = "<group>"; };
 		49B149DA27AD9F4F00162E80 /* VersionUpdatePromoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionUpdatePromoViewModel.swift; sourceTree = "<group>"; };
 		49B149DC27ADA0F300162E80 /* VersionUpdateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionUpdateViewModel.swift; sourceTree = "<group>"; };
 		49B149DE27ADA25800162E80 /* ChangelogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangelogViewModel.swift; sourceTree = "<group>"; };
@@ -654,6 +660,7 @@
 				492B9A8E2790AE96009B866D /* Toggle+init.swift */,
 				492B9A922791C99D009B866D /* Picker+init.swift */,
 				4994278C27935EBD0009ADD8 /* AppStorage+init.swift */,
+				49B0E92327F22040007F6861 /* UIApplication+uiWindowScene.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -886,6 +893,7 @@
 				4991A2A5271996F8008559F9 /* LoginView.swift */,
 				4991A2A1271996F8008559F9 /* UIConstants.swift */,
 				495E7C50271ABFC9000085C7 /* DataManagementTaskView.swift */,
+				49B0E92027F21803007F6861 /* DemoModeWarningView */,
 				49EEB01A27ABF3FB00FF4BC8 /* Changelog */,
 				49E9737C275A4978008D91A2 /* ViewModifiers */,
 				49E59DE4271C7170009A1609 /* Settings */,
@@ -981,6 +989,15 @@
 				49A5B24A2719A5BF00577767 /* FunctionalityInlineView.swift */,
 			);
 			path = "Functionality check";
+			sourceTree = "<group>";
+		};
+		49B0E92027F21803007F6861 /* DemoModeWarningView */ = {
+			isa = PBXGroup;
+			children = (
+				49B0E91E27F217CE007F6861 /* DemoModeWarningView.swift */,
+				49B0E92127F21818007F6861 /* DemoModeWarningViewModel.swift */,
+			);
+			path = DemoModeWarningView;
 			sourceTree = "<group>";
 		};
 		49E59DE4271C7170009A1609 /* Settings */ = {
@@ -1337,6 +1354,7 @@
 				49524BC4272F25E40069880B /* FColoredInlineSubjects.swift in Sources */,
 				4962EC61274A4E95000CDD4E /* String+init+CustomStringConvertible.swift in Sources */,
 				4921C48D2731C3F100DA256D /* UpcomingClassTestViewModel.swift in Sources */,
+				49B0E92427F22040007F6861 /* UIApplication+uiWindowScene.swift in Sources */,
 				49EEDE5227218B0F009A4C6A /* FBackgroundRefresh.swift in Sources */,
 				4991A2AB271996F8008559F9 /* ContentView.swift in Sources */,
 				4934050A271196C6008B059B /* GLappError.swift in Sources */,
@@ -1386,6 +1404,7 @@
 				4991A2AE271996F8008559F9 /* EmptyContentView.swift in Sources */,
 				4962EC45274A412E000CDD4E /* ClassTest+DeliverableByNotification.swift in Sources */,
 				499A3EEA2719F7220045683D /* ClassTest+Equatable.swift in Sources */,
+				49B0E92227F21818007F6861 /* DemoModeWarningViewModel.swift in Sources */,
 				498D5E22272C1F0F007722F6 /* Date+rightNow.swift in Sources */,
 				49F380EC2710E0E4002AE814 /* Lesson.swift in Sources */,
 				49FE0C7E276E0A8600643682 /* SettingsViewIsEnabledBindingResultHandling.swift in Sources */,
@@ -1441,6 +1460,7 @@
 				49526C2E27982F3300B1C124 /* String+trimmed.swift in Sources */,
 				49EEB02927AC5DC600FF4BC8 /* ChangelogView.swift in Sources */,
 				4962EC53274A48E2000CDD4E /* RepresentativePlan+DeliverableByNotification.swift in Sources */,
+				49B0E91F27F217CE007F6861 /* DemoModeWarningView.swift in Sources */,
 				49D110A7272AD87B00CEBF1D /* DateComponents+combine.swift in Sources */,
 				4980CB4B2748F304000E751F /* String+Rewritable.swift in Sources */,
 				49262704273E39BE00829AA7 /* RepresentativePlan+Differentiable.swift in Sources */,
@@ -1672,7 +1692,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLapp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;
@@ -1689,7 +1709,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mithem.GLapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1706,7 +1726,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = GLapp/GLappRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"GLapp/Preview Content\"";
 				DEVELOPMENT_TEAM = MHQFP8C3YS;
 				ENABLE_PREVIEWS = YES;
@@ -1723,7 +1743,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mithem.GLapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

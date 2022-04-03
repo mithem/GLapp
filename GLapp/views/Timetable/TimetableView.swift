@@ -12,6 +12,9 @@ struct TimetableView: View {
     @Environment(\.verticalSizeClass) var verticalSizeClass
     var InnerView: some View {
         VStack {
+            if model.appManager.demoMode.isEnabled.unwrapped {
+                DemoModeWarningView(appManager: model.appManager, dataManager: model.dataManager)
+            }
             DataManagementTaskView(date: model.timetable?.date, lastFetched: model.timetable?.lastFetched, task: model.dataManager.tasks.getTimetable)
             Spacer()
             if let timetable = model.timetable, let grid = model.timetableGrid {
@@ -75,15 +78,15 @@ struct TimetableView: View {
         }
     }
 
-    init(dataManager: DataManager) {
-        model = .init(dataManager: dataManager)
+    init(appManager: AppManager, dataManager: DataManager) {
+        model = .init(appManager: appManager, dataManager: dataManager)
     }
 }
 
 #if DEBUG
 struct TimetableView_Previews: PreviewProvider {
     static var previews: some View {
-        TimetableView(dataManager: MockDataManager())
+        TimetableView(appManager: .init(), dataManager: MockDataManager())
     }
 }
 #endif

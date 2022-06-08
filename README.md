@@ -1,3 +1,5 @@
+[![CI](https://github.com/mithem/GLapp/actions/workflows/ios.yml/badge.svg)](https://github.com/mithem/GLapp/actions/workflows/ios.yml)
+
 # GLapp
 The iOS variant of GLApp.
 
